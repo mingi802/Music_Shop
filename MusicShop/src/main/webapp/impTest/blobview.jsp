@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.io.File"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="java.io.OutputStream"%>
-<%@page import="java.io.FileOutputStream"%>
-<%@page import="java.awt.image.BufferedImage"%>
-<%@page import="javax.imageio.ImageIO"%>
-<%@page import="java.util.Enumeration"%>
 <%@page import="org.apache.commons.io.FileUtils"%>
 <%@page import="org.apache.commons.io.output.ByteArrayOutputStream"%>
 <%@ page import="org.apache.commons.codec.binary.Base64"%>
@@ -59,7 +54,6 @@ try {
         Blob blob = result.getBlob("image");
         InputStream inputStream = blob.getBinaryStream();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        OutputStream outputStream = new FileOutputStream("D:/Photos/test"+count+".jpg");
         count++;
        
         int bytesRead = -1;
@@ -72,11 +66,8 @@ try {
         	%>
         		<img name='myimg' src="data:image/*;base64,<%=base64str%>">
         	<%
-            outputStream.write(buffer, 0, bytesRead);
         }
-		
         inputStream.close();
-        outputStream.close();
         System.out.println("File saved");
     }
 } catch (Exception e) {
