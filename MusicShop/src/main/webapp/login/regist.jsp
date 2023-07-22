@@ -1,6 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -47,7 +48,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -65,11 +66,11 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="../index.html">Home</a></li>
+                                    <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../albums-store.html">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="../index.html">Home</a></li>
+                                            <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../albums-store.html">Albums</a></li>
                                             <li><a href="../event.html">Events</a></li>
                                             <li><a href="../blog.html">News</a></li>
@@ -196,9 +197,9 @@
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
-                                    <input type="radio" class="form-controlasd" id="exampleInputGender" name="user_gen" value="남자">남자
+                                    <input type="radio" class="form-controlgen" id="exampleInputGender" name="user_gen" value="남자">남자
                                      <span class="spacing"></span>
-                                    <input type="radio" class="form-controlasd" id="exampleInputGender" name="user_gen" value="여자">여자
+                                    <input type="radio" class="form-controlgen" id="exampleInputGender" name="user_gen" value="여자">여자
                                 </div>                                                 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">이메일(Email)</label>
@@ -243,7 +244,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../main.jsp">Home</a></li>
                             <li><a href="#">Albums</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
