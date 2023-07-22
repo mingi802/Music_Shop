@@ -60,7 +60,7 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="main.jsp">홉페이지</a></li>
+                                    <li><a href="main.jsp">메인</a></li>
                                     <li><a href="albums-store.html">노래</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
@@ -894,7 +894,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="main.jsp">Home</a></li>
                             <li><a href="#">Albums</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>

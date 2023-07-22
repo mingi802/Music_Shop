@@ -60,7 +60,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -78,11 +78,11 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="../main.jsp">메인</a></li>
                                     <li><a href="albums-store.html">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="../main.jsp">메인</a></li>
                                             <li><a href="albums-store.html">Albums</a></li>
                                             <li><a href="event.html">Events</a></li>
                                             <li><a href="blog.html">News</a></li>
@@ -117,7 +117,7 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.jsp" id="loginBtn">Login / Register</a>
+                                        <a href="login.jsp" id="loginBtn">로그인 / 회원가입</a>
                                     </div>
 
                                     <!-- Cart Button -->
@@ -189,7 +189,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="../main.jsp">Home</a></li>
                             <li><a href="#">Albums</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
