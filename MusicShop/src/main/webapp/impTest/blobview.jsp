@@ -34,7 +34,7 @@ Connection conn = null;
 try {
 	String dbURL = "jdbc:mysql://localhost:3306/MusicShop?serverTimezone=UTC";
 	String dbID = "root";
-	String dbPassword = "1234";
+	String dbPassword = "jinsang1027#";
 	
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	

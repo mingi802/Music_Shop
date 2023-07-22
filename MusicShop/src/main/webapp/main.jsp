@@ -110,7 +110,6 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                    	<a href="mypage.jsp" id="loginBtn"><%=user_id %></a>
                                         <a href="login/logout.jsp" id="loginBtn">로그아웃</a>
                                     </div> 
 <% 
