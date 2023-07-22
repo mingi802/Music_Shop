@@ -17,6 +17,25 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
+    <script>
+        function RegistrationPage() {
+			window.location.href = "login/regist.html";
+		}
+        
+       function validateForm(){
+    	   var position = document.login_page.position.value;
+    	   var id = document.login_page.id_input.value;
+    	   var pwd = document.login_page.pwd_input.value;
+    	   
+    	   if( !position || !id || !pwd){
+				alert('모든 항목을 입력해주세요!');
+				return false;
+    	   } else{
+    		   return true;
+    	   }
+       }
+    </script>
+
 </head>
 
 <body>
@@ -120,7 +139,7 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Login</h2>
+            <h2>로그인</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
