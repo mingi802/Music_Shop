@@ -1,5 +1,5 @@
 package com.mlppgm.musicshop;
 
-public class test {
+public class javatest {
 
 }
