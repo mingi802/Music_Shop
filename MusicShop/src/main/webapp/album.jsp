@@ -1,6 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
+    <!-- Title -->
+    <title>One Music - Modern Music HTML5 Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -22,23 +38,6 @@
         }
     });
 </script>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <!-- Title -->
-    <title>One Music - Modern Music HTML5 Template</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -62,7 +61,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -80,17 +79,21 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="albums-store.html">Albums</a></li>
+                                    <li><a href="main.jsp">Home</a></li>
+                                    <li><a href="albums.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="albums-store.html">Albums</a></li>
+                                            <li><a href="main.jsp">Home</a></li>
+                                            <li><a href="album.jsp">Albums</a></li>
+                                            <!--  
                                             <li><a href="event.html">Events</a></li>
                                             <li><a href="blog.html">News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            -->
+                                            <li><a href="connection.jsp">Contact</a></li>
+                                            <!--  
                                             <li><a href="elements.html">Elements</a></li>
-                                            <li><a href="login.html">Login</a></li>
+                                            -->
+                                            <li><a href="login/login.jsp">Login</a></li>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
                                                     <li><a href="#">Even Dropdown</a></li>
@@ -110,9 +113,11 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <!--  
                                     <li><a href="event.html">Events</a></li>
                                     <li><a href="blog.html">News</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    -->
+                                    <li><a href="connection.jsp">Contact</a></li>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -629,11 +634,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Albums</a></li>
+                            <li><a href="main.jsp">Home</a></li>
+                            <li><a href="album.jsp">Albums</a></li>
+                            <!--  
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
+                            -->
+                            <li><a href="connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -40,7 +41,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -58,17 +59,19 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="albums-store.html">Albums</a></li>
+                                    <li><a href="main.jsp">Home</a></li>
+                                    <li><a href="album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="albums-store.html">Albums</a></li>
+                                            <li><a href="main.jsp">Home</a></li>
+                                            <li><a href="album.jsp">Albums</a></li>
+                                            <!--  
                                             <li><a href="event.html">Events</a></li>
                                             <li><a href="blog.html">News</a></li>
+                                            -->
                                             <li><a href="contact.html">Contact</a></li>
                                             <li><a href="elements.html">Elements</a></li>
-                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="login/login.jsp">Login</a></li>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
                                                     <li><a href="#">Even Dropdown</a></li>
@@ -88,16 +91,18 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <!--  
                                     <li><a href="event.html">Events</a></li>
                                     <li><a href="blog.html">News</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    -->
+                                    <li><a href="connection.jsp">Contact</a></li>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.html" id="loginBtn">Login / Register</a>
+                                        <a href="login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
 
                                     <!-- Cart Button -->
@@ -120,7 +125,7 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Contact</h2>
+            <h2>찾아오시는 길</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -142,7 +147,7 @@
                             <div class="icon mr-30">
                                 <span class="icon-placeholder"></span>
                             </div>
-                            <p>1481 Creekside Lane Avila Beach, CA 931</p>
+                            <p>서울특별시 광진구 능동로 195-16, 6층 멀티캠퍼스 세종대(세종대학교 김원관 6층)</p>
                         </div>
 
                         <!-- Single Contact Info -->
@@ -150,7 +155,7 @@
                             <div class="icon mr-30">
                                 <span class="icon-smartphone"></span>
                             </div>
-                            <p>+53 345 7953 32453</p>
+                            <p>누군가의 전화번호</p>
                         </div>
 
                         <!-- Single Contact Info -->
@@ -158,17 +163,15 @@
                             <div class="icon mr-30">
                                 <span class="icon-mail"></span>
                             </div>
-                            <p>yourmail@gmail.com</p>
+                            <p>누군가의 이메일</p>
                         </div>
 
                         <!-- Contact Social Info -->
                         <div class="contact-social-info mt-50">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="양진호"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="왕민기"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="이준희"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="이현성"><i class="fa fa-github" aria-hidden="true"></i></a>
                         </div>
 
                     </div>
@@ -250,11 +253,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Albums</a></li>
+                            <li><a href="main.jsp">Home</a></li>
+                            <li><a href="album.jsp">Albums</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>

@@ -12,13 +12,24 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>One Music - Modern Music HTML5 Template</title>
+    <title>MLP Music:: </title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+
+<script>
+/*1분 미리듣기 함수*/
+function limitPlayTime(audio) {
+    if (audio.currentTime > 60) { // 1분(60초)로 제한
+        audio.pause();
+        audio.currentTime = 0; // 음악이 끝난 후 처음으로 돌아감
+        alert("1분 미리듣기가 종료되었습니다.");
+    }
+}
+</script>
 
 </head>
 <body>
@@ -60,16 +71,20 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="main.jsp">메인</a></li>
-                                    <li><a href="albums-store.html">노래</a></li>
+                                    <li><a href="main.jsp">Home</a></li>
+                                    <li><a href="album.jsp">Album</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="main.jsp">홈페이지</a></li>
-                                            <li><a href="albums-store.html">노래</a></li>
+                                            <li><a href="main.jsp">Home</a></li>
+                                            <li><a href="album.jsp">Album</a></li>
+                                            <!--  
                                             <li><a href="event.html">Events</a></li>
                                             <li><a href="blog.html">News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            -->
+                                            <li><a href="connection.jsp">Contact</a></li>
+                                            <!--  
                                             <li><a href="elements.html">Elements</a></li>
+                                            -->
                                             <li><a href="login/login.jsp">Login</a></li>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
@@ -90,9 +105,11 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <!--  
                                     <li><a href="event.html">Events</a></li>
                                     <li><a href="blog.html">News</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    -->
+                                    <li><a href="connection.jsp">Contact</a></li>
                                 </ul>
 <% 
 	String user_id = (String) session.getAttribute("id");
@@ -102,7 +119,7 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/login.jsp" id="loginBtn">로그인 / 회원가입</a>
+                                        <a href="login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div> 
 <% 
 	} else {
@@ -110,7 +127,7 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">로그아웃</a>
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
                                     </div> 
 <% 
 	}
@@ -541,15 +558,24 @@
                             <p>See what’s new</p>
                             <h2>Buy What’s New</h2>
                         </div>
-                        <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit non elit pulvinar pellentesque et non eros.</p>
+                        <p>사건의 지평성 너머로 사라져버린 슬픔이 어떠헌 형태로도 다시 빠져나오지 않기를</p>
                         <div class="song-play-area">
                             <div class="song-name">
                                 <p>01. 사건의 지평선</p>
                             </div>
+                            
+                            
                             <audio preload="auto" controls>
-                                <!--  <source src="audio/dummy-audio.mp3">-->
-                                 <source src="resource/audio/eventhorizon.mp3">
+                                <!-- <source src="audio/dummy-audio.mp3"> -->
+                            <source src="resource/audio/eventhorizon.mp3">
                             </audio>
+                            <!-- 1분 미리듣기 함수가 적용된 부분 -->
+<!--                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">  -->
+							<!--  <source src="audio/dummy-audio.mp3">-->
+<!--
+ 								<source src="resource/audio/eventhorizon.mp3">
+							</audio>
+ -->							
                         </div>
                     </div>
                 </div>
@@ -895,10 +921,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="footer-nav">
                         <ul>
                             <li><a href="main.jsp">Home</a></li>
-                            <li><a href="#">Albums</a></li>
+                            <li><a href="album.jsp">Albums</a></li>
+                            <!--  
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
+                            -->
+                            <li><a href="connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>
