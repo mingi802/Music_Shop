@@ -68,7 +68,6 @@ try {
         	<%
         }
         inputStream.close();
-        System.out.println("File saved");
     }
 } catch (Exception e) {
 	e.printStackTrace();
