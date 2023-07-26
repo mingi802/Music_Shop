@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*"
     pageEncoding="UTF-8"%>
+    
+    <%@page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,17 +60,17 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="albums-store.html">Albums</a></li>
+                                    <li><a href="main.jsp">메인</a></li>
+                                    <li><a href="albums-store.html">노래</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="albums-store.html">Albums</a></li>
+                                            <li><a href="main.jsp">홈페이지</a></li>
+                                            <li><a href="albums-store.html">노래</a></li>
                                             <li><a href="event.html">Events</a></li>
                                             <li><a href="blog.html">News</a></li>
                                             <li><a href="contact.html">Contact</a></li>
                                             <li><a href="elements.html">Elements</a></li>
-                                            <li><a href="login/login.html">Login</a></li>
+                                            <li><a href="login/login.jsp">Login</a></li>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
                                                     <li><a href="#">Even Dropdown</a></li>
@@ -92,14 +94,27 @@
                                     <li><a href="blog.html">News</a></li>
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
-                                
+<% 
+	String user_id = (String) session.getAttribute("id");
+	if(user_id == null) {
+%>
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.html" id="loginBtn">Login / Register</a>
+                                        <a href="login/login.jsp" id="loginBtn">로그인 / 회원가입</a>
                                     </div> 
-                                                                        
+<% 
+	} else {
+%> 
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login/logout.jsp" id="loginBtn">로그아웃</a>
+                                    </div> 
+<% 
+	}
+%>                                   								                                                                     
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
                                         <p><span class="icon-shopping-cart"></span> <span class="quantity" style="display:none;">1</span></p>
@@ -879,7 +894,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="main.jsp">Home</a></li>
                             <li><a href="#">Albums</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>

@@ -1,0 +1,273 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>One Music - Modern Music HTML5 Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
+	<script>
+	// 도메인 주소를 입력하는 함수
+	function domainChange(d){
+		var v=d.value;
+		document.C_Registform.C_domain.value=v;
+	}
+	</script>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="../main.jsp">Home</a></li>
+                                    <li><a href="../albums-store.html">Albums</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="../main.jsp">Home</a></li>
+                                            <li><a href="../albums-store.html">Albums</a></li>
+                                            <li><a href="../event.html">Events</a></li>
+                                            <li><a href="../blog.html">News</a></li>
+                                            <li><a href="../contact.html">Contact</a></li>
+                                            <li><a href="../elements.html">Elements</a></li>
+                                            <li><a href="../login.jsp">Login</a></li>
+                                            <li><a href="#">Dropdown</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">Even Dropdown</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="event.html">Events</a></li>
+                                    <li><a href="blog.html">News</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+
+                                <!-- Login/Register & Cart Button -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login.jsp" id="loginBtn">Login / Register</a>
+                                    </div>
+
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>See what’s new</p>
+            <h2>회원가입</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Login Area Start ##### -->
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Membership</h3>
+                        <!-- Login Form -->
+                        <div class="login-form">
+                            <form action="#" method="get">
+                                <div class="form-group">
+                                    <label for="exampleId">아이디(Id)</label>
+                                    <input type="text" class="form-control" id="exampleInputId1" aria-describedby="emailHelp" name="user_id" placeholder="Enter ID">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">비밀번호(Password)</label>
+                                    <input type="password" class="form-control" id="exampleInputPwd1" name="user_pwd" placeholder="Enter Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1Check">비밀번호 확인(Password Confirm)</label>
+                                    <input type="password" class="form-control" id="exampleInputPwd1Check" name="user_pwd_c" placeholder="Password Check">
+                                </div>                            
+                                <div class="form-group">
+                                    <label for="exampleInputName1">이름(Name)</label>
+                                    <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" name="user_name" placeholder="Enter name">
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your name with anyone else.</small>
+                                    <!-- email을 text로 바꾸면 끝 -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputBirth1">생년월일(Birth)</label><br>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>                                  
+										<select name="birthYear" class="form-year">
+											<script>
+												for(var i = 2023 ; i >=1920 ; i--){
+													document.write("<option>"+i+"</option>");
+												}
+											</script>
+										</select>년
+										<span class="spacing"></span> 
+										<select name="birthMonth" class="form-birth">
+											<script>
+												for(var i = 12 ; i >=1 ; i--){
+													document.write("<option>"+i+"</option>");
+												}
+											</script>
+										</select>월
+										<span class="spacing"></span> 
+										<select name="birthDay" class="form-day">
+											<script>
+												for(var i = 31 ; i >=1 ; i--){
+													document.write("<option>"+i+"</option>");
+												}
+											</script>
+										</select>일										
+                                </div>                                             
+                                <div class="form-group">
+                                    <label for="exampleInputGender1">성별(Gender)</label><br>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="exampleInputGender" name="user_gen" value="남자">남자
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="exampleInputGender" name="user_gen" value="여자">여자
+                                </div>                                                 
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">이메일(Email)</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" name="user_email" placeholder="Enter email">
+                                </div>       
+                                <div class="form-group">
+                                    <label for="exampleInputAddress1">주소(Address)</label>
+                                    <input type="text" class="form-control" id="exampleInputAddr1" name="user_email" placeholder="Enter address">
+                                </div>                                                           
+                                <div class="form-group">
+                                    <label for="exampleInputPosition1">구분(Position)</label><br>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="exampleInputPosition" name="user_pos" value="100">소비자
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="exampleInputPosition" name="user_pos" value="200">관리자
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="exampleInputPosition" name="user_pos" value="300">아티스트
+                                </div>                                  
+                                <button type="submit" class="btn oneMusic-btn mt-30">가입</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Login Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="footer-nav">
+                        <ul>
+                            <li><a href="../main.jsp">Home</a></li>
+                            <li><a href="#">Albums</a></li>
+                            <li><a href="#">Events</a></li>
+                            <li><a href="#">News</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="../js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="../js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="../js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="../js/active.js"></script>
+</body>
+
+</html>
