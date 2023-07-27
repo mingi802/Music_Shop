@@ -17,27 +17,36 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const filter = urlParams.get("filter");
-
-        if (filter) {
-            const filterLink = document.querySelector(`a[data-filter=".${filter}"]`);
-
-            // 현재 활성화된 클래스를 제거하고 선택한 필터에 활성 클래스를 추가하기.
-            if (filterLink) {
-                const activeClass = document.querySelector("a.active");
-                if (activeClass) {
-                    activeClass.classList.remove("active");
-                }
-
-                filterLink.classList.add("active");
-                filterLink.click();
-            }
-        }
+  $(document).ready(function() {
+    var $grid = $(".grid").isotope({
+      itemSelector: ".grid-item",
+      layoutMode: "fitRows",
     });
+
+    $(".browse-by-catagories").on("click", "a", function(e) {
+      e.preventDefault();
+      $(".browse-by-catagories a.active").removeClass("active");
+      $(this).addClass("active");
+      var filterValue = $(this).attr("data-filter");
+      $grid.isotope({ filter: filterValue });
+    });
+
+    // URL 쿼리 기준 필터 활성화
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterValue = urlParams.get("filter");
+
+    if (filterValue) {
+      const filterLink = $(".browse-by-catagories a[data-filter='." + filterValue + "']");
+      if (filterLink.length > 0) {
+        filterLink.trigger("click");
+      }
+    }
+  });
 </script>
+
 </head>
 
 <body>
@@ -80,11 +89,11 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="main.jsp">Home</a></li>
-                                    <li><a href="albums.jsp">Albums</a></li>
+                                    <li><a href="album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="main.jsp">Home</a></li>
-                                            <li><a href="album.jsp">Albums</a></li>
+                                            <li><a href="album.jsp">Album</a></li>
                                             <!--  
                                             <li><a href="event.html">Events</a></li>
                                             <li><a href="blog.html">News</a></li>
@@ -119,14 +128,64 @@
                                     -->
                                     <li><a href="connection.jsp">Contact</a></li>
                                 </ul>
-
+<% 
+	String user_name = (String) session.getAttribute("name");
+	String code = (String) session.getAttribute("code");
+	//String user_name = "곽두팔"; // 로그그인 된 경우, 예시 아이디
+	//String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
+	if(user_name == null) {
+%>
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.html" id="loginBtn">Login / Register</a>
+                                        <a href="login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
-
+								
+<% 
+	} else {
+		if(code.equals("100")){
+%>
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="mypage.jsp" id="loginBtn"><%=user_name %> 님</a>
+                                    </div>
+                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>                              
+<% 
+		} else if(code.equals("200")){
+%>
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="admin.jsp" id="loginBtn"><%=user_name %> 관리자님</a>
+                                    </div>
+                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>                                    	
+<% 
+		} else if(code.equals("300")){
+%>
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="atist.jsp" id="loginBtn"><%=user_name %> 아티스트</a>
+                                    </div>	
+                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>                                    
+<%			
+		}
+	}
+%>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
                                         <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
@@ -320,7 +379,19 @@
                             <p>결실</p>
                         </div>
                     </div>
-                </div>                   
+                </div>
+                <!-- Single Album -->
+                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
+                    <div class="single-album">
+                        <img src="img/bg-img/bts2.jpg" alt="">
+                        <div class="album-info">
+                            <a href="#">
+                                <h5>BTS</h5>
+                            </a>
+                            <p>BUTTER</p>
+                        </div>
+                    </div>
+                </div>                                   
                 <!-- 실험 -->       
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item a">
@@ -508,7 +579,7 @@
                                 <p>01. Main Hit Song</p>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>
@@ -525,7 +596,7 @@
                                 <p>01. Main Hit Song</p>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>
@@ -542,7 +613,7 @@
                                 <p>01. Main Hit Song</p>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>
@@ -559,7 +630,7 @@
                                 <p>01. Main Hit Song</p>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>

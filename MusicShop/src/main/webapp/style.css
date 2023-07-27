@@ -1118,9 +1118,9 @@ img {
       background: #d6d6d6; }
     .new-hits-area .single-new-item .audioplayer:not(.audioplayer-playing) .audioplayer-playpause a {
       border-left: 12px solid #fff; }
-    .new-hits-area .single-new-item .audioplayer-time,
-    .new-hits-area .single-new-item .audioplayer-volume,
-    .new-hits-area .single-new-item .audioplayer-bar {
+	.new-hits-area .single-new-item .audioplayer-time,
+	.new-hits-area .single-new-item .audioplayer-volume,
+	.new-hits-area .single-new-item .audioplayer-bar {
       display: none; }
 
 /* :: 12.0 Login Area CSS */

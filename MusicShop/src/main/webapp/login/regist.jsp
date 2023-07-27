@@ -19,10 +19,50 @@
     <link rel="stylesheet" href="../style.css">
 
 	<script>
-	// 도메인 주소를 입력하는 함수
-	function domainChange(d){
-		var v=d.value;
-		document.C_Registform.C_domain.value=v;
+	//1차,2차 비밀번호가 같은 확인 하는 함수
+	function checkPwd(pwd1, pwd2){
+		if(pwd1 === pwd2){
+			return true;
+		} else{
+			return false;
+		}
+	}
+	function confirm(){
+		//console.log('확인');
+		/*var id = document.Registform.id(요건 name하고 무조건 같다).value;*/
+		var id = document.Registform.user_id.value;
+		
+		var pwd1 = document.Registform.user_pwd.value;
+		var pwd2 = document.Registform.user_pwd_c.value;
+		
+		var name = document.Registform.user_name.value;
+		
+		var email = document.Registform.user_email.value;
+		
+		var address = document.Registform.user_addr.value;
+		
+		var year = document.Registform.birthYear.value;
+		var birth = document.Registform.birthMonth.value;
+		var day = document.Registform.birthDay.value;
+		
+		var gender = document.Registform.user_gen.value;
+		
+		var position = document.Registform.user_pos.value;
+		
+		if(!checkPwd(pwd1,pwd2)){
+			alert("비밀번호 다시 입력해주세요");
+			return false;
+		}
+		
+		/* 모든 항목 중에 입력안한 곳이 있을 시 */
+		if (!id || !pwd1 || !pwd2 || !name || !email || !address || !year || !birth || !day || !gender || !position) {
+			alert('모든 항목을 입력해주세요!');
+			return false;
+		}
+		else {
+			return true;
+		}
+	
 	}
 	</script>
 </head>
@@ -67,15 +107,19 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="../main.jsp">Home</a></li>
-                                    <li><a href="../albums-store.html">Albums</a></li>
+                                    <li><a href="../album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
-                                            <li><a href="../albums-store.html">Albums</a></li>
+                                            <li><a href="../album.jsp">Albums</a></li>
+                                            <!--  
                                             <li><a href="../event.html">Events</a></li>
                                             <li><a href="../blog.html">News</a></li>
-                                            <li><a href="../contact.html">Contact</a></li>
+                                            -->
+                                            <li><a href="../connection.jsp">Contact</a></li>
+                                            <!--  
                                             <li><a href="../elements.html">Elements</a></li>
+                                            -->
                                             <li><a href="../login.jsp">Login</a></li>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
@@ -96,9 +140,11 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <!--  
                                     <li><a href="event.html">Events</a></li>
                                     <li><a href="blog.html">News</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    -->
+                                    <li><a href="../connection.jsp">Contact</a></li>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -142,27 +188,27 @@
                         <h3>Membership</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form action="#" method="get">
+                            <form name="Registform" action="regist_ok.jsp" method="get" onSubmit="return confirm()" accept-charset="UTF-8">
                                 <div class="form-group">
                                     <label for="exampleId">아이디(Id)</label>
-                                    <input type="text" class="form-control" id="exampleInputId1" aria-describedby="emailHelp" name="user_id" placeholder="Enter ID">
+                                    <input type="text" class="form-control" id="InputId" aria-describedby="emailHelp" name="user_id" placeholder="Enter ID">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">비밀번호(Password)</label>
-                                    <input type="password" class="form-control" id="exampleInputPwd1" name="user_pwd" placeholder="Enter Password">
+                                    <input type="password" class="form-control" id="InputPwd" name="user_pwd" placeholder="Enter Password">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1Check">비밀번호 확인(Password Confirm)</label>
-                                    <input type="password" class="form-control" id="exampleInputPwd1Check" name="user_pwd_c" placeholder="Password Check">
+                                    <input type="password" class="form-control" id="InputPwdCheck" name="user_pwd_c" placeholder="Password Check">
                                 </div>                            
                                 <div class="form-group">
                                     <label for="exampleInputName1">이름(Name)</label>
-                                    <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" name="user_name" placeholder="Enter name">
+                                    <input type="text" class="form-control" id="InputName" aria-describedby="emailHelp" name="user_name" placeholder="Enter name">
                                     <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your name with anyone else.</small>
                                     <!-- email을 text로 바꾸면 끝 -->
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputBirth1">생년월일(Birth)</label><br>
+                                    <label for="InputBirth">생년월일(Birth)</label><br>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>                                  
@@ -191,7 +237,7 @@
 										</select>일										
                                 </div>                                             
                                 <div class="form-group">
-                                    <label for="exampleInputGender1">성별(Gender)</label><br>
+                                    <label for="InputGender">성별(Gender)</label><br>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
@@ -202,15 +248,15 @@
                                     <input type="radio" class="form-controlasd" id="exampleInputGender" name="user_gen" value="여자">여자
                                 </div>                                                 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">이메일(Email)</label>
+                                    <label for="InputEmail">이메일(Email)</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1" name="user_email" placeholder="Enter email">
                                 </div>       
                                 <div class="form-group">
-                                    <label for="exampleInputAddress1">주소(Address)</label>
-                                    <input type="text" class="form-control" id="exampleInputAddr1" name="user_email" placeholder="Enter address">
+                                    <label for="InputAddress">주소(Address)</label>
+                                    <input type="text" class="form-control" id="exampleInputAddr1" name="user_addr" placeholder="Enter address">
                                 </div>                                                           
                                 <div class="form-group">
-                                    <label for="exampleInputPosition1">구분(Position)</label><br>
+                                    <label for="InputPosition">구분(Position)</label><br>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
@@ -220,7 +266,7 @@
                                      <span class="spacing"></span>
                                     <input type="radio" class="form-controlasd" id="exampleInputPosition" name="user_pos" value="300">아티스트
                                 </div>                                  
-                                <button type="submit" class="btn oneMusic-btn mt-30">가입</button>
+                                <input type="submit" class="btn oneMusic-btn mt-30" value="가입하기">
                             </form>
                         </div>
                     </div>
@@ -245,10 +291,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="footer-nav">
                         <ul>
                             <li><a href="../main.jsp">Home</a></li>
-                            <li><a href="#">Albums</a></li>
+                            <li><a href="../album.jsp">Albums</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="../connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>

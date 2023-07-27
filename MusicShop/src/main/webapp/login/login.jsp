@@ -24,11 +24,10 @@
 		}
         
        function validateForm(){
-    	   var position = document.login_page.position.value;
     	   var id = document.login_page.id_input.value;
     	   var pwd = document.login_page.pwd_input.value;
     	   
-    	   if( !position || !id || !pwd){
+    	   if( !id || !pwd){
 				alert('모든 항목을 입력해주세요!');
 				return false;
     	   } else{
@@ -79,15 +78,19 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="../main.jsp">메인</a></li>
-                                    <li><a href="albums-store.html">Albums</a></li>
+                                    <li><a href="../album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">메인</a></li>
-                                            <li><a href="albums-store.html">Albums</a></li>
+                                            <li><a href="../album.jsp">Albums</a></li>
+                                            <!--  
                                             <li><a href="event.html">Events</a></li>
                                             <li><a href="blog.html">News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            -->
+                                            <li><a href="../connection.jsp">Contact</a></li>
+                                            <!--  
                                             <li><a href="elements.html">Elements</a></li>
+                                            -->
                                             <li><a href="login.html">Login</a></li>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
@@ -108,9 +111,11 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <!-- 
                                     <li><a href="event.html">Events</a></li>
                                     <li><a href="blog.html">News</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                     -->
+                                    <li><a href="../connection.jsp">Contact</a></li>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -190,10 +195,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="footer-nav">
                         <ul>
                             <li><a href="../main.jsp">Home</a></li>
-                            <li><a href="#">Albums</a></li>
+                            <li><a href="../album.jsp">Albums</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="../connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>

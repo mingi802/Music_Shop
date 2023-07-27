@@ -29,6 +29,32 @@ function limitPlayTime(audio) {
         alert("1분 미리듣기가 종료되었습니다.");
     }
 }
+
+function cart(){
+	if(confirm('장바구니로 이동하시겠습니까?')){
+		window.location.href="cart.jsp";
+		return true;
+	} else{
+		return false;
+	}
+}
+
+  function activateYFilter() {
+    const iframe = document.getElementById("y-filter-iframe");
+    iframe.style.display = "block";
+    iframe.contentWindow.postMessage("activateYFilter", "*");
+  }
+
+  window.addEventListener("message", function(event) {
+    if (event.data === "iframeLoaded") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const filter = urlParams.get("filter");
+
+      if (filter !== null && filter === "y") {
+        activateYFilter();
+      }
+    }
+  });
 </script>
 
 </head>
@@ -112,29 +138,67 @@ function limitPlayTime(audio) {
                                     <li><a href="connection.jsp">Contact</a></li>
                                 </ul>
 <% 
-	String user_id = (String) session.getAttribute("id");
-	if(user_id == null) {
+	String user_name = (String) session.getAttribute("name");
+	String code = (String) session.getAttribute("code");
+	//String user_name = "곽두팔"; // 로그그인 된 경우, 예시 아이디
+	//String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
+	if(user_name == null) {
 %>
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/login.jsp" id="loginBtn">Login / Register</a>
-                                    </div> 
+                                    </div>
+								
 <% 
 	} else {
-%> 
+		if(code.equals("100")){
+%>
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
+                                        <a href="mypage.jsp" id="loginBtn"><%=user_name %> 님</a>
+                                    </div>
+                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div> 
+                                    </div>                              
 <% 
+		} else if(code.equals("200")){
+%>
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="admin.jsp" id="loginBtn"><%=user_name %> 관리자님</a>
+                                    </div>
+                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>                                    	
+<% 
+		} else if(code.equals("300")){
+%>
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="atist.jsp" id="loginBtn"><%=user_name %> 아티스트</a>
+                                    </div>	
+                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>                                    
+<%			
+		}
 	}
 %>                                   								                                                                     
+ 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity" style="display:none;">1</span></p>
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +218,7 @@ function limitPlayTime(audio) {
             <!-- Single Hero Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-1.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(img/bg-img/cover_1.jpg);"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
@@ -162,7 +226,7 @@ function limitPlayTime(audio) {
                             <div class="hero-slides-content text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">Welcome to </h6>
                                 <h2 data-animation="fadeInUp" data-delay="300ms">MLP Music <span>MLP Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <!-- <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>  -->
                             </div>
                         </div>
                     </div>
@@ -308,7 +372,6 @@ function limitPlayTime(audio) {
             </div>
 
             <div class="row">
-
                 <!-- Single Album Area -->
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
@@ -324,9 +387,10 @@ function limitPlayTime(audio) {
                             </div>
                         </div>
                         <div class="album-info">
-                             <a href="albums-store.html?filter=y">
-                                <h5>윤하</h5>
-                            </a>
+						<!-- 윤하 앨범 정보를 클릭했을 때 album.jsp 페이지로 이동 -->
+							<a href="album.jsp?filter=y">
+ 								 <h5>윤하</h5>
+							</a>
                             <p>사건의 지평선</p>
                         </div>
                     </div>
@@ -334,26 +398,26 @@ function limitPlayTime(audio) {
 
                 <!-- Single Album Area -->
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/younha2.jpg" alt="">
-                        	<!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.80</p>
-                            </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="https://www.youtube.com/watch?v=TqFLIZG_aXA" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>                            
-                        </div>
-                        <div class="album-info">
-                            <a href="albums-store.html?filter=y">
-                                <h5>윤하</h5>
-                            </a>
-                            <p>오르트구름</p>
-                        </div>
-                    </div>
-                </div>
+                	<div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
+				        <div class="album-thumb">
+            				<img src="img/bg-img/younha2.jpg" alt="">
+            				<!-- Album Price -->
+            				<div class="album-price">
+                				<p>$0.80</p>
+            				</div>
+            				<!-- Play Icon -->
+            				<div class="play-icon">
+                				<a href="https://www.youtube.com/watch?v=TqFLIZG_aXA" class="video--play--btn"><span class="icon-play-button"></span></a>
+            				</div>
+        				</div>
+        				<div class="album-info">
+							<a href="album.jsp?filter=y">
+								<h5>윤하</h5>
+							</a>
+							<p>오르트구름</p>
+						</div>
+					</div>
+				</div>
 
                 <!-- Single Album Area -->
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
@@ -370,7 +434,7 @@ function limitPlayTime(audio) {
                             </div>                             
                         </div>
                         <div class="album-info">
-                            <a href="albums-store.html?filter=t">
+                            <a href="album.jsp?filter=t">
                                 <h5>Tido Kang</h5>
                             </a>
                             <p>결실</p>
@@ -382,13 +446,21 @@ function limitPlayTime(audio) {
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
+                            <img src="img/bg-img/bts2.jpg" alt="">
+                        	<!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.80</p>
+                            </div>
+                            <!-- Play Icon -->
+                            <div class="play-icon">
+                                <a href="https://www.youtube.com/watch?v=WMweEpGlu_U" class="video--play--btn"><span class="icon-play-button"></span></a>
+                            </div>                            
                         </div>
                         <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
+                            <a href="album.jsp?filter=b">
+                                <h5>BTS</h5>
                             </a>
-                            <p>Buble Gum</p>
+                            <p>BUTTER</p>
                         </div>
                     </div>
                 </div>
@@ -534,7 +606,7 @@ function limitPlayTime(audio) {
             <div class="row">
                 <div class="col-12">
                     <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
-                        <a href="#" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
+                        <a href="album.jsp" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -558,24 +630,22 @@ function limitPlayTime(audio) {
                             <p>See what’s new</p>
                             <h2>Buy What’s New</h2>
                         </div>
-                        <p>사건의 지평성 너머로 사라져버린 슬픔이 어떠헌 형태로도 다시 빠져나오지 않기를</p>
+                        <p>사건의 지평선 너머로 사라져버린 슬픔이 어떠한 형태로도 다시 빠져나오지 않기를</p>
                         <div class="song-play-area">
                             <div class="song-name">
                                 <p>01. 사건의 지평선</p>
                             </div>
                             
-                            
                             <audio preload="auto" controls>
-                                <!-- <source src="audio/dummy-audio.mp3"> -->
                             <source src="resource/audio/eventhorizon.mp3">
                             </audio>
-                            <!-- 1분 미리듣기 함수가 적용된 부분 -->
-<!--                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">  -->
-							<!--  <source src="audio/dummy-audio.mp3">-->
-<!--
+                            
+                            <!-- 1분 미리듣기 함수가 적용된 부분
+                           
+                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);"> 
  								<source src="resource/audio/eventhorizon.mp3">
 							</audio>
- -->							
+							-->
                         </div>
                     </div>
                 </div>
@@ -688,7 +758,28 @@ function limitPlayTime(audio) {
                                 <source src="resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
-
+                        
+                        <!-- Single Top Item -->
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
+                            <div class="first-part d-flex align-items-center">
+                                <div class="thumbnail">
+                                    <img src="img/bg-img/younha.jpg" alt="">
+                                </div>
+                                <div class="content-">
+                                    <h6>윤하</h6>
+                                    <p>사건의 지평선</p>
+                                </div>
+                            </div>
+                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);"> 
+ 								<source src="resource/audio/eventhorizon.mp3">
+							</audio>
+							<!--                             
+                            <audio preload="auto" controls>
+                                <source src="resource/audio/eventhorizon.mp3">
+                            </audio>
+                             -->
+                        </div>
+                        
                         <!-- Single Top Item -->
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="150ms">
                             <div class="first-part d-flex align-items-center">
