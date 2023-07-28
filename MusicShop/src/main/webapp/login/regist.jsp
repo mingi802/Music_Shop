@@ -27,7 +27,10 @@
 			return false;
 		}
 	}
-	function confirm(){
+	
+
+	
+	function confirmform(){
 		//console.log('확인');
 		/*var id = document.Registform.id(요건 name하고 무조건 같다).value;*/
 		var id = document.Registform.user_id.value;
@@ -41,6 +44,8 @@
 		
 		var address = document.Registform.user_addr.value;
 		
+		var number = document.Registform.user_num.value;
+		
 		var year = document.Registform.birthYear.value;
 		var birth = document.Registform.birthMonth.value;
 		var day = document.Registform.birthDay.value;
@@ -49,17 +54,22 @@
 		
 		var position = document.Registform.user_pos.value;
 		
-		if(!checkPwd(pwd1,pwd2)){
-			alert("비밀번호 다시 입력해주세요");
-			return false;
-		}
+
 		
 		/* 모든 항목 중에 입력안한 곳이 있을 시 */
-		if (!id || !pwd1 || !pwd2 || !name || !email || !address || !year || !birth || !day || !gender || !position) {
+		if (!id || !pwd1 || !pwd2 || !name || !email || !address || !year || !birth || !day || !gender || !position || !number) {
 			alert('모든 항목을 입력해주세요!');
 			return false;
 		}
 		else {
+			if(!checkPwd(pwd1,pwd2)){
+				alert("비밀번호 다시 입력해주세요");
+				return false;
+			}
+			if (number.length !== 11) {
+		        alert("전화번호를 다시 입력해주세요.");
+		        return false;
+		    }
 			return true;
 		}
 	
@@ -188,7 +198,7 @@
                         <h3>Membership</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form name="Registform" action="regist_ok.jsp" method="get" onSubmit="return confirm()" accept-charset="UTF-8">
+                            <form name="Registform" action="regist_ok.jsp" method="post" onSubmit="return confirmform()" encType="UTF-8">
                                 <div class="form-group">
                                     <label for="exampleId">아이디(Id)</label>
                                     <input type="text" class="form-control" id="InputId" aria-describedby="emailHelp" name="user_id" placeholder="Enter ID">
@@ -243,28 +253,32 @@
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
-                                    <input type="radio" class="form-controlasd" id="exampleInputGender" name="user_gen" value="남자">남자
+                                    <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="남자">남자
                                      <span class="spacing"></span>
-                                    <input type="radio" class="form-controlasd" id="exampleInputGender" name="user_gen" value="여자">여자
-                                </div>                                                 
+                                    <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="여자">여자
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">전화번호(Number)</label>
+                                    <input type="text" class="form-control" id="InputNum" name="user_num" placeholder="Enter number(except dash)">
+                                </div>                                                                                                              
                                 <div class="form-group">
                                     <label for="InputEmail">이메일(Email)</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" name="user_email" placeholder="Enter email">
+                                    <input type="email" class="form-control" id="InputEmail" name="user_email" placeholder="Enter email">
                                 </div>       
                                 <div class="form-group">
                                     <label for="InputAddress">주소(Address)</label>
-                                    <input type="text" class="form-control" id="exampleInputAddr1" name="user_addr" placeholder="Enter address">
+                                    <input type="text" class="form-control" id="InputAddr" name="user_addr" placeholder="Enter address">
                                 </div>                                                           
                                 <div class="form-group">
                                     <label for="InputPosition">구분(Position)</label><br>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
-                                    <input type="radio" class="form-controlasd" id="exampleInputPosition" name="user_pos" value="100">소비자
+                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="100">소비자
                                      <span class="spacing"></span>
-                                    <input type="radio" class="form-controlasd" id="exampleInputPosition" name="user_pos" value="200">관리자
+                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="200">관리자
                                      <span class="spacing"></span>
-                                    <input type="radio" class="form-controlasd" id="exampleInputPosition" name="user_pos" value="300">아티스트
+                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="300">아티스트
                                 </div>                                  
                                 <input type="submit" class="btn oneMusic-btn mt-30" value="가입하기">
                             </form>
