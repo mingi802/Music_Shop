@@ -35,6 +35,43 @@
     	   }
        }
     </script>
+    
+    <script>
+        function RegistrationPage() {
+			window.location.href = "login.jsp";
+		}
+        
+       function loginForm(){
+    	   var id = document.login_page.id_input.value;
+    	   var pwd = document.login_page.pwd_input.value;
+    	   
+    	   if( !id || !pwd){
+				alert('아이디가 맞지 않습니다');
+				return false;
+    	   } else{
+    		   return true;
+    	   }
+       }
+    </script>
+    
+      <script>
+        function RegistrationPage() {
+			window.location.href = "login.jsp";
+		}
+        
+       function loginForm(){
+    	   var id = document.login_page.id_input.value;
+    	   var pwd = document.login_page.pwd_input.value;
+    	   
+    	   if( !id || !pwd){
+				alert('비밀번호가 맞지 않습니다');
+				return false;
+    	   } else{
+    		   return true;
+    	   }
+       }
+    </script>
+
 
 </head>
 

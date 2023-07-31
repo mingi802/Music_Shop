@@ -223,6 +223,7 @@
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>                                  
 										<select name="birthYear" class="form-year">
+										<option value="">==선택==</option>
 											<script>
 												for(var i = 2023 ; i >=1920 ; i--){
 													document.write("<option>"+i+"</option>");
@@ -231,6 +232,7 @@
 										</select>년
 										<span class="spacing"></span> 
 										<select name="birthMonth" class="form-birth">
+										<option value="">==선택==</option>
 											<script>
 												for(var i = 12 ; i >=1 ; i--){
 													document.write("<option>"+i+"</option>");
@@ -239,6 +241,7 @@
 										</select>월
 										<span class="spacing"></span> 
 										<select name="birthDay" class="form-day">
+										<option value="">==선택==</option>
 											<script>
 												for(var i = 31 ; i >=1 ; i--){
 													document.write("<option>"+i+"</option>");
