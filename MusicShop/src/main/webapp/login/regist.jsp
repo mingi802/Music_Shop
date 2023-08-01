@@ -202,7 +202,7 @@
                                 <div class="form-group">
                                     <label for="exampleId">아이디(Id)</label>
                                     <input type="text" class="form-control" id="InputId" aria-describedby="emailHelp" name="user_id" placeholder="Enter ID">
-                                </div>
+                                    </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">비밀번호(Password)</label>
                                     <input type="password" class="form-control" id="InputPwd" name="user_pwd" placeholder="Enter Password">
@@ -284,7 +284,7 @@
                                     <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="300">아티스트
                                 </div>                                  
                                 <input type="submit" class="btn oneMusic-btn mt-30" value="가입하기">
-                            </form>
+                               </form>
                         </div>
                     </div>
                 </div>
