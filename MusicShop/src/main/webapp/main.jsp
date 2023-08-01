@@ -38,7 +38,7 @@ function cart(){
 		return false;
 	}
 }
-
+/*
   function activateYFilter() {
     const iframe = document.getElementById("y-filter-iframe");
     iframe.style.display = "block";
@@ -55,6 +55,7 @@ function cart(){
       }
     }
   });
+ */
 </script>
 
 </head>
@@ -615,7 +616,7 @@ function cart(){
     <!-- ##### Buy Now Area End ##### -->
 
     <!-- ##### Featured Artist Area Start ##### -->
-    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/bg-4.jpg);">
+    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/piano.jpg);">
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
@@ -747,15 +748,15 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt7.jpg" alt="">
+                                    <img src="img/bg-img/Arirang.jpg" alt="">
                                 </div>
                                 <div class="content-">
-                                    <h6>Sam Smith</h6>
-                                    <p>Underground</p>
+                                    <h6>SG워너비</h6>
+                                    <p>아리랑</p>
                                 </div>
                             </div>
-                            <audio preload="auto" controls>
-                                <source src="resource/audio/dummy-audio.mp3">
+                            <audio preload="auto" controls> 
+                                <source src="resource/audio/Arirang.mp3">
                             </audio>
                         </div>
                         

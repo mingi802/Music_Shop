@@ -29,14 +29,17 @@
 	
 	String number = request.getParameter("user_num");
 	
-	String sql1 = "INSERT INTO customer VALUES(?,?,?,?,?,?,?,?,?)"; // 소비자용
+	String sql1 = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?)"; // 소비자용
+	/*
 	String sql2 =  "INSERT INTO host VALUES(?,?,?,?,?,?,?,?,?)"; // 관리자용
 	String sql3 =  "INSERT INTO artist VALUES(?,?,?,?,?,?,?,?,?)"; //아티스트용
-	String sql1_1 = "SELECT * FROM customer";
+	*/
+	String sql1_1 = "SELECT * FROM member";
+	/*
 	String sql2_1 = "SELECT * FROM host";
 	String sql3_1 = "SELECT * FROM artist";
-	
-	if(position.equals("100")){ // 소비자
+	*/
+
 		PreparedStatement pstmt = conn.prepareStatement(sql1);
 		PreparedStatement pstmt2 = conn.prepareStatement(sql1_1);
 		
@@ -84,6 +87,7 @@
 			}
 		}
 		conn.close();
+<<<<<<< HEAD
 	} else if(position.equals("200")){ // 관리자
 		PreparedStatement pstmt = conn.prepareStatement(sql2);
 		PreparedStatement pstmt2 = conn.prepareStatement(sql2_1);
@@ -183,6 +187,8 @@
 		}
 		conn.close();
 	}
+=======
+>>>>>>> 925fdb393606c96478322e434ee3f7a46abaf841
 %>
 
 <script>

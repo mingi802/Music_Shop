@@ -1140,7 +1140,48 @@ img {
 	.new-hits-area .single-new-item .audioplayer-volume,
 	.new-hits-area .single-new-item .audioplayer-bar {
       display: none; }
-
+      
+	.member-content {
+ 	 -webkit-transition-duration: 500ms;
+ 	 transition-duration: 500ms;
+  	position: relative;
+ 	 z-index: 1;
+ 	 background-color: #f5f9fa;
+ 	 border: 1px solid #d8d8d8;
+ 	 padding: 50px 20px;
+ 	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
+ 	 text-align: center; 
+  	}
+  	.admin-container{
+  	width: 100%;
+	text-align: center;
+	margin-right : 900px;
+  	}
+	.member-manage-form table {
+	text-align : center;
+ 	margin: 0 auto; /* 수정: table 요소를 가운데로 정렬하기 위해 margin을 auto로 설정합니다. */
+ 	 border-collapse : collapse;
+ 	 width: 100%; /* 수정: 원하는 가로 길이로 조정합니다. */
+	}
+	.member-manage-form th td{
+	padding: 15px; /* 각 셀의 padding 값을 크게 수정 (예: 15px) */
+	}  	
+	.member-manage-form button {
+  	padding: 10px 20px; /* 수정: 버튼의 내부 여백(padding)을 조정하여 크기를 크게 만듭니다. */
+  	font-size: 16px; /* 수정: 버튼의 폰트 크기를 조정합니다. */
+  	border-radius: 8px; /* 버튼의 모서리를 곡선으로 만듭니다. */
+	}
+	.admin-category{
+	text-align : center;
+ 	background-color : #f5f9fa;
+	border: 1px solid #d8d8d8;
+	margin-top : 100px;
+	margin-left : 10%;
+	width : 10%;
+	float : left;
+	min-height : 200px;
+	border-radius: 8px; /* 버튼의 모서리를 곡선으로 만듭니다. */
+	}      
 /* :: 12.0 Login Area CSS */
 .login-content {
   -webkit-transition-duration: 500ms;
