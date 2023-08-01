@@ -159,15 +159,15 @@
                         <h3>Welcome Back</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form action="#" method="post">
+                            <form name="loginform" action="login_ok.jsp" onSubmit="return validateForm()" method="post" encType="UTF-8">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">ID</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ID">
+                                    <label for="exampleInputId">ID</label>
+                                    <input type="text" class="form-control" id="InputId" name="login_id" aria-describedby="emailHelp" placeholder="Enter ID">
                                     <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your ID with anyone else.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" class="form-control" id="InputPwd" name="login_pwd" placeholder="Enter Password">
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">로그인</button>
                             </form>
