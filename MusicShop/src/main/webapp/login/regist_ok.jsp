@@ -133,7 +133,7 @@
 			}
 		}
 		conn.close();
-	} else if(position.equals("300")){ // 관리자
+	} else if(position.equals("300")){ // 아티스트
 		PreparedStatement pstmt = conn.prepareStatement(sql3);
 		PreparedStatement pstmt2 = conn.prepareStatement(sql3_1);
 		
