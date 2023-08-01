@@ -96,15 +96,15 @@ public class MusicController extends HttpServlet {
 						}
 					}
 				}
-				
+				int id = 0;				
 				String title = param[0];
 				String singer = param[1];
 				String now = param[2];
 				String price = param[3];
 				String sign = param[4];
 				String song = param[5];
-				
-				MusicVO musicVO = new MusicVO(title, singer, now, price, sign, song);
+			
+				MusicVO musicVO = new MusicVO(id, title, singer, now, price, sign, song);
 				musicDAO.addMusic(musicVO);
 			}catch (Exception e) {
 				e.printStackTrace();

@@ -19,39 +19,43 @@
 		<input type="text" name="name" id = "id" minlength = '1' required>
 		</td>
 	</tr>
+	<br>
 	<tr>
 		<td>
 			<label>가수 : </label>
-				<input type="text">
+				<input type="text" name="singer" required>
 		</td>
 	</tr>
-		<tr>
+	<br>
+	<tr>
 		<td>
 			<label>발매일자 : </label>
-				<input type="date" id="test_date" required>
+				<input type="date" id="test_date" name="now" required>
 		</td>
 	</tr>
-		</tr>
-		<tr>
+	<br>
+	<tr>
 		<td>
 			<label>가격 : </label>
-				<input type="text" required>
+				<input type="text" name="price" required>
 		</td>
 	</tr>
-		</tr>
+	<br>
 	<tr>
 		<td>
 			<label>앨범 이미지 : </label>
-				<input type="file" accept="image/*" required>
+				<input type="file" name="imgfile" accept="image/*" required>
 		</td>
 	</tr>
+	<br>
 	<tr>
 		<td>
 			<label>음악 파일 : </label>
-				<input type="file" accept="audio/*" required>
+				<input type="file" name="musicfile" accept="audio/*" required>
 		</td>
 	</tr>
-		<tr>
+	<br>
+	<tr>
 		<td>
 			<button type="submit">입력</button>
 		</td>

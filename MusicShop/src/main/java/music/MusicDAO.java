@@ -22,7 +22,7 @@ public class MusicDAO {
 		driver = "com.mysql.jdbc.Driver";
 		dbURL = "jdbc:mysql://localhost:3306/musicshop?serverTimezone=UTC&useSSL=false";
 		dbID = "root";
-		dbPassword = "jinsang1027@";
+		dbPassword = "jinsang1027#";
 	}
 	public void addMusic(MusicVO m){
 		
@@ -34,17 +34,19 @@ public class MusicDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+			int id = m.getId();
 			String title = m.getTitle();
 			String singer = m.getSinger();
 			String now = m.getNow();
 			String price = m.getPrice();
 			String sign = m.getSign();
 			String song = m.getSong();
-			
-			String sql = "INSERT INTO song(id, title, singer, now, price, sign, song)" + "VALUES(0,?,?,?,?,?,?)";
+
+
+			String sql = "INSERT INTO song(id, title, singer, now, price, sign, song)" + "VALUES(?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setInt(1, id);
 			pstmt.setString(2, title);
 			pstmt.setString(3, singer);
 			pstmt.setString(4, now);

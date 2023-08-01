@@ -10,8 +10,9 @@ public class MusicVO {
 	private String sign;
 	private String song;
 	
-	public MusicVO(String title, String singer, String now, String price, String sign, String song) {
+	public MusicVO(int id, String title, String singer, String now, String price, String sign, String song) {
 		super();
+		this.id = id;
 		this.title = title;
 		this.singer = singer;
 		this.now = now;
@@ -20,15 +21,9 @@ public class MusicVO {
 		this.song = song;
 	}
 	
-	
-	
-	
-	
-	
-	
 	public int getId() { return id;}
-	public void setId(int id) { this.id = id; 
-	}
+	public void setId(int id) { this.id = id; }
+	
 	public String getTitle() { return title; }
 	public void setTitle(String title) { this.title = title; }
 	
