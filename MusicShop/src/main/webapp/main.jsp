@@ -38,7 +38,7 @@ function cart(){
 		return false;
 	}
 }
-
+/*
   function activateYFilter() {
     const iframe = document.getElementById("y-filter-iframe");
     iframe.style.display = "block";
@@ -55,6 +55,7 @@ function cart(){
       }
     }
   });
+ */
 </script>
 
 </head>
@@ -615,7 +616,7 @@ function cart(){
     <!-- ##### Buy Now Area End ##### -->
 
     <!-- ##### Featured Artist Area Start ##### -->
-    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/bg-4.jpg);">
+    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/piano.jpg);">
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">

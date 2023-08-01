@@ -93,7 +93,7 @@
 			rs = pstmt2.executeQuery();
 			
 			while(rs.next()){
-				String id_check = rs.getString("h_id");
+				String id_check = rs.getString("id");
 				
 				if(id_check.equals(id)){
 					out.print("<script>alert('" + id_check + "은(는) 중복되었습니다.');</script>");
@@ -142,7 +142,7 @@
 			rs = pstmt2.executeQuery();
 			
 			while(rs.next()){
-				String id_check = rs.getString("a_id");
+				String id_check = rs.getString("id");
 				
 				if(id_check.equals(id)){
 					out.print("<script>alert('" + id_check + "은(는) 중복되었습니다.');</script>");

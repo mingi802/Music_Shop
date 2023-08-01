@@ -195,8 +195,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading">
+                    <!-- 
                         <p>See what’s new</p>
                         <h2>Get In Touch</h2>
+                    -->    
                     </div>
                 </div>
             </div>
@@ -205,6 +207,7 @@
                 <div class="col-12">
                     <!-- Contact Form Area -->
                     <div class="contact-form-area">
+                    <!--  
                         <form action="#" method="post">
                             <div class="row">
                                 <div class="col-md-6 col-lg-4">
@@ -232,6 +235,7 @@
                                 </div>
                             </div>
                         </form>
+                    -->    
                     </div>
                 </div>
             </div>
