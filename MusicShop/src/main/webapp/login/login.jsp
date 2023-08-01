@@ -35,8 +35,8 @@
     	   }
        }
     </script>
-
-</head>
+    
+    </head>
 
 <body>
     <!-- Preloader -->
