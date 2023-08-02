@@ -19,8 +19,19 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
+  <%
+	String user_id = (String) session.getAttribute("id");
+	String code = (String) session.getAttribute("code");
+  %> 
     <script>
+    function limitPlayTime(audio) {
+        if (audio.currentTime > 60) { // 1분(60초)로 제한
+            audio.pause();
+            audio.currentTime = 0; // 음악이 끝난 후 처음으로 돌아감
+            alert("1분 미리듣기가 종료되었습니다.");
+        }
+    }    
+    
     function activateYFilter() {
         const iframe = document.getElementById("y-filter-iframe");
         iframe.style.display = "block";
@@ -120,11 +131,9 @@
                                 </ul>
                           <!--  </div>--> 
 <% 
-	String user_name = (String) session.getAttribute("name");
-	String code = (String) session.getAttribute("code");
-	//String user_name = "곽두팔"; // 로그그인 된 경우, 예시 아이디
+	//String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
 	//String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
-	if(user_name == null) {
+	if(user_id == null) {
 %>
 							<!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
@@ -132,7 +141,6 @@
                                     <div class="login-register-btn mr-50">
                                         <a href="login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
-                                
 <% 
 	} else {
 		if(code.equals("100")){
@@ -140,48 +148,57 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="mypage.jsp" id="loginBtn"><%=user_name %> 님</a>
+                                        <a href="mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                                            
+                                    </div>
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                            
 <% 
 		} else if(code.equals("200")){
 %>
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin.jsp" id="loginBtn"><%=user_name %> 관리자님</a>
+                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                                    	
+                                    </div>  
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                      	
 <% 
 		} else if(code.equals("300")){
 %>
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="atist.jsp" id="loginBtn"><%=user_name %> 아티스트</a>
+                                        <a href="atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                                    
+                                    </div>   
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                     
 <%			
 		}
 	}
 %>                                   								                                                                     
  
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
-                                    </div>
+
                                 </div>
                             </div>
                             <!-- Nav End -->
@@ -227,7 +244,7 @@
 	                        	<p>사건의 지평선</p>
 	                    </div>
 	                    <div class="col-9 align-self-center">
-	                    	<audio preload="auto" controls>
+	                    	<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
                             <source src="resource/audio/eventhorizon.mp3">
                             </audio>
 	                    </div>

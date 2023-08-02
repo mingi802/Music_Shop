@@ -23,6 +23,16 @@
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
 %>
+<script>
+function cart(){
+	if(confirm('장바구니로 이동하시겠습니까?')){
+		window.location.href="cart.jsp";
+		return true;
+	} else{
+		return false;
+	}
+}
+</script>
 </head>
 
 <body>
@@ -155,7 +165,11 @@ String code = (String) session.getAttribute("code");
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                              
+                                    </div> 
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                              
 <% 
 		} else if(code.equals("200")){
 %>
@@ -168,7 +182,11 @@ String code = (String) session.getAttribute("code");
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                                    	
+                                    </div>
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                      	
 <% 
 		} else if(code.equals("300")){
 %>
@@ -181,16 +199,17 @@ String code = (String) session.getAttribute("code");
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                                    
+                                    </div>
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                      
 <%			
 		}
 	}
 %> 
 
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity"></span></p>
-                                    </div>
+
                                 </div>
                             </div>
                             <!-- Nav End -->
@@ -250,9 +269,9 @@ String code = (String) session.getAttribute("code");
 
                         <!-- Contact Social Info -->
                         <div class="contact-social-info mt-50">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="양진호"><i class="fa fa-github" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="왕민기"><i class="fa fa-github" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="이준희"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="양진호"><i class="fa fa-github" aria-hidden="true"></i></a><br>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="왕민기"><i class="fa fa-github" aria-hidden="true"></i></a><br>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="이준희"><i class="fa fa-github" aria-hidden="true"></i></a><br>
                             <a href="#" data-toggle="tooltip" data-placement="top" title="이현성"><i class="fa fa-github" aria-hidden="true"></i></a>
                         </div>
 

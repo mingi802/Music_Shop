@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="mydbcon.jsp" %>
+<%@ include file="../mydbcon.jsp" %>
 <title>실험</title>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>

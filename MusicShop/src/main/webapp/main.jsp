@@ -34,7 +34,7 @@ function limitPlayTime(audio) {
 }
 
 function cart(){
-	if(confirm('장바구니로 이동하시겠습니까?')){
+	if(confirm('장바구니로 이동하시겠습니까?')){	
 		window.location.href="cart.jsp";
 		return true;
 	} else{
@@ -59,31 +59,31 @@ function cart(){
     }
   });
  */
-</script>
+ </script>
 
-</head>
-<body>
-    <!-- Preloader -->
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+ </head>
+ <body>
+     <!-- Preloader -->
+     <div class="preloader d-flex align-items-center justify-content-center">
+         <div class="lds-ellipsis">
+             <div></div>
+             <div></div>
+             <div></div>
+             <div></div>
+         </div>
+     </div>
 
-    <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-        <!-- Navbar Area -->
-        <div class="oneMusic-main-menu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+     <!-- ##### Header Area Start ##### -->
+     <header class="header-area">
+         <!-- Navbar Area -->
+         <div class="oneMusic-main-menu">
+             <div class="classy-nav-container breakpoint-off">
+                 <div class="container">
+                     <!-- Menu -->
+                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -192,7 +192,11 @@ function cart(){
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                              
+                                    </div>                                       
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>
 <% 
 		} else if(code.equals("200")){
 %>
@@ -205,7 +209,11 @@ function cart(){
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                                    	
+                                    </div>
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                        	
 <% 
 		} else if(code.equals("300")){
 %>
@@ -218,16 +226,17 @@ function cart(){
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                                    
+                                    </div>
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                        
 <%			
 		}
 	}
 %>                                   								                                                                     
  
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
-                                    </div>
+
                                 </div>
                             </div>
                             <!-- Nav End -->
