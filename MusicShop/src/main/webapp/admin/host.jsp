@@ -84,7 +84,7 @@ function cart(){
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -165,7 +165,11 @@ function cart(){
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="../login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                              
+                                    </div>
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                  
 <% 
 		} else if(code.equals("200")){
 %>
@@ -178,7 +182,11 @@ function cart(){
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="../login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                                    	
+                                    </div> 
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                       	
 <% 
 		} else if(code.equals("300")){
 %>
@@ -191,16 +199,15 @@ function cart(){
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="../login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                                    
-<%			
-		}
-	}
-%>                                   								                                                                     
- 
+                                    </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
                                         <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
-                                    </div>
+                                    </div>                                                                        
+<%			
+		}
+	}
+%>
                                 </div>
                             </div>
                             <!-- Nav End -->

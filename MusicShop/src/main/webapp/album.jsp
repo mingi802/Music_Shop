@@ -50,6 +50,14 @@ String code = (String) session.getAttribute("code");
       }
     }
   });
+  function cart(){
+		if(confirm('장바구니로 이동하시겠습니까?')){
+			window.location.href="cart.jsp";
+			return true;
+		} else{
+			return false;
+		}
+	}
 </script>
 
 </head>
@@ -182,7 +190,11 @@ String code = (String) session.getAttribute("code");
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                              
+                                    </div>
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                
 <% 
 		} else if(code.equals("200")){
 %>
@@ -195,7 +207,11 @@ String code = (String) session.getAttribute("code");
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                                    	
+                                    </div>   
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                    	
 <% 
 		} else if(code.equals("300")){
 %>
@@ -208,15 +224,16 @@ String code = (String) session.getAttribute("code");
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>                                    
+                                    </div> 
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                    </div>                                                                      
 <%			
 		}
 	}
 %>
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div>
+
                                 </div>
                             </div>
                             <!-- Nav End -->
