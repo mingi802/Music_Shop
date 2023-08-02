@@ -19,6 +19,11 @@ body {
   font-family: "Archivo Narrow", sans-serif;
   font-size: 14px; }
 
+span {
+  font-family: "Archivo Narrow", sans-serif;
+  font-size: 20px;
+}
+
 h1,
 h2,
 h3,
@@ -867,6 +872,19 @@ img {
     width: 100%; }
   .single-album-area .album-info {
     display: block;
+    position: relative;
+    z-index: 1;
+    padding-top: 15px;
+    padding-bottom: 15px; }
+    .single-album-area .album-info h5 {
+      font-size: 18px;
+      margin-bottom: 0;
+      text-transform: uppercase; }
+    .single-album-area .album-info p {
+      margin-bottom: 0; }
+      
+  .single-album-area .album-info2 {
+    display: inlineblock;
     position: relative;
     z-index: 1;
     padding-top: 15px;
