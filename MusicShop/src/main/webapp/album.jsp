@@ -18,7 +18,12 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
+<%
+String user_id = (String) session.getAttribute("id");
+String code = (String) session.getAttribute("code");
+//String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
+//String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
+%>
 <script>
   $(document).ready(function() {
     var $grid = $(".grid").isotope({
@@ -103,6 +108,9 @@
                                             <li><a href="elements.html">Elements</a></li>
                                             -->
                                             <li><a href="login/login.jsp">Login</a></li>
+                                            <%
+                                            if(code == null || code.equals("100")){
+                                            %>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
                                                     <li><a href="#">Even Dropdown</a></li>
@@ -119,7 +127,30 @@
                                                     </li>
                                                     <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
+                                            </li> 
+                                            <%
+                                            } else if(code.equals("200")){
+                                            %> 
+                                            <li><a href="#">Manage</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="admin/admin.jsp">Membership</a></li>
+                                                    <li><a href="#">NoName</a></li>
+                                                    <li><a href="#">NoName</a></li>
+                                                    <li><a href="#">Even Dropdown</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                </ul>
                                             </li>
+                                            <%
+                                            }
+                                            %> 
                                         </ul>
                                     </li>
                                     <!--  
@@ -129,11 +160,7 @@
                                     <li><a href="connection.jsp">Contact</a></li>
                                 </ul>
 <% 
-	String user_name = (String) session.getAttribute("name");
-	String code = (String) session.getAttribute("code");
-	//String user_name = "곽두팔"; // 로그그인 된 경우, 예시 아이디
-	//String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
-	if(user_name == null) {
+	if(user_id == null) {
 %>
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
@@ -149,7 +176,7 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="mypage.jsp" id="loginBtn"><%=user_name %> 님</a>
+                                        <a href="mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -162,7 +189,7 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_name %> 관리자님</a>
+                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -175,7 +202,7 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="artist/atist.jsp" id="loginBtn"><%=user_name %> 아티스트</a>
+                                        <a href="artist/atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->

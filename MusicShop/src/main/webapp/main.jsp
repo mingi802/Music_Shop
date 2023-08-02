@@ -19,7 +19,10 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-
+<%
+String user_id = (String) session.getAttribute("id");
+String code = (String) session.getAttribute("code");
+%>
 <script>
 /*1분 미리듣기 함수*/
 function limitPlayTime(audio) {
@@ -113,6 +116,9 @@ function cart(){
                                             <li><a href="elements.html">Elements</a></li>
                                             -->
                                             <li><a href="login/login.jsp">Login</a></li>
+                                            <%
+                                            if(code == null || code.equals("100")){
+                                            %>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
                                                     <li><a href="#">Even Dropdown</a></li>
@@ -129,7 +135,30 @@ function cart(){
                                                     </li>
                                                     <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
+                                            </li> 
+                                            <%
+                                            } else if(code.equals("200")){
+                                            %> 
+                                            <li><a href="#">Manage</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="admin/admin.jsp">Membership</a></li>
+                                                    <li><a href="#">NoName</a></li>
+                                                    <li><a href="#">NoName</a></li>
+                                                    <li><a href="#">Even Dropdown</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                </ul>
                                             </li>
+                                            <%
+                                            }
+                                            %>                                            
                                         </ul>
                                     </li>
                                     <!--  
@@ -139,11 +168,9 @@ function cart(){
                                     <li><a href="connection.jsp">Contact</a></li>
                                 </ul>
 <% 
-	String user_name = (String) session.getAttribute("name");
-	String code = (String) session.getAttribute("code");
-	//String user_name = "곽두팔"; // 로그그인 된 경우, 예시 아이디
+	//String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
 	//String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
-	if(user_name == null) {
+	if(user_id == null) {
 %>
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
@@ -159,7 +186,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="mypage.jsp" id="loginBtn"><%=user_name %> 님</a>
+                                        <a href="mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -172,7 +199,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin.jsp" id="loginBtn"><%=user_name %> 관리자님</a>
+                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -185,7 +212,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="atist.jsp" id="loginBtn"><%=user_name %> 아티스트</a>
+                                        <a href="atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -785,15 +812,15 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="150ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt8.jpg" alt="">
+                                    <img src="img/bg-img/good.jpg" alt="">
                                 </div>
                                 <div class="content-">
-                                    <h6>Power Play</h6>
-                                    <p>In my mind</p>
+                                    <h6>윤종신</h6>
+                                    <p>좋니</p>
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/dummy-audio.mp3">
+                                <source src="resource/audio/good.mp3">
                             </audio>
                         </div>
 

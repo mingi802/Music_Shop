@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@page session="true"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +19,10 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-
+<%
+String user_id = (String) session.getAttribute("id");
+String code = (String) session.getAttribute("code");
+%>
 </head>
 
 <body>
@@ -69,9 +74,14 @@
                                             <li><a href="event.html">Events</a></li>
                                             <li><a href="blog.html">News</a></li>
                                             -->
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="connection.jsp">Contact</a></li>
+                                            <!-- 
                                             <li><a href="elements.html">Elements</a></li>
+                                            -->
                                             <li><a href="login/login.jsp">Login</a></li>
+                                            <%
+                                            if(code == null || code.equals("100")){
+                                            %>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
                                                     <li><a href="#">Even Dropdown</a></li>
@@ -88,7 +98,30 @@
                                                     </li>
                                                     <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
+                                            </li> 
+                                            <%
+                                            } else if(code.equals("200")){
+                                            %> 
+                                            <li><a href="#">Manage</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="admin/admin.jsp">Membership</a></li>
+                                                    <li><a href="#">NoName</a></li>
+                                                    <li><a href="#">NoName</a></li>
+                                                    <li><a href="#">Even Dropdown</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                </ul>
                                             </li>
+                                            <%
+                                            }
+                                            %> 
                                         </ul>
                                     </li>
                                     <!--  
@@ -97,17 +130,66 @@
                                     -->
                                     <li><a href="connection.jsp">Contact</a></li>
                                 </ul>
-
+<% 
+	//String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
+	//String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
+	if(user_id == null) {
+%>
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
                                         <a href="login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
+								
+<% 
+	} else {
+		if(code.equals("100")){
+%>
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                    </div>
+                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>                              
+<% 
+		} else if(code.equals("200")){
+%>
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                    </div>
+                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>                                    	
+<% 
+		} else if(code.equals("300")){
+%>
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
+                                    </div>	
+                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>                                    
+<%			
+		}
+	}
+%> 
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                        <p><span class="icon-shopping-cart"></span> <span class="quantity"></span></p>
                                     </div>
                                 </div>
                             </div>
