@@ -19,11 +19,49 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <script>
+    window.onload = function () {
+  	  var cmbbtn = document.getElementById('chosen-song-buy-btn');
+  	  var ambbtn = document.getElementById('all-song-buy-btn');
+  	  var cart_items = document.querySelectorAll("div.cart-item");
+  	  var total_payment = document.getElementById('total-payment'); 
+  	  console.log(cart_items);
+  	  cart_items.forEach(function(cart_item) {
+  		  var cart_item_checked = cart_item.getElementsByClassName("cart-item-checked")[0];
+  		  console.log(cart_item_checked);
+  		  var cart_item_price = cart_item.getElementsByClassName("cart-item-price")[0].innerText;
+  		  
+  		  cart_item_price = parseInt(cart_item_price);
+  		  
+  		  cart_item_checked.addEventListener('change', function (event){
+  			console.log(event.target.checked);
+  			if(event.target.checked) {
+  				total_payment.innerText = parseInt(total_payment.innerText) + cart_item_price;
+  			} 
+  			else {
+  				total_payment.innerText = parseInt(total_payment.innerText) - cart_item_price;
+  			}
+  		  });
+  	  });
+  	  
+  	  cmbbtn.addEventListener('click', function(){
+  		//requestPay();
+  	  });
+  	  ambbtn.addEventListener('click', function(){
+  		cart_items.forEach(function(cart_item) {
+    		  var cart_item_checked = cart_item.getElementsByClassName("cart-item-checked")[0];
+    		  if(!cart_item_checked.checked) {
+    			  cart_item_checked.click();  
+    		  }
+  		});
+  		//requestPay();
+	  });
+    }
+
   <%
 	String user_id = (String) session.getAttribute("id");
 	String code = (String) session.getAttribute("code");
   %> 
-    <script>
     function limitPlayTime(audio) {
         if (audio.currentTime > 60) { // 1분(60초)로 제한
             audio.pause();
@@ -31,13 +69,14 @@
             alert("1분 미리듣기가 종료되었습니다.");
         }
     }    
+
     
     function activateYFilter() {
         const iframe = document.getElementById("y-filter-iframe");
         iframe.style.display = "block";
         iframe.contentWindow.postMessage("activateYFilter", "*");
       }
-
+    
       window.addEventListener("message", function(event) {
         if (event.data === "iframeLoaded") {
           const urlParams = new URLSearchParams(window.location.search);
@@ -48,6 +87,7 @@
           }
         }
       });
+    
     </script>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -217,26 +257,54 @@
             <h2>장바구니</h2>
         </div>
     </section>
-    
-
 <!-- ##### Buy Now Area Start ##### -->
-    <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">   
-        <div class="container-fluid">        
-
+    <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
+        <div class="container-fluid"> 
+        	<hr>       
             <div class="row d-flex">
                 <!-- Single Album Area -->
                 <div class="col-12 align-content-around">
-                    <div class="single-album-area d-flex flex-row">
+                    <div class="single-album-area d-flex flex-row cart-item">
                     	<div class="align-self-center">
-	                		<input type="checkbox" id="cart-item" name="cart-item">
+	                		<input type="checkbox" class="cart-item-checked" id="cart-item-checked" name="cart-item-checked">
 	                	</div>
                         <div class="album-thumb col-1">
-                            <label for="cart-item">
+                            <label for="cart-item-checked">
                             <img src="img/bg-img/younha.jpg" alt="">
                             </label>
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
+                        </div>
+	  					<div class="album-info align-self-end">
+						<!-- 윤하 앨범 정보를 클릭했을 때 album.jsp 페이지로 이동 -->
+							<a href="album.jsp?filter=y">
+	 							 <h5>윤하</h5>
+							</a>	
+	                        	<p>사건의 지평선</p>
+	                    </div>
+	                    <div class="col-9 align-self-center">
+	                    	<audio preload="auto" controls>
+                            <source src="resource/audio/eventhorizon.mp3">
+                            </audio>
+	                    </div>
+	                    <div class="align-self-end">
+	                    	<span class="cart-item-price"><b>900</b></span>
+	                    	<span><b>원</b></span>
+	                    	<p></p> <!-- 이 태그가 없으면 모양이 조금 깨지네요.. -->
+	                    </div>
+  						</div>
+                    </div>
+                </div>
+                
+                <div class="row d-flex">
+                <!-- Single Album Area -->
+                <div class="col-12 align-content-around">
+                    <div class="single-album-area d-flex flex-row cart-item">
+                    	<div class="align-self-center">
+	                		<input type="checkbox" class="cart-item-checked" id="cart-item-checked" name="cart-item-checked">
+	                	</div>
+                        <div class="album-thumb col-1">
+                            <label for="cart-item-checked">
+                            <img src="img/bg-img/younha.jpg" alt="">
+                            </label>
                         </div>                        
 	  					<div class="album-info align-self-end">
 						<!-- 윤하 앨범 정보를 클릭했을 때 album.jsp 페이지로 이동 -->
@@ -250,24 +318,95 @@
                             <source src="resource/audio/eventhorizon.mp3">
                             </audio>
 	                    </div>
-	                    <div class="align-self-center">
-	                    	<span>0.90$</span>
+	                    <div class="align-self-end">
+	                    	<span class="cart-item-price"><b>900</b></span>
+	                    	<span><b>원</b></span>
+	                    	<p></p> <!-- 이 태그가 없으면 모양이 조금 깨지네요.. -->
 	                    </div>
   						</div>
                     </div>
                 </div>
-            <div class="mr-auto ">
+                
+                <div class="row d-flex">
+                <!-- Single Album Area -->
+                <div class="col-12 align-content-around">
+                    <div class="single-album-area d-flex flex-row cart-item">
+                    	<div class="align-self-center">
+	                		<input type="checkbox" class="cart-item-checked" id="cart-item-checked" name="cart-item-checked">
+	                	</div>
+                        <div class="album-thumb col-1">
+                            <label>
+                            <img src="img/bg-img/younha.jpg" alt="">
+                            </label>
+                        </div>                        
+	  					<div class="album-info align-self-end">
+						<!-- 윤하 앨범 정보를 클릭했을 때 album.jsp 페이지로 이동 -->
+							<a href="album.jsp?filter=y">
+	 							 <h5>윤하</h5>
+							</a>	
+	                        	<p>사건의 지평선</p>
+	                    </div>
+	                    <div class="col-9 align-self-center">
+	                    	<audio preload="auto" controls>
+                            <source src="resource/audio/eventhorizon.mp3">
+                            </audio>
+	                    </div>
+	                    <div class="align-self-end">
+	                    	<span class="cart-item-price"><b>900</b></span>
+	                    	<span><b>원</b></span>
+	                    	<p></p> <!-- 이 태그가 없으면 모양이 조금 깨지네요.. -->
+	                    </div>
+  						</div>
+                    </div>
+                </div>
+                
+                <div class="row d-flex">
+                <!-- Single Album Area -->
+                <div class="col-12 align-content-around">
+                    <div class="single-album-area d-flex flex-row cart-item">
+                    	<div class="align-self-center">
+	                		<input type="checkbox" class="cart-item-checked" id="cart-item-checked" name="cart-item-checked">
+	                	</div>
+                        <div class="album-thumb col-1">
+                            <label for="cart-item-checked">
+                            <img src="img/bg-img/younha.jpg" alt="">
+                            </label>
+                        </div>                        
+	  					<div class="album-info align-self-end">
+						<!-- 윤하 앨범 정보를 클릭했을 때 album.jsp 페이지로 이동 -->
+							<a href="album.jsp?filter=y">
+	 							 <h5>윤하</h5>
+							</a>	
+	                        	<p>사건의 지평선</p>
+	                    </div>
+	                    <div class="col-9 align-self-center">
+	                    	<audio preload="auto" controls>
+                            <source src="resource/audio/eventhorizon.mp3">
+                            </audio>
+	                    </div>
+	                    <div class="align-self-end">
+	                    	<span class="cart-item-price"><b>900</b></span>
+	                    	<span><b>원</b></span>
+	                    	<p></p> <!-- 이 태그가 없으면 모양이 조금 깨지네요.. -->
+	                    </div>
+  						</div>
+                    </div>
+                </div>
+                
+                <div class="mr-auto ">
             		<span>총 결제 금액: </span>
+            		<span id="total-payment">0</span>
+            		<span>원</span>
+           		</div>
             </div>
             <hr>
             <div class="d-flex flex-row justify-content-center align-items-center">
             	<div>
-            		<input type="button" class="btn btn-outline-dark btn-lg" type="button" value="선택된 음원 구매">
-    				<input type="button" class="btn btn-outline-danger btn-lg" type="button" value="전체 음원 구매">
+            		<input type="button" id="chosen-song-buy-btn" class="btn btn-outline-dark btn-lg" type="button" value="선택된 음원 구매">
+    				<input type="button" id="all-song-buy-btn" class="btn btn-outline-danger btn-lg" type="button" value="전체 음원 구매">
             	</div>
     		</div>
     		<hr>
-		</div>
     </section>
     <!-- ##### Buy Now Area End ##### -->
     <!-- ##### Footer Area Start ##### -->
