@@ -355,9 +355,11 @@ img {
   font-size: 16px;
   line-height: 47px;
   font-weight: 700;
-  text-transform: capitalize; }
+  text-transform: capitalize; 
+  } 
   .oneMusic-btn i {
-    margin-left: 5px; }
+    margin-left: 5px; 
+    }
   .oneMusic-btn:hover, .oneMusic-btn:focus {
     font-size: 16px;
     font-weight: 700;

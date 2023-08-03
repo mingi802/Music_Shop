@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file="../mydbcon.jsp" %> <!-- 본인 아이디와 비밀번호로 변경하세요. -->    
+	<%@page session="true"%>
+
+	<%@ include file="../mydbcon.jsp" %> <!-- 본인 아이디와 비밀번호로 변경하세요. -->    
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +28,8 @@ String code = (String) session.getAttribute("code");
 //String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
 %>
 <script>
-/*1분 미리듣기 함수*/
+
+/*1분 미리듣기 함수
 function limitPlayTime(audio) {
     if (audio.currentTime > 60) { // 1분(60초)로 제한
         audio.pause();
@@ -34,7 +37,7 @@ function limitPlayTime(audio) {
         alert("1분 미리듣기가 종료되었습니다.");
     }
 }
-
+*/
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){
 		window.location.href="cart.jsp";
@@ -43,7 +46,16 @@ function cart(){
 		return false;
 	}
 }
-
+function update(){
+	if(confirm('개인정보를 수정하시겠습니까?')){
+		window.location.href="update.jsp";
+		return true;
+	} else{
+		return false;
+	}
+	
+}
+/*
   function activateYFilter() {
     const iframe = document.getElementById("y-filter-iframe");
     iframe.style.display = "block";
@@ -60,6 +72,7 @@ function cart(){
       }
     }
   });
+  */
 </script>
 
 </head>
@@ -104,7 +117,7 @@ function cart(){
                                 <ul>
                                     <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
-                                    <li><a href="#">Manage</a>
+                                    <li><a href="#">Page</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>
@@ -116,7 +129,29 @@ function cart(){
                                             <!--  
                                             <li><a href="elements.html">Elements</a></li>
                                             -->
-                                            <li><a href="../login/login.jsp">Login</a></li>
+                                            <%
+                                            if(code.equals("100")){
+                                            %>
+                                                <li><a href="#">소비자</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="#">소비자</a></li>
+                                                    <li><a href="#">소비자</a></li>
+                                                    <li><a href="#">소비자</a></li>
+                                                    <li><a href="#">소비자</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                </ul>
+                                            </li>
+                                            <%                                              	
+                                            } else if (code.equals("200")){
+                                            %>
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
                                                     <li><a href="admin.jsp">Membership</a></li>
@@ -134,6 +169,9 @@ function cart(){
                                                     <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
                                             </li>
+                                            <%
+                                            }
+                                            %>
                                         </ul>
                                     </li>
                                     <!--  
@@ -224,19 +262,171 @@ function cart(){
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Admin Page</h2>
+            <h2><%=user_id %>님 페이지</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
-    
     <aside class="admin-category">
     	<ul style="padding-left:5px;padding-top:20px;">
-			<li><a href="myinfo.jsp"><b>MyInformation</b></a></li><br>    	
+			<li><a href="myinfo.jsp"><b>내정보</b></a></li><br>  
+			<li><a href="../cart.jsp"><b>장바구니</b></a></li><br>
+			<li><a href="#"><b>구매내역</b></a></li><br>
     	</ul>
     </aside>
-
     <!-- ##### Login Area Start ##### -->
-
+<%
+	String editId = user_id;
+	String editPwd = null;
+	String editName = null;
+	String editEmail = null;
+	String editAddr = null;
+	String editNum = null;
+	String editYear = null;
+	String editMonth = null;
+	String editDay = null;
+	String editGen = null;
+	String editPos = null;
+	
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	String sql = "SELECT * FROM member WHERE id = '" + editId + "'";
+	
+	pstmt = conn.prepareStatement(sql);
+	
+	rs = pstmt.executeQuery();
+	
+	if(rs.next()){
+		editPwd = rs.getString("pwd");
+		editName = rs.getString("name");
+		editEmail = rs.getString("email");
+		editAddr = rs.getString("addr");
+		editNum = rs.getString("phone");
+		String[] birth = rs.getString("birth").split("-");
+		if(birth.length == 3){
+			editYear = birth[0];
+			editMonth = birth[1];
+			editDay = birth[2];
+		}
+		editGen = rs.getString("gender");
+		editPos = rs.getString("code");
+		
+	}
+%>
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Membership</h3>
+                        <!-- Login Form -->
+                        <div class="login-form">
+                            <form name="Registform_Upate" action="update.jsp" method="post" onSubmit="return update()" encType="UTF-8">
+                                <div class="form-group">
+                                    <label for="exampleId">아이디(Id)</label>
+                                    <input type="text" class="form-control" id="InputId" aria-describedby="emailHelp" name="user_id" value='<%=editId %>' placeholder="Enter ID" readonly>
+                                    </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">비밀번호(Password)</label>
+                                    <input type="password" class="form-control" id="InputPwd" name="user_pwd" value='<%=editPwd %>'  placeholder="Enter Password" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1Check">비밀번호 확인(Password Confirm)</label>
+                                    <input type="password" class="form-control" id="InputPwdCheck" name="user_pwd_c" value='<%=editPwd %>' placeholder="Password Check" readonly>
+                                </div>                            
+                                <div class="form-group">
+                                    <label for="exampleInputName1">이름(Name)</label>
+                                    <input type="text" class="form-control" id="InputName" aria-describedby="emailHelp"  name="user_name" value='<%=editName %>' placeholder="Enter name" readonly>
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your name with anyone else.</small>
+                                    <!-- email을 text로 바꾸면 끝 -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputBirth">생년월일(Birth)</label><br>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>                                  
+										<select name="birthYear" class="form-year" disabled>
+										<option value="">선택</option>
+											<script>
+												for(var i = 2023 ; i >=1920 ; i--){
+													if(i == <%=editYear%>){
+														document.write("<option selected=''selected>"+i+"</option>");
+													} else{
+														document.write("<option>"+i+"</option>");
+													}
+												}
+											</script>
+										</select>년
+										<span class="spacing"></span> 
+										<select name="birthMonth" class="form-birth" disabled>
+										<option value="">선택</option>
+											<script>
+												for(var i = 12 ; i >=1 ; i--){
+													if(i == <%=editMonth%>){
+														document.write("<option selected=''selected>"+i+"</option>");
+													} else{
+														document.write("<option>"+i+"</option>");
+													}
+												}
+											</script>
+										</select>월
+										<span class="spacing"></span> 
+										<select name="birthDay" class="form-day" disabled>
+										<option value="">선택</option>
+											<script>
+												for(var i = 31 ; i >=1 ; i--){
+													if(i == <%=editDay%>){
+														document.write("<option selected=''selected>"+i+"</option>");
+													} else{
+														document.write("<option>"+i+"</option>");
+													}
+												}
+											</script>
+										</select>일										
+                                </div>                                             
+                                <div class="form-group">
+                                    <label for="InputGender">성별(Gender)</label><br>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="남자" 
+                                    	<%if(editGen.equals("남자")) out.print("checked");%> disabled>남자
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="여자"
+                                    	<%if(editGen.equals("여자")) out.print("checked");%> disabled>여자
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">전화번호(Number)</label>
+                                    <input type="text" class="form-control" id="InputNum" name="user_num" value='<%=editNum %>' placeholder="Enter number(except dash)" readonly>
+                                </div>                                                                                                              
+                                <div class="form-group">
+                                    <label for="InputEmail">이메일(Email)</label>
+                                    <input type="email" class="form-control" id="InputEmail" name="user_email" value='<%=editEmail %>' placeholder="Enter email" readonly>
+                                </div>       
+                                <div class="form-group">
+                                    <label for="InputAddress">주소(Address)</label>
+                                    <input type="text" class="form-control" id="InputAddr" name="user_addr" value='<%=editAddr %>' placeholder="Enter address" readonly>
+                                </div>                                                           
+                                <div class="form-group">
+                                    <label for="InputPosition">구분(Position)</label><br>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="100"
+                                    	<%if(editPos.equals("100")) out.print("checked"); %> disabled>소비자
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="200"
+                                    	<%if(editPos.equals("200")) out.print("checked"); %> disabled>관리자
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="300"
+                                    	<%if(editPos.equals("300")) out.print("checked"); %> disabled>아티스트
+                                </div>                                  
+                                <input type="submit" class="btn oneMusic-btn mt-30" value="수정">
+                               </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ##### Login Area End ##### -->        
         
     <!-- ##### Footer Area Start ##### -->

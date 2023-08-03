@@ -91,7 +91,6 @@
                                             <!--  
                                             <li><a href="elements.html">Elements</a></li>
                                             -->
-                                            <li><a href="login.html">Login</a></li>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
                                                     <li><a href="#">Even Dropdown</a></li>
@@ -125,10 +124,6 @@
                                         <a href="login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
 
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div>
                                 </div>
                             </div>
                             <!-- Nav End -->
@@ -171,7 +166,7 @@
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">로그인</button>
                             </form>
-                            	<button class="btn oneMusic-btn mt-30" onclick="RegistrationPage()">회원가입</button>
+                            	<button class="btn oneMusic-btn mt-30" onclick="RegistrationPage()">회원가입</button><br>
                         </div>
                     </div>
                 </div>
