@@ -138,6 +138,14 @@ img {
 .section-padding-100-0 {
   padding-top: 100px;
   padding-bottom: 0; }
+  
+.section-padding-100-50 {
+  padding-top: 100px;
+  padding-bottom: 50px; }
+  
+.section-padding-50-0 {
+  padding-top: 50px;
+  padding-bottom: 0; }  
 
 .section-padding-0-100 {
   padding-top: 0;
@@ -1038,6 +1046,33 @@ img {
   .song-play-area .audioplayer-time {
     font-size: 14px;
     color: #fff; }
+    
+.song-play-area-white {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background-color: none;
+  padding: 15px 30px 20px;
+  border:none; }
+  .song-play-area-white .song-name p {
+    color: #000000;
+    margin-bottom: 5px; }
+  .song-play-area-white .audioplayer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    border: none;
+    border-radius: 0;
+    background: transparent; }
+  .song-play-area-white .audioplayer-playing .audioplayer-playpause,
+  .song-play-area-white .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
+  .song-play-area-white .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
+    background: #fff; }
+  .song-play-area-white .audioplayer-time {
+    font-size: 14px;
+    color: #000000; }
 
 /* :: 11.0 Miscellaneous Area CSS */
 .weeks-top-area {
@@ -1166,17 +1201,17 @@ img {
   	}
 	.member-manage-form table {
 	text-align : center;
- 	margin: 0 auto; /* 수정: table 요소를 가운데로 정렬하기 위해 margin을 auto로 설정합니다. */
+ 	margin: 0 auto; /* �닔�젙: table �슂�냼瑜� 媛��슫�뜲濡� �젙�젹�븯湲� �쐞�빐 margin�쓣 auto濡� �꽕�젙�빀�땲�떎. */
  	 border-collapse : collapse;
- 	 width: 100%; /* 수정: 원하는 가로 길이로 조정합니다. */
+ 	 width: 100%; /* �닔�젙: �썝�븯�뒗 媛�濡� 湲몄씠濡� 議곗젙�빀�땲�떎. */
 	}
 	.member-manage-form th td{
-	padding: 15px; /* 각 셀의 padding 값을 크게 수정 (예: 15px) */
+	padding: 15px; /* 媛� ���쓽 padding 媛믪쓣 �겕寃� �닔�젙 (�삁: 15px) */
 	}  	
 	.member-manage-form button {
-  	padding: 10px 20px; /* 수정: 버튼의 내부 여백(padding)을 조정하여 크기를 크게 만듭니다. */
-  	font-size: 16px; /* 수정: 버튼의 폰트 크기를 조정합니다. */
-  	border-radius: 8px; /* 버튼의 모서리를 곡선으로 만듭니다. */
+  	padding: 10px 20px; /* �닔�젙: 踰꾪듉�쓽 �궡遺� �뿬諛�(padding)�쓣 議곗젙�븯�뿬 �겕湲곕�� �겕寃� 留뚮벊�땲�떎. */
+  	font-size: 16px; /* �닔�젙: 踰꾪듉�쓽 �룿�듃 �겕湲곕�� 議곗젙�빀�땲�떎. */
+  	border-radius: 8px; /* 踰꾪듉�쓽 紐⑥꽌由щ�� 怨≪꽑�쑝濡� 留뚮벊�땲�떎. */
 	}
 	.admin-category{
 	text-align : center;
@@ -1187,7 +1222,7 @@ img {
 	width : 10%;
 	float : left;
 	min-height : 200px;
-	border-radius: 8px; /* 버튼의 모서리를 곡선으로 만듭니다. */
+	border-radius: 8px; /* 踰꾪듉�쓽 紐⑥꽌由щ�� 怨≪꽑�쑝濡� 留뚮벊�땲�떎. */
 	}      
 /* :: 12.0 Login Area CSS */
 .login-content {
@@ -1765,6 +1800,13 @@ img {
     font-size: 16px; }
   .single-web-icon:hover {
     box-shadow: 0 2px 50px 0 rgba(0, 0, 0, 0.15); }
+
+.padding-bottom-20 {
+	padding-bottom: 20px;
+}
+.gray-background {
+	background-color: #dde2e6;
+} 
 
 /* ====== The End ====== */
 

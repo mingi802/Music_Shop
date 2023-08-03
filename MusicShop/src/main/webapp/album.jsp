@@ -389,7 +389,7 @@ String code = (String) session.getAttribute("code");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
                     <div class="single-album">
-                        <img src="img/bg-img/younha.jpg" alt="">
+                        <a href="./album_songs.jsp"><img src="img/bg-img/younha.jpg" alt=""></a> 
                         <div class="album-info">
                             <a href="#">
                                 <h5>윤하</h5>
