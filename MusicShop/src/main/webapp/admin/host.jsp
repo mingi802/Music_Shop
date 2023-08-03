@@ -233,7 +233,8 @@ function cart(){
     	<ul style="padding-top:20px;">
 			<li><a href="admin.jsp"><b>Membership</b></a></li><br>
 			<li><a href="host.jsp"><b>Host</b></a></li><br>
-			<li><a href="artist.jsp"><b>Artist</b></a></li>    	
+			<li><a href="artist.jsp"><b>Artist</b></a></li><br>
+			<li><a href="../customer/mypage.jsp"><b>MyPage</b></a></li>	    	
     	</ul>
     </aside>
     

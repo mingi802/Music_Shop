@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file="../mydbcon.jsp" %> <!-- 본인 아이디와 비밀번호로 변경하세요. -->    
+	<%@page session="true"%>
+
+	<%@ include file="../mydbcon.jsp" %> <!-- 본인 아이디와 비밀번호로 변경하세요. -->    
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +28,8 @@ String code = (String) session.getAttribute("code");
 //String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
 %>
 <script>
-/*1분 미리듣기 함수*/
+
+/*1분 미리듣기 함수
 function limitPlayTime(audio) {
     if (audio.currentTime > 60) { // 1분(60초)로 제한
         audio.pause();
@@ -34,7 +37,7 @@ function limitPlayTime(audio) {
         alert("1분 미리듣기가 종료되었습니다.");
     }
 }
-
+*/
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){
 		window.location.href="cart.jsp";
@@ -43,7 +46,7 @@ function cart(){
 		return false;
 	}
 }
-
+/*
   function activateYFilter() {
     const iframe = document.getElementById("y-filter-iframe");
     iframe.style.display = "block";
@@ -60,6 +63,7 @@ function cart(){
       }
     }
   });
+  */
 </script>
 
 </head>
@@ -224,62 +228,172 @@ function cart(){
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
-            <h2>Admin Page</h2>
+            <h2><%=user_id %>님 페이지</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
-    
     <aside class="admin-category">
     	<ul style="padding-left:5px;padding-top:20px;">
-			<li><a href="admin.jsp"><b>Membership</b></a></li><br>
-			<li><a href="host.jsp"><b>Host</b></a></li><br>
-			<li><a href="artist.jsp"><b>Artist</b></a></li><br>
-			<li><a href="../customer/mypage.jsp"><b>MyPage</b></a></li>			    	
+			<li><a href="myinfo.jsp"><b>내정보</b></a></li><br>  
+			<li><a href="../cart.jsp"><b>장바구니</b></a></li><br>
+			<li><a href="#"><b>구매내역</b></a></li><br>
     	</ul>
     </aside>
-    
-    <!-- ##### Member Control Area Start ##### -->
+    <!-- ##### Login Area Start ##### -->
+<%
+	String editId = user_id;
+	String editPwd = null;
+	String editName = null;
+	String editEmail = null;
+	String editAddr = null;
+	String editNum = null;
+	String editYear = null;
+	String editMonth = null;
+	String editDay = null;
+	String editGen = null;
+	String editPos = null;
+	
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	String sql = "SELECT * FROM member WHERE id = '" + editId + "'";
+	
+	pstmt = conn.prepareStatement(sql);
+	
+	rs = pstmt.executeQuery();
+	
+	if(rs.next()){
+		editPwd = rs.getString("pwd");
+		editName = rs.getString("name");
+		editEmail = rs.getString("email");
+		editAddr = rs.getString("addr");
+		editNum = rs.getString("phone");
+		String[] birth = rs.getString("birth").split("-");
+		if(birth.length == 3){
+			editYear = birth[0];
+			editMonth = birth[1];
+			editDay = birth[2];
+		}
+		editGen = rs.getString("gender");
+		editPos = rs.getString("code");
+		
+	}
+%>
     <section class="login-area section-padding-100">
-        <div class="admin-container">
+        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
-                    <div class="member-content">
-                        <h3>Membership Management</h3><br>
-                        <!-- Membership manage Form -->
-                        <div class="member-manage-form">
-                        <table>
-                        	<tr><th>이름</th><th>아이디</th><th>비밀번호</th><th>성별</th><th>생년월일</th><th>전화번호</th><th>주소</th><th>이메일</th><th>고유번호</th></tr>
-                        	<%
-                        	String sql = "SELECT * FROM member WHERE member.code = 100 ";
-                        	PreparedStatement pstmt = conn.prepareStatement(sql);
-                        	ResultSet rs = pstmt.executeQuery();
-                        	
-                        	while(rs.next()){
-                        	%>
-                        		<tr style="test-align: center">
-                        		<td><%=rs.getString("name") %></td>
-                        		<td><%=rs.getString("id") %></td>
-                        		<td><%=rs.getString("pwd") %></td>
-                        		<td><%=rs.getString("gender") %></td>
-                        		<td><%=rs.getString("birth") %></td>
-                        		<td><%=rs.getString("phone") %></td>
-                        		<td><%=rs.getString("addr") %></td>
-                        		<td><%=rs.getString("email") %></td>
-                        		<td><%=rs.getString("code") %></td>
-                        		<td><button onclick="location.href='customerDelet.jsp?id=<%= rs.getString("id") %>'">Delete</button></td>
-                        		</tr>
-                        	
-                        	<%	
-                        	}
-                        	%>
-                        </table>
+                    <div class="login-content">
+                        <h3>Membership</h3>
+                        <!-- Login Form -->
+                        <div class="login-form">
+                            <form name="Registform_Upate" action="update_ok.jsp" method="post" onSubmit="return confirmform()" encType="UTF-8">
+                                <div class="form-group">
+                                    <label for="exampleId">아이디(Id)</label>
+                                    <input type="text" class="form-control" id="InputId" aria-describedby="emailHelp" name="user_id" value='<%=editId %>' placeholder="Enter ID">
+                                    </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">비밀번호(Password)</label>
+                                    <input type="password" class="form-control" id="InputPwd" name="user_pwd" value='<%=editPwd %>'  placeholder="Enter Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1Check">비밀번호 확인(Password Confirm)</label>
+                                    <input type="password" class="form-control" id="InputPwdCheck" name="user_pwd_c" value='<%=editPwd %>' placeholder="Password Check">
+                                </div>                            
+                                <div class="form-group">
+                                    <label for="exampleInputName1">이름(Name)</label>
+                                    <input type="text" class="form-control" id="InputName" aria-describedby="emailHelp"  name="user_name" value='<%=editName %>' placeholder="Enter name">
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your name with anyone else.</small>
+                                    <!-- email을 text로 바꾸면 끝 -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputBirth">생년월일(Birth)</label><br>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>                                  
+										<select name="birthYear" class="form-year" >
+										<option value="">선택</option>
+											<script>
+												for(var i = 2023 ; i >=1920 ; i--){
+													if(i == <%=editYear%>){
+														document.write("<option selected=''selected>"+i+"</option>");
+													} else{
+														document.write("<option>"+i+"</option>");
+													}
+												}
+											</script>
+										</select>년
+										<span class="spacing"></span> 
+										<select name="birthMonth" class="form-birth" >
+										<option value="">선택</option>
+											<script>
+												for(var i = 12 ; i >=1 ; i--){
+													if(i == <%=editMonth%>){
+														document.write("<option selected=''selected>"+i+"</option>");
+													} else{
+														document.write("<option>"+i+"</option>");
+													}
+												}
+											</script>
+										</select>월
+										<span class="spacing"></span> 
+										<select name="birthDay" class="form-day" >
+										<option value="">선택</option>
+											<script>
+												for(var i = 31 ; i >=1 ; i--){
+													if(i == <%=editDay%>){
+														document.write("<option selected=''selected>"+i+"</option>");
+													} else{
+														document.write("<option>"+i+"</option>");
+													}
+												}
+											</script>
+										</select>일										
+                                </div>                                             
+                                <div class="form-group">
+                                    <label for="InputGender">성별(Gender)</label><br>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="남자" 
+                                    	<%if(editGen.equals("남자")) out.print("checked");%> >남자
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="여자"
+                                    	<%if(editGen.equals("여자")) out.print("checked");%> >여자
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">전화번호(Number)</label>
+                                    <input type="text" class="form-control" id="InputNum" name="user_num" value='<%=editNum %>' placeholder="Enter number(except dash)">
+                                </div>                                                                                                              
+                                <div class="form-group">
+                                    <label for="InputEmail">이메일(Email)</label>
+                                    <input type="email" class="form-control" id="InputEmail" name="user_email" value='<%=editEmail %>' placeholder="Enter email">
+                                </div>       
+                                <div class="form-group">
+                                    <label for="InputAddress">주소(Address)</label>
+                                    <input type="text" class="form-control" id="InputAddr" name="user_addr" value='<%=editAddr %>' placeholder="Enter address">
+                                </div>                                                           
+                                <div class="form-group">
+                                    <label for="InputPosition">구분(Position)</label><br>
+                                     <span class="spacing"></span>
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="100"
+                                    	<%if(editPos.equals("100")) out.print("checked"); %>>소비자
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="200"
+                                    	<%if(editPos.equals("200")) out.print("checked"); %>>관리자
+                                     <span class="spacing"></span>
+                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="300"
+                                    	<%if(editPos.equals("300")) out.print("checked"); %>>아티스트
+                                </div>                                  
+                                <input type="submit" class="btn oneMusic-btn mt-30" value="수정하기">
+                               </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ##### Member Control Area End ##### -->        
+    <!-- ##### Login Area End ##### -->        
         
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">

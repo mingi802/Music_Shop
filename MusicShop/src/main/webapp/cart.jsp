@@ -276,7 +276,7 @@
 	  					<div class="album-info align-self-end">
 						<!-- 윤하 앨범 정보를 클릭했을 때 album.jsp 페이지로 이동 -->
 							<a href="album.jsp?filter=y">
-	 							 <h5>윤하</h5>
+	 							 <h5>윤하1</h5>
 							</a>	
 	                        	<p>사건의 지평선</p>
 	                    </div>
@@ -309,7 +309,7 @@
 	  					<div class="album-info align-self-end">
 						<!-- 윤하 앨범 정보를 클릭했을 때 album.jsp 페이지로 이동 -->
 							<a href="album.jsp?filter=y">
-	 							 <h5>윤하</h5>
+	 							 <h5>윤하2</h5>
 							</a>	
 	                        	<p>사건의 지평선</p>
 	                    </div>
@@ -342,7 +342,7 @@
 	  					<div class="album-info align-self-end">
 						<!-- 윤하 앨범 정보를 클릭했을 때 album.jsp 페이지로 이동 -->
 							<a href="album.jsp?filter=y">
-	 							 <h5>윤하</h5>
+	 							 <h5>윤하3</h5>
 							</a>	
 	                        	<p>사건의 지평선</p>
 	                    </div>
@@ -375,7 +375,7 @@
 	  					<div class="album-info align-self-end">
 						<!-- 윤하 앨범 정보를 클릭했을 때 album.jsp 페이지로 이동 -->
 							<a href="album.jsp?filter=y">
-	 							 <h5>윤하</h5>
+	 							 <h5>윤하4</h5>
 							</a>	
 	                        	<p>사건의 지평선</p>
 	                    </div>
