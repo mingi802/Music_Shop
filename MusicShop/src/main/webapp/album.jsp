@@ -389,7 +389,7 @@ String code = (String) session.getAttribute("code");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
                     <div class="single-album">
-                        <img src="img/bg-img/younha.jpg" alt="">
+                        <img src="resource/img/younha.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>윤하</h5>
@@ -402,7 +402,7 @@ String code = (String) session.getAttribute("code");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
                     <div class="single-album">
-                        <img src="img/bg-img/younha2.jpg" alt="">
+                        <img src="resource/img/younha2.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>윤하</h5>
@@ -415,7 +415,7 @@ String code = (String) session.getAttribute("code");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
                     <div class="single-album">
-                        <img src="img/bg-img/tido.jpg" alt="">
+                        <img src="resource/img/tido.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>Tido Kang</h5>
@@ -427,7 +427,7 @@ String code = (String) session.getAttribute("code");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
                     <div class="single-album">
-                        <img src="img/bg-img/bts2.jpg" alt="">
+                        <img src="resource/img/bts2.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>BTS</h5>

@@ -119,9 +119,10 @@ function cart(){
                                             <li><a href="../login/login.jsp">Login</a></li>
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin.jsp">Membership</a></li>
-                                                    <li><a href="#">NoName</a></li>
-                                                    <li><a href="#">NoName</a></li>
+                                                    <li><a href="admin.jsp">Member Management</a></li>
+                                                    <li><a href="artist.jsp">Artist Management</a></li>
+                                                    <li><a href="host.jsp">Host Management</a></li>
+                                                    <li><a href="customer/mypage.jsp">My Page</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>

@@ -9,7 +9,11 @@
 <body>
 <%
 	session.removeAttribute("id");
-	out.println("<script>location.replace('../main.jsp')</script>");
+	session.removeAttribute("code");
 %>
+	<script>
+		alert('로그아웃이 되었습니다.');
+		window.location.href="../main.jsp";
+	</script>
 </body>
 </html>

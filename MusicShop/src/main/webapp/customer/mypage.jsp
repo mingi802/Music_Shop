@@ -121,14 +121,7 @@ function update(){
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>
-                                            <!--  
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            -->
                                             <li><a href="../connection.jsp">Contact</a></li>
-                                            <!--  
-                                            <li><a href="elements.html">Elements</a></li>
-                                            -->
                                             <%
                                             if(code.equals("100")){
                                             %>
@@ -154,9 +147,10 @@ function update(){
                                             %>
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin.jsp">Membership</a></li>
-                                                    <li><a href="#">NoName</a></li>
-                                                    <li><a href="#">NoName</a></li>
+                                                    <li><a href="../admin/admin.jsp">Member Management</a></li>
+                                                    <li><a href="../admin/artist.jsp">Artist Management</a></li>
+                                                    <li><a href="../admin/host.jsp">Host Management</a></li>
+                                                    <li><a href="../mypage.jsp">My Page</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -169,6 +163,26 @@ function update(){
                                                     <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
                                             </li>
+                                            <%
+                                            } else if(code.equals("300")){
+                                            %>
+                                            <li><a href="#">Artist</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="../artist/artist.jsp">Music Upload</a></li>
+                                                    <li><a href="#">Music List</a></li>
+                                                    <li><a href="../mypage.jsp">My Page</a></li>
+                                                    <li><a href="#">Even Dropdown</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                </ul>
+                                            </li>                                            
                                             <%
                                             }
                                             %>
@@ -268,9 +282,21 @@ function update(){
     <!-- ##### Breadcumb Area End ##### -->
     <aside class="admin-category">
     	<ul style="padding-left:5px;padding-top:20px;">
-			<li><a href="myinfo.jsp"><b>내정보</b></a></li><br>  
+			<li><a href="mypage.jsp"><b>내정보</b></a></li><br>  
 			<li><a href="../cart.jsp"><b>장바구니</b></a></li><br>
 			<li><a href="#"><b>구매내역</b></a></li><br>
+<%
+if(code.equals("200")){
+%>
+	<li><a href="#">음원 관리</a></li>
+<%	
+} else if(code.equals("300")){
+%>
+	<li><a href="../artist/artist.jsp">음원 등록</a></li><br>
+	<li><a href="#">음원 목록</a></li>			
+<%
+}
+%>
     	</ul>
     </aside>
     <!-- ##### Login Area Start ##### -->
