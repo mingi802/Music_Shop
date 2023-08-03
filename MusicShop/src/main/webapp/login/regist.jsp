@@ -235,7 +235,7 @@
 										<select name="birthMonth" class="form-birth">
 										<option value="">선택</option>
 											<script>
-												for(var i = 12 ; i >=1 ; i--){
+												for(var i = 1 ; i <=12 ; i--){
 													document.write("<option>"+i+"</option>");
 												}
 											</script>
@@ -244,7 +244,7 @@
 										<select name="birthDay" class="form-day">
 										<option value="">선택</option>
 											<script>
-												for(var i = 31 ; i >=1 ; i--){
+												for(var i = 1 ; i <=31 ; i--){
 													document.write("<option>"+i+"</option>");
 												}
 											</script>
