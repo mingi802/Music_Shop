@@ -237,7 +237,7 @@ function cart(){
     	</ul>
     </aside>
     
-    <!-- ##### Login Area Start ##### -->
+    <!-- ##### Member Control Area Start ##### -->
     <section class="login-area section-padding-100">
         <div class="admin-container">
             <div class="row justify-content-center">
@@ -278,7 +278,7 @@ function cart(){
             </div>
         </div>
     </section>
-    <!-- ##### Login Area End ##### -->        
+    <!-- ##### Member Control Area End ##### -->        
         
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
