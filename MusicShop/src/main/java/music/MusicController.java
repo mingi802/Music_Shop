@@ -33,6 +33,22 @@ public class MusicController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    protected void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	response.setContentType("text/html; charset=UTF-8");
+    	String nextPage = null;
+    	String action = request.getPathInfo();
+    	HttpSession session = request.getSession();
+    	//String id = (String)session.getAttribute("id");
+    	
+    	System.out.println(action);
+    	
+    	if(action.equals("/listMusic.do")) {
+    		//List<MusicVO> MusicList = MusicDAO.listMusic(); ม๘วเ ม฿
+    		
+    	}
+    	
+    }
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doHandle(request, response);
 	}
@@ -65,7 +81,7 @@ public class MusicController extends HttpServlet {
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			try {
 				List<FileItem> items = upload.parseRequest(request);
-				String[] param = new String[6];
+				String[] param = new String[7];
 				File uploadedImgFile = null;
 				File uploadedMusicFile = null;
 				
@@ -88,28 +104,29 @@ public class MusicController extends HttpServlet {
 						if(item.getContentType().startsWith("image/")) {
 							uploadedImgFile = new File(currentDirPath_I, fileName);
 							item.write(uploadedImgFile);
-							param[4] = fileName;
+							param[5] = fileName;
 						} else if(item.getContentType().startsWith("audio/")) {
 							uploadedMusicFile = new File(currentDirPath_M, fileName);
 							item.write(uploadedMusicFile);
-							param[5] = fileName;
+							param[6] = fileName;
 						}
 					}
 				}
 				int id = 0;				
-				String title = param[0];
-				String singer = param[1];
-				String now = param[2];
-				String price = param[3];
-				String sign = param[4];
-				String song = param[5];
-			
-				MusicVO musicVO = new MusicVO(id, title, singer, now, price, sign, song);
+				String album = param[0];
+				String title = param[1];
+				String singer = param[2];
+				String now = param[3];
+				String price = param[4];
+				String sign = param[5];
+				String song = param[6];
+				
+				MusicVO musicVO = new MusicVO(id, album, title, singer, now, price, sign, song);
 				musicDAO.addMusic(musicVO);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+			nextPage = "/Music/listMusic.do";
 		}
 		
 	}

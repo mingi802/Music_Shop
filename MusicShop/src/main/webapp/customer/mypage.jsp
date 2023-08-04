@@ -147,10 +147,10 @@ function update(){
                                             %>
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="../admin/admin.jsp">Member Management</a></li>
-                                                    <li><a href="../admin/artist.jsp">Artist Management</a></li>
-                                                    <li><a href="../admin/host.jsp">Host Management</a></li>
-                                                    <li><a href="../mypage.jsp">My Page</a></li>
+                                                    <li><a href="../admin/admin.jsp">회원목록</a></li>
+                                                    <li><a href="../admin/artist.jsp">아티스트목록</a></li>
+                                                    <li><a href="../admin/host.jsp">관리자목록</a></li>
+                                                    <li><a href="../mypage.jsp">내정보</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>

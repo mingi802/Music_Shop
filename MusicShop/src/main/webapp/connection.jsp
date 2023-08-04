@@ -256,7 +256,7 @@ function cart(){
                             <div class="icon mr-30">
                                 <span class="icon-smartphone"></span>
                             </div>
-                            <p>누군가의 전화번호</p>
+                            <p>010-4116-8797</p>
                         </div>
 
                         <!-- Single Contact Info -->
@@ -264,14 +264,13 @@ function cart(){
                             <div class="icon mr-30">
                                 <span class="icon-mail"></span>
                             </div>
-                            <p>누군가의 이메일</p>
+                            <p>jinsil13579@gmail.com</p>
                         </div>
 
                         <!-- Contact Social Info -->
                         <div class="contact-social-info mt-50">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Why.J.H git"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Why.J.H git"><i class="fa fa-github" aria-hidden="true"></i></a><br>
                             <a href="#" data-toggle="tooltip" data-placement="top" title="왕민기"><i class="fa fa-github" aria-hidden="true"></i></a><br>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="이준희"><i class="fa fa-github" aria-hidden="true"></i></a><br>
                             <a href="#" data-toggle="tooltip" data-placement="top" title="이현성"><i class="fa fa-github" aria-hidden="true"></i></a>
                         </div>
 

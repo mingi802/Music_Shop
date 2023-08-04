@@ -84,7 +84,7 @@ function cart(){
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -119,10 +119,10 @@ function cart(){
                                             <li><a href="../login/login.jsp">Login</a></li>
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin.jsp">Member Management</a></li>
-                                                    <li><a href="artist.jsp">Artist Management</a></li>
-                                                    <li><a href="host.jsp">Host Management</a></li>
-                                                    <li><a href="customer/mypage.jsp">My Page</a></li>
+                                                    <li><a href="admin.jsp">회원목록</a></li>
+                                                    <li><a href="artist.jsp">아티스트목록</a></li>
+                                                    <li><a href="host.jsp">관리자목록</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -232,10 +232,10 @@ function cart(){
     
     <aside class="admin-category">
     	<ul style="padding-top:20px;">
-			<li><a href="admin.jsp"><b>Membership</b></a></li><br>
-			<li><a href="host.jsp"><b>Host</b></a></li><br>
-			<li><a href="artist.jsp"><b>Artist</b></a></li><br>
-			<li><a href="../customer/mypage.jsp"><b>MyPage</b></a></li>	    	
+			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
+			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
+			<li><a href="artist.jsp"><b>아티스트목록</b></a></li><br>
+			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>	    	
     	</ul>
     </aside>
     

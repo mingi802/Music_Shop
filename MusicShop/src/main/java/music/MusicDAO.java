@@ -35,24 +35,25 @@ public class MusicDAO {
 				e.printStackTrace();
 			}
 			int id = m.getId();
+			String album = m.getAlbum();
 			String title = m.getTitle();
 			String singer = m.getSinger();
 			String now = m.getNow();
 			String price = m.getPrice();
 			String sign = m.getSign();
 			String song = m.getSong();
-
-
-			String sql = "INSERT INTO song(id, title, singer, now, price, sign, song)" + "VALUES(?,?,?,?,?,?,?)";
+						
+			String sql = "INSERT INTO song(id, album, title, singer, now, price, sign, song)" + "VALUES(?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, id);
-			pstmt.setString(2, title);
-			pstmt.setString(3, singer);
-			pstmt.setString(4, now);
-			pstmt.setString(5, price);
-			pstmt.setString(6, sign);
-			pstmt.setString(7, song);
+			pstmt.setString(2, album);
+			pstmt.setString(3, title);
+			pstmt.setString(4, singer);
+			pstmt.setString(5, now);
+			pstmt.setString(6, price);
+			pstmt.setString(7, sign);
+			pstmt.setString(8, song);
 			
 			pstmt.executeUpdate();
 			

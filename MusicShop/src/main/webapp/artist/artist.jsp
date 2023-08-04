@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page session="true"%>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>      
 <!DOCTYPE html>
 <html>
@@ -23,6 +23,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="../style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <%
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
@@ -91,9 +92,9 @@ String code = (String) session.getAttribute("code");
                                             %>
                                             <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="artist.jsp">Music Upload</a></li>
-                                                    <li><a href="#">Music List</a></li>
-                                                    <li><a href="../customer/mypage.jsp">My Page</a></li>
+                                                    <li><a href="artist.jsp">음원등록</a></li>
+                                                    <li><a href="#">음원목록</a></li>
+                                                    <li><a href="../customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -174,40 +175,75 @@ if(user_id == null){
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
-
+    
+	<!-- ##### MusicList Area Start ##### -->
+	<div class="Music-list">
+		<a>음원 목록</a>
+		<table class="Music-list-table">
+			<thead>
+				<tr>
+					<th>앨범</th> <th>제목</th> <th>가수</th> <th>발매일</th> <th>가격</th> <th>앨범 일러스트</th> <th>음원</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:choose>
+					<c:when test=" ${ empty MusicList} }">
+						<tr>
+							<td colspan="5" align="center">
+								<b>음원이 없습니다.</b>
+							</td>
+						</tr>
+					</c:when>
+					<c:when test="${!empty MusicList} }">
+						<c:forEach var="mus" items="${MusicList} }">
+							<tr align="center">
+							<!-- 음원들  -->
+							</tr>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+			</tbody>
+		</table>
+	</div>
+	<!-- ##### MusicList Area End ##### -->
+	
     <!-- ##### Login Area Start ##### -->
     <section class="login-area section-padding-100">
-        <div class="container">
+        <div class="upload-container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
-                    <div class="login-content">
+                    <div class="upload-content">
                         <h3>음원 등록</h3>
                         <!-- Login Form -->
                         <div class="login-form">
                             <form name="Uploadform" action="${contextPath}/Music/addMusic.do" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="exampleId">노래제목</label>
-                                    <input type="text" class="form-control" id="InputTitle" aria-describedby="emailHelp" name="title" placeholder="Enter Title" minlength='1' required>
-                                    </div>
+                                    <label for="exampleAlbum">앨범</label>
+                                    <input type="text" class="form-control" id="InputAlbum" aria-describedby="emailHelp" name="album" placeholder="Enter Album" minlength='1' required>
+                                </div>                            
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">가수</label>
+                                    <label for="exampleTitle">노래제목</label>
+                                    <input type="text" class="form-control" id="InputTitle" aria-describedby="emailHelp" name="title" placeholder="Enter Title" minlength='1' required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSinger">가수</label>
                                     <input type="text" class="form-control" id="InputSinger" name="singer" placeholder="Enter singer" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1Check">발매일자</label>
+                                    <label for="exampleDate">발매일자</label>
                                     <input type="date" class="form-control" id="InputDate" name="date" placeholder="Password Date" required>
                                 </div>                            
                                 <div class="form-group">
-                                    <label for="exampleInputName1">가격</label>
+                                    <label for="examplePrice">가격</label>
                                     <input type="text" class="form-control" id="InputPrice" aria-describedby="emailHelp" name="Price" placeholder="Enter Price" required>
                                     <!-- email을 text로 바꾸면 끝 -->
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputName1">앨범 이미지</label>
+                                    <label for="exampleImg">앨범 이미지</label>
                                     <input type="file" class="form-control" id="InputImg" name="img" accept="image/*" required>
                                 </div>                                                                                                              
                                 <div class="form-group">
-                                    <label for="InputEmail">음원</label>
+                                    <label for="InputSong">음원</label>
                                     <input type="file" class="form-control" id="Inputsong" name="song" accept="audio/*" required>
                                 </div>                                
                                 <button type="submit" class="btn oneMusic-btn mt-30">등록</button>
