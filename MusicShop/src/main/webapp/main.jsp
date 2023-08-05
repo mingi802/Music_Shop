@@ -140,9 +140,10 @@ function cart(){
                                             %> 
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin/admin.jsp">Membership control</a></li>
-                                                    <li><a href="admin/artist.jsp">Artist Control</a></li>
-                                                    <li><a href="customer/mypage.jsp">Mypage</a></li>
+                                                    <li><a href="admin/admin.jsp">Member Management</a></li>
+                                                    <li><a href="admin/artist.jsp">Artist Management</a></li>
+                                                    <li><a href="admin/host.jsp">Host Management</a></li>
+                                                    <li><a href="customer/mypage.jsp">My Page</a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -239,7 +240,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
+                                        <a href="artist/artist.jsp" id="loginBtn">아티스트 <%=user_id %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -432,7 +433,7 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/younha.jpg" alt="">
+                            <img src="resource/img/younha.jpg" alt="">
                             <!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.90</p>
@@ -456,7 +457,7 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                 	<div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
 				        <div class="album-thumb">
-            				<img src="img/bg-img/younha2.jpg" alt="">
+            				<img src="resource/img/younha2.jpg" alt="">
             				<!-- Album Price -->
             				<div class="album-price">
                 				<p>$0.80</p>
@@ -479,7 +480,7 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/tido.jpg" alt="">
+                            <img src="resource/img/tido.jpg" alt="">
                         	<!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.70</p>
@@ -502,7 +503,7 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/bts2.jpg" alt="">
+                            <img src="resource/img/bts2.jpg" alt="">
                         	<!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.80</p>
@@ -676,7 +677,7 @@ function cart(){
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
-                        <img src="img/bg-img/younha.jpg" alt="">
+                        <img src="resource/img/younha.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8">
@@ -803,7 +804,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/Arirang.jpg" alt="">
+                                    <img src="resource/img/Arirang.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>SG워너비</h6>
@@ -819,7 +820,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/younha.jpg" alt="">
+                                    <img src="resource/img/younha.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>윤하</h6>
@@ -840,7 +841,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="150ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/good.jpg" alt="">
+                                    <img src="resource/img/good.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>윤종신</h6>

@@ -119,9 +119,10 @@ function cart(){
                                             <li><a href="../login/login.jsp">Login</a></li>
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin.jsp">Membership</a></li>
-                                                    <li><a href="#">NoName</a></li>
-                                                    <li><a href="#">NoName</a></li>
+                                                    <li><a href="admin.jsp">회원목록</a></li>
+                                                    <li><a href="artist.jsp">아티스트목록</a></li>
+                                                    <li><a href="host.jsp">관리자목록</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -231,10 +232,10 @@ function cart(){
     
     <aside class="admin-category">
     	<ul style="padding-left:5px;padding-top:20px;">
-			<li><a href="admin.jsp"><b>Membership</b></a></li><br>
-			<li><a href="host.jsp"><b>Host</b></a></li><br>
-			<li><a href="artist.jsp"><b>Artist</b></a></li><br>
-			<li><a href="../customer/mypage.jsp"><b>MyPage</b></a></li>			    	
+			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
+			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
+			<li><a href="artist.jsp"><b>아티스트 목록</b></a></li><br>
+			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>			    	
     	</ul>
     </aside>
     
