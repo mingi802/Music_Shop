@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" import="java.util.List" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +15,12 @@
     <title>One Music - Modern Music HTML5 Template</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="${contextPath}/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="${contextPath}/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>console.log("${contextPath}", "${albumList.size()}");</script>
 <%
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
@@ -37,19 +40,39 @@ String name = (String) session.getAttribute("name");
       $(".browse-by-catagories a.active").removeClass("active");
       $(this).addClass("active");
       var filterValue = $(this).attr("data-filter");
+      console.log($(this).attr("data-filter"));
       $grid.isotope({ filter: filterValue });
     });
 
     // URL 쿼리 기준 필터 활성화
     const urlParams = new URLSearchParams(window.location.search);
     const filterValue = urlParams.get("filter");
-
+    
     if (filterValue) {
       const filterLink = $(".browse-by-catagories a[data-filter='." + filterValue + "']");
       if (filterLink.length > 0) {
         filterLink.trigger("click");
       }
     }
+    
+    //검색 바 기능 구현 중
+    if(${not empty albumList}) {
+    	console.log("검색 결과 있음");
+    	console.log($grid);
+    	$(".browse-by-catagories a.active").removeClass("active");
+    	var test1 = document.querySelectorAll("div.browse-by-catagories a");
+    	console.log(test1);
+    	test1.forEach(function(test1_item) {
+    		console.log(test1_item);
+    	});
+    	$(".browse-by-catagories a[data-filter='.y']").addClass("active");
+    	$grid.isotope({ filter: $(".browse-by-catagories a[data-filter='.y']").attr("data-filter") });
+    } else {
+    	console.log("검색 결과 없음")
+    	$(".browse-by-catagories a.active").removeClass("active");
+    	
+    }
+    
   });
   function cart(){
 		if(confirm('장바구니로 이동하시겠습니까?')){
@@ -84,7 +107,7 @@ String name = (String) session.getAttribute("name");
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -248,7 +271,7 @@ String name = (String) session.getAttribute("name");
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${contextPath}/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
             <h2>Latest Albums</h2>
@@ -261,7 +284,7 @@ String name = (String) session.getAttribute("name");
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="browse-by-catagories catagory-menu d-flex flex-wrap align-items-center mb-70">
+                    <div class="browse-by-catagories catagory-menu d-flex flex-wrap align-items-center mb-30">
                         <a href="#" data-filter="*">Browse All</a>
                         <a href="#" data-filter=".a" class="active">A</a>
                         <a href="#" data-filter=".b">B</a>
@@ -293,13 +316,23 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
             </div>
-
+            
+			<div class="row">
+                <div class="col-11">
+                	<div class="d-flex align-items-center mb-30">
+				        <form class="w-100 me-3" method="post" action="${contextPath}/Album/albumSearch.do" >
+				        	<input type="search" class="form-control" name="search-by-albumName" placeholder="Search..." aria-label="Search">
+				        </form>
+				    </div>
+                </div>
+            </div>
+			
+			
             <div class="row oneMusic-albums">
-
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item c">
                     <div class="single-album">
-                        <img src="img/bg-img/a1.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a1.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>The Cure</h5>
@@ -312,7 +345,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item s">
                     <div class="single-album">
-                        <img src="img/bg-img/a2.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a2.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>Sam Smith</h5>
@@ -325,7 +358,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item w">
                     <div class="single-album">
-                        <img src="img/bg-img/a3.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a3.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>Will I am</h5>
@@ -338,7 +371,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
                     <div class="single-album">
-                        <img src="img/bg-img/a4.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a4.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>The Cure</h5>
@@ -351,7 +384,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item d">
                     <div class="single-album">
-                        <img src="img/bg-img/a5.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a5.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>DJ SMITH</h5>
@@ -364,7 +397,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item d">
                     <div class="single-album">
-                        <img src="img/bg-img/a6.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a6.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>The Ustopable</h5>
@@ -377,7 +410,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
                     <div class="single-album">
-                        <img src="img/bg-img/a7.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a7.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>Beyonce</h5>
@@ -390,7 +423,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
                     <div class="single-album">
-                        <img src="resource/img/younha.jpg" alt="">
+                        <a href="./album_songs.jsp"><img src="${contextPath}/resource/img/younha.jpg" alt=""></a> 
                         <div class="album-info">
                             <a href="#">
                                 <h5>윤하</h5>
@@ -403,7 +436,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
                     <div class="single-album">
-                        <img src="resource/img/younha2.jpg" alt="">
+                        <img src="${contextPath}/resource/img/younha2.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>윤하</h5>
@@ -416,7 +449,9 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
                     <div class="single-album">
-                        <img src="resource/img/tido.jpg" alt="">
+
+                        <img src="${contextPath}/resource/img/tido.jpg" alt="">
+
                         <div class="album-info">
                             <a href="#">
                                 <h5>Tido Kang</h5>
@@ -428,7 +463,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
                     <div class="single-album">
-                        <img src="resource/img/bts2.jpg" alt="">
+                        <img src="${contextPath}/resource/img/bts2.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>BTS</h5>
@@ -441,7 +476,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item a">
                     <div class="single-album">
-                        <img src="img/bg-img/a8.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a8.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>Aam Smith</h5>
@@ -454,7 +489,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item w number">
                     <div class="single-album">
-                        <img src="img/bg-img/a9.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a9.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>Will I am</h5>
@@ -467,7 +502,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item d">
                     <div class="single-album">
-                        <img src="img/bg-img/a10.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a10.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>DJ SMITH</h5>
@@ -480,7 +515,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
                     <div class="single-album">
-                        <img src="img/bg-img/a11.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a11.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>The Ustopable</h5>
@@ -493,7 +528,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
                     <div class="single-album">
-                        <img src="img/bg-img/a12.jpg" alt="">
+                        <img src="${contextPath}/img/bg-img/a12.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>Beyonce</h5>
@@ -517,7 +552,7 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
+                            <img src="${contextPath}/img/bg-img/b1.jpg" alt="">
                             <!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.90</p>
@@ -540,7 +575,7 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
+                            <img src="${contextPath}/img/bg-img/b2.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -555,7 +590,7 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
+                            <img src="${contextPath}/img/bg-img/b3.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -570,7 +605,7 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
+                            <img src="${contextPath}/img/bg-img/b4.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -600,7 +635,7 @@ String name = (String) session.getAttribute("name");
             <div class="row">
                 <div class="col-12">
                     <div class="adds">
-                        <a href="#"><img src="img/bg-img/add3.gif" alt=""></a>
+                        <a href="#"><img src="${contextPath}/img/bg-img/add3.gif" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -617,14 +652,14 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
-                            <img src="img/bg-img/s1.jpg" alt="">
+                            <img src="${contextPath}/img/bg-img/s1.jpg" alt="">
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
                                 <p>01. Main Hit Song</p>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/dummy-audio.mp3">
+                                <source src="${contextPath}/resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>
@@ -634,14 +669,14 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
-                            <img src="img/bg-img/s2.jpg" alt="">
+                            <img src="${contextPath}/img/bg-img/s2.jpg" alt="">
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
                                 <p>01. Main Hit Song</p>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/dummy-audio.mp3">
+                                <source src="${contextPath}/resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>
@@ -651,14 +686,14 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
-                            <img src="img/bg-img/s3.jpg" alt="">
+                            <img src="${contextPath}/img/bg-img/s3.jpg" alt="">
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
                                 <p>01. Main Hit Song</p>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/dummy-audio.mp3">
+                                <source src="${contextPath}/resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>
@@ -668,14 +703,14 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
-                            <img src="img/bg-img/s4.jpg" alt="">
+                            <img src="${contextPath}/img/bg-img/s4.jpg" alt="">
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
                                 <p>01. Main Hit Song</p>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/dummy-audio.mp3">
+                                <source src="${contextPath}/resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>
@@ -687,7 +722,7 @@ String name = (String) session.getAttribute("name");
     <!-- ##### Song Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->
-    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
+    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(${contextPath}/img/bg-img/bg-2.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -741,7 +776,7 @@ String name = (String) session.getAttribute("name");
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="#"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
@@ -767,15 +802,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="${contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="${contextPath}/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="${contextPath}/js/bootstrap/bootstrap.min.js"></script>
     <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
+    <script src="${contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="${contextPath}/js/active.js"></script>
 </body>
 
 </html>
