@@ -22,6 +22,17 @@ public class MusicVO {
 		this.sign = sign;
 		this.song = song;
 	}
+	public MusicVO(String album, String title, String singer, String now, String price, String sign, String song) {
+		super();
+		this.album = album;
+		this.title = title;
+		this.singer = singer;
+		this.now = now;
+		this.price = price;
+		this.sign = sign;
+		this.song = song;
+		
+	}
 	
 	public int getId() { return id;}
 	public void setId(int id) { this.id = id; }

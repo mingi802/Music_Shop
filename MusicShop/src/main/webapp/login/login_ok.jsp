@@ -14,7 +14,7 @@
 	String user_id = request.getParameter("login_id");
 	String user_pwd = request.getParameter("login_pwd");	
 
-	String sql = "SELECT id, pwd, code FROM member,dept WHERE member.code = dept.dept_code AND id= '"+ user_id +"' AND pwd = '" + user_pwd + "'";
+	String sql = "SELECT id, pwd, code, name FROM member,dept WHERE member.code = dept.dept_code AND id= '"+ user_id +"' AND pwd = '" + user_pwd + "'";
 	
 	PreparedStatement pstmt = conn.prepareStatement(sql);
 	ResultSet rs = pstmt.executeQuery();
@@ -22,6 +22,7 @@
 	if(rs.next()){
 		session.setAttribute("id", rs.getString("id"));
 		session.setAttribute("code", rs.getString("code"));
+		session.setAttribute("name", rs.getString("name"));
 %>
 	<script>
 		alert('로그인에 성공했습니다.');

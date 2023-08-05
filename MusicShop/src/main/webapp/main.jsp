@@ -22,6 +22,7 @@
 <%
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
+String name = (String) session.getAttribute("name");
 %>
 <script>
 /*1분 미리듣기 함수*/
@@ -140,10 +141,10 @@ function cart(){
                                             %> 
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin/admin.jsp">Member Management</a></li>
-                                                    <li><a href="admin/artist.jsp">Artist Management</a></li>
-                                                    <li><a href="admin/host.jsp">Host Management</a></li>
-                                                    <li><a href="customer/mypage.jsp">My Page</a></li>
+                                                    <li><a href="admin/admin.jsp">회원목록</a></li>
+                                                    <li><a href="admin/artist.jsp">아티스트목록</a></li>
+                                                    <li><a href="admin/host.jsp">관리자목록</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -240,7 +241,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="artist/artist.jsp" id="loginBtn">아티스트 <%=user_id %> 님</a>
+                                        <a href="artist/artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -693,7 +694,7 @@ function cart(){
                                 <p>01. 사건의 지평선</p>
                             </div>
                             
-                            <audio preload="auto" controls>
+                            <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
                             <source src="resource/audio/eventhorizon.mp3">
                             </audio>
                             

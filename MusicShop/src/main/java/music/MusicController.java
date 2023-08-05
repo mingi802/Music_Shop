@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
@@ -43,8 +44,19 @@ public class MusicController extends HttpServlet {
     	System.out.println(action);
     	
     	if(action.equals("/listMusic.do")) {
-    		//List<MusicVO> MusicList = MusicDAO.listMusic(); ม๘วเ ม฿
+    		List<MusicVO> MusicList = musicDAO.listMusic();
+    		request.setAttribute("MusicList", MusicList);
+    		nextPage = "../artist/artist.jsp";
     		
+    		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+    		
+    		dispatch.forward(request, response);
+    	} else {
+    		doHandle(request,response);
+    	}
+    	if(nextPage != null) {
+    		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+    		dispatch.forward(request, response);
     	}
     	
     }

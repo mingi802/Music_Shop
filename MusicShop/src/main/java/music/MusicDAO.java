@@ -3,6 +3,7 @@ package music;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,44 @@ public class MusicDAO {
 		dbID = "root";
 		dbPassword = "jinsang1027#";
 	}
+	
+	public List<MusicVO> listMusic(){
+		List<MusicVO> musicList = new ArrayList();
+		
+		try {
+			try {
+				connDB();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			String sql = "SELECT * FROM song";
+			System.out.println(sql);
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String album = rs.getString("album");
+				String title = rs.getString("title");
+				String singer = rs.getString("singer");
+				String now = rs.getString("now");
+				String price = rs.getString("price");
+				String sign = rs.getString("sign");
+				String song = rs.getString("song");
+				
+				MusicVO musicVO = new MusicVO(album, title, singer, now, price, sign, song);
+				
+				musicList.add(musicVO);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return musicList;
+		
+	}
+	
 	public void addMusic(MusicVO m){
 		
 		try {
