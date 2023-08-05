@@ -154,7 +154,6 @@ if(user_id == null){
     </header>
     <!-- ##### Header Area End ##### -->
 
-	
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
@@ -163,19 +162,50 @@ if(user_id == null){
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
-    <div class="total-container">
-	<!-- ##### MusicList Area Start ##### -->
-	
-    <section class="login-area section-padding-100">
-
-    </section>
     
+	<!-- ##### MusicList Area Start ##### -->
+	<aside class="music-list">
+    <section class="login-area section-padding-100_">
+        <div class="music-list-container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="member-content">
+                        <h3>Membership Management</h3><br>
+                        <!-- Membership manage Form -->
+                        <div class="music-list-form">
+                        <table>
+                        	<tr><th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>가격</th><th>이미지 파일</th><th>음원 파일</th></tr>
+                        	<%
+                        	String sql = "SELECT * FROM song ";
+                        	PreparedStatement pstmt = conn.prepareStatement(sql);
+                        	ResultSet rs = pstmt.executeQuery();
+                        	
+                        	while(rs.next()){
+                        	%>
+                        		<tr style="test-align: center">
+                        		<td><%=rs.getString("album") %></td>
+                        		<td><%=rs.getString("title") %></td>
+                        		<td><%=rs.getString("singer") %></td>
+                        		<td><%=rs.getString("now") %></td>
+                        		<td><%=rs.getString("price") %></td>
+                        		<td><%=rs.getString("sign") %></td>
+                        		<td><%=rs.getString("song") %></td>
+                        		</tr>
+                        	<%	
+                        	}
+                        	%>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>	
+	</aside>
 	<!-- ##### MusicList Area End ##### -->
 	
     <!-- ##### Login Area Start ##### -->
     <section class="login-area section-padding-100">
-    	<div class="total-container"><!-- ? -->
-    	<div class="row">
         <div class="upload-container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
@@ -183,7 +213,7 @@ if(user_id == null){
                         <h3>음원 등록</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form name="Uploadform" action="${contextPath}/Music/addMusic.do" class="mr-5" method="post" enctype="multipart/form-data">
+                            <form name="Uploadform" action="${contextPath}/Music/addMusic.do" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="exampleAlbum">앨범</label>
                                     <input type="text" class="form-control" id="InputAlbum" aria-describedby="emailHelp" name="album" placeholder="Enter Album" minlength='1' required>
@@ -220,50 +250,8 @@ if(user_id == null){
                 </div>
             </div>
         </div>
-        
-        <div class="music-container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
-                    <div class="member-content">
-                        <h3>Membership Management</h3><br>
-                        <!-- Membership manage Form -->
-                        <div class="member-manage-form">
-                        <table>
-                        	<tr><th>이름</th><th>아이디</th><th>비밀번호</th><th>성별</th><th>생년월일</th><th>전화번호</th><th>주소</th><th>이메일</th><th>고유번호</th></tr>
-                        	<%
-                        	String sql = "SELECT * FROM member WHERE member.code = 100 ";
-                        	PreparedStatement pstmt = conn.prepareStatement(sql);
-                        	ResultSet rs = pstmt.executeQuery();
-                        	
-                        	while(rs.next()){
-                        	%>
-                        		<tr style="test-align: center">
-                        		<td><%=rs.getString("name") %></td>
-                        		<td><%=rs.getString("id") %></td>
-                        		<td><%=rs.getString("pwd") %></td>
-                        		<td><%=rs.getString("gender") %></td>
-                        		<td><%=rs.getString("birth") %></td>
-                        		<td><%=rs.getString("phone") %></td>
-                        		<td><%=rs.getString("addr") %></td>
-                        		<td><%=rs.getString("email") %></td>
-                        		<td><%=rs.getString("code") %></td>
-                        		<td><button onclick="location.href='customerDelet.jsp?id=<%= rs.getString("id") %>'">Delete</button></td>
-                        		</tr>
-                        	
-                        	<%	
-                        	}
-                        	%>
-                        </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>   
-        </div><!-- class="row" --> 
-        </div><!-- class="total-container" -->
     </section>
     <!-- ##### Login Area End ##### -->
-	</div>
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
