@@ -134,6 +134,10 @@ img {
 .section-padding-100 {
   padding-top: 100px;
   padding-bottom: 100px; }
+  
+  .section-padding-100100 {
+  padding-top: 100px;
+  padding-bottom: 100px; }
 
 .section-padding-100-0 {
   padding-top: 100px;
@@ -1344,46 +1348,61 @@ img {
     .upload-content .form-control:focus {
       box-shadow: none; 
       }
-	/*내역 테이블의 글씨 설정 css*/
-	.total-container{
-		display:flex ;
-		justify-content: space-between;
-		flex-wrap: wrap; 
-		margin: 0 auto;
+	/* MusicList Area css*/
+	
+	.section-padding-100_ {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	padding-right: 50px; 
 	}
-	.music-content {
+	
+	.music-list{
+	text-align : center;
+ 	/*background-color: #f5f9fa;
+ 	border: 1px solid #d8d8d8;*/
+	margin-top : 100px;
+	margin-left : 10%;
+	width : 50%;
+	float : left;
+	min-height : 200px;
+	border-radius: 8px;
+	box-sizing: border-box;
+	padding-right: 100px;
+	} 
+	
+	.member-content {
  	 -webkit-transition-duration: 500ms;
  	 transition-duration: 500ms;
   	position: relative;
  	 z-index: 1;
  	 background-color: #f5f9fa;
  	 border: 1px solid #d8d8d8;
- 	 padding: 30px 20px;
+ 	 padding: 50px 30px;
  	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
- 	 text-align: center; 
+ 	 text-align: center;
+ 	 margin-right: 100%;
+ 	 width: 110%; 
   	}
-  	
-  	.music-container{
+  	.music-list-container{
   	width: 100%;
 	text-align: center;
 	margin-right : 900px;
   	}
-	.music-upload-form .list-music {
+	.music-list-form table {
 	text-align : center;
  	margin: 0 auto; 
  	 border-collapse : collapse;
- 	 width: 50%; 
+ 	 width: 100%; 
 	}
-	.music-upload-form th td{
+	.music-list-form th td{
 	padding: 15px; 
-	}  
-	/*	
-	.member-manage-form button {
+	}  	
+	.music-list-form button {
   	padding: 10px 20px; 
   	font-size: 16px; 
   	border-radius: 8px; 
-	}
-	*/
+	}	
+	 
 /* :: 13.0 Services Area CSS */
 .single-service-area .icon {
   -webkit-box-flex: 0;
