@@ -22,6 +22,7 @@
 <%
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
+String name = (String) session.getAttribute("name");
 %>
 <script>
 function cart(){
@@ -193,7 +194,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
+                                        <a href="atist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -269,9 +270,9 @@ function cart(){
 
                         <!-- Contact Social Info -->
                         <div class="contact-social-info mt-50">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Why.J.H git"><i class="fa fa-github" aria-hidden="true"></i></a><br>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="왕민기"><i class="fa fa-github" aria-hidden="true"></i></a><br>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="이현성"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            <a href="https://github.com/WhyjinHoooo" data-toggle="tooltip" data-placement="top" title="양진호"><i class="fa fa-github" aria-hidden="true"></i></a><br>
+                            <a href="https://github.com/mingi802" data-toggle="tooltip" data-placement="top" title="왕민기"><i class="fa fa-github" aria-hidden="true"></i></a><br>
+                            <a href="https://github.com/LEHYUNSUNG" data-toggle="tooltip" data-placement="top" title="이현성"><i class="fa fa-github" aria-hidden="true"></i></a>
                         </div>
 
                     </div>

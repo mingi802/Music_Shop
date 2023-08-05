@@ -213,8 +213,8 @@
                                     <input type="password" class="form-control" id="InputPwdCheck" name="user_pwd_c" placeholder="Password Check">
                                 </div>                            
                                 <div class="form-group">
-                                    <label for="exampleInputName1">이름(Name)</label>
-                                    <input type="text" class="form-control" id="InputName" aria-describedby="emailHelp" name="user_name" placeholder="Enter name">
+                                    <label for="exampleInputName1">이름 또는 팀명(Name or Team-Name)</label>
+                                    <input type="text" class="form-control" id="InputName" aria-describedby="emailHelp" name="user_name" placeholder="Enter name or team-name">
                                     <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your name with anyone else.</small>
                                     <!-- email을 text로 바꾸면 끝 -->
                                 </div>

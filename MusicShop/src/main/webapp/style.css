@@ -1315,10 +1315,11 @@ img {
     padding: 0 20px;
     border-radius: 0; 
     }
-    
+   /* 
   .upload-content .form-controlasd {
    margin-right: 10px;
    }
+   
   .upload-content .form-year {
    height: 50px;
    width: 13%;
@@ -1333,16 +1334,56 @@ img {
    height: 50px;
    width: 10%;
    font-size: 15px;
-   }         
+   } 
+           
   .upload-content .spacing{
     display: inline-block;
     margin-right: 40px;  
   } 
+  */
     .upload-content .form-control:focus {
       box-shadow: none; 
       }
-
-
+	/*내역 테이블의 글씨 설정 css*/
+	.total-container{
+		display:flex ;
+		justify-content: space-between;
+		flex-wrap: wrap; 
+		margin: 0 auto;
+	}
+	.music-content {
+ 	 -webkit-transition-duration: 500ms;
+ 	 transition-duration: 500ms;
+  	position: relative;
+ 	 z-index: 1;
+ 	 background-color: #f5f9fa;
+ 	 border: 1px solid #d8d8d8;
+ 	 padding: 30px 20px;
+ 	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
+ 	 text-align: center; 
+  	}
+  	
+  	.music-container{
+  	width: 100%;
+	text-align: center;
+	margin-right : 900px;
+  	}
+	.music-upload-form .list-music {
+	text-align : center;
+ 	margin: 0 auto; 
+ 	 border-collapse : collapse;
+ 	 width: 50%; 
+	}
+	.music-upload-form th td{
+	padding: 15px; 
+	}  
+	/*	
+	.member-manage-form button {
+  	padding: 10px 20px; 
+  	font-size: 16px; 
+  	border-radius: 8px; 
+	}
+	*/
 /* :: 13.0 Services Area CSS */
 .single-service-area .icon {
   -webkit-box-flex: 0;

@@ -20,6 +20,7 @@
 <%
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
+String name = (String) session.getAttribute("name");
 %>
 <script>
 /*1분 미리듣기 함수*/
@@ -190,7 +191,7 @@ function limitPlayTime(audio) {
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
+                                        <a href="atist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -222,7 +223,7 @@ function limitPlayTime(audio) {
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
-                        <img src="img/bg-img/younha.jpg" alt="">
+                        <img src="resource/img/younha.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8">

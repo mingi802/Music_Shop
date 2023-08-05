@@ -61,6 +61,7 @@
   <%
 	String user_id = (String) session.getAttribute("id");
 	String code = (String) session.getAttribute("code");
+	String name = (String) session.getAttribute("name");
   %> 
     function limitPlayTime(audio) {
         if (audio.currentTime > 60) { // 1분(60초)로 제한
@@ -222,7 +223,7 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
+                                        <a href="atist.jsp" id="loginBtn">아니트스 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -270,7 +271,7 @@
 	                	</div>
                         <div class="album-thumb col-1">
                             <label for="cart-item-checked">
-                            <img src="img/bg-img/younha.jpg" alt="">
+                            <img src="resource/img/younha.jpg" alt="">
                             </label>
                         </div>
 	  					<div class="album-info align-self-end">
@@ -303,7 +304,7 @@
 	                	</div>
                         <div class="album-thumb col-1">
                             <label for="cart-item-checked">
-                            <img src="img/bg-img/younha.jpg" alt="">
+                            <img src="resource/img/younha.jpg" alt="">
                             </label>
                         </div>                        
 	  					<div class="album-info align-self-end">
@@ -336,7 +337,7 @@
 	                	</div>
                         <div class="album-thumb col-1">
                             <label>
-                            <img src="img/bg-img/younha.jpg" alt="">
+                            <img src="resource/img/younha.jpg" alt="">
                             </label>
                         </div>                        
 	  					<div class="album-info align-self-end">
@@ -369,7 +370,7 @@
 	                	</div>
                         <div class="album-thumb col-1">
                             <label for="cart-item-checked">
-                            <img src="img/bg-img/younha.jpg" alt="">
+                            <img src="resource/img/younha.jpg" alt="">
                             </label>
                         </div>                        
 	  					<div class="album-info align-self-end">

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page session="true"%>
-
+<%@ include file="../mydbcon.jsp" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>      
 <!DOCTYPE html>
 <html>
@@ -27,6 +27,7 @@
 <%
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
+String name = (String) session.getAttribute("name");
 %>
 	<script>
 /*함수를 집어 넣는 부분*/
@@ -79,17 +80,7 @@ String code = (String) session.getAttribute("code");
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Albums</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
-                                            <%
-                                            if(user_id == null) {
-                                            %>
                                             <li><a href="../login/login.jsp">Login</a></li>
-                                            <%
-                                            } else {
-                                            %>
-                                            <li><a href="../login/logout.jsp">logout</a></li>
-                                            <%
-                                            	if(code.equals("300")){
-                                            %>
                                             <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
                                                     <li><a href="artist.jsp">음원등록</a></li>
@@ -116,10 +107,6 @@ String code = (String) session.getAttribute("code");
                                     <li><a href="../connection.jsp">Contact</a></li>
                                 </ul>
 <%
-                                            	}
-                                            }
-%>
-<%
 if(user_id == null){
 %>
                                 <!-- Login/Register & Cart Button -->
@@ -135,7 +122,7 @@ if(user_id == null){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="artist.jsp" id="loginBtn">아티스트 <%=user_id %> 님</a>
+                                        <a href="artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -167,6 +154,7 @@ if(user_id == null){
     </header>
     <!-- ##### Header Area End ##### -->
 
+	
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
@@ -175,40 +163,19 @@ if(user_id == null){
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
-    
+    <div class="total-container">
 	<!-- ##### MusicList Area Start ##### -->
-	<div class="Music-list">
-		<a>음원 목록</a>
-		<table class="Music-list-table">
-			<thead>
-				<tr>
-					<th>앨범</th> <th>제목</th> <th>가수</th> <th>발매일</th> <th>가격</th> <th>앨범 일러스트</th> <th>음원</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:choose>
-					<c:when test=" ${ empty MusicList} }">
-						<tr>
-							<td colspan="5" align="center">
-								<b>음원이 없습니다.</b>
-							</td>
-						</tr>
-					</c:when>
-					<c:when test="${!empty MusicList} }">
-						<c:forEach var="mus" items="${MusicList} }">
-							<tr align="center">
-							<!-- 음원들  -->
-							</tr>
-						</c:forEach>
-					</c:when>
-				</c:choose>
-			</tbody>
-		</table>
-	</div>
+	
+    <section class="login-area section-padding-100">
+
+    </section>
+    
 	<!-- ##### MusicList Area End ##### -->
 	
     <!-- ##### Login Area Start ##### -->
     <section class="login-area section-padding-100">
+    	<div class="total-container"><!-- ? -->
+    	<div class="row">
         <div class="upload-container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
@@ -216,7 +183,7 @@ if(user_id == null){
                         <h3>음원 등록</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form name="Uploadform" action="${contextPath}/Music/addMusic.do" method="post" enctype="multipart/form-data">
+                            <form name="Uploadform" action="${contextPath}/Music/addMusic.do" class="mr-5" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="exampleAlbum">앨범</label>
                                     <input type="text" class="form-control" id="InputAlbum" aria-describedby="emailHelp" name="album" placeholder="Enter Album" minlength='1' required>
@@ -227,7 +194,7 @@ if(user_id == null){
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleSinger">가수</label>
-                                    <input type="text" class="form-control" id="InputSinger" name="singer" placeholder="Enter singer" required>
+                                    <input type="text" class="form-control" id="InputSinger" name="singer" value="<%=name %>" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleDate">발매일자</label>
@@ -253,8 +220,50 @@ if(user_id == null){
                 </div>
             </div>
         </div>
+        
+        <div class="music-container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="member-content">
+                        <h3>Membership Management</h3><br>
+                        <!-- Membership manage Form -->
+                        <div class="member-manage-form">
+                        <table>
+                        	<tr><th>이름</th><th>아이디</th><th>비밀번호</th><th>성별</th><th>생년월일</th><th>전화번호</th><th>주소</th><th>이메일</th><th>고유번호</th></tr>
+                        	<%
+                        	String sql = "SELECT * FROM member WHERE member.code = 100 ";
+                        	PreparedStatement pstmt = conn.prepareStatement(sql);
+                        	ResultSet rs = pstmt.executeQuery();
+                        	
+                        	while(rs.next()){
+                        	%>
+                        		<tr style="test-align: center">
+                        		<td><%=rs.getString("name") %></td>
+                        		<td><%=rs.getString("id") %></td>
+                        		<td><%=rs.getString("pwd") %></td>
+                        		<td><%=rs.getString("gender") %></td>
+                        		<td><%=rs.getString("birth") %></td>
+                        		<td><%=rs.getString("phone") %></td>
+                        		<td><%=rs.getString("addr") %></td>
+                        		<td><%=rs.getString("email") %></td>
+                        		<td><%=rs.getString("code") %></td>
+                        		<td><button onclick="location.href='customerDelet.jsp?id=<%= rs.getString("id") %>'">Delete</button></td>
+                        		</tr>
+                        	
+                        	<%	
+                        	}
+                        	%>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        </div><!-- class="row" --> 
+        </div><!-- class="total-container" -->
     </section>
     <!-- ##### Login Area End ##### -->
+	</div>
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
