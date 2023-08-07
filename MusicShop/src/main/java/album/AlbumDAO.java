@@ -66,6 +66,12 @@ public class AlbumDAO {
 				
 				AlbumVO albumVO = new AlbumVO();
 				
+				if(String.valueOf(album.charAt(0)).matches(".*[¤¡-¤¾¤¿-¤Ó°¡-ÆR]+.*")) {	//¾Ù¹ü ÀÌ¸§ Ã¹ ±ÛÀÚ°¡ ÇÑ±ÛÀÎ °æ¿ì
+					char uniVal = album.charAt(0);
+					char cho = (char)((uniVal-0xAC00)/28/21);
+					System.out.println(String.valueOf(cho));
+				}
+				
 				albumVO.setId(id);
 				albumVO.setAlbum(album);
 				albumVO.setTitle(title);

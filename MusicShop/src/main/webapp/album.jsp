@@ -166,7 +166,7 @@ String name = (String) session.getAttribute("name");
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="main.jsp">Home</a></li>
+                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
                                     <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
@@ -373,14 +373,20 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
 				<c:if test="${not empty albumList}">
 					<c:forEach items="${albumList}" var="album">
-						<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ${album.album.charAt(0)}">
+						<c:set var="firstLetterIsKor" value="${String.valueOf(album.album.charAt(0)).matches(\".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*\")}"/>
+						<c:if test="${firstLetterIsKor}">
+							<script>
+								console.log(${0x2F});
+							</script>
+						</c:if>
+						<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ${firstLetterIsKor}">
 		                    <div class="single-album">
 		                        <img src="${contextPath}/img/bg-img/a1.jpg" alt="">
 		                        <div class="album-info">
 		                            <a href="#">
-		                                <h5>${album.album}</h5>
+		                                <h5>${album.singer}</h5>
 		                            </a>
-		                            <p>${album.title}</p>
+		                            <p>${album.album}</p>
 		                        </div>
 		                    </div>
 		                </div>
