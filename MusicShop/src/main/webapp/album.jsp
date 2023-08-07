@@ -30,17 +30,62 @@ String name = (String) session.getAttribute("name");
 %>
 <script>
   $(document).ready(function() {
-    var $grid = $(".grid").isotope({
-      itemSelector: ".grid-item",
-      layoutMode: "fitRows",
-    });
+	  var $grid = $('.oneMusic-albums').isotope({
+          itemSelector: '.single-album-item',
+          percentPosition: true,
+          masonry: {
+              columnWidth: '.single-album-item'
+          }
+      });
 
+  //검색 바 기능 구현 중
+    if(${not empty albumList}) {
+    	console.log("검색 결과 있음");
+    	$(".browse-by-catagories a.active").removeClass("active");
+    	var albumList = new Array();
+    	<c:forEach items="${albumList}" var="album">
+    		albumList.push({
+    			id: "${album.id}",
+    			album: "${album.album}",
+    			title: "${album.title}",
+    			singer: "${album.singer}",
+    			now: "${album.now}",
+    			price: "${album.price}",
+    			sign: "${album.sign}",
+    			song: "${album.song}"
+    		});
+    		console.log(albumList);
+    	</c:forEach>
+    	$grid.isotope({ 
+    		//검색한 앨범명에 맞는 앨범만 보여주기 위해 filter에 함수를 집어넣었음.
+    		filter: function() {
+    			var albumName = $(this).find('.album-info p').text();
+    			var filterValue = false;
+    			albumList.forEach(function (album) {
+    				if(album.album == albumName) {
+    					filterValue = true;
+    					return true;	
+    				} else {
+    					return false;	
+    				}
+    			});
+    			console.log(filterValue);
+    			return filterValue;
+    		}
+    		
+		});
+    } else {
+    	console.log("검색 결과 없음")
+    	$(".browse-by-catagories a.active").removeClass("active");
+    	
+    }
+    
     $(".browse-by-catagories").on("click", "a", function(e) {
-      e.preventDefault();
+      //e.preventDefault();
       $(".browse-by-catagories a.active").removeClass("active");
       $(this).addClass("active");
       var filterValue = $(this).attr("data-filter");
-      console.log($(this).attr("data-filter"));
+      console.log(typeof($(this).attr("data-filter")));
       $grid.isotope({ filter: filterValue });
     });
 
@@ -53,24 +98,6 @@ String name = (String) session.getAttribute("name");
       if (filterLink.length > 0) {
         filterLink.trigger("click");
       }
-    }
-    
-    //검색 바 기능 구현 중
-    if(${not empty albumList}) {
-    	console.log("검색 결과 있음");
-    	console.log($grid);
-    	$(".browse-by-catagories a.active").removeClass("active");
-    	var test1 = document.querySelectorAll("div.browse-by-catagories a");
-    	console.log(test1);
-    	test1.forEach(function(test1_item) {
-    		console.log(test1_item);
-    	});
-    	$(".browse-by-catagories a[data-filter='.y']").addClass("active");
-    	$grid.isotope({ filter: $(".browse-by-catagories a[data-filter='.y']").attr("data-filter") });
-    } else {
-    	console.log("검색 결과 없음")
-    	$(".browse-by-catagories a.active").removeClass("active");
-    	
     }
     
   });
@@ -284,7 +311,7 @@ String name = (String) session.getAttribute("name");
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="browse-by-catagories catagory-menu d-flex flex-wrap align-items-center mb-30">
+                    <div class="browse-by-catagories d-flex flex-wrap align-items-center mb-30">
                         <a href="#" data-filter="*">Browse All</a>
                         <a href="#" data-filter=".a" class="active">A</a>
                         <a href="#" data-filter=".b">B</a>
@@ -534,6 +561,18 @@ String name = (String) session.getAttribute("name");
                                 <h5>Beyonce</h5>
                             </a>
                             <p>Songs</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item s">
+                    <div class="single-album">
+                        <img src="${contextPath}/resource/img/Suzume.jpg" alt="">
+                        <div class="album-info">
+                            <a href="#">
+                                <h5>RADWIMPS</h5>
+                            </a>
+                            <p>Suzume</p>
                         </div>
                     </div>
                 </div>
