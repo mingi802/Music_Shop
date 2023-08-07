@@ -30,10 +30,11 @@ String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
 %>
 	<script>
-	if(${empty MusicList}){
-		window.location.href = "${contextPath}/Music/listMusic.do";
-	}
+		if(${empty MusicList}) {
+		window.location.href="${contextPath}/Music/listMusic.do";
+		}
 	</script>
+
 </head>
 
 <body>

@@ -47,16 +47,16 @@ public class MusicController extends HttpServlet {
     		System.out.println(MusicList);
     		
     		nextPage = "/artist/artist.jsp";
-    		System.out.println(nextPage);
+    		
     		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
     		
     		dispatch.forward(request, response);
     		return;
     	} else {
-    		//doHandle(request,response);
+    		System.out.println("나는 " + action + " 입니다.");
+    		doHandle(request,response);
     		return;
     	}
-
     	
     }
     
@@ -138,8 +138,10 @@ public class MusicController extends HttpServlet {
 				e.printStackTrace();
 			}
 			nextPage = "/Music/listMusic.do";
-		}
-		
+    		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+    		
+    		dispatch.forward(request, response);			
+		}	
 	}
 
 }
