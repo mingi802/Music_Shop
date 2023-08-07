@@ -434,7 +434,7 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
                         <div class="album-thumb">
-                            <img src="resource/img/younha.jpg" alt="">
+                            <img src="resource/img/eventhorizon.jpg" alt="">
                             <!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.90</p>
@@ -458,7 +458,7 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                 	<div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
 				        <div class="album-thumb">
-            				<img src="resource/img/younha2.jpg" alt="">
+            				<img src="resource/img/Oort cloud.jpg" alt="">
             				<!-- Album Price -->
             				<div class="album-price">
                 				<p>$0.80</p>
@@ -481,7 +481,7 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
                         <div class="album-thumb">
-                            <img src="resource/img/tido.jpg" alt="">
+                            <img src="resource/img/good.jpg" alt="">
                         	<!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.70</p>
@@ -492,10 +492,10 @@ function cart(){
                             </div>                             
                         </div>
                         <div class="album-info">
-                            <a href="album.jsp?filter=t">
-                                <h5>Tido Kang</h5>
+                            <a href="album.jsp?filter=g">
+                                <h5>운종신</h5>
                             </a>
-                            <p>결실</p>
+                            <p>좋니</p>
                         </div>
                     </div>
                 </div>
@@ -504,7 +504,7 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
                         <div class="album-thumb">
-                            <img src="resource/img/bts2.jpg" alt="">
+                            <img src="resource/img/Butter.jpg" alt="">
                         	<!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.80</p>
@@ -678,7 +678,7 @@ function cart(){
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
-                        <img src="resource/img/younha.jpg" alt="">
+                        <img src="resource/img/eventhorizon.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8">
@@ -821,7 +821,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="resource/img/younha.jpg" alt="">
+                                    <img src="resource/img/eventhorizon.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>윤하</h6>
@@ -858,15 +858,15 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="200ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt9.jpg" alt="">
+                                    <img src="resource/img/ssagsseuli.jpg" alt="">
                                 </div>
                                 <div class="content-">
-                                    <h6>Cristinne Smith</h6>
-                                    <p>My Music</p>
+                                    <h6>다시 여기 바닷가</h6>
+                                    <p>싹쓰리</p>
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/dummy-audio.mp3">
+                                <source src="resource/audio/ssagsseuli.mp3">
                             </audio>
                         </div>
 

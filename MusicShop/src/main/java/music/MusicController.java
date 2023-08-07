@@ -82,8 +82,8 @@ public class MusicController extends HttpServlet {
 		String action = request.getPathInfo();
 		HttpSession session = request.getSession();
 		if(action.equals("/addMusic.do")) {
-			File currentDirPath_I = new File("C:\\JavaProgram\\Music_Shop\\MusicShop\\src\\main\\webapp\\resource\\img");
-			File currentDirPath_M = new File("C:\\JavaProgram\\Music_Shop\\MusicShop\\src\\main\\webapp\\resource\\audio");
+			File currentDirPath_I = new File("C:\\Users\\yach3\\Desktop\\최종프로젝트\\Music_Shop-main\\MusicShop\\MusicShop\\src\\main\\webapp\\resource\\img");
+			File currentDirPath_M = new File("C:\\Users\\yach3\\Desktop\\최종프로젝트\\Music_Shop-main\\MusicShop\\MusicShop\\src\\main\\webapp\\resource\\audio");
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			
 			factory.setRepository(currentDirPath_I);

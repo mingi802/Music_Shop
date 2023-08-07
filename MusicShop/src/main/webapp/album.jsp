@@ -486,7 +486,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
                     <div class="single-album">
-                        <a href="./album_songs.jsp"><img src="${contextPath}/resource/img/younha.jpg" alt=""></a> 
+                        <a href="./album_songs.jsp"><img src="${contextPath}/resource/img/eventhorizon.jpg" alt=""></a> 
                         <div class="album-info">
                             <a href="#">
                                 <h5>윤하</h5>
@@ -499,7 +499,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
                     <div class="single-album">
-                        <img src="${contextPath}/resource/img/younha2.jpg" alt="">
+                        <img src="${contextPath}/resource/img/Oort cloud.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>윤하</h5>
@@ -513,20 +513,20 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
                     <div class="single-album">
 
-                        <img src="${contextPath}/resource/img/tido.jpg" alt="">
+                        <img src="${contextPath}/resource/img/good.jpg" alt="">
 
                         <div class="album-info">
                             <a href="#">
-                                <h5>Tido Kang</h5>
+                                <h5>윤종신</h5>
                             </a>
-                            <p>결실</p>
+                            <p>좋니</p>
                         </div>
                     </div>
                 </div>
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
                     <div class="single-album">
-                        <img src="${contextPath}/resource/img/bts2.jpg" alt="">
+                        <img src="${contextPath}/resource/img/Butter.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>BTS</h5>
