@@ -1,6 +1,6 @@
 package album;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class AlbumVO {
 	
@@ -8,7 +8,7 @@ public class AlbumVO {
 	private String album;
 	private String title;
 	private String singer;
-	private Timestamp now;
+	private Date now;
 	private String price;
 	private String sign;
 	private String song;
@@ -76,14 +76,14 @@ public class AlbumVO {
 	/**
 	 * @return the now
 	 */
-	public Timestamp getNow() {
+	public Date getNow() {
 		return now;
 	}
 
 	/**
 	 * @param now the now to set
 	 */
-	public void setNow(Timestamp now) {
+	public void setNow(Date now) {
 		this.now = now;
 	}
 

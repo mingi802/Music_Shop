@@ -45,7 +45,7 @@ public class MusicController extends HttpServlet {
     		request.setAttribute("MusicList", MusicList);
     		System.out.println(response.isCommitted());
     		System.out.println(MusicList);
-    		
+
     		nextPage = "/artist/artist.jsp";
     		System.out.println(nextPage);
     		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
@@ -53,7 +53,7 @@ public class MusicController extends HttpServlet {
     		dispatch.forward(request, response);
     		return;
     	} else {
-    		//doHandle(request,response);
+    		doHandle(request,response);
     		return;
     	}
 
@@ -82,8 +82,8 @@ public class MusicController extends HttpServlet {
 		String action = request.getPathInfo();
 		HttpSession session = request.getSession();
 		if(action.equals("/addMusic.do")) {
-			File currentDirPath_I = new File("C:\\Users\\yach3\\Desktop\\최종프로젝트\\Music_Shop-main\\MusicShop\\MusicShop\\src\\main\\webapp\\resource\\img");
-			File currentDirPath_M = new File("C:\\Users\\yach3\\Desktop\\최종프로젝트\\Music_Shop-main\\MusicShop\\MusicShop\\src\\main\\webapp\\resource\\audio");
+			File currentDirPath_I = new File("C:\\JavaProgram\\Music_Shop\\MusicShop\\src\\main\\webapp\\resource\\img");
+			File currentDirPath_M = new File("C:\\JavaProgram\\Music_Shop\\MusicShop\\src\\main\\webapp\\resource\\audio");
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			
 			factory.setRepository(currentDirPath_I);
@@ -137,7 +137,10 @@ public class MusicController extends HttpServlet {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			nextPage = "/Music/listMusic.do";
+    		nextPage = "/Music/listMusic.do";
+			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+    		
+    		dispatch.forward(request, response);
 		}
 		
 	}

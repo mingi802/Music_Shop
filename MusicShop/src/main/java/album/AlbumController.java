@@ -65,6 +65,11 @@ public class AlbumController extends HttpServlet {
 			List<AlbumVO> albumList = albumDAO.searchAlbum(albumName);
 			request.setAttribute("albumList", albumList);
 		}
+		else if(action.equals("/showAllAlbum.do")) {
+			nextpage = "/album.jsp";
+			List<AlbumVO> albumList = albumDAO.showAllAlbum();
+			request.setAttribute("albumList", albumList);
+		}
 		request.getRequestDispatcher(nextpage).forward(request, response);
 	}
 

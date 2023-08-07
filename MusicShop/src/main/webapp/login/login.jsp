@@ -26,7 +26,7 @@
        function validateForm(){
     	   var id = document.login_page.id_input.value;
     	   var pwd = document.login_page.pwd_input.value;
-    	   
+    	   console.log(!id !pwd);
     	   if( !id || !pwd){
 				alert('모든 항목을 입력해주세요!');
 				return false;
