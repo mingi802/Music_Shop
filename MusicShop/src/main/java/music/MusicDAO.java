@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 public class MusicDAO {
@@ -27,7 +28,7 @@ public class MusicDAO {
 	}
 	
 	public List<MusicVO> listMusic(){
-		List<MusicVO> musicList = new ArrayList();
+		List<MusicVO> musicList = new ArrayList<>();
 		
 		try {
 			try {
@@ -37,6 +38,7 @@ public class MusicDAO {
 			}
 			String sql = "SELECT * FROM song";
 			System.out.println(sql);
+			
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
