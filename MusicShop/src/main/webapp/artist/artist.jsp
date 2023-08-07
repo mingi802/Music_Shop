@@ -174,26 +174,34 @@ if(user_id == null){
                         <!-- Membership manage Form -->
                         <div class="music-list-form">
                         <table>
-                        	<tr><th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>가격</th><th>이미지 파일</th><th>음원 파일</th></tr>
-                        	<%
-                        	String sql = "SELECT * FROM song ";
-                        	PreparedStatement pstmt = conn.prepareStatement(sql);
-                        	ResultSet rs = pstmt.executeQuery();
-                        	
-                        	while(rs.next()){
-                        	%>
-                        		<tr style="test-align: center">
-                        		<td><%=rs.getString("album") %></td>
-                        		<td><%=rs.getString("title") %></td>
-                        		<td><%=rs.getString("singer") %></td>
-                        		<td><%=rs.getString("now") %></td>
-                        		<td><%=rs.getString("price") %></td>
-                        		<td><%=rs.getString("sign") %></td>
-                        		<td><%=rs.getString("song") %></td>
-                        		</tr>
-                        	<%	
-                        	}
-                        	%>
+                        	<tr>
+                        		<th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>가격</th><th>이미지 파일</th><th>음원 파일</th>
+                       		</tr>
+		 <tbody>
+		 <c:choose> <%-- JSTL을 이용해 비었는지 체크 --%>
+		    <c:when test="${ empty MusicList}" >
+		      <tr>
+		        <td colspan="7" text-align="center">
+		          <b >음원이 없습니다.</b>
+		       </td>  
+		      </tr>
+		   </c:when>  
+		   <c:when test="${!empty MusicList}" >
+		      <c:forEach  var="mus" items="${MusicList}" >
+		        <tr align="center">
+		          <td>${mus.album}</td>
+		          <td>${mus.title }</td>
+		          <td>${mus.singer }</td>     
+		          <td>${mus.now }</td>       
+		          <td>${mus.price }</td> 
+		          <td>${mus.sign }</td> 
+		          <td>${mus.song }</td> 
+		       </tr>
+		     </c:forEach>
+		   </c:when>
+		 </c:choose>
+		     
+		 </tbody>
                         </table>
                         </div>
                     </div>
