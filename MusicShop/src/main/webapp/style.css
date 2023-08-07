@@ -1289,7 +1289,7 @@ img {
   	.upload-container{
   	width: 50%;
 	text-align: center;
-	margin-left : 800px;
+	margin-left : 850px;
   	}
 	.upload-content {
   -webkit-transition-duration: 500ms;
@@ -1361,12 +1361,13 @@ img {
  	/*background-color: #f5f9fa;
  	border: 1px solid #d8d8d8;*/
 	margin-top : 50px;
-	width : 45%;
+	width : 58%;
 	float : left;
 	min-height : 200px;
 	border-radius: 8px;
 	box-sizing: border-box;
 	padding-right: 100px;
+	margin-left: -205px;
 	} 
 	
 	.member-content {
