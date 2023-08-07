@@ -30,10 +30,7 @@ public class MusicController extends HttpServlet {
     public void init() throws ServletException {
     	musicDAO = new MusicDAO();
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
     protected void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	response.setContentType("text/html; charset=UTF-8");
     	String nextPage = null;
@@ -46,18 +43,20 @@ public class MusicController extends HttpServlet {
     	if(action.equals("/listMusic.do")) {
     		List<MusicVO> MusicList = musicDAO.listMusic();
     		request.setAttribute("MusicList", MusicList);
-    		nextPage = "../artist/artist.jsp";
+    		System.out.println(response.isCommitted());
+    		System.out.println(MusicList);
     		
+    		nextPage = "/artist/artist.jsp";
+    		System.out.println(nextPage);
     		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
     		
     		dispatch.forward(request, response);
+    		return;
     	} else {
-    		doHandle(request,response);
+    		//doHandle(request,response);
+    		return;
     	}
-    	if(nextPage != null) {
-    		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
-    		dispatch.forward(request, response);
-    	}
+
     	
     }
     
