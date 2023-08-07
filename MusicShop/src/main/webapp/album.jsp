@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" import="java.util.List" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" import="java.util.ArrayList" import="java.util.List" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="album.AlbumVO" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>  
 <!DOCTYPE html>
 <html>
@@ -30,6 +31,16 @@ String name = (String) session.getAttribute("name");
 %>
 <script>
   $(document).ready(function() {
+	  
+	  function showAllAlbum() {
+		  window.location.href="${contextPath}/Album/showAllAlbum.do";
+	  }
+	  
+	  if(${empty albumList}) {
+		  console.log("첫 입장, 전체 앨범 리스트 가져오기");
+		  showAllAlbum();
+	  }
+	  
 	  var $grid = $('.oneMusic-albums').isotope({
           itemSelector: '.single-album-item',
           percentPosition: true,
@@ -54,7 +65,7 @@ String name = (String) session.getAttribute("name");
     			sign: "${album.sign}",
     			song: "${album.song}"
     		});
-    		console.log(albumList);
+    		console.log(albumList.slice(-1)); //앨범리스트의 마지막 요소 출력
     	</c:forEach>
     	$grid.isotope({ 
     		//검색한 앨범명에 맞는 앨범만 보여주기 위해 filter에 함수를 집어넣었음.
@@ -88,7 +99,10 @@ String name = (String) session.getAttribute("name");
       console.log(typeof($(this).attr("data-filter")));
       $grid.isotope({ filter: filterValue });
     });
-
+	
+    //var a_browse_all = document.getElementById("browse-all");
+    //a_browse_all.addEventListener('click', showAllAlbum);
+    
     // URL 쿼리 기준 필터 활성화
     const urlParams = new URLSearchParams(window.location.search);
     const filterValue = urlParams.get("filter");
@@ -152,8 +166,8 @@ String name = (String) session.getAttribute("name");
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="main.jsp">Home</a></li>
-                                    <li><a href="album.jsp">Albums</a></li>
+                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                    <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="main.jsp">Home</a></li>
@@ -312,7 +326,7 @@ String name = (String) session.getAttribute("name");
             <div class="row">
                 <div class="col-12">
                     <div class="browse-by-catagories d-flex flex-wrap align-items-center mb-30">
-                        <a href="#" data-filter="*">Browse All</a>
+                        <a id="browse-all" href="#" data-filter="*">Browse All</a>
                         <a href="#" data-filter=".a" class="active">A</a>
                         <a href="#" data-filter=".b">B</a>
                         <a href="#" data-filter=".c">C</a>
@@ -357,6 +371,28 @@ String name = (String) session.getAttribute("name");
 			
             <div class="row oneMusic-albums">
                 <!-- Single Album -->
+				<c:if test="${not empty albumList}">
+					<c:forEach items="${albumList}" var="album">
+						<c:set var="firstLetterIsKor" value="${String.valueOf(album.album.charAt(0)).matches(\".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*\")}"/>
+						<c:if test="${firstLetterIsKor}">
+							<script>
+								console.log(${0x2F});
+							</script>
+						</c:if>
+						<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ${firstLetterIsKor}">
+		                    <div class="single-album">
+		                        <img src="${contextPath}/img/bg-img/a1.jpg" alt="">
+		                        <div class="album-info">
+		                            <a href="#">
+		                                <h5>${album.singer}</h5>
+		                            </a>
+		                            <p>${album.album}</p>
+		                        </div>
+		                    </div>
+		                </div>
+					</c:forEach>
+				</c:if>
+    	
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item c">
                     <div class="single-album">
                         <img src="${contextPath}/img/bg-img/a1.jpg" alt="">
@@ -450,7 +486,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
                     <div class="single-album">
-                        <a href="./album_songs.jsp"><img src="${contextPath}/resource/img/younha.jpg" alt=""></a> 
+                        <a href="./album_songs.jsp"><img src="${contextPath}/resource/img/eventhorizon.jpg" alt=""></a> 
                         <div class="album-info">
                             <a href="#">
                                 <h5>윤하</h5>
@@ -463,7 +499,7 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
                     <div class="single-album">
-                        <img src="${contextPath}/resource/img/younha2.jpg" alt="">
+                        <img src="${contextPath}/resource/img/Oort cloud.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>윤하</h5>
@@ -477,20 +513,20 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
                     <div class="single-album">
 
-                        <img src="${contextPath}/resource/img/tido.jpg" alt="">
+                        <img src="${contextPath}/resource/img/good.jpg" alt="">
 
                         <div class="album-info">
                             <a href="#">
-                                <h5>Tido Kang</h5>
+                                <h5>윤종신</h5>
                             </a>
-                            <p>결실</p>
+                            <p>좋니</p>
                         </div>
                     </div>
                 </div>
                 <!-- Single Album -->
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
                     <div class="single-album">
-                        <img src="${contextPath}/resource/img/bts2.jpg" alt="">
+                        <img src="${contextPath}/resource/img/Butter.jpg" alt="">
                         <div class="album-info">
                             <a href="#">
                                 <h5>BTS</h5>
@@ -825,7 +861,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     <div class="footer-nav">
                         <ul>
                             <li><a href="main.jsp">Home</a></li>
-                            <li><a href="album.jsp">Albums</a></li>
+                            <li><a href="${contextPath}/album.jsp">Albums</a></li>
                             <!--  
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>

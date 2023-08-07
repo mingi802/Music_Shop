@@ -1287,9 +1287,9 @@ img {
       }
 /* :: upload area CSS*/
   	.upload-container{
-  	width: 30%;
+  	width: 50%;
 	text-align: center;
-	margin-left : 1500px;
+	margin-left : 850px;
   	}
 	.upload-content {
   -webkit-transition-duration: 500ms;
@@ -1360,14 +1360,14 @@ img {
 	text-align : center;
  	/*background-color: #f5f9fa;
  	border: 1px solid #d8d8d8;*/
-	margin-top : 100px;
-	margin-left : 10%;
-	width : 50%;
+	margin-top : 50px;
+	width : 58%;
 	float : left;
 	min-height : 200px;
 	border-radius: 8px;
 	box-sizing: border-box;
 	padding-right: 100px;
+	margin-left: -205px;
 	} 
 	
 	.member-content {
@@ -1384,9 +1384,9 @@ img {
  	 width: 110%; 
   	}
   	.music-list-container{
-  	width: 100%;
+  	width: 180%;
 	text-align: center;
-	margin-right : 900px;
+	margin-right : 1000px;
   	}
 	.music-list-form table {
 	text-align : center;

@@ -2,3 +2,5 @@ MusicShop/build/classes/com/mlppgm/musicshop/javatest.class
 MusicShop/build/classes/com/mlppgm/musicshop/test/uploadtest.class
 MusicShop/.classpath
 *.class
+MusicShop/bin/
+

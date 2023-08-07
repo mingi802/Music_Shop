@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" import=" java.util.*,music.*"
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
@@ -30,8 +30,11 @@ String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
 %>
 	<script>
-/*함수를 집어 넣는 부분*/
+		if(${empty MusicList}) {
+		window.location.href="${contextPath}/Music/listMusic.do";
+		}
 	</script>
+
 </head>
 
 <body>
@@ -113,7 +116,7 @@ if(user_id == null){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.jsp" id="loginBtn">Login / Register</a>
+                                        <a href="${contextPath}/login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
 <%
 } else {
@@ -127,7 +130,7 @@ if(user_id == null){
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -170,30 +173,38 @@ if(user_id == null){
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
                     <div class="member-content">
-                        <h3>Membership Management</h3><br>
+                        <h3>음원 목록</h3><br>
                         <!-- Membership manage Form -->
                         <div class="music-list-form">
                         <table>
-                        	<tr><th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>가격</th><th>이미지 파일</th><th>음원 파일</th></tr>
-                        	<%
-                        	String sql = "SELECT * FROM song ";
-                        	PreparedStatement pstmt = conn.prepareStatement(sql);
-                        	ResultSet rs = pstmt.executeQuery();
-                        	
-                        	while(rs.next()){
-                        	%>
-                        		<tr style="test-align: center">
-                        		<td><%=rs.getString("album") %></td>
-                        		<td><%=rs.getString("title") %></td>
-                        		<td><%=rs.getString("singer") %></td>
-                        		<td><%=rs.getString("now") %></td>
-                        		<td><%=rs.getString("price") %></td>
-                        		<td><%=rs.getString("sign") %></td>
-                        		<td><%=rs.getString("song") %></td>
-                        		</tr>
-                        	<%	
-                        	}
-                        	%>
+                        	<tr>
+                        		<th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>가격</th><th>이미지 파일</th><th>음원 파일</th>
+                       		</tr>
+		 <tbody>
+		 <c:choose> <%-- JSTL을 이용해 비었는지 체크 --%>
+		    <c:when test="${empty MusicList}" >
+		      <tr>
+		        <td colspan="7" align="center">
+		          <b >음원이 없습니다.</b>
+		       </td>  
+		      </tr>
+		   </c:when>  
+		   <c:when test="${!empty MusicList}" >
+		      <c:forEach  var="mus" items="${MusicList}" >
+		        <tr align="center">
+		          <td>${mus.album}</td>
+		          <td>${mus.title }</td>
+		          <td>${mus.singer }</td>     
+		          <td>${mus.now }</td>       
+		          <td>${mus.price }</td> 
+		          <td>${mus.sign }</td> 
+		          <td>${mus.song }</td> 
+		       </tr>
+		     </c:forEach>
+		   </c:when>
+		 </c:choose>
+		     
+		 </tbody>
                         </table>
                         </div>
                     </div>
