@@ -24,7 +24,7 @@ public class MusicDAO {
 		driver = "com.mysql.jdbc.Driver";
 		dbURL = "jdbc:mysql://localhost:3306/musicshop?serverTimezone=UTC&useSSL=false";
 		dbID = "root";
-		dbPassword = "jinsang1027#";
+		dbPassword = "1234";
 	}
 	
 	public List<MusicVO> listMusic(){
