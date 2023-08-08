@@ -81,14 +81,7 @@ function cart(){
                                         <ul class="dropdown">
                                             <li><a href="main.jsp">Home</a></li>
                                             <li><a href="album.jsp">Album</a></li>
-                                            <!--  
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            -->
                                             <li><a href="connection.jsp">Contact</a></li>
-                                            <!--  
-                                            <li><a href="elements.html">Elements</a></li>
-                                            -->
                                             <%
                                             if(code != null){
                                             	if(code.equals("100")){
@@ -157,10 +150,6 @@ function cart(){
                                             %>                                            
                                         </ul>
                                     </li>
-                                    <!--  
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                    -->
                                     <li><a href="connection.jsp">Contact</a></li>
                                 </ul>
 <% 
