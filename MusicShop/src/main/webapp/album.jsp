@@ -2,7 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="album.AlbumVO" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>  
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<jsp:useBean id="ALBUM" class="album.AlbumName"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -353,6 +354,25 @@ String name = (String) session.getAttribute("name");
                         <a href="#" data-filter=".x">X</a>
                         <a href="#" data-filter=".y">Y</a>
                         <a href="#" data-filter=".z">Z</a>
+                        <a href="#" data-filter=".ㄱ">ㄱ</a>
+                        <a href="#" data-filter=".ㄲ">ㄲ</a>
+                        <a href="#" data-filter=".ㄴ">ㄴ</a>
+                        <a href="#" data-filter=".ㄷ">ㄷ</a>
+                        <a href="#" data-filter=".ㄸ">ㄸ</a>
+                        <a href="#" data-filter=".ㄹ">ㄹ</a>
+                        <a href="#" data-filter=".ㅁ">ㅁ</a>
+                        <a href="#" data-filter=".ㅂ">ㅂ</a>
+                        <a href="#" data-filter=".ㅃ">ㅃ</a>
+                        <a href="#" data-filter=".ㅅ">ㅅ</a>
+                        <a href="#" data-filter=".ㅆ">ㅆ</a>
+                        <a href="#" data-filter=".ㅇ">ㅇ</a>
+                        <a href="#" data-filter=".ㅈ">ㅈ</a>
+                        <a href="#" data-filter=".ㅉ">ㅉ</a>
+                        <a href="#" data-filter=".ㅊ">ㅊ</a>
+                        <a href="#" data-filter=".ㅋ">ㅋ</a>
+                        <a href="#" data-filter=".ㅌ">ㅌ</a>
+                        <a href="#" data-filter=".ㅍ">ㅍ</a>
+                        <a href="#" data-filter=".ㅎ">ㅎ</a>
                         <a href="#" data-filter=".number">0-9</a>
                     </div>
                 </div>
@@ -373,17 +393,12 @@ String name = (String) session.getAttribute("name");
                 <!-- Single Album -->
 				<c:if test="${not empty albumList}">
 					<c:forEach items="${albumList}" var="album">
-						<c:set var="firstLetterIsKor" value="${String.valueOf(album.album.charAt(0)).matches(\".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*\")}"/>
-						<c:if test="${firstLetterIsKor}">
-							<script>
-								console.log(${0x2F});
-							</script>
-						</c:if>
-						<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ${firstLetterIsKor}">
+						<c:set var="classForFiltering" value="${ALBUM.getClassNameByAlbumName(album.album)}"/>
+						<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ${classForFiltering}">
 		                    <div class="single-album">
-		                        <img src="${contextPath}/img/bg-img/a1.jpg" alt="">
+		                        <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}">
 		                        <div class="album-info">
-		                            <a href="#">
+		                            <a href="${contextPath}/album_songs.jsp?album=${album}">
 		                                <h5>${album.singer}</h5>
 		                            </a>
 		                            <p>${album.album}</p>
@@ -392,227 +407,6 @@ String name = (String) session.getAttribute("name");
 		                </div>
 					</c:forEach>
 				</c:if>
-    	
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item c">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a1.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>The Cure</h5>
-                            </a>
-                            <p>Second Song</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item s">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a2.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Sam Smith</h5>
-                            </a>
-                            <p>Underground</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item w">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a3.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Will I am</h5>
-                            </a>
-                            <p>First</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a4.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>The Cure</h5>
-                            </a>
-                            <p>Second Song</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item d">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a5.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>DJ SMITH</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item d">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a6.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>The Ustopable</h5>
-                            </a>
-                            <p>Unplugged</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a7.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Beyonce</h5>
-                            </a>
-                            <p>Songs</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- 실험 -->
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
-                    <div class="single-album">
-                        <a href="./album_songs.jsp"><img src="${contextPath}/resource/img/eventhorizon.jpg" alt=""></a> 
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>윤하</h5>
-                            </a>
-                            <p>사건의 지평선</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
-                    <div class="single-album">
-                        <img src="${contextPath}/resource/img/Oort cloud.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>윤하</h5>
-                            </a>
-                            <p>오르트구름</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
-                    <div class="single-album">
-
-                        <img src="${contextPath}/resource/img/good.jpg" alt="">
-
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>윤종신</h5>
-                            </a>
-                            <p>좋니</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
-                    <div class="single-album">
-                        <img src="${contextPath}/resource/img/Butter.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>BTS</h5>
-                            </a>
-                            <p>BUTTER</p>
-                        </div>
-                    </div>
-                </div>                                   
-                <!-- 실험 -->       
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item a">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a8.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Aam Smith</h5>
-                            </a>
-                            <p>Underground</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item w number">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a9.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Will I am</h5>
-                            </a>
-                            <p>First</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item d">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a10.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>DJ SMITH</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a11.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>The Ustopable</h5>
-                            </a>
-                            <p>Unplugged</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a12.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Beyonce</h5>
-                            </a>
-                            <p>Songs</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item s">
-                    <div class="single-album">
-                        <img src="${contextPath}/resource/img/Suzume.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>RADWIMPS</h5>
-                            </a>
-                            <p>Suzume</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>

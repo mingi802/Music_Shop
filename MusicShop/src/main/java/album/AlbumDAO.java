@@ -23,7 +23,7 @@ public class AlbumDAO {
 		driver = "com.mysql.jdbc.Driver";
 		dbURL = "jdbc:mysql://localhost:3306/musicshop?serverTimezone=UTC&useSSL=false";
 		dbID = "root";
-		dbPassword = "jinsang1027#";
+		dbPassword = "1234";
 	}
 	
 	private void connDB() {
@@ -65,12 +65,6 @@ public class AlbumDAO {
 				String song = rs.getString("song");
 				
 				AlbumVO albumVO = new AlbumVO();
-				
-				if(String.valueOf(album.charAt(0)).matches(".*[¤¡-¤¾¤¿-¤Ó°¡-ÆR]+.*")) {	//¾Ù¹ü ÀÌ¸§ Ã¹ ±ÛÀÚ°¡ ÇÑ±ÛÀÎ °æ¿ì
-					char uniVal = album.charAt(0);
-					char cho = (char)((uniVal-0xAC00)/28/21);
-					System.out.println(String.valueOf(cho));
-				}
 				
 				albumVO.setId(id);
 				albumVO.setAlbum(album);

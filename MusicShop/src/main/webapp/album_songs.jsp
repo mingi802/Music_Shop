@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" import="java.util.ArrayList" import="java.util.List" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +24,18 @@ String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
 %>
 <script>
+	var albumList = new Array();
+	albumList.push({
+		id: "${album.id}",
+		album: "${album.album}",
+		title: "${album.title}",
+		singer: "${album.singer}",
+		now: "${album.now}",
+		price: "${album.price}",
+		sign: "${album.sign}",
+		song: "${album.song}"
+	});
+	console.log(albumList.slice(-1)); //앨범리스트의 마지막 요소 출력
 /*1분 미리듣기 함수*/
 function limitPlayTime(audio) {
     if (audio.currentTime > 60) { // 1분(60초)로 제한
