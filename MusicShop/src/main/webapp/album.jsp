@@ -31,17 +31,16 @@ String name = (String) session.getAttribute("name");
 //String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
 %>
 <script>
-  $(document).ready(function() {
-	  
-	  function showAllAlbum() {
+	function showAllAlbum() {
 		  window.location.href="${contextPath}/Album/showAllAlbum.do";
-	  }
+	}
 	  
-	  if(${empty albumList}) {
-		  console.log("첫 입장, 전체 앨범 리스트 가져오기");
+	if(${empty albumList} && !${empty isSearch ? false : isSearch}) {
+		  alert("첫 입장, 전체 앨범 리스트 가져오기");
 		  showAllAlbum();
 	  }
-	  
+
+	$(document).ready(function() {  
 	  var $grid = $('.oneMusic-albums').isotope({
           itemSelector: '.single-album-item',
           percentPosition: true,
@@ -49,11 +48,10 @@ String name = (String) session.getAttribute("name");
               columnWidth: '.single-album-item'
           }
       });
-
-  //검색 바 기능 구현 중
+  
+  	//검색 바 기능 구현
     if(${not empty albumList}) {
     	console.log("검색 결과 있음");
-    	$(".browse-by-catagories a.active").removeClass("active");
     	var albumList = new Array();
     	<c:forEach items="${albumList}" var="album">
     		albumList.push({
@@ -71,14 +69,15 @@ String name = (String) session.getAttribute("name");
     	$grid.isotope({ 
     		//검색한 앨범명에 맞는 앨범만 보여주기 위해 filter에 함수를 집어넣었음.
     		filter: function() {
-    			var albumName = $(this).find('.album-info p').text();
-    			var filterValue = false;
-    			albumList.forEach(function (album) {
+    			var albumName = $(this).find('.album-info p').text(); //앨범 명 추출
+    			var filterValue = false;	
+    			albumList.some(function (album) {	
+    				//some은 foreach와 비슷하나 foreach는 반복을 멈추기 힘드나 some은 콜백함수가 1번이라도 true를 리턴하면 멈춘다.
+    				console.log(filterValue, albumName);
     				if(album.album == albumName) {
+    					//albumList를 돌면서 추출한 앨범명과 일치한 앨범명이 있으면 페이지에 보여지도록 filterValue를 true로 변경 후 반복 종료
     					filterValue = true;
-    					return true;	
-    				} else {
-    					return false;	
+    					return true;
     				}
     			});
     			console.log(filterValue);
@@ -87,23 +86,26 @@ String name = (String) session.getAttribute("name");
     		
 		});
     } else {
-    	console.log("검색 결과 없음")
-    	$(".browse-by-catagories a.active").removeClass("active");
-    	
+    	console.log("검색 결과 없음");
     }
     
     $(".browse-by-catagories").on("click", "a", function(e) {
-      //e.preventDefault();
-      $(".browse-by-catagories a.active").removeClass("active");
-      $(this).addClass("active");
-      var filterValue = $(this).attr("data-filter");
-      console.log(typeof($(this).attr("data-filter")));
-      $grid.isotope({ filter: filterValue });
+      e.preventDefault();
+      if($(this).prop("id")=="browse-all" && !${empty isAll ? false : isAll}) //첫 입장 시 isAll은 비어있는데 그러면 ${isAll}로 할 경우 스크립트가 작성되다가 에러가 잡혀 페이지가 정상 작동하지않아 비어있다면 false를 넣어주어 막았다.
+    	//isAll은 가져온 앨범이 db에 저장된 앨범 전체인지 알려주는 변수임. 만약 isAll이 false라면 browse all은 모든 앨범 목록을 보여줘야하기 때문에
+    	//showAllAlbum()함수를 호출하는 것
+      	showAllAlbum();
+      else {
+    	//반대로 isAll이 true이면 isotope의 filter로 모든 앨범을 보여줄 수 있기 때문에 굳이 showAllAlbum()함수를 호출할 필요가 없음.
+    	//showAllAlbum()함수는 서블릿에게 요청하고 다시 받아와 페이지가 전체 갱신되기에 필요한 때만 사용하기 위함.
+    	  $(".browse-by-catagories a.active").removeClass("active");
+          $(this).addClass("active");
+          var filterValue = $(this).attr("data-filter");
+          console.log(typeof($(this).attr("data-filter")));
+          $grid.isotope({ filter: filterValue });  
+      }
     });
 	
-    //var a_browse_all = document.getElementById("browse-all");
-    //a_browse_all.addEventListener('click', showAllAlbum);
-    
     // URL 쿼리 기준 필터 활성화
     const urlParams = new URLSearchParams(window.location.search);
     const filterValue = urlParams.get("filter");
@@ -118,7 +120,7 @@ String name = (String) session.getAttribute("name");
   });
   function cart(){
 		if(confirm('장바구니로 이동하시겠습니까?')){
-			window.location.href="cart.jsp";
+			window.location.href="${contextPath}/cart.jsp";
 			return true;
 		} else{
 			return false;
@@ -171,19 +173,20 @@ String name = (String) session.getAttribute("name");
                                     <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="main.jsp">Home</a></li>
-                                            <li><a href="album.jsp">Album</a></li>
+                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                            <li><a href="${contextPath}/album.jsp">Album</a></li>
                                             <!--  
                                             <li><a href="event.html">Events</a></li>
                                             <li><a href="blog.html">News</a></li>
                                             -->
-                                            <li><a href="connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                             <!--  
                                             <li><a href="elements.html">Elements</a></li>
                                             -->
-                                            <li><a href="login/login.jsp">Login</a></li>
+                                            <li><a href="${contextPath}/login/login.jsp">Login</a></li>
                                             <%
-                                            if(code == null || code.equals("100")){
+                                            if(code != null){
+                                            	if(code.equals("100")){
                                             %>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
@@ -207,7 +210,7 @@ String name = (String) session.getAttribute("name");
                                             %> 
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin/admin.jsp">Membership</a></li>
+                                                    <li><a href="${contextPath}/admin/admin.jsp">Membership</a></li>
                                                     <li><a href="#">NoName</a></li>
                                                     <li><a href="#">NoName</a></li>
                                                     <li><a href="#">Even Dropdown</a>
@@ -223,15 +226,36 @@ String name = (String) session.getAttribute("name");
                                                 </ul>
                                             </li>
                                             <%
+                                            } else if(code.equals("300")) {
+                                            %>
+                                            <li><a href="#">Artist</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="artist/artist.jsp">음원 등록 및 목록</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="#"></a></li>
+                                                    <li><a href="#">몰?루</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">몰?루</a></li>
+                                                </ul>
+                                            </li>                                            
+                                            <%
+                                            	}
                                             }
-                                            %> 
+                                            %>                                            
                                         </ul>
                                     </li>
                                     <!--  
                                     <li><a href="event.html">Events</a></li>
                                     <li><a href="blog.html">News</a></li>
                                     -->
-                                    <li><a href="connection.jsp">Contact</a></li>
+                                    <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                 </ul>
 <% 
 	if(user_id == null) {
@@ -240,7 +264,7 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/login.jsp" id="loginBtn">Login / Register</a>
+                                        <a href="${contextPath}/login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
 								
 <% 
@@ -250,12 +274,12 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="${contextPath}/customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -267,12 +291,12 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="${contextPath}/admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>   
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -284,12 +308,12 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="artist/atist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
+                                        <a href="${contextPath}/artist/atist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div> 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -328,7 +352,7 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12">
                     <div class="browse-by-catagories d-flex flex-wrap align-items-center mb-30">
                         <a id="browse-all" href="#" data-filter="*">Browse All</a>
-                        <a href="#" data-filter=".a" class="active">A</a>
+                        <a href="#" data-filter=".a">A</a>
                         <a href="#" data-filter=".b">B</a>
                         <a href="#" data-filter=".c">C</a>
                         <a href="#" data-filter=".d">D</a>
@@ -379,34 +403,49 @@ String name = (String) session.getAttribute("name");
             </div>
             
 			<div class="row">
-                <div class="col-11">
-                	<div class="d-flex align-items-center mb-30">
-				        <form class="w-100 me-3" method="post" action="${contextPath}/Album/albumSearch.do" >
-				        	<input type="search" class="form-control" name="search-by-albumName" placeholder="Search..." aria-label="Search">
-				        </form>
-				    </div>
-                </div>
+			    <form id="search-form" class="w-100 me-3" method="post" action="${contextPath}/Album/albumSearch.do">
+					<div class="d-flex flex-row align-items-center mb-30">
+				        <div class="col-11 pe-0">
+				        <input type="search" class="form-control" id="searchBar" name="searchBar" placeholder="Search..." required aria-label="Search">
+						</div>
+						<div>				        
+				        <input type="submit" class="form-submit img-btn" id="searchBtn" name="searchBtn">
+				        </div>
+					</div>                	
+				</form>
             </div>
 			
 			
             <div class="row oneMusic-albums">
                 <!-- Single Album -->
-				<c:if test="${not empty albumList}">
-					<c:forEach items="${albumList}" var="album">
-						<c:set var="classForFiltering" value="${ALBUM.getClassNameByAlbumName(album.album)}"/>
-						<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ${classForFiltering}">
-		                    <div class="single-album">
-		                        <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}">
-		                        <div class="album-info">
-		                            <a href="${contextPath}/album_songs.jsp?album=${album}">
-		                                <h5>${album.singer}</h5>
-		                            </a>
-		                            <p>${album.album}</p>
-		                        </div>
-		                    </div>
-		                </div>
-					</c:forEach>
-				</c:if>
+				<c:choose>
+					<c:when test="${not empty albumList}">
+						<c:forEach items="${albumList}" var="album">
+							<c:set var="classForFiltering" value="${ALBUM.getClassNameByAlbumName(album.album)}"/>
+							<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ${classForFiltering}">
+			                    <div class="single-album">
+			                        <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}">
+			                        <div class="album-info">
+			                            <a href="${contextPath}/album_songs.jsp?album=${album}">
+			                                <h5>${album.singer}</h5>
+			                            </a>
+			                            <p>${album.album}</p>
+			                        </div>
+			                    </div>
+			                </div>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<div class="col-12 d-flex justify-content-center single-album-item">
+							<div class="no-album">
+								<img src="${contextPath}/resource/img/not found.png" alt="">
+								<div class="no-info">
+			                    	<h5>검색 결과가 없습니다.</h5>
+			                    </div>
+							</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
             </div>
         </div>
     </section>
@@ -654,13 +693,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="main.jsp">Home</a></li>
+                            <li><a href="${contextPath}/main.jsp">Home</a></li>
                             <li><a href="${contextPath}/album.jsp">Albums</a></li>
                             <!--  
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
                             -->
-                            <li><a href="connection.jsp">Contact</a></li>
+                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>

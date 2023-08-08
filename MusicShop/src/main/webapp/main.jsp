@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*"
     pageEncoding="UTF-8"%>
-    
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>    
     <%@page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -117,13 +117,14 @@ function cart(){
                                             <li><a href="elements.html">Elements</a></li>
                                             -->
                                             <%
-                                            if(code == null || code.equals("100")){
+                                            if(code != null){
+                                           	 if(code.equals("100")){
                                             %>
                                             <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="#">소비자1</a></li>
-                                                    <li><a href="#">소비자2</a></li>
-                                                    <li><a href="#">소비자3</a></li>
+                                                    <li><a href="#">내정보</a></li>
+                                                    <li><a href="#">장바구니</a></li>
+                                                    <li><a href="#">구매내역</a></li>
                                                     <li><a href="#">소비자4</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">소비자</a></li>
@@ -141,10 +142,10 @@ function cart(){
                                             %> 
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="admin/admin.jsp">회원목록</a></li>
                                                     <li><a href="admin/artist.jsp">아티스트목록</a></li>
                                                     <li><a href="admin/host.jsp">관리자목록</a></li>
-                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -162,8 +163,8 @@ function cart(){
                                             %>
                                             <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="customer/mypage.jsp">Mypage</a></li>
-                                                    <li><a href="#">Artist</a></li>
+                                                    <li><a href="artist/artist.jsp">음원 등록 및 목록</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
@@ -178,6 +179,7 @@ function cart(){
                                                 </ul>
                                             </li>                                            
                                             <%
+                                            	}
                                             }
                                             %>                                            
                                         </ul>

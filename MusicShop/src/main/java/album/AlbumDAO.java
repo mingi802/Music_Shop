@@ -38,7 +38,29 @@ public class AlbumDAO {
 		}
 		
 	}
-	public List<AlbumVO> showAllAlbum(){
+	
+	public int searchAlbumRows() {
+		int rows = 0;
+		try {
+			try {
+				connDB();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			String sql = "SELECT count(*) FROM song";
+			System.out.println(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				rows = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rows;
+	}
+	
+	public List<AlbumVO> searchAllAlbum(){
 		List<AlbumVO> albumList = new ArrayList<AlbumVO>();
 		try {
 			
