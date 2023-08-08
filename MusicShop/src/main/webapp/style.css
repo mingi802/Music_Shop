@@ -795,7 +795,7 @@ img {
 .featured-artist-area {
   position: relative;
   z-index: 1; }
-
+  
 .featured-artist-content {
   position: relative;
   z-index: 1; }
@@ -861,6 +861,34 @@ img {
   .single-album:hover, .single-album:focus {
     box-shadow: 0 5px 70px 0 rgba(0, 0, 0, 0.15); }
 
+.no-album {
+  position: relative;
+  z-index: 1;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  margin-bottom: 30px; }
+  .no-album img {
+  	display: block;
+	margin-left: auto;
+  	margin-right: auto;
+    width:128px;
+    height:128px;
+     }
+  .no-album .no-info {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px; }
+    .no-album .no-info h5 {
+      font-size: 18px;
+      margin-bottom: 0;
+      text-align: center;
+      text-transform: uppercase; }
+    .no-album .no-info p {
+      margin-bottom: 0; }
+
+
 .single-album-area {
   position: relative;
   z-index: 1;
@@ -893,19 +921,6 @@ img {
     width: 100%; }
   .single-album-area .album-info {
     display: block;
-    position: relative;
-    z-index: 1;
-    padding-top: 15px;
-    padding-bottom: 15px; }
-    .single-album-area .album-info h5 {
-      font-size: 18px;
-      margin-bottom: 0;
-      text-transform: uppercase; }
-    .single-album-area .album-info p {
-      margin-bottom: 0; }
-      
-  .single-album-area .album-info2 {
-    display: inlineblock;
     position: relative;
     z-index: 1;
     padding-top: 15px;
@@ -1285,6 +1300,7 @@ img {
     .login-content .form-control:focus {
       box-shadow: none; 
       }
+	      
 /* :: upload area CSS*/
   	.upload-container{
   	width: 50%;
@@ -1930,7 +1946,14 @@ img {
 .gray-background {
 	background-color: #dde2e6;
 } 
-
+.img-btn {
+	border: 0;
+    display: block;
+	background: url("resource/img/searchIcon.png") no-repeat;
+	color: transparent;
+	width: 24px;
+	height: 24px;
+}
 /* ====== The End ====== */
 
 /*# sourceMappingURL=style.css.map */
