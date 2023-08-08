@@ -246,7 +246,7 @@ function cart(){
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
                     <div class="member-content">
-                        <h3>Membership Management</h3><br>
+                        <h3>음원 관리</h3><br>
                         <!-- Membership manage Form -->
                         <div class="music-manage-form">
                         <table>
