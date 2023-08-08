@@ -1216,7 +1216,7 @@ img {
  	 text-align: center; 
   	}
   	.admin-container{
-  	width: 100%;
+  	width: 400%;
 	text-align: center;
 	margin-right : 900px;
   	}
@@ -1226,6 +1226,22 @@ img {
  	 border-collapse : collapse;
  	 width: 100%; 
 	}
+	.music-manage-form table {
+	text-align : center;
+ 	margin-left: -25px; 
+ 	border-collapse : collapse;
+ 	width: 105.5%; 
+	}	
+  	.music-container{
+  	width: 225%;
+	text-align: center;
+	margin-left: -1800px;
+  	}	
+	.music-manage-form button {
+  	padding: 10px 20px; 
+  	font-size: 16px; 
+  	border-radius: 8px; 
+	}  	
 	.member-manage-form th td{
 	padding: 15px; 
 	}  	
@@ -1243,7 +1259,7 @@ img {
 	width : 10%;
 	float : left;
 	min-height : 200px;
-	border-radius: 8px; 
+	border-radius: 8px;
 	}      
 /* :: 12.0 Login Area CSS */
 .login-content {
@@ -1396,7 +1412,7 @@ img {
  	 padding: 50px 30px;
  	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
  	 text-align: center;
- 	 margin-right: 100%;
+ 	 margin-right: 80%;
  	 width: 110%; 
   	}
   	.music-list-container{

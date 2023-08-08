@@ -127,30 +127,30 @@ function update(){
                                             %>
                                                 <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="#">소비자</a></li>
-                                                    <li><a href="#">소비자</a></li>
-                                                    <li><a href="#">소비자</a></li>
-                                                    <li><a href="#">소비자</a>
+                                                    <li><a href="mypage.jsp">내정보</a></li>
+                                                    <li><a href="../cart.jsp">장밥구니</a></li>
+                                                    <li><a href="#">구매내역</a></li>
+                                                    <li><a href="#">미정</a>
                                                         <ul class="dropdown">
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">미정</a></li>
+                                                            <li><a href="#">미정</a></li>
+                                                            <li><a href="#">미정</a></li>
+                                                            <li><a href="#">미정</a></li>
+                                                            <li><a href="#">미정</a></li>
                                                         </ul>
                                                     </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">미정</a></li>
                                                 </ul>
                                             </li>
                                             <%                                              	
                                             } else if (code.equals("200")){
                                             %>
-                                            <li><a href="#">Manage</a>
+                                            <li><a href="#">관리자</a>
                                                 <ul class="dropdown">
+                                                    <li><a href="mypage.jsp">내정보</a></li>
                                                     <li><a href="../admin/admin.jsp">회원목록</a></li>
                                                     <li><a href="../admin/artist.jsp">아티스트목록</a></li>
                                                     <li><a href="../admin/host.jsp">관리자목록</a></li>
-                                                    <li><a href="../mypage.jsp">내정보</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -166,11 +166,10 @@ function update(){
                                             <%
                                             } else if(code.equals("300")){
                                             %>
-                                            <li><a href="#">Artist</a>
+                                            <li><a href="#">아티스트</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="../artist/artist.jsp">Music Upload</a></li>
-                                                    <li><a href="#">Music List</a></li>
-                                                    <li><a href="../mypage.jsp">My Page</a></li>
+                                                    <li><a href="../mypage.jsp">내 정보</a></li>
+                                                    <li><a href="../artist/artist.jsp">음원등록 및 목록</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -211,7 +210,7 @@ function update(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -228,7 +227,7 @@ function update(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="../admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -292,8 +291,7 @@ if(code.equals("200")){
 <%	
 } else if(code.equals("300")){
 %>
-	<li><a href="../artist/artist.jsp">음원 등록</a></li><br>
-	<li><a href="#">음원 목록</a></li>			
+	<li><a href="../artist/artist.jsp">음원 등록 및 목록</a></li><br>		
 <%
 }
 %>

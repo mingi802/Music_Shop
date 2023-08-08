@@ -23,7 +23,7 @@ public class AlbumDAO {
 		driver = "com.mysql.jdbc.Driver";
 		dbURL = "jdbc:mysql://localhost:3306/musicshop?serverTimezone=UTC&useSSL=false";
 		dbID = "root";
-		dbPassword = "1234";
+		dbPassword = "jinsang1027#";
 	}
 	
 	private void connDB() {
