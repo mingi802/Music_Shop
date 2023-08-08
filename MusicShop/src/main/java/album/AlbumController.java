@@ -55,7 +55,7 @@ public class AlbumController extends HttpServlet {
 		String nextpage = null;
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String albumName = request.getParameter("search-by-albumName");
+		String albumName = request.getParameter("searchBar");
 		//PrintWriter writer = response.getWriter();
 		//String encoding = "UTF-8";
 		String action = request.getPathInfo();
@@ -63,12 +63,17 @@ public class AlbumController extends HttpServlet {
 		if(action.equals("/albumSearch.do")) {
 			nextpage = "/album.jsp";
 			List<AlbumVO> albumList = albumDAO.searchAlbum(albumName);
+			boolean isAll = (albumList.size() == albumDAO.searchAlbumRows());
+			System.out.println(isAll);
 			request.setAttribute("albumList", albumList);
+			request.setAttribute("isAll", isAll);
+			request.setAttribute("isSearch", true);
 		}
 		else if(action.equals("/showAllAlbum.do")) {
 			nextpage = "/album.jsp";
-			List<AlbumVO> albumList = albumDAO.showAllAlbum();
+			List<AlbumVO> albumList = albumDAO.searchAllAlbum();
 			request.setAttribute("albumList", albumList);
+			request.setAttribute("isAll", true);
 		}
 		request.getRequestDispatcher(nextpage).forward(request, response);
 	}
