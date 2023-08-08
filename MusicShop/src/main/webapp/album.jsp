@@ -120,7 +120,7 @@ String name = (String) session.getAttribute("name");
   });
   function cart(){
 		if(confirm('장바구니로 이동하시겠습니까?')){
-			window.location.href="cart.jsp";
+			window.location.href="${contextPath}/cart.jsp";
 			return true;
 		} else{
 			return false;
@@ -173,17 +173,17 @@ String name = (String) session.getAttribute("name");
                                     <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="main.jsp">Home</a></li>
-                                            <li><a href="album.jsp">Album</a></li>
+                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                            <li><a href="${contextPath}/album.jsp">Album</a></li>
                                             <!--  
                                             <li><a href="event.html">Events</a></li>
                                             <li><a href="blog.html">News</a></li>
                                             -->
-                                            <li><a href="connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                             <!--  
                                             <li><a href="elements.html">Elements</a></li>
                                             -->
-                                            <li><a href="login/login.jsp">Login</a></li>
+                                            <li><a href="${contextPath}/login/login.jsp">Login</a></li>
                                             <%
                                             if(code != null){
                                             	if(code.equals("100")){
@@ -210,7 +210,7 @@ String name = (String) session.getAttribute("name");
                                             %> 
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin/admin.jsp">Membership</a></li>
+                                                    <li><a href="${contextPath}/admin/admin.jsp">Membership</a></li>
                                                     <li><a href="#">NoName</a></li>
                                                     <li><a href="#">NoName</a></li>
                                                     <li><a href="#">Even Dropdown</a>
@@ -255,7 +255,7 @@ String name = (String) session.getAttribute("name");
                                     <li><a href="event.html">Events</a></li>
                                     <li><a href="blog.html">News</a></li>
                                     -->
-                                    <li><a href="connection.jsp">Contact</a></li>
+                                    <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                 </ul>
 <% 
 	if(user_id == null) {
@@ -264,7 +264,7 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/login.jsp" id="loginBtn">Login / Register</a>
+                                        <a href="${contextPath}/login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
 								
 <% 
@@ -274,12 +274,12 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="${contextPath}/customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -291,12 +291,12 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="${contextPath}/admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>   
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -308,12 +308,12 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="artist/atist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
+                                        <a href="${contextPath}/artist/atist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div> 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -693,13 +693,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="main.jsp">Home</a></li>
+                            <li><a href="${contextPath}/main.jsp">Home</a></li>
                             <li><a href="${contextPath}/album.jsp">Albums</a></li>
                             <!--  
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
                             -->
-                            <li><a href="connection.jsp">Contact</a></li>
+                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>
