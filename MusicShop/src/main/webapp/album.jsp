@@ -167,8 +167,8 @@ String name = (String) session.getAttribute("name");
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
-                                    <li><a href="${contextPath}/album.jsp">Albums</a></li>
+                                    <li><a href="main.jsp">Home</a></li>
+                                    <li><a href="album.jsp">Album</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="main.jsp">Home</a></li>
@@ -181,25 +181,25 @@ String name = (String) session.getAttribute("name");
                                             <!--  
                                             <li><a href="elements.html">Elements</a></li>
                                             -->
-                                            <li><a href="login/login.jsp">Login</a></li>
                                             <%
-                                            if(code == null || code.equals("100")){
+                                            if(code != null){
+                                            	if(code.equals("100")){
                                             %>
-                                            <li><a href="#">Dropdown</a>
+                                            <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
+                                                    <li><a href="#">내정보</a></li>
+                                                    <li><a href="#">장바구니</a></li>
+                                                    <li><a href="#">구매내역</a></li>
+                                                    <li><a href="#">소비자4</a>
                                                         <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
                                                         </ul>
                                                     </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">소비자5</a></li>
                                                 </ul>
                                             </li> 
                                             <%
@@ -207,24 +207,46 @@ String name = (String) session.getAttribute("name");
                                             %> 
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin/admin.jsp">Membership</a></li>
-                                                    <li><a href="#">NoName</a></li>
-                                                    <li><a href="#">NoName</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="admin/admin.jsp">회원목록</a></li>
+                                                    <li><a href="admin/artist.jsp">아티스트목록</a></li>
+                                                    <li><a href="admin/host.jsp">관리자목록</a></li>
+                                                    <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
                                                         </ul>
                                                     </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">몰?루</a></li>
                                                 </ul>
                                             </li>
                                             <%
+                                            } else if(code.equals("300")) {
+                                            %>
+                                            <li><a href="#">Artist</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="artist/artist.jsp">음원 등록 및 목록</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="#"></a></li>
+                                                    <li><a href="#">몰?루</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">몰?루</a></li>
+                                                </ul>
+                                            </li>                                            
+                                            <%
+                                            	}
                                             }
-                                            %> 
+                                            %>                                            
                                         </ul>
                                     </li>
                                     <!--  
@@ -398,16 +420,17 @@ String name = (String) session.getAttribute("name");
 		                    <div class="single-album">
 		                        <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}">
 		                        <div class="album-info">
-		                            <a href="${contextPath}/album_songs.jsp?album=${album}">
-		                                <h5>${album.singer}</h5>
+		                            <a href="${contextPath}/album_songs.jsp?album=${album}"> 
+		                                <h5>${album.singer}</h5> <!-- 가수 이름 -->
 		                            </a>
-		                            <p>${album.album}</p>
+		                            <p>${album.album}</p> <!-- 앨범명 -->
 		                        </div>
 		                    </div>
 		                </div>
 					</c:forEach>
 				</c:if>
             </div>
+            
         </div>
     </section>
     <!-- ##### Album Catagory Area End ##### -->

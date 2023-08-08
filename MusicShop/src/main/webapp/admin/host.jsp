@@ -235,6 +235,7 @@ function cart(){
 			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
 			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
 			<li><a href="artist.jsp"><b>아티스트목록</b></a></li><br>
+			<li><a href="musicManage.jsp"><b>음원 목록</b></a></li><br>
 			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>	    	
     	</ul>
     </aside>
