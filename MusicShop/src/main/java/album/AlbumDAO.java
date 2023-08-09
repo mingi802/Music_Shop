@@ -7,32 +7,38 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import java.util.ArrayList;
 
 public class AlbumDAO {
 
 	private Connection conn;
 	private PreparedStatement pstmt;
-	
-	private static String dbURL = "";
-	private static String dbID = "";
-	private static String dbPassword = "";
-	private static String driver = "";
+	private DataSource dataFactory;	
+	//private static String dbURL = "";
+	//private static String dbID = "";
+	//private static String dbPassword = "";
+	//private static String driver = "";
 	
 	public AlbumDAO() {
-		driver = "com.mysql.jdbc.Driver";
-		dbURL = "jdbc:mysql://localhost:3306/musicshop?serverTimezone=UTC&useSSL=false";
-		dbID = "root";
-		dbPassword = "jinsang1027#";
+		//driver = "com.mysql.jdbc.Driver";
+		//dbURL = "jdbc:mysql://localhost:3306/musicshop?serverTimezone=UTC&useSSL=false";
+		//dbID = "root";
+		//dbPassword = "jinsang1027#";
 	}
 	
 	private void connDB() {
 
 		try {
-			Class.forName(driver);
-			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-			
-			System.out.println("Connection 이 성공적으로 되었습니다.");
+			Context ctx = new InitialContext();
+			Context envContext = (Context) ctx.lookup("java:/comp/env");
+			dataFactory = (DataSource) envContext.lookup("jdbc/mysql");
+			conn = dataFactory.getConnection();
+			System.out.println("DB 접속 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

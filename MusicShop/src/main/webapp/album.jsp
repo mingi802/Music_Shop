@@ -404,7 +404,7 @@ String name = (String) session.getAttribute("name");
 			                    <div class="single-album">
 			                        <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}">
 			                        <div class="album-info">
-			                            <a href="${contextPath}/album_songs.jsp?album=${album}">
+			                            <a href="${contextPath}/서블릿?album=${album.album}">
 			                                <h5>${album.singer}</h5>
 			                            </a>
 			                            <p>${album.album}</p>
