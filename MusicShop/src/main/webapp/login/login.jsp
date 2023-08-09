@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
+    
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>       
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,13 +22,13 @@
 
     <script>
         function RegistrationPage() {
-			window.location.href = "regist.jsp";
+			window.location.href="regist.jsp";
 		}
         
        function validateForm(){
     	   var id = document.login_page.id_input.value;
     	   var pwd = document.login_page.pwd_input.value;
-    	   console.log(!id !pwd);
+    	   console.log(!id, !pwd);
     	   if( !id || !pwd){
 				alert('모든 항목을 입력해주세요!');
 				return false;
@@ -93,7 +95,7 @@
                                             -->
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="regist.jsp">회원가입</a></li>
                                                     <li><a href="#">Even Dropdown</a></li>
                                                     <li><a href="#">Even Dropdown</a></li>
                                                     <li><a href="#">Even Dropdown</a>
@@ -166,7 +168,7 @@
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">로그인</button>
                             </form>
-                            	<button class="btn oneMusic-btn mt-30" onclick="RegistrationPage()">회원가입</button><br>
+                            	<button class="btn oneMusic-btn mt-30" onclick="RegistrationPage()">회원가입</button>
                         </div>
                     </div>
                 </div>

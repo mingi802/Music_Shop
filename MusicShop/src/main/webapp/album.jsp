@@ -60,9 +60,9 @@ String name = (String) session.getAttribute("name");
     			title: "${album.title}",
     			singer: "${album.singer}",
     			now: "${album.now}",
-    			price: "${album.price}",
+    			//price: "${album.price}",
     			sign: "${album.sign}",
-    			song: "${album.song}"
+    			//song: "${album.song}"
     		});
     		console.log(albumList.slice(-1)); //앨범리스트의 마지막 요소 출력
     	</c:forEach>

@@ -81,9 +81,9 @@ public class MusicController extends HttpServlet {
 		String encoding = "UTF-8";
 		String action = request.getPathInfo();
 		HttpSession session = request.getSession();
-		if(action.equals("/addMusic.do")) {
+		if(action.equals("/addMusicImg.do")) {
 			File currentDirPath_I = new File("C:\\Users\\yach3\\Desktop\\최종프로젝트\\Music_Shop-main\\MusicShop\\MusicShop\\src\\main\\webapp\\resource\\img");
-			File currentDirPath_M = new File("C:\\Users\\yach3\\Desktop\\최종프로젝트\\Music_Shop-main\\MusicShop\\MusicShop\\src\\main\\webapp\\resource\\audio");
+			//File currentDirPath_M = new File("C:\\Users\\yach3\\Desktop\\최종프로젝트\\Music_Shop-main\\MusicShop\\MusicShop\\src\\main\\webapp\\resource\\audio");
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			
 			factory.setRepository(currentDirPath_I);
@@ -92,7 +92,7 @@ public class MusicController extends HttpServlet {
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			try {
 				List<FileItem> items = upload.parseRequest(request);
-				String[] param = new String[7];
+				String[] param = new String[5];
 				File uploadedImgFile = null;
 				File uploadedMusicFile = null;
 				
@@ -115,12 +115,15 @@ public class MusicController extends HttpServlet {
 						if(item.getContentType().startsWith("image/")) {
 							uploadedImgFile = new File(currentDirPath_I, fileName);
 							item.write(uploadedImgFile);
-							param[5] = fileName;
-						} else if(item.getContentType().startsWith("audio/")) {
+							param[4] = fileName;
+						} 
+						/*
+							else if(item.getContentType().startsWith("audio/")) {
 							uploadedMusicFile = new File(currentDirPath_M, fileName);
 							item.write(uploadedMusicFile);
 							param[6] = fileName;
 						}
+						*/
 					}
 				}
 				int id = 0;				
@@ -128,12 +131,10 @@ public class MusicController extends HttpServlet {
 				String title = param[1];
 				String singer = param[2];
 				String now = param[3];
-				String price = param[4];
-				String sign = param[5];
-				String song = param[6];
+				String sign = param[4];
 				
-				MusicVO musicVO = new MusicVO(id, album, title, singer, now, price, sign, song);
-				musicDAO.addMusic(musicVO);
+				MusicVO musicVO = new MusicVO(id, album, title, singer, now, sign);
+				musicDAO.addMusicImg(musicVO);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -53,7 +53,7 @@ public class AlbumDAO {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			String sql = "SELECT count(*) FROM song";
+			String sql = "SELECT count(*) FROM album";
 			System.out.println(sql);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -77,7 +77,7 @@ public class AlbumDAO {
 				e.printStackTrace();
 			}
 			
-			String sql = "SELECT * FROM song";
+			String sql = "SELECT * FROM album";
 			System.out.println(sql);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -88,9 +88,9 @@ public class AlbumDAO {
 				String title = rs.getString("title");
 				String singer = rs.getString("singer");
 				Date now = rs.getDate("now");
-				String price = rs.getString("price");
+				//String price = rs.getString("price");
 				String sign = rs.getString("sign");
-				String song = rs.getString("song");
+				//String song = rs.getString("song");
 				
 				AlbumVO albumVO = new AlbumVO();
 				
@@ -99,9 +99,9 @@ public class AlbumDAO {
 				albumVO.setTitle(title);
 				albumVO.setSinger(singer);
 				albumVO.setNow(now);
-				albumVO.setPrice(price);
+				//albumVO.setPrice(price);
 				albumVO.setSign(sign);
-				albumVO.setSong(song);
+				//albumVO.setSong(song);
 				
 				albumList.add(albumVO);
 			}
@@ -128,7 +128,7 @@ public class AlbumDAO {
 				e.printStackTrace();
 			}
 			
-			String sql = "SELECT * FROM song WHERE album Like '%"+albumName+"%'";
+			String sql = "SELECT * FROM album WHERE album Like '%"+albumName+"%'";
 			System.out.println(sql);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -139,9 +139,9 @@ public class AlbumDAO {
 				String title = rs.getString("title");
 				String singer = rs.getString("singer");
 				Date now = rs.getDate("now");
-				String price = rs.getString("price");
+				//String price = rs.getString("price");
 				String sign = rs.getString("sign");
-				String song = rs.getString("song");
+				//String song = rs.getString("song");
 				
 				AlbumVO albumVO = new AlbumVO();
 				
@@ -150,9 +150,9 @@ public class AlbumDAO {
 				albumVO.setTitle(title);
 				albumVO.setSinger(singer);
 				albumVO.setNow(now);
-				albumVO.setPrice(price);
+				//albumVO.setPrice(price);
 				albumVO.setSign(sign);
-				albumVO.setSong(song);
+				//albumVO.setSong(song);
 				
 				albumList.add(albumVO);
 			}

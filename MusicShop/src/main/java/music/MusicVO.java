@@ -11,26 +11,22 @@ public class MusicVO {
 	private String sign;
 	private String song;
 	
-	public MusicVO(int id, String album, String title, String singer, String now, String price, String sign, String song) {
+	public MusicVO(int id, String album, String title, String singer, String now, String sign) {
 		super();
 		this.id = id;
 		this.album = album;
 		this.title = title;
 		this.singer = singer;
 		this.now = now;
-		this.price = price;
 		this.sign = sign;
-		this.song = song;
 	}
-	public MusicVO(String album, String title, String singer, String now, String price, String sign, String song) {
+	public MusicVO(String album, String title, String singer, String now, String sign) {
 		super();
 		this.album = album;
 		this.title = title;
 		this.singer = singer;
 		this.now = now;
-		this.price = price;
 		this.sign = sign;
-		this.song = song;
 		
 	}
 	

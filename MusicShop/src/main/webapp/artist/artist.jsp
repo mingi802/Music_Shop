@@ -29,6 +29,7 @@ String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
 %>
+ 
 	<script>
 		if(${empty MusicList}) {
 		window.location.href="${contextPath}/Music/listMusic.do";
@@ -86,8 +87,8 @@ String name = (String) session.getAttribute("name");
                                             <li><a href="../login/login.jsp">Login</a></li>
                                             <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="artist.jsp">음원등록</a></li>
-                                                    <li><a href="#">음원목록</a></li>
+                                                    <li><a href="${contextPath}/Music/listMusic.do">음원 이미지 등록</a></li>
+                                                    <li><a href="#">음원 등록</a></li>
                                                     <li><a href="../customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
@@ -178,13 +179,13 @@ if(user_id == null){
                         <div class="music-list-form">
                         <table>
                         	<tr>
-                        		<th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>가격</th><th>이미지 파일</th><th>음원 파일</th>
+                        		<th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>이미지 파일</th>
                        		</tr>
 		 <tbody>
 		 <c:choose> <%-- JSTL을 이용해 비었는지 체크 --%>
 		    <c:when test="${empty MusicList}" >
 		      <tr>
-		        <td colspan="7" align="center">
+		        <td colspan="5" align="center">
 		          <b >음원이 없습니다.</b>
 		       </td>  
 		      </tr>
@@ -195,10 +196,8 @@ if(user_id == null){
 		          <td>${mus.album}</td>
 		          <td>${mus.title }</td>
 		          <td>${mus.singer }</td>     
-		          <td>${mus.now }</td>       
-		          <td>${mus.price }</td> 
-		          <td>${mus.sign }</td> 
-		          <td>${mus.song }</td> 
+		          <td>${mus.now }</td>
+		          <td>${mus.sign }</td>
 		       </tr>
 		     </c:forEach>
 		   </c:when>
@@ -224,7 +223,7 @@ if(user_id == null){
                         <h3>음원 등록</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form name="Uploadform" action="${contextPath}/Music/addMusic.do" method="post" enctype="multipart/form-data">
+                            <form name="Uploadform" action="${contextPath}/Music/addMusicImg.do" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="exampleAlbum">앨범</label>
                                     <input type="text" class="form-control" id="InputAlbum" aria-describedby="emailHelp" name="album" placeholder="Enter Album" minlength='1' required>
@@ -240,19 +239,10 @@ if(user_id == null){
                                 <div class="form-group">
                                     <label for="exampleDate">발매일자</label>
                                     <input type="date" class="form-control" id="InputDate" name="date" placeholder="Password Date" required>
-                                </div>                            
-                                <div class="form-group">
-                                    <label for="examplePrice">가격</label>
-                                    <input type="text" class="form-control" id="InputPrice" aria-describedby="emailHelp" name="Price" placeholder="Enter Price" required>
-                                    <!-- email을 text로 바꾸면 끝 -->
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleImg">앨범 이미지</label>
                                     <input type="file" class="form-control" id="InputImg" name="img" accept="image/*" required>
-                                </div>                                                                                                              
-                                <div class="form-group">
-                                    <label for="InputSong">음원</label>
-                                    <input type="file" class="form-control" id="Inputsong" name="song" accept="audio/*" required>
                                 </div>                                
                                 <button type="submit" class="btn oneMusic-btn mt-30">등록</button>
                                </form>
