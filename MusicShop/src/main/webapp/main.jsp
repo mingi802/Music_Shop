@@ -163,7 +163,8 @@ function cart(){
                                             %>
                                             <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="artist/artist.jsp">음원 등록 및 목록</a></li>
+                                                    <li><a href="artist/artist.jsp">앨범 이미지 등록</a></li>
+                                                    <li><a href="customer/mypage.jsp">음원</a></li>
                                                     <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
@@ -511,16 +512,18 @@ function cart(){
                             <div class="album-price">
                                 <p>$0.80</p>
                             </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="https://www.youtube.com/watch?v=WMweEpGlu_U" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>                            
-                        </div>
-                        <div class="album-info">
-                            <a href="album.jsp?filter=b">
-                                <h5>BTS</h5>
-                            </a>
-                            <p>BUTTER</p>
+                            <!-- 링크 --> 
+                        	<div class="album-info">
+                          	  <a href="album.jsp?filter=b">
+                              	  <h5>BTS</h5>
+                          	  </a>
+                          	  <p>BUTTER</p>
+                        	</div>
+                        	<!-- Play Button -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls>
+								<source src="resource/audio/Butter.mp3">
+                            </audio>
                         </div>
                     </div>
                 </div>
@@ -876,7 +879,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="250ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt10.jpg" alt="">
+                                    <img src="resource/img/Butter.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>The Music Band</h6>
@@ -884,7 +887,7 @@ function cart(){
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/dummy-audio.mp3">
+                                <source src="resource/audio/Butter.mp3">
                             </audio>
                         </div>
 
