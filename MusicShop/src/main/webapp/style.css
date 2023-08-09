@@ -1203,22 +1203,24 @@ img {
 	.new-hits-area .single-new-item .audioplayer-volume,
 	.new-hits-area .single-new-item .audioplayer-bar {
       display: none; }
-      
-	.member-content {
+      /*1번*/
+	.music-content {
  	 -webkit-transition-duration: 500ms;
  	 transition-duration: 500ms;
   	position: relative;
  	 z-index: 1;
  	 background-color: #f5f9fa;
  	 border: 1px solid #d8d8d8;
- 	 padding: 50px 20px;
+ 	 padding: 50px 60px;
  	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
- 	 text-align: center; 
+ 	 text-align: center;
+ 	 width: 970px; 
+ 	 margin-left: 40px;
   	}
   	.admin-container{
-  	width: 400%;
+  	width: 80%;
 	text-align: center;
-	margin-right : 900px;
+	margin-right : 50px;
   	}
 	.member-manage-form table {
 	text-align : center;
@@ -1228,14 +1230,14 @@ img {
 	}
 	.music-manage-form table {
 	text-align : center;
- 	margin-left: -25px; 
+ 	margin-left: -60px; 
  	border-collapse : collapse;
- 	width: 105.5%; 
+ 	width: 950px; 
 	}	
   	.music-container{
-  	width: 225%;
+  	width: 1950px;
 	text-align: center;
-	margin-left: -1800px;
+	margin-left: -250px;
   	}	
 	.music-manage-form button {
   	padding: 10px 20px; 
@@ -1255,7 +1257,7 @@ img {
  	background-color : #f5f9fa;
 	border: 1px solid #d8d8d8;
 	margin-top : 100px;
-	margin-left : 10%;
+	margin-left : 80px;
 	width : 10%;
 	float : left;
 	min-height : 200px;
@@ -1402,6 +1404,7 @@ img {
 	margin-left: -205px;
 	} 
 	
+	/*2번*/
 	.member-content {
  	 -webkit-transition-duration: 500ms;
  	 transition-duration: 500ms;
@@ -1412,8 +1415,7 @@ img {
  	 padding: 50px 30px;
  	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
  	 text-align: center;
- 	 margin-right: 80%;
- 	 width: 110%; 
+ 	 width: 140%; 
   	}
   	.music-list-container{
   	width: 180%;

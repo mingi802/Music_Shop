@@ -185,7 +185,8 @@ String name = (String) session.getAttribute("name");
                                             -->
                                             <li><a href="${contextPath}/login/login.jsp">Login</a></li>
                                             <%
-                                            if(code == null || code.equals("100")){
+                                            if(code != null){
+                                            	if(code.equals("100")){
                                             %>
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
@@ -225,8 +226,29 @@ String name = (String) session.getAttribute("name");
                                                 </ul>
                                             </li>
                                             <%
+                                            } else if(code.equals("300")) {
+                                            %>
+                                            <li><a href="#">Artist</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="artist/artist.jsp">음원 등록 및 목록</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="#"></a></li>
+                                                    <li><a href="#">몰?루</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">몰?루</a></li>
+                                                </ul>
+                                            </li>                                            
+                                            <%
+                                            	}
                                             }
-                                            %> 
+                                            %>                                            
                                         </ul>
                                     </li>
                                     <!--  
