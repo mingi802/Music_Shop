@@ -943,16 +943,23 @@ img {
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
 	background: #d6d6d6;
+	/*
 	margin: 0 auto;
-	margin-top: -550px;
-	opacity: 0.5; 
+	margin-top: -430px;
+	*/
+	position: absolute;
+	top: 65px;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	opacity: 0.8; 
 	}
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause a {
 	border-left: 12px solid #fff}
 	.single-album-area .audioplayer-time,
 	.single-album-area .audioplayer-volume,
 	.single-album-area .audioplayer-bar {
-	display: none }
+	display: none;
+	}
 	
  /*실험2 END*/	
 	

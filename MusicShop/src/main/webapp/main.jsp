@@ -489,17 +489,19 @@ function cart(){
                             <div class="album-price">
                                 <p>$0.70</p>
                             </div>
+                        	<div class="album-info">
+                            	<a href="album.jsp?filter=g">
+                                	<h5>운종신</h5>
+                            	</a>
+                          	  <p>좋니</p>
+                        	</div>                            
                             <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="https://www.youtube.com/watch?v=9yROTMKPxrA" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>                             
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/good.mp3">
+                            </audio>                            
                         </div>
-                        <div class="album-info">
-                            <a href="album.jsp?filter=g">
-                                <h5>운종신</h5>
-                            </a>
-                            <p>좋니</p>
-                        </div>
+
                     </div>
                 </div>
 
@@ -521,7 +523,7 @@ function cart(){
                         	</div>
                         	<!-- Play Button -->
                         	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls>
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
 								<source src="resource/audio/Butter.mp3">
                             </audio>
                         </div>

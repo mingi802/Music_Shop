@@ -84,7 +84,7 @@ public class AlbumDAO {
 			
 			while(rs.next()) {
 				int id = rs.getInt("id");
-				String album = rs.getString("album");
+				String album = rs.getString("name");
 				String title = rs.getString("title");
 				String singer = rs.getString("singer");
 				Date now = rs.getDate("now");
@@ -135,7 +135,7 @@ public class AlbumDAO {
 			
 			while(rs.next()) {
 				int id = rs.getInt("id");
-				String album = rs.getString("album");
+				String album = rs.getString("name");
 				String title = rs.getString("title");
 				String singer = rs.getString("singer");
 				Date now = rs.getDate("now");
