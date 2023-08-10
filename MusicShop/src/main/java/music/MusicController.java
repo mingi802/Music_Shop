@@ -3,6 +3,7 @@ package music;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -72,6 +73,10 @@ public class MusicController extends HttpServlet {
 		doHandle(request, response);
 	}
 
+	private static boolean isNumeric(String str){
+        return str != null && str.matches("[0-9.]+");
+    }
+	
 	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String nextPage = null;
@@ -81,9 +86,11 @@ public class MusicController extends HttpServlet {
 		String encoding = "UTF-8";
 		String action = request.getPathInfo();
 		HttpSession session = request.getSession();
-		if(action.equals("/addMusicImg.do")) {
-			File currentDirPath_I = new File("C:\\Users\\yach3\\Desktop\\최종프로젝트\\Music_Shop-main\\MusicShop\\MusicShop\\src\\main\\webapp\\resource\\img");
+		if(action.equals("/addMusic.do")) {
+			//File currentDirPath_I = new File("C:\\Users\\yach3\\Desktop\\최종프로젝트\\Music_Shop-main\\MusicShop\\MusicShop\\src\\main\\webapp\\resource\\img");
 			//File currentDirPath_M = new File("C:\\Users\\yach3\\Desktop\\최종프로젝트\\Music_Shop-main\\MusicShop\\MusicShop\\src\\main\\webapp\\resource\\audio");
+			File currentDirPath_I = new File("D:\\JavaProgram\\Music_Shop\\MusicShop\\src\\main\\webapp\\resource\\img");
+			File currentDirPath_M = new File("D:\\\\JavaProgram\\\\Music_Shop\\\\MusicShop\\src\\main\\webapp\\resource\\audio");
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			
 			factory.setRepository(currentDirPath_I);
@@ -92,7 +99,8 @@ public class MusicController extends HttpServlet {
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			try {
 				List<FileItem> items = upload.parseRequest(request);
-				String[] param = new String[5];
+				System.out.println(items.size());
+				String[] param = new String[items.size()];
 				File uploadedImgFile = null;
 				File uploadedMusicFile = null;
 				
@@ -115,26 +123,65 @@ public class MusicController extends HttpServlet {
 						if(item.getContentType().startsWith("image/")) {
 							uploadedImgFile = new File(currentDirPath_I, fileName);
 							item.write(uploadedImgFile);
-							param[4] = fileName;
+							param[param.length-2] = fileName;
 						} 
-						/*
+
 							else if(item.getContentType().startsWith("audio/")) {
 							uploadedMusicFile = new File(currentDirPath_M, fileName);
 							item.write(uploadedMusicFile);
-							param[6] = fileName;
+							param[param.length-1] = fileName;
 						}
-						*/
+						
 					}
-				}
-				int id = 0;				
+				}		
 				String album = param[0];
-				String title = param[1];
-				String singer = param[2];
-				String now = param[3];
-				String sign = param[4];
+				boolean isTitle;
+				String title;
+				String singer;
+				Date now;
+				int price;
+				String sign;
+				String song;
 				
-				MusicVO musicVO = new MusicVO(id, album, title, singer, now, sign);
-				musicDAO.addMusicImg(musicVO);
+				if(param[1].equals("isTitle")) {
+					isTitle = Boolean.parseBoolean(param[2]);
+					title = param[3];
+					singer = param[4];
+					now = Date.valueOf(param[5]);
+					price = (isNumeric(param[6])) ? Integer.parseInt(param[6]) : 0;
+					sign = param[7];
+					song = param[8];
+				} else {
+					isTitle = Boolean.parseBoolean(param[1]);
+					title = param[2];
+					singer = param[3];
+					now = Date.valueOf(param[4]);
+					price = (isNumeric(param[5])) ? Integer.parseInt(param[5]) : 0;
+					sign = param[6];
+					song = param[7];
+				}
+				System.out.println(
+						"album: "+album+"\n"+
+						"isTitle: "+isTitle+"\n"+
+						"title: "+title+"\n"+
+						"singer: "+singer+"\n"+
+						"now: "+now+"\n"+
+						"price: "+price+"\n"+
+						"sign: "+sign+"\n"+
+						"song: "+song);
+				AlbumVO albumVO = new AlbumVO();
+				albumVO.setName(album);
+				albumVO.setTitle(title);
+				MusicVO musicVO = new MusicVO(
+						album,
+						isTitle,
+						title, 
+						singer, 
+						now, 
+						sign, 
+						price, 
+						song);
+				musicDAO.addMusic(musicVO);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
