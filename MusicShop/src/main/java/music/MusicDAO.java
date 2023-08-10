@@ -23,6 +23,8 @@ public class MusicDAO {
 //	private static String dbID = "";
 //	private static String dbPassword = "";
 //	private static String driver = "";
+
+
 	
 	public MusicDAO() {
 		
@@ -54,9 +56,9 @@ public class MusicDAO {
 				String now = rs.getString("now");
 				String sign = rs.getString("sign");
 				
-				MusicVO musicVO = new MusicVO(album, title, singer, now, sign);
+				//MusicVO musicVO = new MusicVO(album, title, singer, now, sign);
 				
-				musicList.add(musicVO);
+				//musicList.add(musicVO);
 			}
 			rs.close();
 			pstmt.close();
@@ -68,7 +70,7 @@ public class MusicDAO {
 		
 	}
 	
-	public void addMusicImg(MusicVO m){
+	public void addMusic(MusicVO m){
 		
 		try {
 			
@@ -78,23 +80,36 @@ public class MusicDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			int id = m.getId();	//고유번호
-			String album = m.getAlbum(); //앨범명
-			String title = m.getTitle(); //타이틀곡묭
-			String singer = m.getSinger(); //가수
-			String now = m.getNow(); // 발매일
+			String album_name = m.getAlbum(); //앨범명
+			boolean isTitle = m.getisTitle(); //타이틀곡 여부
+			String song_name = m.getTitle(); //타이틀곡명
+			String singer_name = m.getSinger(); //가수
+			Date now = m.getNow(); // 발매일
+			int price = m.getPrice(); //음원 가격
 			String sign = m.getSign(); //앨범 이미지 경로
-						
-			String sql = "INSERT INTO album(id, album, title, singer, now, sign)" + "VALUES(?,?,?,?,?,?)";
+			String song = m.getSong(); //음원 경로
+			
+			String sql = "call insert_song(?, ?, ?, ?, ?, ?, ?, ?);";
+//				(in album_name varchar(60), in singer_name varchar(60), in now date, in sign varchar(60), in song_name varchar(60), in price int, in song varchar(60), in isTitle boolean)	
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, id);
-			pstmt.setString(2, album);
-			pstmt.setString(3, title);
-			pstmt.setString(4, singer);
-			pstmt.setString(5, now);
-			pstmt.setString(6, sign);
-			
+			/*
+			in album_name varchar(60), 
+			in singer_name varchar(60), 
+			in now date, 
+			in sign varchar(60), 
+			in song_name varchar(60), 
+			in price int, 
+			in song varchar(60), 
+			in isTitle boolean
+			*/
+			pstmt.setString(1, album_name);
+			pstmt.setString(2, singer_name);
+			pstmt.setDate(3, now);
+			pstmt.setString(4, sign);
+			pstmt.setString(5, song_name);
+			pstmt.setInt(6, price);
+			pstmt.setString(7, song);
+			pstmt.setBoolean(8, isTitle);
 			pstmt.executeUpdate();
 			
 			pstmt.close();
