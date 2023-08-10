@@ -943,15 +943,10 @@ img {
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
 	background: #d6d6d6;
-	/*
-	margin: 0 auto;
-	margin-top: -430px;
-	*/
 	position: absolute;
 	top: 65px;
 	left: 50%;
 	transform: translate(-50%, 0%);
-	opacity: 0.8; 
 	}
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause a {
 	border-left: 12px solid #fff}
@@ -962,7 +957,43 @@ img {
 	}
 	
  /*실험2 END*/	
-	
+ /*실험3 START*/
+	.single-album .audioplayer{
+ 	background: transparent;
+ 	border: none;
+ 	width: auto;
+ 	margin: 0;
+ 	padding: 0; 	
+	}
+
+	.single-album .audioplayer-playing .audioplayer-playpause,
+	.single-album .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
+	.single-album .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
+	background: #d6d6d6;
+	position: absolute;
+	left: 61px;
+	opacity: 0.8; 
+	top: 50px;	
+	/*
+	top: 65px;
+	*/
+	}
+
+	.single-album .audioplayer:not(.audioplayer-playing) .audioplayer-playpause a {
+	border-left: 12px solid #fff
+	}
+	.single-album .audioplayer-time,
+	.single-album .audioplayer-volume,
+	.single-album .audioplayer-bar {
+	display: none;
+	}
+	.single-album .audioplayer-mini{
+	padding-bottom: -100%;
+	margin: 0;
+	height: 1px;
+	}
+
+ /*실험3 END*/	
 .albums-slideshow {
   position: relative;
   z-index: 1; }

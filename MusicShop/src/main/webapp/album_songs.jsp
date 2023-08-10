@@ -104,8 +104,8 @@ function limitPlayTime(audio) {
                                             %>
                                             <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="#">내정보</a></li>
-                                                    <li><a href="#">장바구니</a></li>
+                                                    <li><a href="${contextPath}/costomer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
                                                     <li><a href="#">구매내역</a></li>
                                                     <li><a href="#">소비자4</a>
                                                         <ul class="dropdown">
@@ -122,12 +122,12 @@ function limitPlayTime(audio) {
                                             <%
                                             } else if(code.equals("200")){
                                             %> 
-                                            <li><a href="#">Manage</a>
+                                            <li><a href="#">관리자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="admin/admin.jsp">회원목록</a></li>
-                                                    <li><a href="admin/artist.jsp">아티스트목록</a></li>
-                                                    <li><a href="admin/host.jsp">관리자목록</a></li>
+                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/admin/admin.jsp">회원목록</a></li>
+                                                    <li><a href="${contextPath}/admin/artist.jsp">아티스트목록</a></li>
+                                                    <li><a href="${contextPath}/admin/host.jsp">관리자목록</a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -143,10 +143,10 @@ function limitPlayTime(audio) {
                                             <%
                                             } else if(code.equals("300")) {
                                             %>
-                                            <li><a href="#">Artist</a>
+                                            <li><a href="#">아티스트</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="artist/artist.jsp">음원 등록 및 목록</a></li>
-                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/artist/artist.jsp">음원 등록 및 목록</a></li>
+                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">

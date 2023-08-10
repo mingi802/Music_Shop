@@ -88,19 +88,18 @@ String name = (String) session.getAttribute("name");
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="../main.jsp">Home</a></li>
-                                    <li><a href="../album.jsp">Albums</a></li>
+                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                    <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="../main.jsp">Home</a></li>
-                                            <li><a href="../album.jsp">Albums</a></li>
-                                            <li><a href="../connection.jsp">Contact</a></li>
-                                            <li><a href="../login/login.jsp">Login</a></li>
+                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                            <li><a href="${contextPath}/album.jsp">Albums</a></li>
+                                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/login/login.jsp">Login</a></li>
                                             <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="artist.jsp">음원등록</a></li>
-                                                    <li><a href="#">음원목록</a></li>
                                                     <li><a href="../customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -137,7 +136,7 @@ if(user_id == null){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
+                                        <a href="${contextPath}/artist/artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -293,11 +292,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="../main.jsp">Home</a></li>
-                            <li><a href="../album.jsp">Albums</a></li>
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="../connection.jsp">Contact</a></li>
+                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                            <li><a href="${contextPath}/album.jsp">Albums</a></li>
+                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>

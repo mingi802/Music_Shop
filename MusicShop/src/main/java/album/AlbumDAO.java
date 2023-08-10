@@ -128,7 +128,7 @@ public class AlbumDAO {
 				e.printStackTrace();
 			}
 			
-			String sql = "SELECT * FROM album WHERE album Like '%"+albumName+"%'";
+			String sql = "SELECT * FROM album WHERE singer Like '%"+albumName+"%' or name Like '%"+ albumName +"%'";
 			System.out.println(sql);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();

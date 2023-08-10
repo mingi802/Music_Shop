@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@ include file="../mydbcon.jsp" %> <!-- 본인 아이디와 비밀번호로 변경하세요. -->    
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,7 @@ function limitPlayTime(audio) {
 
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){
-		window.location.href="cart.jsp";
+		window.location.href="${contextPath}/cart.jsp";
 		return true;
 	} else{
 		return false;
@@ -84,7 +85,7 @@ function cart(){
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -104,25 +105,18 @@ function cart(){
                                 <ul>
                                     <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
-                                    <li><a href="#">Manage</a>
+                                    <li><a href="#">관리자</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>
-                                            <!--  
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            -->
                                             <li><a href="../connection.jsp">Contact</a></li>
-                                            <!--  
-                                            <li><a href="elements.html">Elements</a></li>
-                                            -->
-                                            <li><a href="../login/login.jsp">Login</a></li>
                                             <li><a href="#">Manage</a>
                                                 <ul class="dropdown">
+                                                	<li><a href="../customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="admin.jsp">회원목록</a></li>
                                                     <li><a href="artist.jsp">아티스트목록</a></li>
                                                     <li><a href="host.jsp">관리자목록</a></li>
-                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -160,12 +154,12 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="${contextPath}/customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -177,12 +171,12 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="${contextPath}/admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -194,12 +188,12 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../artist/atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
+                                        <a href="${contextPath}/artist/atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -235,7 +229,7 @@ function cart(){
 			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
 			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
 			<li><a href="artist.jsp"><b>아티스트 목록</b></a></li><br>
-			<li><a href="musicManage.jsp"><b>앨범 이미지 목록</b></a></li><br>
+			<li><a href="musicManage.jsp"><b>음원 목록</b></a></li><br>
 			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>			    	
     	</ul>
     </aside>

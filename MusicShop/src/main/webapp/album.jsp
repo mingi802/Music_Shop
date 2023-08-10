@@ -118,6 +118,7 @@ String name = (String) session.getAttribute("name");
     }
     
   });
+	
   function cart(){
 		if(confirm('장바구니로 이동하시겠습니까?')){
 			window.location.href="${contextPath}/cart.jsp";
@@ -188,11 +189,11 @@ String name = (String) session.getAttribute("name");
                                             if(code != null){
                                             	if(code.equals("100")){
                                             %>
-                                            <li><a href="#">Dropdown</a>
+                                            <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="${contextPath}/customer/mypage.jsp">내 정보</a></li>
+                                                    <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
+                                                    <li><a href="#">구매내역</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -208,11 +209,12 @@ String name = (String) session.getAttribute("name");
                                             <%
                                             } else if(code.equals("200")){
                                             %> 
-                                            <li><a href="#">Manage</a>
+                                            <li><a href="#">관리자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="${contextPath}/admin/admin.jsp">Membership</a></li>
-                                                    <li><a href="#">NoName</a></li>
-                                                    <li><a href="#">NoName</a></li>
+                                                	<li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/admin/admin.jsp">회원목록</a></li>
+                                                    <li><a href="${contextPath}/admin/host.jsp">관리자목록</a></li>
+                                                    <li><a href="${contextPath}/admin/artist.jsp">아티스트목록</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -228,10 +230,10 @@ String name = (String) session.getAttribute("name");
                                             <%
                                             } else if(code.equals("300")) {
                                             %>
-                                            <li><a href="#">Artist</a>
+                                            <li><a href="#">아티스트</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="artist/artist.jsp">음원 등록 및 목록</a></li>
-                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/artist/artist.jsp">음원 등록</a></li>
                                                     <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
@@ -424,12 +426,15 @@ String name = (String) session.getAttribute("name");
 							<c:set var="classForFiltering" value="${ALBUM.getClassNameByAlbumName(album.album)}"/>
 							<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ${classForFiltering}">
 			                    <div class="single-album">
-			                        <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}">
+			                        <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}"> <!-- 앨범 이미지 -->
+			                    <audio>
+			                    	<source src="#">
+			                    </audio>
 			                        <div class="album-info">
-			                            <a href="${contextPath}/서블릿?album=${album.album}">
-			                                <h5>${album.singer}</h5>
+			                            <a href="${contextPath}/서블릿?album=${album.album}"> <!-- 경로 -->
+			                                <h5>${album.singer}</h5> <!-- 가수 -->
 			                            </a>
-			                            <p>${album.album}</p>
+			                            <p>${album.album}</p><!-- 앨범 이름 -->
 			                        </div>
 			                    </div>
 			                </div>

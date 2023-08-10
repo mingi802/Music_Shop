@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     
 	<%@page session="true"%>
-
 	<%@ include file="../mydbcon.jsp" %> <!-- 본인 아이디와 비밀번호로 변경하세요. -->    
 <!DOCTYPE html>
 <html>
@@ -147,7 +146,7 @@ function update(){
                                             %>
                                             <li><a href="#">관리자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="mypage.jsp">내정보</a></li>
+                                                    <li><a href="../customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="../admin/admin.jsp">회원목록</a></li>
                                                     <li><a href="../admin/artist.jsp">아티스트목록</a></li>
                                                     <li><a href="../admin/host.jsp">관리자목록</a></li>
@@ -168,7 +167,7 @@ function update(){
                                             %>
                                             <li><a href="#">아티스트</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="../mypage.jsp">내 정보</a></li>
+                                                    <li><a href="mypage.jsp">내 정보</a></li>
                                                     <li><a href="../artist/artist.jsp">음원등록 및 목록</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
@@ -210,7 +209,7 @@ function update(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="../customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -281,12 +280,13 @@ function update(){
     <!-- ##### Breadcumb Area End ##### -->
     <aside class="admin-category">
     	<ul style="padding-left:5px;padding-top:20px;">
-			<li><a href="mypage.jsp"><b>내정보</b></a></li><br>  
+			<li><a href="customer/mypage.jsp"><b>내정보</b></a></li><br>  
 			<li><a href="../cart.jsp"><b>장바구니</b></a></li><br>
 			<li><a href="#"><b>구매내역</b></a></li><br>
 <%
 if(code.equals("200")){
 %>
+	<li><a href="../admin/admin.jsp">회원 관리</a></li><br>
 	<li><a href="#">음원 관리</a></li>
 <%	
 } else if(code.equals("300")){

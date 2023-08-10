@@ -79,23 +79,16 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="../main.jsp">Home</a></li>
-                                    <li><a href="../album.jsp">Albums</a></li>
+                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                    <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="../main.jsp">Home</a></li>
-                                            <li><a href="../album.jsp">Albums</a></li>
-                                            <!--  
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            -->
+                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                            <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
-                                            <!--  
-                                            <li><a href="elements.html">Elements</a></li>
-                                            -->
                                             <li><a href="#">Dropdown</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="regist.jsp">회원가입</a></li>
+                                                    <li><a href="${contextPath}/login/regist.jsp">회원가입</a></li>
                                                     <li><a href="#">Even Dropdown</a></li>
                                                     <li><a href="#">Even Dropdown</a></li>
                                                     <li><a href="#">Even Dropdown</a>
@@ -112,10 +105,6 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <!-- 
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                     -->
                                     <li><a href="../connection.jsp">Contact</a></li>
                                 </ul>
 
