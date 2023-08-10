@@ -235,7 +235,7 @@ function cart(){
 			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
 			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
 			<li><a href="artist.jsp"><b>아티스트 목록</b></a></li><br>
-			<li><a href="musicManage.jsp"><b>음원 목록</b></a></li><br>
+			<li><a href="musicManage.jsp"><b>앨범 이미지 목록</b></a></li><br>
 			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>			    	
     	</ul>
     </aside>
@@ -268,7 +268,7 @@ function cart(){
                         		<td><%=rs.getString("addr") %></td>
                         		<td><%=rs.getString("email") %></td>
                         		<td><%=rs.getString("code") %></td>
-                        		<td><button onclick="location.href='customerDelet.jsp?id=<%= rs.getString("id") %>'">Delete</button></td>
+                        		<td><button onclick="location.href='delete.jsp?id=<%= rs.getString("id") %>'">Delete</button></td>
                         		</tr>
                         	
                         	<%	

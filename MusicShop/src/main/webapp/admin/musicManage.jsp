@@ -235,7 +235,7 @@ function cart(){
 			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
 			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
 			<li><a href="artist.jsp"><b>아티스트 목록</b></a></li><br>
-			<li><a href="musicManage.jsp"><b>음원 목록</b></a></li><br>
+			<li><a href="musicManage.jsp"><b>앨범 이미지 목록</b></a></li><br>
 			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>			    	
     	</ul>
     </aside>
@@ -250,9 +250,9 @@ function cart(){
                         <!-- Membership manage Form -->
                         <div class="music-manage-form">
                         <table>
-                        	<tr><th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>가격</th><th>앨범 이미지</th><th>음원</th></tr>
+                        	<tr><th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>앨범 이미지</th></tr>
                         	<%
-                        	String sql = "SELECT * FROM song";
+                        	String sql = "SELECT * FROM album";
                         	PreparedStatement pstmt = conn.prepareStatement(sql);
                         	ResultSet rs = pstmt.executeQuery();
                         	
@@ -263,10 +263,8 @@ function cart(){
                         		<td><%=rs.getString("title") %></td>
                         		<td><%=rs.getString("singer") %></td>
                         		<td><%=rs.getString("now") %></td>
-                        		<td><%=rs.getString("price") %></td>
                         		<td><%=rs.getString("sign") %></td>
-                        		<td><%=rs.getString("song") %></td>
-                        		<td><button onclick="location.href='customerDelet.jsp?id=<%= rs.getString("id") %>'">Delete</button></td>
+                        		<td><button onclick="location.href='imgDelet.jsp?id=<%= rs.getString("album") %>'">Delete</button></td>
                         		</tr>
                         	<%	
                         	}
