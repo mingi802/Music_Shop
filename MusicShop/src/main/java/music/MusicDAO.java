@@ -50,7 +50,7 @@ public class MusicDAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String album = rs.getString("album");
+				String album = rs.getString("name");
 				String title = rs.getString("title");
 				String singer = rs.getString("singer");
 				String now = rs.getString("now");
