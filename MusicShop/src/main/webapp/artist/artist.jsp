@@ -31,11 +31,11 @@ String name = (String) session.getAttribute("name");
 %>
  
 	<script>
-	/*	
+		
 		if(${empty MusicList}) {
 		window.location.href="${contextPath}/Music/listMusic.do";
 		}
-	*/
+	
 	</script>
 	<script>
 		window.onload=function () {
@@ -185,12 +185,12 @@ if(user_id == null){
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
                     <div class="member-content">
-                        <h3>음원 목록</h3><br>
+                        <h3>앨범 목록</h3><br>
                         <!-- Membership manage Form -->
                         <div class="music-list-form">
                         <table>
                         	<tr>
-                        		<th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>가격</th><th>이미지 파일</th><th>음원 파일</th>
+                        		<th>앨범명</th><th>타이틀 곡</th><th>가수</th><th>발매일</th><th>가격</th><th>이미지 파일</th><th>타이틀 음원 파일</th>
                        		</tr>
 		 <tbody>
 		 <c:choose> <%-- JSTL을 이용해 비었는지 체크 --%>

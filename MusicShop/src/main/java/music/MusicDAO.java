@@ -43,22 +43,45 @@ public class MusicDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			String sql = "SELECT * FROM album";
-			System.out.println(sql);
-			
+			String sql ="SELECT name,\n" +	//앨범 이름 가져오고
+						"		CASE\n" +   //sql의 if문같은거 
+						"			WHEN title = '' or title is null THEN\n"+ //title컬럼 값이 비어있거나 null이라면 
+						"				'no title'\n"+						  //'no title'이라는 내용의 문자열로 가져오고
+						"			ELSE\n"+								  //아니면 title컬럼 값이 존재한다는 것이므로
+						"				title\n"+							  //그 값을 가져온다
+						"		END as title, singer,\n"+ 					  //END: CASE 종료, as title을 안달아주면 위의 CASE문이 컬럼명으로 출력된다, 가수명 가져오고 
+						"		IFNULL((select sum(price) from song where song.album_id = album.id), 0) as price, now, sign,\n"+
+								//IFNULL(a, b)은 a가 null이라면 b로 값을 대체해준다.
+								//song테이블의album_id컬럼 값이 album테이블의id컬럼 값과 같은 song테이블 행들의 price 합, 발매일, 이미지 파일 경로 가져와주고   
+						"		IFNULL((select song from song where song.album_id = album.id and song.name = album.title), 'no audio file') as song\n"+ 
+								//song테이블의album_id컬럼 값이 album테이블의id컬럼 값과 같으며 album테이블의 title컬럼과 song테이블의 name컬럼이 같은 song테이블의 song컬럼을 가져온다 
+						"FROM album\n"; 
+						//"WHERE singer = ?";
 			pstmt = conn.prepareStatement(sql);
+			//pstmt.setString(1, singer_name);
+			System.out.println(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String album = rs.getString("name");
+				String album_name = rs.getString("name");
 				String title = rs.getString("title");
 				String singer = rs.getString("singer");
-				String now = rs.getString("now");
+				int price = rs.getInt("price");
+				Date now = rs.getDate("now");
 				String sign = rs.getString("sign");
+				String song = rs.getString("song");
 				
-				//MusicVO musicVO = new MusicVO(album, title, singer, now, sign);
+				MusicVO musicVO = new MusicVO();
 				
-				//musicList.add(musicVO);
+				musicVO.setAlbum(album_name);
+				musicVO.setTitle(title);
+				musicVO.setSinger(singer);
+				musicVO.setPrice(price);
+				musicVO.setNow(now);
+				musicVO.setSign(sign);
+				musicVO.setSong(song);
+				
+				musicList.add(musicVO);
 			}
 			rs.close();
 			pstmt.close();
@@ -89,8 +112,7 @@ public class MusicDAO {
 			String sign = m.getSign(); //앨범 이미지 경로
 			String song = m.getSong(); //음원 경로
 			
-			String sql = "call insert_song(?, ?, ?, ?, ?, ?, ?, ?);";
-//				(in album_name varchar(60), in singer_name varchar(60), in now date, in sign varchar(60), in song_name varchar(60), in price int, in song varchar(60), in isTitle boolean)	
+			String sql = "call insert_song(?, ?, ?, ?, ?, ?, ?, ?);";	
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			/*
 			in album_name varchar(60), 

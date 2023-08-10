@@ -13,7 +13,9 @@ public class MusicVO {	//이제 이 클래스는 db의 스토어드 프로시저에 넣을 매개 변�
 	private String sign;
 	private String song;
 	
-	
+	public MusicVO() {
+		
+	}
 	
 	public MusicVO(String album, Boolean isTitle, String title, String singer, Date now, String sign, int price, String song) {
 		super();
