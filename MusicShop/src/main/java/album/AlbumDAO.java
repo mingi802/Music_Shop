@@ -77,20 +77,21 @@ public class AlbumDAO {
 				e.printStackTrace();
 			}
 			
-			String sql = "SELECT * FROM album";
+			//String sql = "SELECT * FROM album";
+			String sql = "SELECT album.id, album.name, album.title, album.singer, album.now, album.sign, song.song FROM album, song WHERE album.title = song.name";
 			System.out.println(sql);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				int id = rs.getInt("id");
-				String album = rs.getString("name");
-				String title = rs.getString("title");
-				String singer = rs.getString("singer");
-				Date now = rs.getDate("now");
-				//String price = rs.getString("price");
-				String sign = rs.getString("sign");
-				//String song = rs.getString("song");
+				int id = rs.getInt("id"); //album에서의 id
+				String album = rs.getString("name"); //album에서 앨범 이름
+				String title = rs.getString("title"); //타이틀곡
+				String singer = rs.getString("singer"); //가수
+				Date now = rs.getDate("now"); //발매일
+				//String price = rs.getString("price"); //가격
+				String sign = rs.getString("sign"); //사진 
+				String song = rs.getString("song"); //음원
 				
 				AlbumVO albumVO = new AlbumVO();
 				
@@ -101,7 +102,7 @@ public class AlbumDAO {
 				albumVO.setNow(now);
 				//albumVO.setPrice(price);
 				albumVO.setSign(sign);
-				//albumVO.setSong(song);
+				albumVO.setSong(song);
 				
 				albumList.add(albumVO);
 			}
