@@ -963,7 +963,8 @@ img {
  	border: none;
  	width: auto;
  	margin: 0;
- 	padding: 0; 	
+ 	padding: 0;
+ 	height: 1px; 	
 	}
 
 	.single-album .audioplayer-playing .audioplayer-playpause,
@@ -987,7 +988,8 @@ img {
 	.single-album .audioplayer-bar {
 	display: none;
 	}
-	.single-album .audioplayer-mini{
+	.single-album .audioplayer-playing{
+	background-color: rgb(111,167,235);
 	padding-bottom: -100%;
 	margin: 0;
 	height: 1px;

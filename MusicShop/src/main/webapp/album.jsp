@@ -62,7 +62,7 @@ String name = (String) session.getAttribute("name");
     			now: "${album.now}",
     			//price: "${album.price}",
     			sign: "${album.sign}",
-    			//song: "${album.song}"
+    			song: "${album.song}"
     		});
     		console.log(albumList.slice(-1)); //앨범리스트의 마지막 요소 출력
     	</c:forEach>
@@ -428,7 +428,7 @@ String name = (String) session.getAttribute("name");
 			                    <div class="single-album">
 			                        <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}"> <!-- 앨범 이미지 -->
 			                    <audio>
-			                    	<source src="#">
+			                    	<source src="${contextPath}/resource/audio/${album.song}">
 			                    </audio>
 			                        <div class="album-info">
 			                            <a href="${contextPath}/서블릿?album=${album.album}"> <!-- 경로 -->
