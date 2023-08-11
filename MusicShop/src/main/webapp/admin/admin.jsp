@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@ include file="../mydbcon.jsp" %> <!-- 본인 아이디와 비밀번호로 변경하세요. -->    
 <!DOCTYPE html>
 <html>
@@ -23,6 +22,7 @@
 <%
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
+String name = (String) session.getAttribute("name");
 //String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
 //String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
 %>
@@ -38,7 +38,7 @@ function limitPlayTime(audio) {
 
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){
-		window.location.href="${contextPath}/cart.jsp";
+		window.location.href="../cart.jsp";
 		return true;
 	} else{
 		return false;
@@ -171,12 +171,12 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="../login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -188,7 +188,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/artist/atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
+                                        <a href="../artist/atist.jsp" id="loginBtn"><%=name %> 아티스트</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->

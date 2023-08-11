@@ -34,8 +34,7 @@ String name = (String) session.getAttribute("name");
 		
 		if(${empty MusicList}) {
 		window.location.href="${contextPath}/Music/listMusic.do";
-		}
-	
+		}	
 	</script>
 	<script>
 		window.onload=function () {
@@ -46,6 +45,16 @@ String name = (String) session.getAttribute("name");
 				console.log(hidden_iT.value);
 			});
 		};
+	</script>
+	<script>
+
+	function cart(){
+		if(confirm('장바구니로 이동하시겠습니까?')){
+			window.location.href="../cart.jsp";
+			return true;
+		} else{
+			return false;
+		}		
 	</script>
 </head>
 
@@ -145,7 +154,7 @@ if(user_id == null){
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
                                     </div>  	
 <%
 		}
