@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*"
     pageEncoding="UTF-8"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<!-- <c:set var="contextPath" value="${pageContext.request.contextPath}"/> -->
     <%@page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -115,7 +115,7 @@ function cart(){
                                             %>
                                             <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="../customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="cart.jsp">장바구니</a></li>
                                                     <li><a href="#">구매내역</a></li>
                                                     <li><a href="#">소비자4</a>
@@ -156,9 +156,8 @@ function cart(){
                                             %>
                                             <li><a href="#">아티스트</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="../customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="../artist/artist.jsp">음원등록</a></li>
-                                                    <li><a href="#"></a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="artist/artist.jsp">음원등록</a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -430,17 +429,17 @@ function cart(){
                             <div class="album-price">
                                 <p>$0.90</p>
                             </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="https://www.youtube.com/watch?v=BBdC1rl5sKY" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>
-                        </div>
-                        <div class="album-info">
-						<!-- 윤하 앨범 정보를 클릭했을 때 album.jsp 페이지로 이동 -->
-							<a href="album.jsp?filter=y">
- 								 <h5>윤하</h5>
-							</a>
+                        	<div class="album-info">
+								<a href="album.jsp?filter=y">
+ 									 <h5>윤하</h5>
+								</a>
                             <p>사건의 지평선</p>
+                        </div>                            
+                            <!-- Play Icon -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/eventhorizon.mp3">
+                            </audio>
                         </div>
                     </div>
                 </div>
@@ -449,22 +448,23 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                 	<div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
 				        <div class="album-thumb">
-            				<img src="resource/img/Oort cloud.jpg" alt="">
+            				<img src="resource/img/Arirang.jpg" alt="">
             				<!-- Album Price -->
             				<div class="album-price">
                 				<p>$0.80</p>
             				</div>
-            				<!-- Play Icon -->
-            				<div class="play-icon">
-                				<a href="https://www.youtube.com/watch?v=TqFLIZG_aXA" class="video--play--btn"><span class="icon-play-button"></span></a>
-            				</div>
-        				</div>
         				<div class="album-info">
 							<a href="album.jsp?filter=y">
-								<h5>윤하</h5>
+								<h5>sg워너비</h5>
 							</a>
-							<p>오르트구름</p>
-						</div>
+							<p>아리랑</p>
+						</div>                            
+                            <!-- Play Icon -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/Arirang.mp3">
+                            </audio>
+        				</div>
 					</div>
 				</div>
 
@@ -872,8 +872,8 @@ function cart(){
                                     <img src="resource/img/Butter.jpg" alt="">
                                 </div>
                                 <div class="content-">
-                                    <h6>The Music Band</h6>
-                                    <p>Underground</p>
+                                    <h6>Butter</h6>
+                                    <p>방탄소년단</p>
                                 </div>
                             </div>
                             <audio preload="auto" controls>
