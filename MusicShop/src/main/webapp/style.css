@@ -994,7 +994,20 @@ img {
 	margin: 0;
 	height: 1px;
 	}
-
+	
+	.single-album .album-info p{
+	line-height: 1;
+	}
+	.single-album .album-info .singer{
+	margin-bottom: 0;
+	}
+	.single-album .album-info .album{
+	margin-top: 0;
+	}
+	.single-album-item{
+	height: 250px;
+	}
+	
  /*실험3 END*/	
 .albums-slideshow {
   position: relative;
@@ -1461,13 +1474,13 @@ img {
  	/*background-color: #f5f9fa;
  	border: 1px solid #d8d8d8;*/
 	margin-top : 50px;
-	width : 650px;
+	width : 700px;
 	float : left;
 	min-height : 200px;
 	border-radius: 8px;
 	box-sizing: border-box;
 	padding-right: 100px;
-	margin-left: -50px;
+	margin-left: -150px;
 	} 
 	
 	/*2번*/
@@ -1492,7 +1505,7 @@ img {
 	text-align : center;
  	margin: 0 auto; 
  	 border-collapse : collapse;
- 	 width: 100%; 
+ 	 width: 850px; 
 	}
 	.music-list-form th td{
 	padding: 15px; 
