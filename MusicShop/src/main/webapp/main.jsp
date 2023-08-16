@@ -417,8 +417,6 @@ function cart(){
 		                </div>
 	                </c:forEach>
 				</c:if>
-                
-
             </div>
 
             <div class="row">
@@ -637,8 +635,8 @@ function cart(){
                                     <img src="${contextPath}/resource/img/Butter.jpg" alt="">
                                 </div>
                                 <div class="content-">
-                                    <h6>The Music Band</h6>
-                                    <p>Underground</p>
+                                    <h6>Butter</h6>
+                                    <p>방탄소년단</p>
                                 </div>
                             </div>
                             <audio preload="auto" controls>

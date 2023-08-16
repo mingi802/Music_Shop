@@ -432,9 +432,9 @@ String name = (String) session.getAttribute("name");
 			                    </audio>
 			                        <div class="album-info">
 			                            <a href="${contextPath}/서블릿?album=${album.album}"> <!-- 경로 -->
-			                                <h5>${album.singer}</h5> <!-- 가수 -->
+			                                <h6 class="singer">${album.singer}</h6> <!-- 가수 -->
 			                            </a>
-			                            <p>${album.album}</p><!-- 앨범 이름 -->
+			                            <p class="album">${album.album}</p><!-- 앨범 이름 -->
 			                        </div>
 			                    </div>
 			                </div>

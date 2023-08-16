@@ -39,7 +39,7 @@ function limitPlayTime(audio) {
 */
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){
-		window.location.href="cart.jsp";
+		window.location.href="../cart.jsp";
 		return true;
 	} else{
 		return false;
@@ -127,7 +127,7 @@ function update(){
                                                 <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
                                                     <li><a href="mypage.jsp">내정보</a></li>
-                                                    <li><a href="../cart.jsp">장밥구니</a></li>
+                                                    <li><a href="../cart.jsp">장바구니</a></li>
                                                     <li><a href="#">구매내역</a></li>
                                                     <li><a href="#">미정</a>
                                                         <ul class="dropdown">
@@ -280,7 +280,7 @@ function update(){
     <!-- ##### Breadcumb Area End ##### -->
     <aside class="admin-category">
     	<ul style="padding-left:5px;padding-top:20px;">
-			<li><a href="customer/mypage.jsp"><b>내정보</b></a></li><br>  
+			<li><a href="mypage.jsp"><b>내정보</b></a></li><br>  
 			<li><a href="../cart.jsp"><b>장바구니</b></a></li><br>
 			<li><a href="#"><b>구매내역</b></a></li><br>
 <%
