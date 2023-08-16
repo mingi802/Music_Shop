@@ -32,7 +32,7 @@ String name = (String) session.getAttribute("name");
 %>
 <script>
 	function showAllAlbum() {
-		  window.location.href="${contextPath}/Album/showAllAlbum.do";
+		  window.location.href="${contextPath}/Album/album/showAllAlbum.do";
 	}
 	  
 	if(${empty albumList} && !${empty isSearch ? false : isSearch}) {
@@ -405,7 +405,7 @@ String name = (String) session.getAttribute("name");
             </div>
             
 			<div class="row">
-			    <form id="search-form" class="w-100 me-3" method="post" action="${contextPath}/Album/albumSearch.do">
+			    <form id="search-form" class="w-100 me-3" method="post" action="${contextPath}/Album/album/albumSearch.do">
 					<div class="d-flex flex-row align-items-center mb-30">
 				        <div class="col-11 pe-0">
 				        <input type="search" class="form-control" id="searchBar" name="searchBar" placeholder="Search..." required aria-label="Search">

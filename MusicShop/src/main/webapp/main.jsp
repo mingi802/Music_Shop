@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*"
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*" import="album.AlbumVO" isELIgnored="false"
     pageEncoding="UTF-8"%>
-<!-- <c:set var="contextPath" value="${pageContext.request.contextPath}"/> -->
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
     <%@page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -15,16 +17,45 @@
     <title>MLP Music:: </title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="${contextPath}/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="${contextPath}/style.css">
 <%
+class AlbumDateComparator implements Comparator<AlbumVO> {
+    @Override
+    public int compare(AlbumVO a1, AlbumVO a2) {
+        return a1.getNow().compareTo(a2.getNow());
+    }
+}
+
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
+
+Calendar cal1 = Calendar.getInstance();
+cal1.add(Calendar.DATE, -310); // 오늘 날짜에서 7일 빼기		
+Date date = new Date(cal1.getTimeInMillis());
+List<AlbumVO> alist = (List<AlbumVO>)request.getAttribute("albumList");
+List<Date> dateList = new ArrayList<Date>();
+for(AlbumVO a : alist) {
+	dateList.add(a.getNow());
+}
+dateList.sort(Comparator.reverseOrder());
+alist.sort(new AlbumDateComparator().reversed());
+
+
 %>
 <script>
+<c:set var="albumListOrderByDate" value="<%=alist%>"/>
+function showAllAlbum() {
+	  window.location.href="${contextPath}/Album/main/showAllAlbum.do";
+}
+
+if(${empty albumList} && !${empty isSearch ? false : isSearch}) {
+	  alert("첫 입장, 전체 앨범 리스트 가져오기");
+	  showAllAlbum();
+}
 /*1분 미리듣기 함수*/
 function limitPlayTime(audio) {
     if (audio.currentTime > 60) { // 1분(60초)로 제한
@@ -36,7 +67,7 @@ function limitPlayTime(audio) {
 
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){	
-		window.location.href="cart.jsp";
+		window.location.href="${contextPath}/cart.jsp";
 		return true;
 	} else{
 		return false;
@@ -84,7 +115,7 @@ function cart(){
                      <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -102,21 +133,21 @@ function cart(){
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="main.jsp">Home</a></li>
-                                    <li><a href="album.jsp">Album</a></li>
+                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                    <li><a href="${contextPath}/album.jsp">Album</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="main.jsp">Home</a></li>
-                                            <li><a href="album.jsp">Album</a></li>
-                                            <li><a href="connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                            <li><a href="${contextPath}/album.jsp">Album</a></li>
+                                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                             <%
                                             if(code != null){
                                            	 if(code.equals("100")){
                                             %>
                                             <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="cart.jsp">장바구니</a></li>
+                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
                                                     <li><a href="#">구매내역</a></li>
                                                     <li><a href="#">소비자4</a>
                                                         <ul class="dropdown">
@@ -135,10 +166,10 @@ function cart(){
                                             %> 
                                             <li><a href="#">관리자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="../customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="../admin/admin.jsp">회원목록</a></li>
-                                                    <li><a href="../admin/artist.jsp">아티스트목록</a></li>
-                                                    <li><a href="../admin/host.jsp">관리자목록</a></li>
+                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/admin/admin.jsp">회원목록</a></li>
+                                                    <li><a href="${contextPath}/admin/artist.jsp">아티스트목록</a></li>
+                                                    <li><a href="${contextPath}/admin/host.jsp">관리자목록</a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -156,8 +187,9 @@ function cart(){
                                             %>
                                             <li><a href="#">아티스트</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="artist/artist.jsp">음원등록</a></li>
+                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
+                                                    <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -176,7 +208,7 @@ function cart(){
                                             %>                                            
                                         </ul>
                                     </li>
-                                    <li><a href="connection.jsp">Contact</a></li>
+                                    <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                 </ul>
 <% 
 	//String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
@@ -187,7 +219,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/login.jsp" id="loginBtn">Login / Register</a>
+                                        <a href="${contextPath}/login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
 								
 <% 
@@ -197,12 +229,12 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="${contextPath}/customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>                                       
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -214,12 +246,12 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="${contextPath}/admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -231,12 +263,12 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="artist/artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
+                                        <a href="${contextPath}/artist/artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -266,7 +298,7 @@ function cart(){
             <!-- Single Hero Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/cover_1.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(${contextPath}/img/bg-img/cover_1.jpg);"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
@@ -284,7 +316,7 @@ function cart(){
             <!-- Single Hero Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-2.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(${contextPath}/img/bg-img/bg-2.jpg);"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
@@ -325,81 +357,19 @@ function cart(){
                 <div class="col-12">
                     <div class="albums-slideshow owl-carousel">
                         <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a1.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>The Cure</h5>
-                                </a>
-                                <p>Second Song</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a2.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>Sam Smith</h5>
-                                </a>
-                                <p>Underground</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a3.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>Will I am</h5>
-                                </a>
-                                <p>First</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a4.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>The Cure</h5>
-                                </a>
-                                <p>Second Song</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a5.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>DJ SMITH</h5>
-                                </a>
-                                <p>The Album</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a6.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>The Ustopable</h5>
-                                </a>
-                                <p>Unplugged</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="img/bg-img/a7.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>Beyonce</h5>
-                                </a>
-                                <p>Songs</p>
-                            </div>
-                        </div>
+                        <c:if test="${not empty albumListOrderByDate}">
+	                        <c:forEach items="${albumListOrderByDate}" var="album">
+		                        <div class="single-album">
+		                            <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}">
+		                            <div class="album-info">
+		                                <a href="#">
+		                                    <h5>${album.now}</h5>
+		                                </a>
+		                                <p>${album.album}</p>
+		                            </div>
+		                        </div>
+	                        </c:forEach>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -421,309 +391,38 @@ function cart(){
 
             <div class="row">
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/loveletter.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <!-- <p>$0.90</p>  -->
-                            </div>
-                        	<div class="album-info">
-								<a href="album.jsp?filter=y">
- 									 <h5>YOASOBI</h5>
-								</a>
-                            <p>러브레터</p>
-                        </div>                            
-                            <!-- Play Icon -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/LoveLetter.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                	<div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-				        <div class="album-thumb">
-            				<img src="resource/img/newjeans.jpg" alt="">
-            				<!-- Album Price -->
-            				<div class="album-price">
-                				<p>$0.80</p>
-            				</div>
-        				<div class="album-info">
-							<a href="album.jsp?filter=y">
-								<h5>뉴진스</h5>
-							</a>
-							<p>ETA</p>
-						</div>                            
-                            <!-- Play Icon -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/eta.mp3">
-                            </audio>
-        				</div>
-					</div>
-				</div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/jejuisland.jpg" alt="">
-                        	<!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.70</p>
-                            </div>
-                        	<div class="album-info">
-                            	<a href="album.jsp?filter=g">
-                                	<h5>태연</h5>
-                            	</a>
-                          	  <p>제주도의 푸른밤</p>
-                        	</div>                            
-                            <!-- Play Icon -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/bluenightinjejuisland.mp3">
-                            </audio>                            
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/firstlove.jpg" alt="">
-                        	<!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.80</p>
-                            </div>
-                            <!-- 링크 --> 
-                        	<div class="album-info">
-                          	  <a href="album.jsp?filter=b">
-                              	  <h5>백아</h5>
-                          	  </a>
-                          	  <p>첫사랑</p>
-                        	</div>
-                        	<!-- Play Button -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/firstlove.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/sia.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- 링크 -->
-                        	<div class="album-info">
-                            	<a href="#">
-                            		<h5>sia</h5>
-                            	</a>
-                            	<p>snowman</p>
-                        	</div>
-                        	<!-- Play Button -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/snowman.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/lusia.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- 링크 -->
-                        	<div class="album-info">
-                            	<a href="#">
-                            		<h5>심규선</h5>
-                            	</a>
-                            	<p>달과 6팬스</p>
-                        	</div>
-                        	<!-- Play Button -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/moonand6pence.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/BlindingLights.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- 링크 -->
-                        	<div class="album-info">
-                            	<a href="#">
-                            		<h5>The Weekend</h5>
-                            	</a>
-                            	<p>Blinding Lights</p>
-                        	</div>
-                        	<!-- Play Button -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/blindinglights.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/evenifitsnotme.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- 링크 -->
-                        	<div class="album-info">
-                            	<a href="#">
-                            		<h5>주호</h5>
-                            	</a>
-                            	<p>내가 아니라도</p>
-                        	</div>
-                        	<!-- Play Button -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/evenifitsnotme.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/sympony.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- 링크 -->
-                        	<div class="album-info">
-                            	<a href="#">
-                            		<h5>Clean Bandit</h5>
-                            	</a>
-                            	<p>Symphony</p>
-                        	</div>
-                        	<!-- Play Button -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/Symphony.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/eventhorizon.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- 링크 -->
-                        	<div class="album-info">
-                            	<a href="#">
-                            		<h5>윤하</h5>
-                            	</a>
-                            	<p>사건의 지평선</p>
-                        	</div>
-                        	<!-- Play Button -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/eventhorizon.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/akmu.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- 링크 -->
-                        	<div class="album-info">
-                            	<a href="#">
-                            		<h5>악동뮤지션</h5>
-                            	</a>
-                            	<p>집에 돌아오는 길</p>
-                        	</div>
-                        	<!-- Play Button -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/waybackhome.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="resource/img/killmydoubt.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- 링크 -->
-                        	<div class="album-info">
-                            	<a href="#">
-                            		<h5>ITZY</h5>
-                            	</a>
-                            	<p>none of my business</p>
-                        	</div>
-                        	<!-- Play Button -->
-                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
-							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/noneofmybusiness.mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
+                <c:if test="${not empty albumListOrderByDate}">
+                	<c:forEach items="${albumListOrderByDate}" var="album">
+		                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+		                    <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
+		                        <div class="album-thumb">
+		                            <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}">
+		                        	<!-- Album Price -->
+		                            <div class="album-price">
+		                                <p>$${album.price}</p>
+		                            </div>
+		                        	<div class="album-info">
+		                            	<a href="${contextPath}/album.jsp?filter=g">
+		                                	<h5>${album.singer}</h5>
+		                            	</a>
+		                          	  <p>${album.title}</p>
+		                        	</div>                            
+		                            <!-- Play Icon -->
+		                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+									<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+										<source src="${contextPath}/resource/audio/${album.song}">
+		                            </audio>                            
+		                        </div>
+		                    </div>
+		                </div>
+	                </c:forEach>
+				</c:if>
             </div>
 
             <div class="row">
                 <div class="col-12">
                     <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
-                        <a href="album.jsp" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
+                        <a href="${contextPath}/album.jsp" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -732,12 +431,12 @@ function cart(){
     <!-- ##### Buy Now Area End ##### -->
 
     <!-- ##### Featured Artist Area Start ##### -->
-    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/piano.jpg);">
+    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(${contextPath}/img/bg-img/piano.jpg);">
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
-                        <img src="resource/img/eventhorizon.jpg" alt="">
+                        <img src="${contextPath}/resource/img/eventhorizon.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8">
@@ -754,7 +453,7 @@ function cart(){
                             </div>
                             
                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-                            <source src="resource/audio/eventhorizon.mp3">
+                            <source src="${contextPath}/resource/audio/eventhorizon.mp3">
                             </audio>
                             
                             <!-- 1분 미리듣기 함수가 적용된 부분
@@ -786,7 +485,7 @@ function cart(){
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt1.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/wt1.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>Sam Smith</h6>
@@ -797,7 +496,7 @@ function cart(){
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="150ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt2.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/wt2.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>Power Play</h6>
@@ -808,7 +507,7 @@ function cart(){
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="200ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt3.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/wt3.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>Cristinne Smith</h6>
@@ -819,7 +518,7 @@ function cart(){
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="250ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt4.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/wt4.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>The Music Band</h6>
@@ -830,7 +529,7 @@ function cart(){
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="300ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt5.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/wt5.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>Creative Lyrics</h6>
@@ -841,7 +540,7 @@ function cart(){
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="350ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt6.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/wt6.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>The Culture</h6>
@@ -864,7 +563,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="resource/img/Arirang.jpg" alt="">
+                                    <img src="${contextPath}/resource/img/Arirang.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>SG워너비</h6>
@@ -872,7 +571,7 @@ function cart(){
                                 </div>
                             </div>
                             <audio preload="auto" controls> 
-                                <source src="resource/audio/Arirang.mp3">
+                                <source src="${contextPath}/resource/audio/Arirang.mp3">
                             </audio>
                         </div>
                         
@@ -880,7 +579,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="resource/img/eventhorizon.jpg" alt="">
+                                    <img src="${contextPath}/resource/img/eventhorizon.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>윤하</h6>
@@ -888,7 +587,7 @@ function cart(){
                                 </div>
                             </div>
                              <audio preload="auto" controls ontimeupdate="limitPlayTime(this);"> 
- 								<source src="resource/audio/eventhorizon.mp3">
+ 								<source src="${contextPath}/resource/audio/eventhorizon.mp3">
 							</audio>
 							<!--                             
                             <audio preload="auto" controls>
@@ -901,7 +600,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="150ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="resource/img/good.jpg" alt="">
+                                    <img src="${contextPath}/resource/img/good.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>윤종신</h6>
@@ -909,7 +608,7 @@ function cart(){
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/good.mp3">
+                                <source src="${contextPath}/resource/audio/good.mp3">
                             </audio>
                         </div>
 
@@ -917,7 +616,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="200ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="resource/img/ssagsseuli.jpg" alt="">
+                                    <img src="${contextPath}/resource/img/ssagsseuli.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>다시 여기 바닷가</h6>
@@ -925,7 +624,7 @@ function cart(){
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/ssagsseuli.mp3">
+                                <source src="${contextPath}/resource/audio/ssagsseuli.mp3">
                             </audio>
                         </div>
 
@@ -933,7 +632,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="250ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="resource/img/Butter.jpg" alt="">
+                                    <img src="${contextPath}/resource/img/Butter.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>Butter</h6>
@@ -941,7 +640,7 @@ function cart(){
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/Butter.mp3">
+                                <source src="${contextPath}/resource/audio/Butter.mp3">
                             </audio>
                         </div>
 
@@ -949,7 +648,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="300ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt11.jpg" alt="">
+                                    <img src="${contextPath}/img/bg-img/wt11.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>Creative Lyrics</h6>
@@ -957,7 +656,7 @@ function cart(){
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/dummy-audio.mp3">
+                                <source src="${contextPath}/resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
 
@@ -965,7 +664,7 @@ function cart(){
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="350ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt12.jpg" alt="">
+                                    <img src="${contextPath}/img/bg-img/wt12.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>The Culture</h6>
@@ -973,7 +672,7 @@ function cart(){
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="resource/audio/dummy-audio.mp3">
+                                <source src="${contextPath}/resource/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>
@@ -990,7 +689,7 @@ function cart(){
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa1.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/pa1.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>Sam Smith</p>
@@ -1000,7 +699,7 @@ function cart(){
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="150ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa2.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/pa2.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>William Parker</p>
@@ -1010,7 +709,7 @@ function cart(){
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="200ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa3.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/pa3.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>Jessica Walsh</p>
@@ -1020,7 +719,7 @@ function cart(){
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="250ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa4.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/pa4.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>Tha Stoves</p>
@@ -1030,7 +729,7 @@ function cart(){
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="300ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa5.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/pa5.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>DJ Ajay</p>
@@ -1040,7 +739,7 @@ function cart(){
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="350ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa6.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/pa6.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>Radio Vibez</p>
@@ -1050,7 +749,7 @@ function cart(){
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="400ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa7.jpg" alt="">
+                                <img src="${contextPath}/img/bg-img/pa7.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>Music 4u</p>
@@ -1065,7 +764,7 @@ function cart(){
     <!-- ##### Miscellaneous Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->
-    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
+    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(${contextPath}/img/bg-img/bg-2.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1119,7 +818,7 @@ function cart(){
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="#"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
@@ -1128,13 +827,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="main.jsp">Home</a></li>
-                            <li><a href="album.jsp">Albums</a></li>
+                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                            <li><a href="${contextPath}/album.jsp">Albums</a></li>
                             <!--  
                             <li><a href="#">Events</a></li>
                             <li><a href="#">News</a></li>
                             -->
-                            <li><a href="connection.jsp">Contact</a></li>
+                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1145,15 +844,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="${contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="${contextPath}/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="${contextPath}/js/bootstrap/bootstrap.min.js"></script>
     <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
+    <script src="${contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="${contextPath}/js/active.js"></script>
 </body>
 
 </html>

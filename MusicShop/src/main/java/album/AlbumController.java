@@ -58,10 +58,12 @@ public class AlbumController extends HttpServlet {
 		String albumName = request.getParameter("searchBar");
 		//PrintWriter writer = response.getWriter();
 		//String encoding = "UTF-8";
-		String action = request.getPathInfo();
-		HttpSession session = request.getSession();
+		String path = request.getPathInfo();
+		String action = path.substring(path.lastIndexOf("/"));
+		System.out.println(action);
+		HttpSession session = request.getSession(false);
+		nextpage = path.substring(path.indexOf("/"), path.lastIndexOf("/"))+".jsp";
 		if(action.equals("/albumSearch.do")) {
-			nextpage = "/album.jsp";
 			List<AlbumVO> albumList = albumDAO.searchAlbum(albumName);
 			boolean isAll = (albumList.size() == albumDAO.searchAlbumRows());
 			System.out.println(isAll);
@@ -70,7 +72,6 @@ public class AlbumController extends HttpServlet {
 			request.setAttribute("isSearch", true);
 		}
 		else if(action.equals("/showAllAlbum.do")) {
-			nextpage = "/album.jsp";
 			List<AlbumVO> albumList = albumDAO.searchAllAlbum();
 			request.setAttribute("albumList", albumList);
 			request.setAttribute("isAll", true);
@@ -80,6 +81,7 @@ public class AlbumController extends HttpServlet {
 			request.setAttribute("songList", songList);
 			request.setAttribute("isALL", true);
 		}
+		System.out.println(nextpage);
 		request.getRequestDispatcher(nextpage).forward(request, response);
 	}
 
