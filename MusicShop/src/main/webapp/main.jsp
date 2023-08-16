@@ -22,6 +22,10 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${contextPath}/style.css">
 <%
+String user_id = (String) session.getAttribute("id");
+String code = (String) session.getAttribute("code");
+String name = (String) session.getAttribute("name");
+
 class AlbumDateComparator implements Comparator<AlbumVO> {
     @Override
     public int compare(AlbumVO a1, AlbumVO a2) {
@@ -29,20 +33,13 @@ class AlbumDateComparator implements Comparator<AlbumVO> {
     }
 }
 
-String user_id = (String) session.getAttribute("id");
-String code = (String) session.getAttribute("code");
-String name = (String) session.getAttribute("name");
+List<AlbumVO> alist = null;
 
-Calendar cal1 = Calendar.getInstance();
-cal1.add(Calendar.DATE, -310); // 오늘 날짜에서 7일 빼기		
-Date date = new Date(cal1.getTimeInMillis());
-List<AlbumVO> alist = (List<AlbumVO>)request.getAttribute("albumList");
-List<Date> dateList = new ArrayList<Date>();
-for(AlbumVO a : alist) {
-	dateList.add(a.getNow());
+if(request.getAttribute("albumList") != null) {
+	alist = (List<AlbumVO>)request.getAttribute("albumList");
+	alist.sort(new AlbumDateComparator().reversed());
 }
-dateList.sort(Comparator.reverseOrder());
-alist.sort(new AlbumDateComparator().reversed());
+
 
 
 %>
