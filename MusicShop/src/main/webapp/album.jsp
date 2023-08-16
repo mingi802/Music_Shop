@@ -310,7 +310,7 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/artist/atist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
+                                        <a href="${contextPath}/artist/artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -431,7 +431,7 @@ String name = (String) session.getAttribute("name");
 			                    	<source src="${contextPath}/resource/audio/${album.song}">
 			                    </audio>
 			                        <div class="album-info">
-			                            <a href="${contextPath}/서블릿?album=${album.album}"> <!-- 경로 -->
+			                            <a href="${contextPath}/Album/showOneAlbum.do?album=${album.album}"> <!-- 경로 -->
 			                                <h6 class="singer">${album.singer}</h6> <!-- 가수 -->
 			                            </a>
 			                            <p class="album">${album.album}</p><!-- 앨범 이름 -->

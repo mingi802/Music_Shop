@@ -47,7 +47,6 @@ String name = (String) session.getAttribute("name");
 		};
 	</script>
 	<script>
-
 	function cart(){
 		if(confirm('장바구니로 이동하시겠습니까?')){
 			window.location.href="../cart.jsp";
@@ -286,7 +285,7 @@ if(user_id == null){
         </div>
     </section>
     <!-- ##### Login Area End ##### -->
-
+	
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">

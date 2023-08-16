@@ -424,21 +424,21 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
                         <div class="album-thumb">
-                            <img src="resource/img/eventhorizon.jpg" alt="">
+                            <img src="resource/img/loveletter.jpg" alt="">
                             <!-- Album Price -->
                             <div class="album-price">
-                                <p>$0.90</p>
+                                <!-- <p>$0.90</p>  -->
                             </div>
                         	<div class="album-info">
 								<a href="album.jsp?filter=y">
- 									 <h5>윤하</h5>
+ 									 <h5>YOASOBI</h5>
 								</a>
-                            <p>사건의 지평선</p>
+                            <p>러브레터</p>
                         </div>                            
                             <!-- Play Icon -->
                         	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
 							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/eventhorizon.mp3">
+								<source src="resource/audio/LoveLetter.mp3">
                             </audio>
                         </div>
                     </div>
@@ -448,21 +448,21 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                 	<div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
 				        <div class="album-thumb">
-            				<img src="resource/img/Arirang.jpg" alt="">
+            				<img src="resource/img/newjeans.jpg" alt="">
             				<!-- Album Price -->
             				<div class="album-price">
                 				<p>$0.80</p>
             				</div>
         				<div class="album-info">
 							<a href="album.jsp?filter=y">
-								<h5>sg워너비</h5>
+								<h5>뉴진스</h5>
 							</a>
-							<p>아리랑</p>
+							<p>ETA</p>
 						</div>                            
                             <!-- Play Icon -->
                         	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
 							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/Arirang.mp3">
+								<source src="resource/audio/eta.mp3">
                             </audio>
         				</div>
 					</div>
@@ -472,21 +472,21 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
                         <div class="album-thumb">
-                            <img src="resource/img/good.jpg" alt="">
+                            <img src="resource/img/jejuisland.jpg" alt="">
                         	<!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.70</p>
                             </div>
                         	<div class="album-info">
                             	<a href="album.jsp?filter=g">
-                                	<h5>운종신</h5>
+                                	<h5>태연</h5>
                             	</a>
-                          	  <p>좋니</p>
+                          	  <p>제주도의 푸른밤</p>
                         	</div>                            
                             <!-- Play Icon -->
                         	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
 							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/good.mp3">
+								<source src="resource/audio/bluenightinjejuisland.mp3">
                             </audio>                            
                         </div>
 
@@ -497,7 +497,7 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
                         <div class="album-thumb">
-                            <img src="resource/img/Butter.jpg" alt="">
+                            <img src="resource/img/firstlove.jpg" alt="">
                         	<!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.80</p>
@@ -505,14 +505,14 @@ function cart(){
                             <!-- 링크 --> 
                         	<div class="album-info">
                           	  <a href="album.jsp?filter=b">
-                              	  <h5>BTS</h5>
+                              	  <h5>백아</h5>
                           	  </a>
-                          	  <p>BUTTER</p>
+                          	  <p>첫사랑</p>
                         	</div>
                         	<!-- Play Button -->
                         	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
 							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-								<source src="resource/audio/Butter.mp3">
+								<source src="resource/audio/firstlove.mp3">
                             </audio>
                         </div>
                     </div>
@@ -522,104 +522,23 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
+                            <img src="resource/img/sia.jpg" alt="">
                             <!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.90</p>
                             </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Garage Band</h5>
-                            </a>
-                            <p>Radio Station</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Garage Band</h5>
-                            </a>
-                            <p>Radio Station</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
+                            <!-- 링크 -->
+                        	<div class="album-info">
+                            	<a href="#">
+                            		<h5>sia</h5>
+                            	</a>
+                            	<p>snowman</p>
+                        	</div>
+                        	<!-- Play Button -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/snowman.mp3">
+                            </audio>
                         </div>
                     </div>
                 </div>
@@ -628,28 +547,173 @@ function cart(){
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
+                            <img src="resource/img/lusia.jpg" alt="">
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.90</p>
+                            </div>
+                            <!-- 링크 -->
+                        	<div class="album-info">
+                            	<a href="#">
+                            		<h5>심규선</h5>
+                            	</a>
+                            	<p>달과 6팬스</p>
+                        	</div>
+                        	<!-- Play Button -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/moonand6pence.mp3">
+                            </audio>
                         </div>
                     </div>
                 </div>
 
                 <!-- Single Album Area -->
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
+                            <img src="resource/img/BlindingLights.jpg" alt="">
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.90</p>
+                            </div>
+                            <!-- 링크 -->
+                        	<div class="album-info">
+                            	<a href="#">
+                            		<h5>The Weekend</h5>
+                            	</a>
+                            	<p>Blinding Lights</p>
+                        	</div>
+                        	<!-- Play Button -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/blindinglights.mp3">
+                            </audio>
                         </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
+                    </div>
+                </div>
+
+                <!-- Single Album Area -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
+                        <div class="album-thumb">
+                            <img src="resource/img/evenifitsnotme.jpg" alt="">
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.90</p>
+                            </div>
+                            <!-- 링크 -->
+                        	<div class="album-info">
+                            	<a href="#">
+                            		<h5>주호</h5>
+                            	</a>
+                            	<p>내가 아니라도</p>
+                        	</div>
+                        	<!-- Play Button -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/evenifitsnotme.mp3">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Album Area -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
+                        <div class="album-thumb">
+                            <img src="resource/img/sympony.jpg" alt="">
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.90</p>
+                            </div>
+                            <!-- 링크 -->
+                        	<div class="album-info">
+                            	<a href="#">
+                            		<h5>Clean Bandit</h5>
+                            	</a>
+                            	<p>Symphony</p>
+                        	</div>
+                        	<!-- Play Button -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/Symphony.mp3">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Album Area -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
+                        <div class="album-thumb">
+                            <img src="resource/img/eventhorizon.jpg" alt="">
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.90</p>
+                            </div>
+                            <!-- 링크 -->
+                        	<div class="album-info">
+                            	<a href="#">
+                            		<h5>윤하</h5>
+                            	</a>
+                            	<p>사건의 지평선</p>
+                        	</div>
+                        	<!-- Play Button -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/eventhorizon.mp3">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Album Area -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
+                        <div class="album-thumb">
+                            <img src="resource/img/akmu.jpg" alt="">
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.90</p>
+                            </div>
+                            <!-- 링크 -->
+                        	<div class="album-info">
+                            	<a href="#">
+                            		<h5>악동뮤지션</h5>
+                            	</a>
+                            	<p>집에 돌아오는 길</p>
+                        	</div>
+                        	<!-- Play Button -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/waybackhome.mp3">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Album Area -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
+                        <div class="album-thumb">
+                            <img src="resource/img/killmydoubt.jpg" alt="">
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>$0.90</p>
+                            </div>
+                            <!-- 링크 -->
+                        	<div class="album-info">
+                            	<a href="#">
+                            		<h5>ITZY</h5>
+                            	</a>
+                            	<p>none of my business</p>
+                        	</div>
+                        	<!-- Play Button -->
+                        	<!-- 해당 플레이어의 CSS는 style.css에서 '실험2'를 검색하면 볼 수 있음 -->
+							<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+								<source src="resource/audio/noneofmybusiness.mp3">
+                            </audio>
                         </div>
                     </div>
                 </div>

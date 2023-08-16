@@ -166,4 +166,48 @@ public class AlbumDAO {
 		}
 		return albumList;
 	}
+	
+	public List<AlbumVO> selectAlbum(String albumName){
+		List<AlbumVO> songList = new ArrayList<AlbumVO>();
+		try {
+			
+			try {
+				connDB();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			/*song.id, song.album_id »ý·«*/
+			String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.name='"+ albumName +"'";
+			System.out.println(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String title = rs.getString("title");
+				String singer = rs.getString("singer");
+				int price = rs.getInt("price");
+				String name = rs.getString("name");
+				String song = rs.getString("song");
+				String sign = rs.getString("sign");
+				
+				AlbumVO albumVO = new AlbumVO();
+				
+				albumVO.setTitle(title);
+				albumVO.setSinger(singer);
+				albumVO.setPrice(price);
+				albumVO.setName(name);
+				albumVO.setSong(song);
+				albumVO.setSign(sign);
+				
+				songList.add(albumVO);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return songList;
+	}
+	
 }

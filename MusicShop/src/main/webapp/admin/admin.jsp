@@ -85,7 +85,7 @@ function cart(){
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -105,12 +105,12 @@ function cart(){
                                 <ul>
                                     <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
-                                    <li><a href="#">관리자</a>
+                                    <li><a href="#">Manage</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
-                                            <li><a href="#">Manage</a>
+                                            <li><a href="#">매니저</a>
                                                 <ul class="dropdown">
                                                 	<li><a href="../customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="admin.jsp">회원목록</a></li>
@@ -154,12 +154,12 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="../customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="../login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -193,7 +193,7 @@ function cart(){
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="../login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -228,8 +228,8 @@ function cart(){
     	<ul style="padding-left:5px;padding-top:20px;">
 			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
 			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
-			<li><a href="artist.jsp"><b>아티스트 목록</b></a></li><br>
-			<li><a href="musicManage.jsp"><b>음원 목록</b></a></li><br>
+			<li><a href="artist.jsp"><b>아티스트목록</b></a></li><br>
+			<li><a href="musicManage.jsp"><b>음원목록</b></a></li><br>
 			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>			    	
     	</ul>
     </aside>
@@ -262,7 +262,7 @@ function cart(){
                         		<td><%=rs.getString("addr") %></td>
                         		<td><%=rs.getString("email") %></td>
                         		<td><%=rs.getString("code") %></td>
-                        		<td><button onclick="location.href='delete.jsp?id=<%= rs.getString("id") %>'">Delete</button></td>
+                        		<td><button onclick="location.href='delete.jsp?id=<%=rs.getString("id")%>&code=<%=rs.getString("code")%>'">Delete</button></td>
                         		</tr>
                         	
                         	<%	

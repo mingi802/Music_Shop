@@ -104,12 +104,12 @@ function cart(){
                                 <ul>
                                     <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
-                                    <li><a href="#">관리</a>
+                                    <li><a href="#">Manage</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
-                                            <li><a href="#">관리자</a>
+                                            <li><a href="#">매니저</a>
                                                 <ul class="dropdown">
                                                     <li><a href="admin.jsp">회원목록</a></li>
                                                     <li><a href="artist.jsp">아티스트목록</a></li>
@@ -223,7 +223,7 @@ function cart(){
 			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
 			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
 			<li><a href="artist.jsp"><b>아티스트목록</b></a></li><br>
-			<li><a href="musicManage.jsp"><b>음원 목록</b></a></li><br>
+			<li><a href="musicManage.jsp"><b>음원목록</b></a></li><br>
 			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>	    	
     	</ul>
     </aside>
@@ -256,7 +256,7 @@ function cart(){
                         		<td><%=rs.getString("addr") %></td>
                         		<td><%=rs.getString("email") %></td>
                         		<td><%=rs.getString("code") %></td>
-                        		<td><button onclick="location.href='delete.jsp?id=<%= rs.getString("id") %>'">Delete</button></td>
+                        		<td><button onclick="location.href='delete.jsp?id=<%= rs.getString("id") %>&code=<%=rs.getString("code")%>'">Delete</button></td>
                         		</tr>
                         	
                         	<%	

@@ -955,6 +955,12 @@ img {
 	.single-album-area .audioplayer-bar {
 	display: none;
 	}
+	.single-album-area .audioplayer{
+	height: 1px;
+	}
+	.single-album-area .audioplayer-playing{
+	background: rgb(111,167,235);
+	}
 	
  /*실험2 END*/	
  /*실험3 START*/
@@ -1289,10 +1295,10 @@ img {
  	 z-index: 1;
  	 background-color: #f5f9fa;
  	 border: 1px solid #d8d8d8;
- 	 padding: 50px 60px;
+ 	 padding: 50px 10px;
  	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
  	 text-align: center;
- 	 width: 970px; 
+ 	 width: 1200px; 
  	 margin-left: 40px;
   	}
   	.admin-container{
@@ -1303,20 +1309,28 @@ img {
 	.member-manage-form table {
 	text-align : center;
  	margin: 0 auto; 
- 	 border-collapse : collapse;
- 	 width: 100%; 
+ 	border-collapse : collapse;
+ 	width: 100%; 
+	}
+	/*관리자의 음원 관리 페이지 CSS start*/
+	.music-manage-form {
+	overflow: auto;
+	padding-left: 100px;
 	}
 	.music-manage-form table {
 	text-align : center;
- 	margin-left: -60px; 
+ 	margin-left: -70px; 
  	border-collapse : collapse;
- 	width: 950px; 
-	}	
+ 	width: 1100px; 
+ 	border-spacing: 10px;
+ 	padding-left: 100px;
+	}
+		
   	.music-container{
   	width: 1950px;
 	text-align: center;
-	margin-left: -500px;
-	padding-left: 250px;
+	margin-left: -1550px;
+	padding-left: 1500px;
   	}	
 	.music-manage-form button {
   	padding: 10px 20px; 
@@ -1496,6 +1510,11 @@ img {
  	 text-align: center;
  	 width: 140%; 
   	}
+  	.music-list-form{
+  	overflow: auto;
+  	width: 100%;
+  	height: 100%;
+  	}
   	.music-list-container{
   	width: 180%;
 	text-align: center;
@@ -1504,11 +1523,12 @@ img {
 	.music-list-form table {
 	text-align : center;
  	margin: 0 auto; 
- 	 border-collapse : collapse;
- 	 width: 850px; 
+ 	border-collapse : collapse;
+ 	width: 890px; 
+ 	border-spacing: 10px;
 	}
 	.music-list-form th td{
-	padding: 15px; 
+	padding: 20px; 
 	}  	
 	.music-list-form button {
   	padding: 10px 20px; 

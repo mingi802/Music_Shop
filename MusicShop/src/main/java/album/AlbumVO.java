@@ -9,9 +9,10 @@ public class AlbumVO {
 	private String title;
 	private String singer;
 	private Date now;
-	private String price;
+	private int price;
 	private String sign;
 	private String song;
+	private String name;
 	
 	public AlbumVO() {
 		// TODO Auto-generated constructor stub
@@ -90,14 +91,14 @@ public class AlbumVO {
 	/**
 	 * @return the price
 	 */
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
 	/**
 	 * @param price the price to set
 	 */
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -129,4 +130,12 @@ public class AlbumVO {
 		this.song = song;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }
