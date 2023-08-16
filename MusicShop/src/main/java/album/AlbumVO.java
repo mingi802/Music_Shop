@@ -9,7 +9,7 @@ public class AlbumVO {
 	private String title;
 	private String singer;
 	private Date now;
-	private String price;
+	private int price;
 	private String sign;
 	private String song;
 	
@@ -90,14 +90,14 @@ public class AlbumVO {
 	/**
 	 * @return the price
 	 */
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
 	/**
 	 * @param price the price to set
 	 */
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

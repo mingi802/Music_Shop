@@ -78,7 +78,7 @@ public class AlbumDAO {
 			}
 			
 			//String sql = "SELECT * FROM album";
-			String sql = "SELECT album.id, album.name, album.title, album.singer, album.now, album.sign, song.song FROM album, song WHERE album.title = song.name";
+			String sql = "SELECT album.id, album.name, album.title, album.singer, album.now, album.sign, song.song, song.price FROM album, song WHERE album.title = song.name";
 			System.out.println(sql);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -89,7 +89,7 @@ public class AlbumDAO {
 				String title = rs.getString("title"); //타이틀곡
 				String singer = rs.getString("singer"); //가수
 				Date now = rs.getDate("now"); //발매일
-				//String price = rs.getString("price"); //가격
+				int price = rs.getInt("price"); //가격
 				String sign = rs.getString("sign"); //사진 
 				String song = rs.getString("song"); //음원
 				
@@ -100,7 +100,7 @@ public class AlbumDAO {
 				albumVO.setTitle(title);
 				albumVO.setSinger(singer);
 				albumVO.setNow(now);
-				//albumVO.setPrice(price);
+				albumVO.setPrice(price);
 				albumVO.setSign(sign);
 				albumVO.setSong(song);
 				
