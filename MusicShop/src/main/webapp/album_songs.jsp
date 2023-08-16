@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" import="java.util.ArrayList" import="java.util.List" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +15,17 @@
     <title>MLP Music:: </title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="${contextPath}/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="${contextPath}/style.css">
 <%
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
 %>
 <script>
-	var albumList = new Array();
+	var songList = new Array();
 	albumList.push({
 		id: "${album.id}",
 		album: "${album.album}",
@@ -67,7 +68,7 @@ function limitPlayTime(audio) {
                      <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="main.jsp" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -84,20 +85,13 @@ function limitPlayTime(audio) {
 
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="main.jsp">Home</a></li>
-                                    <li><a href="album.jsp">Album</a></li>
+                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                    <li><a href="${contextPath}/album.jsp">Album</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="main.jsp">Home</a></li>
-                                            <li><a href="album.jsp">Album</a></li>
-                                            <!--  
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            -->
-                                            <li><a href="connection.jsp">Contact</a></li>
-                                            <!--  
-                                            <li><a href="elements.html">Elements</a></li>
-                                            -->
+                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                            <li><a href="${contextPath}/album.jsp">Album</a></li>
+                                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                             <%
                                             if(code != null){
                                             	if(code.equals("100")){
@@ -166,11 +160,7 @@ function limitPlayTime(audio) {
                                             %>                                            
                                         </ul>
                                     </li>
-                                    <!--  
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                    -->
-                                    <li><a href="connection.jsp">Contact</a></li>
+                                    <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                 </ul>
 <% 
 	//String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
@@ -181,7 +171,7 @@ function limitPlayTime(audio) {
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/login.jsp" id="loginBtn">Login / Register</a>
+                                        <a href="${contextPath}/login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
 								
 <% 
@@ -191,12 +181,12 @@ function limitPlayTime(audio) {
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="${contextPath}/customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>                                       
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -208,12 +198,12 @@ function limitPlayTime(audio) {
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="${contextPath}/admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -225,12 +215,12 @@ function limitPlayTime(audio) {
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="atist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
+                                        <a href="${contextPath}/artist/atist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -257,7 +247,7 @@ function limitPlayTime(audio) {
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
-                        <img src="resource/img/younha.jpg" alt="">
+                        <img src="${contextPath}/resource/img/younha.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8">
@@ -278,7 +268,7 @@ function limitPlayTime(audio) {
                                 <p>01. 사건의 지평선</p>
                             </div>
                             <audio preload="auto" controls>
-                            <source src="resource/audio/eventhorizon.mp3">
+                            <source src="${contextPath}/resource/audio/eventhorizon.mp3">
                             </audio>
                             <!-- 1분 미리듣기 함수가 적용된 부분
                            
@@ -302,7 +292,7 @@ function limitPlayTime(audio) {
 							<p>01. 사건의 지평선</p>
 						</div>
                         <audio preload="auto" controls>
-                           <source src="resource/audio/eventhorizon.mp3">
+                           <source src="${contextPath}/resource/audio/eventhorizon.mp3">
                         </audio>
                     </div>
 	               	<div class="col-1 align-self-center mt-4">
@@ -322,7 +312,7 @@ function limitPlayTime(audio) {
 							<p>01. 사건의 지평선</p>
 						</div>
                         <audio preload="auto" controls>
-                           <source src="resource/audio/eventhorizon.mp3">
+                           <source src="${contextPath}/resource/audio/eventhorizon.mp3">
                         </audio>
                     </div>
 	               	<div class="col-1 align-self-center mt-4">
@@ -342,7 +332,7 @@ function limitPlayTime(audio) {
 							<p>01. 사건의 지평선</p>
 						</div>
                         <audio preload="auto" controls>
-                           <source src="resource/audio/eventhorizon.mp3">
+                           <source src="${contextPath}/resource/audio/eventhorizon.mp3">
                         </audio>
                     </div>
 	               	<div class="col-1 align-self-center mt-4">
@@ -362,7 +352,7 @@ function limitPlayTime(audio) {
 							<p>01. 사건의 지평선</p>
 						</div>
                         <audio preload="auto" controls>
-                           <source src="resource/audio/eventhorizon.mp3">
+                           <source src="${contextPath}/resource/audio/eventhorizon.mp3">
                         </audio>
                     </div>
 	               	<div class="col-1 align-self-center mt-4">
@@ -384,7 +374,7 @@ function limitPlayTime(audio) {
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="#"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
@@ -393,13 +383,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="main.jsp">Home</a></li>
-                            <li><a href="album.jsp">Albums</a></li>
-                            <!--  
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            -->
-                            <li><a href="connection.jsp">Contact</a></li>
+                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                            <li><a href="${contextPath}/album.jsp">Albums</a></li>
+                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -411,14 +397,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- ##### Header Area End ##### -->
        <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="${contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="${contextPath}/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="${contextPath}/js/bootstrap/bootstrap.min.js"></script>
     <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
+    <script src="${contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="${contextPath}/js/active.js"></script>
 </body>
 </html>
