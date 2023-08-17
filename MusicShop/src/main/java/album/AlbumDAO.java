@@ -167,7 +167,8 @@ public class AlbumDAO {
 		return albumList;
 	}
 	
-	public List<AlbumVO> selectAlbum(String album){
+	public List<AlbumVO> selectAlbum(int album_id){ //String album 대신 int album_id로 변경
+		
 		List<AlbumVO> songList = new ArrayList<AlbumVO>();
 		try {
 			
@@ -176,11 +177,14 @@ public class AlbumDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			String albumtitle = album;
+			//String albumtitle = album;
 			/*song.id, song.album_id 생략*/
-			String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.name='"+ albumtitle +"'";
+			//String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND song.album_id='"+ albumtitle +"'";
+			String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.id= ?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);			
+			pstmt.setInt(1,album_id);
 			System.out.println(sql);
-			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

@@ -29,8 +29,9 @@ String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
 %>
 <script>
+
 	function showOneAlbum (){
-		window.location.href="${contextPath}/Album/showOneAlbum.do";
+		window.location.href="${contextPath}/Album/album/showOneAlbum.do";
 	}
 	
 	if(${empty songList} && !${empty isSearch ? false : isSearch}) {
@@ -38,6 +39,7 @@ String name = (String) session.getAttribute("name");
 		showOneAlbum();
 	} else{
 		alert("앨범 리스트 없음");
+		console.log(${isSearch});
 	}
 
 	if(${not empty songList}){
