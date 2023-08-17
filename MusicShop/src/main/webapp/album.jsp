@@ -406,6 +406,12 @@ String name = (String) session.getAttribute("name");
             
 			<div class="row">
 			    <form id="search-form" class="w-100 me-3" method="post" action="${contextPath}/Album/album/albumSearch.do">
+			    <!--
+			     
+			    ${contextPath}/Album/album/albumSearch.do 이 부분이 
+			    String action = path.substring(path.lastIndexOf("/")); 때문에 /albumSearch.do로 되는 건가요?
+			    
+			     -->
 					<div class="d-flex flex-row align-items-center mb-30">
 				        <div class="col-11 pe-0">
 				        <input type="search" class="form-control" id="searchBar" name="searchBar" placeholder="Search..." required aria-label="Search">
@@ -431,7 +437,7 @@ String name = (String) session.getAttribute("name");
 			                    	<source src="${contextPath}/resource/audio/${album.song}">
 			                    </audio>
 			                        <div class="album-info">
-			                            <a href="${contextPath}/Album/showOneAlbum.do?album=${album.album}"> <!-- 경로 -->
+			                            <a href="${contextPath}/Album/album_songs/showOneAlbum.do?album_id=${album.id}"> <!-- 경로(수정) -->
 			                                <h6 class="singer">${album.singer}</h6> <!-- 가수 -->
 			                            </a>
 			                            <p class="album">${album.album}</p><!-- 앨범 이름 -->
