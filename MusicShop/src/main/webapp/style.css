@@ -861,6 +861,8 @@ img {
   .single-album:hover, .single-album:focus {
     box-shadow: 0 5px 70px 0 rgba(0, 0, 0, 0.15); }
 
+
+
 .no-album {
   position: relative;
   z-index: 1;
@@ -931,7 +933,7 @@ img {
       text-transform: uppercase; }
     .single-album-area .album-info p {
       margin-bottom: 0; }
- /*실험2 START*/
+ /*�떎�뿕2 START*/
  	.single-album-area .audioplayer{
  	background: transparent;
  	border: none;
@@ -962,8 +964,8 @@ img {
 	background: rgb(111,167,235);
 	}
 	
- /*실험2 END*/	
- /*실험3 START*/
+ /*�떎�뿕2 END*/	
+ /*�떎�뿕3 START*/
 	.single-album .audioplayer{
  	background: transparent;
  	border: none;
@@ -1014,7 +1016,7 @@ img {
 	height: 250px;
 	}
 	
- /*실험3 END*/	
+ /*�떎�뿕3 END*/	
 .albums-slideshow {
   position: relative;
   z-index: 1; }
@@ -1203,6 +1205,7 @@ img {
       text-transform: uppercase;
       margin-bottom: 0; }
     .weeks-top-area .single-top-item .content- p {
+      text-transform: uppercase;
       font-size: 14px;
       margin-bottom: 0; }
   .weeks-top-area:hover, .weeks-top-area:focus {
@@ -1276,7 +1279,7 @@ img {
       border: none;
       border-radius: 0;
       background: transparent; }
-      /*실험*/
+      /*�떎�뿕*/
     .new-hits-area .single-new-item .audioplayer-playing .audioplayer-playpause,
     .new-hits-area .single-new-item .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
     .new-hits-area .single-new-item .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
@@ -1287,7 +1290,7 @@ img {
 	.new-hits-area .single-new-item .audioplayer-volume,
 	.new-hits-area .single-new-item .audioplayer-bar {
       display: none; }
-      /*1번*/
+      /*1踰�*/
 	.music-content {
  	 -webkit-transition-duration: 500ms;
  	 transition-duration: 500ms;
@@ -1312,7 +1315,7 @@ img {
  	border-collapse : collapse;
  	width: 100%; 
 	}
-	/*관리자의 음원 관리 페이지 CSS start*/
+	/*愿�由ъ옄�쓽 �쓬�썝 愿�由� �럹�씠吏� CSS start*/
 	.music-manage-form {
 	overflow: auto;
 	padding-left: 100px;
@@ -1497,7 +1500,7 @@ img {
 	margin-left: -150px;
 	} 
 	
-	/*2번*/
+	/*2踰�*/
 	.member-content {
  	 -webkit-transition-duration: 500ms;
  	 transition-duration: 500ms;

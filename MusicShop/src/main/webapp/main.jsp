@@ -357,7 +357,7 @@ function cart(){
                         <c:if test="${not empty albumListOrderByDate}">
 	                        <c:forEach items="${albumListOrderByDate}" var="album">
 		                        <div class="single-album">
-		                            <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}">
+		                            <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
 		                            <div class="album-info">
 		                                <a href="#">
 		                                    <h5>${album.now}</h5>
@@ -393,7 +393,7 @@ function cart(){
 		                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
 		                    <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
 		                        <div class="album-thumb">
-		                            <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}">
+		                            <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
 		                        	<!-- Album Price -->
 		                            <div class="album-price">
 		                                <p>$${album.price}</p>
@@ -478,73 +478,20 @@ function cart(){
                             <p>See what’s new</p>
                             <h2>This week’s top</h2>
                         </div>
-
                         <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/wt1.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Sam Smith</h6>
-                                <p>Underground</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="150ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/wt2.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Power Play</h6>
-                                <p>In my mind</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="200ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/wt3.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Cristinne Smith</h6>
-                                <p>My Music</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="250ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/wt4.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>The Music Band</h6>
-                                <p>Underground</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="300ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/wt5.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Creative Lyrics</h6>
-                                <p>Songs and stuff</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="350ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/wt6.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>The Culture</h6>
-                                <p>Pop Songs</p>
-                            </div>
-                        </div>
-
+                        <c:if test="${not empty albumList}">
+	                        <c:forEach items="${albumList}" var="album">
+	                        	<div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
+		                            <div class="thumbnail">
+		                                <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
+		                            </div>
+		                            <div class="content-">
+		                                <h6>${album.album}</h6>
+		                                <p>${album.singer}</p>
+		                            </div>
+	                        	</div>
+	                        </c:forEach>
+						</c:if>
                     </div>
                 </div>
 
