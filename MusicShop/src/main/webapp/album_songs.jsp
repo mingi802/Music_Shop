@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" import="java.util.ArrayList" import="java.util.List" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="album.AlbumVO" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+    <%@page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,24 +21,43 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${contextPath}/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>console.log("${contextPath}", "${songList.size()}");</script>
 <%
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
 %>
 <script>
-	var songList = new Array();
-	albumList.push({
-		id: "${album.id}",
-		album: "${album.album}",
-		title: "${album.title}",
-		singer: "${album.singer}",
-		now: "${album.now}",
-		price: "${album.price}",
-		sign: "${album.sign}",
-		song: "${album.song}"
-	});
-	console.log(albumList.slice(-1)); //앨범리스트의 마지막 요소 출력
+	function showOneAlbum (){
+		window.location.href="${contextPath}/Album/showOneAlbum.do";
+	}
+	
+	if(${empty songList} && !${empty isSearch ? false : isSearch}) {
+		alert("첫 입장, 앨범 리스트를 가져옵니다.");
+		showOneAlbum();
+	} else{
+		alert("앨범 리스트 없음");
+	}
+
+	if(${not empty songList}){
+		console.log("검색 결과 있음");
+		var songList = new Array();
+	<c:forEach items="${songList}" var="song">
+		songList.push({
+			title: "${song.title}",
+			singer: "${song.singer}",
+			price: "${song.price}",
+			name: "${song.name}",
+			song: "${song.song}",
+			sign: "${song.sign}"		
+		});
+		console.log(songList.slice(-1)); //앨범리스트의 마지막 요소 출력
+	</c:forEach>
+	} else{
+		console.log("검색결과 없음");
+	}
+	
 /*1분 미리듣기 함수*/
 function limitPlayTime(audio) {
     if (audio.currentTime > 60) { // 1분(60초)로 제한
@@ -242,12 +263,12 @@ function limitPlayTime(audio) {
             </div>
         </div>
     </header>
-	<section class="featured-artist-area section-padding-100-50 bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/piano.jpg);">
+	<section class="featured-artist-area section-padding-100-50 bg-img bg-overlay bg-fixed" style="background-image: url(${contextPath}/img/bg-img/piano.jpg);">
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
-                        <img src="${contextPath}/resource/img/younha.jpg" alt="">
+                        <img src="${contextPath}/resource/img/eventhorizon.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8">
@@ -268,7 +289,7 @@ function limitPlayTime(audio) {
                                 <p>01. 사건의 지평선</p>
                             </div>
                             <audio preload="auto" controls>
-                            <source src="${contextPath}/resource/audio/eventhorizon.mp3">
+                            	<source src="${contextPath}/resource/audio/eventhorizon.mp3">
                             </audio>
                             <!-- 1분 미리듣기 함수가 적용된 부분
                            
