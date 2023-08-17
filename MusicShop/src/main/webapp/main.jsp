@@ -396,7 +396,7 @@ function cart(){
 		                            <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
 		                        	<!-- Album Price -->
 		                            <div class="album-price">
-		                                <p>$${album.price}</p>
+		                                <p>${album.price}원</p>
 		                            </div>
 		                        	<div class="album-info">
 		                            	<a href="${contextPath}/album.jsp?filter=g">
