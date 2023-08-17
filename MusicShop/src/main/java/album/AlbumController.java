@@ -75,10 +75,13 @@ public class AlbumController extends HttpServlet {
 			List<AlbumVO> albumList = albumDAO.searchAllAlbum();
 			request.setAttribute("albumList", albumList);
 			request.setAttribute("isAll", true);
-		} else if(action.equals("/showOneAlbum.do")) {
-			String albumtitle = request.getParameter("album");
-			System.out.println("album : " + albumtitle);
-			List<AlbumVO> songList = albumDAO.selectAlbum(albumtitle);
+		} else if(action.equals("/showOneAlbum.do")) { 
+			int album_id = -1;
+			if(request.getParameter("album_id") != null) {
+				album_id = Integer.parseInt(request.getParameter("album_id"));
+			}
+			System.out.println("album_id : " + album_id);
+			List<AlbumVO> songList = albumDAO.selectAlbum(album_id);
 			request.setAttribute("songList", songList);
 			request.setAttribute("isALL", true);
 			nextpage="/album_songs.jsp";

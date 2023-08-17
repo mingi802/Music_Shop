@@ -176,14 +176,15 @@ public class AlbumDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			String albumtitle = album;
 			/*song.id, song.album_id 생략*/
-			String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.name='"+ albumtitle +"'";
-			System.out.println(sql);
+			String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.id= ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, album_id);
+			System.out.println(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				int id = rs.getInt("id");
 				String title = rs.getString("title"); //타이틀곡
 				String singer = rs.getString("singer"); // 가수
 				String name = rs.getString("name"); //타이틀곡명, 수록곡명
