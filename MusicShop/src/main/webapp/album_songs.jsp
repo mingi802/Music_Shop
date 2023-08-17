@@ -38,7 +38,6 @@ String name = (String) session.getAttribute("name");
 		alert("첫 입장, 앨범 리스트를 가져옵니다.");
 		showOneAlbum();
 	} else{
-		alert("앨범 리스트 없음");
 		console.log(${isSearch});
 	}
 
@@ -265,33 +264,34 @@ function limitPlayTime(audio) {
             </div>
         </div>
     </header>
+    
 	<section class="featured-artist-area section-padding-100-50 bg-img bg-overlay bg-fixed" style="background-image: url(${contextPath}/img/bg-img/piano.jpg);">
+	<!-- 타이틀 곡 -->
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
-                        <img src="${contextPath}/resource/img/eventhorizon.jpg" alt="">
+                        <img src="${contextPath}/resource/img/${songList[0].sign}" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8">
                     <div class="featured-artist-content">
                         <!-- Section Heading -->
                         <div class= "section-heading white text-left mb-30">
-                            <h2>윤하</h2>
-                            <p>사건의 지평선</p>
+                            <h2>${songList[0].singer}</h2>
+                            <p>${songList[0].name}</p><!-- songList -->
                             <div>
 			            		<input type="button" id="album-buy-btn" class="btn btn-outline-light btn-lg" type="button" value="앨범 구매">
 			    				&nbsp;&nbsp;&nbsp;&nbsp;
 			    				<input type="button" id="album-like-btn" class="btn btn-outline-danger btn-lg" type="button" value="좋아요">
 			            	</div>
                         </div>
-                        <p>사건의 지평선 너머로 사라져버린 슬픔이 어떠한 형태로도 다시 빠져나오지 않기를</p>
                         <div class="song-play-area">
                         	<div class="song-name">
-                                <p>01. 사건의 지평선</p>
+                                <p>${songList[0].name}</p>
                             </div>
-                            <audio preload="auto" controls>
-                            	<source src="${contextPath}/resource/audio/eventhorizon.mp3">
+                            <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+                            	<source src="${contextPath}/resource/audio/${songList[0].song}">
                             </audio>
                             <!-- 1분 미리듣기 함수가 적용된 부분
                            
@@ -305,21 +305,25 @@ function limitPlayTime(audio) {
             </div>
         </div>
     </section>
+    
     <section class="gray-background section-padding-50-0">
+    <!-- 타이틀곡 및 수록곡 -->
         <div class="container">
             <div class="row">
+            <c:if test="${not empty songList}">
+            <c:forEach items="${songList}" var="song">
 				<div class="col-12 align-content-around row padding-bottom-20">
 					<hr style="background-color: #000000; height: 1px !important; display: block !important; width: 100% !important;">
                     <div class="col-8 song-play-area-white">
 						<div class="song-name">                               
-							<p>01. 사건의 지평선</p>
+							<p>${song.name}</p>
 						</div>
-                        <audio preload="auto" controls>
-                           <source src="${contextPath}/resource/audio/eventhorizon.mp3">
+                        <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+                           <source src="${contextPath}/resource/audio/${song.song}">
                         </audio>
                     </div>
 	               	<div class="col-1 align-self-center mt-4">
-	                   	<span class="cart-item-price"><b>900</b></span>
+	                   	<span class="cart-item-price"><b>${song.price}</b></span>
 	                   	<span><b>원</b></span>
 					</div>
 					<div class="col-3 align-self-center mt-4">
@@ -328,70 +332,13 @@ function limitPlayTime(audio) {
 			    		<input type="button" id="a-song-of-album-like-btn" class="btn btn-outline-danger btn-lg" type="button" value="좋아요">
 					</div>    
 				</div>
-				<div class="col-12 align-content-around row padding-bottom-20">
-					<hr style="background-color: #000000; height: 1px !important; display: block !important; width: 100% !important;">
-                    <div class="col-8 song-play-area-white">
-						<div class="song-name">                               
-							<p>01. 사건의 지평선</p>
-						</div>
-                        <audio preload="auto" controls>
-                           <source src="${contextPath}/resource/audio/eventhorizon.mp3">
-                        </audio>
-                    </div>
-	               	<div class="col-1 align-self-center mt-4">
-	                   	<span class="cart-item-price"><b>900</b></span>
-	                   	<span><b>원</b></span>
-					</div>
-					<div class="col-3 align-self-center mt-4">
-	                   	<input type="button" id="a-song-of-album-buy-btn" class="btn btn-outline-success btn-lg" type="button" value="음원 구매">
-			   			&nbsp;&nbsp;&nbsp;&nbsp;
-			    		<input type="button" id="a-song-of-album-like-btn" class="btn btn-outline-danger btn-lg" type="button" value="좋아요">
-					</div>    
-				</div>
-				<div class="col-12 align-content-around row padding-bottom-20">
-					<hr style="background-color: #000000; height: 1px !important; display: block !important; width: 100% !important;">
-                    <div class="col-8 song-play-area-white">
-						<div class="song-name">                               
-							<p>01. 사건의 지평선</p>
-						</div>
-                        <audio preload="auto" controls>
-                           <source src="${contextPath}/resource/audio/eventhorizon.mp3">
-                        </audio>
-                    </div>
-	               	<div class="col-1 align-self-center mt-4">
-	                   	<span class="cart-item-price"><b>900</b></span>
-	                   	<span><b>원</b></span>
-					</div>
-					<div class="col-3 align-self-center mt-4">
-	                   	<input type="button" id="a-song-of-album-buy-btn" class="btn btn-outline-success btn-lg" type="button" value="음원 구매">
-			   			&nbsp;&nbsp;&nbsp;&nbsp;
-			    		<input type="button" id="a-song-of-album-like-btn" class="btn btn-outline-danger btn-lg" type="button" value="좋아요">
-					</div>    
-				</div>
-				<div class="col-12 align-content-around row padding-bottom-20">
-					<hr style="background-color: #000000; height: 1px !important; display: block !important; width: 100% !important;">
-                    <div class="col-8 song-play-area-white">
-						<div class="song-name">                               
-							<p>01. 사건의 지평선</p>
-						</div>
-                        <audio preload="auto" controls>
-                           <source src="${contextPath}/resource/audio/eventhorizon.mp3">
-                        </audio>
-                    </div>
-	               	<div class="col-1 align-self-center mt-4">
-	                   	<span class="cart-item-price"><b>900</b></span>
-	                   	<span><b>원</b></span>
-					</div>
-					<div class="col-3 align-self-center mt-4">
-	                   	<input type="button" id="a-song-of-album-buy-btn" class="btn btn-outline-success btn-lg" type="button" value="음원 구매">
-			   			&nbsp;&nbsp;&nbsp;&nbsp;
-			    		<input type="button" id="a-song-of-album-like-btn" class="btn btn-outline-danger btn-lg" type="button" value="좋아요">
-					</div>    
-				</div>
+				</c:forEach>
+				</c:if>
             </div>
         </div>
     </section>
     <!-- ##### Miscellaneous Area End ##### -->
+    
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area navbar-fixed-bottom">
         <div class="container">
