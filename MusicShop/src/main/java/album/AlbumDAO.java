@@ -180,7 +180,7 @@ public class AlbumDAO {
 			//String albumtitle = album;
 			/*song.id, song.album_id »ý·«*/
 			//String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND song.album_id='"+ albumtitle +"'";
-			String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.id= ?";
+			String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.id= ? order by FIELD(song.name, album.title) desc, song.name";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);			
 			pstmt.setInt(1,album_id);
