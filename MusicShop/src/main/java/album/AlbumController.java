@@ -62,7 +62,14 @@ public class AlbumController extends HttpServlet {
 		String action = path.substring(path.lastIndexOf("/"));
 		System.out.println(action);
 		HttpSession session = request.getSession(false);
-		nextpage = path.substring(path.indexOf("/"), path.lastIndexOf("/"))+".jsp";
+		nextpage = path.substring(path.indexOf("/"), path.lastIndexOf("/"))+".jsp"; 
+		/*
+		 * path.indexOf("/")에서 /main/showAllAlbum.do까지 인거에요?
+		 * Album /main/showAllAlbum.do
+		 * 01234 5
+		 * path.lastIndexOf("/")에서는 /main/까지
+		 * 사실은 '/main/' 까지인데 substring 때문에 '/main' 까지다.
+		 * */		
 		if(action.equals("/albumSearch.do")) {
 			List<AlbumVO> albumList = albumDAO.searchAlbum(albumName);
 			boolean isAll = (albumList.size() == albumDAO.searchAlbumRows());
@@ -76,10 +83,13 @@ public class AlbumController extends HttpServlet {
 			request.setAttribute("albumList", albumList);
 			request.setAttribute("isAll", true);
 		} else if(action.equals("/showOneAlbum.do")) {
-			nextpage="/album_songs.jsp";
-			List<AlbumVO> songList = albumDAO.selectAlbum(albumName);
+			int album_id = -1;
+			if(request.getParameter("album_id") != null) {
+				album_id = Integer.parseInt(request.getParameter("album_id"));
+			}
+			System.out.println("album_id : " + album_id);
+			List<AlbumVO> songList = albumDAO.selectAlbum(album_id);
 			request.setAttribute("songList", songList);
-			request.setAttribute("isALL", true);
 		}
 		System.out.println(nextpage);
 		request.getRequestDispatcher(nextpage).forward(request, response);

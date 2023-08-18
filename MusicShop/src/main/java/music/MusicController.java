@@ -37,12 +37,13 @@ public class MusicController extends HttpServlet {
     	String nextPage = null;
     	String action = request.getPathInfo();
     	HttpSession session = request.getSession();
+    	String name = (String)session.getAttribute("name");
     	//String id = (String)session.getAttribute("id");
     	
     	System.out.println(action);
     	
     	if(action.equals("/listMusic.do")) {
-    		List<MusicVO> MusicList = musicDAO.listMusic();
+    		List<MusicVO> MusicList = musicDAO.listMusic(name);
     		request.setAttribute("MusicList", MusicList);
     		System.out.println(response.isCommitted());
     		System.out.println(MusicList);

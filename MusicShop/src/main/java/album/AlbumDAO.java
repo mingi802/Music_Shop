@@ -167,7 +167,8 @@ public class AlbumDAO {
 		return albumList;
 	}
 	
-	public List<AlbumVO> selectAlbum(String albumName){
+	public List<AlbumVO> selectAlbum(int album_id){ //String album 대신 int album_id로 변경
+		
 		List<AlbumVO> songList = new ArrayList<AlbumVO>();
 		try {
 			
@@ -176,22 +177,28 @@ public class AlbumDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
+			//String albumtitle = album;
 			/*song.id, song.album_id 생략*/
-			String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.name='"+ albumName +"'";
-			System.out.println(sql);
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			//String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND song.album_id='"+ albumtitle +"'";
+			String sql = "SELECT album.name as album_name, album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.id= ? order by FIELD(song.name, album.title) desc, song.name";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);			
+			pstmt.setInt(1,album_id);
+			System.out.println(pstmt);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String title = rs.getString("title");
-				String singer = rs.getString("singer");
-				int price = rs.getInt("price");
-				String name = rs.getString("name");
-				String song = rs.getString("song");
-				String sign = rs.getString("sign");
+				String album_name = rs.getString("album_name"); 
+				String title = rs.getString("title"); //타이틀곡
+				String singer = rs.getString("singer"); // 가수
+				String name = rs.getString("name"); //타이틀곡명, 수록곡명
+				int price = rs.getInt("price"); //가격
+				String song = rs.getString("song"); //음원 파일(.mp3)
+				String sign = rs.getString("sign"); //앨범 일러스트(.jpg)
 				
 				AlbumVO albumVO = new AlbumVO();
 				
+				albumVO.setAlbum(album_name);
 				albumVO.setTitle(title);
 				albumVO.setSinger(singer);
 				albumVO.setPrice(price);
