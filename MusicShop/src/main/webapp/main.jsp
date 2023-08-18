@@ -44,6 +44,7 @@ if(request.getAttribute("albumList") != null) {
 
 %>
 <script>
+		<!-- 발매일순으로 정렬된 앨범리스트 -->
 <c:set var="albumListOrderByDate" value="<%=alist%>"/>
 function showAllAlbum() {
 	  window.location.href="${contextPath}/Album/main/showAllAlbum.do";
@@ -338,7 +339,7 @@ function cart(){
                 <div class="col-12">
                     <div class="section-heading style-2">
                         <p>See what’s new</p>
-                        <h2>Latest Albums</h2>
+                        <h2>Latest Albums</h2> <!-- 최근에 나온 앨범들-->
                     </div>
                 </div>
             </div>
@@ -354,12 +355,12 @@ function cart(){
                 <div class="col-12">
                     <div class="albums-slideshow owl-carousel">
                         <!-- Single Album -->
-                        <c:if test="${not empty albumListOrderByDate}">
+                        <c:if test="${not empty albumListOrderByDate}"> <!-- 발매일순으로 정렬된 앨범리스트 -->
 	                        <c:forEach items="${albumListOrderByDate}" var="album">
 		                        <div class="single-album">
 		                            <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
 		                            <div class="album-info">
-		                                <a href="#">
+		                                <a href="${contextPath}/Album/album_songs/showOneAlbum.do?album_id=-1">
 		                                    <h5>${album.now}</h5>
 		                                </a>
 		                                <p>${album.album}</p>
@@ -396,7 +397,7 @@ function cart(){
 		                            <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
 		                        	<!-- Album Price -->
 		                            <div class="album-price">
-		                                <p>${album.price}원</p>
+		                                <p>${album.price}￦</p>
 		                            </div>
 		                        	<div class="album-info">
 		                            	<a href="${contextPath}/album.jsp?filter=g">
@@ -431,37 +432,36 @@ function cart(){
     <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(${contextPath}/img/bg-img/piano.jpg);">
         <div class="container">
             <div class="row align-items-end">
-                <div class="col-12 col-md-5 col-lg-4">
-                    <div class="featured-artist-thumb">
-                        <img src="${contextPath}/resource/img/eventhorizon.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-12 col-md-7 col-lg-8">
-                    <div class="featured-artist-content">
-                        <!-- Section Heading -->
-                        <div class="section-heading white text-left mb-30">
-                            <p>See what’s new</p>
-                            <h2>Buy What’s New</h2>
-                        </div>
-                        <p>사건의 지평선 너머로 사라져버린 슬픔이 어떠한 형태로도 다시 빠져나오지 않기를</p>
-                        <div class="song-play-area">
-                            <div class="song-name">
-                                <p>01. 사건의 지평선</p>
-                            </div>
-                            
-                            <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-                            <source src="${contextPath}/resource/audio/eventhorizon.mp3">
-                            </audio>
-                            
-                            <!-- 1분 미리듣기 함수가 적용된 부분
-                           
-                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);"> 
- 								<source src="resource/audio/eventhorizon.mp3">
-							</audio>
-							-->
-                        </div>
-                    </div>
-                </div>
+            	<!-- 가장 최근에 나온 앨범의 타이틀곡 -->
+            	<c:if test="${not empty albumListOrderByDate}"> 
+	                <div class="col-12 col-md-5 col-lg-4">
+	                    <div class="featured-artist-thumb">
+	                        <img src="${contextPath}/resource/img/${albumListOrderByDate[0].sign}" alt="">
+	                    </div>
+	                </div>
+	                <div class="col-12 col-md-7 col-lg-8">
+	                    <div class="featured-artist-content">
+	                        <!-- Section Heading -->
+	                        <div class="section-heading white text-left mb-30">
+	                            <p>See what’s new</p>
+	                            <h2>Buy What’s New</h2>
+	                        </div>
+		                    <div class="song-play-area">
+		                        <div class="song-name">
+		                            <p>${albumListOrderByDate[0].title}</p>
+		                        </div>
+		                        <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+		                        	<source src="${contextPath}/resource/audio/${albumListOrderByDate[0].song}">
+		                        </audio>
+		                            <!-- 1분 미리듣기 함수가 적용된 부분
+		                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);"> 
+		 								<source src="resource/audio/eventhorizon.mp3">
+									</audio>
+									-->
+		                    </div>
+	                    </div>
+	                </div>
+                </c:if>
             </div>
         </div>
     </section>
@@ -480,7 +480,7 @@ function cart(){
                         </div>
                         <!-- Single Top Item -->
                         <c:if test="${not empty albumList}">
-	                        <c:forEach items="${albumList}" var="album">
+	                        <c:forEach items="${albumList}" var="album" end="6">
 	                        	<div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
 		                            <div class="thumbnail">
 		                                <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
@@ -504,121 +504,24 @@ function cart(){
                         </div>
 
                         <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="${contextPath}/resource/img/Arirang.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>SG워너비</h6>
-                                    <p>아리랑</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls> 
-                                <source src="${contextPath}/resource/audio/Arirang.mp3">
-                            </audio>
-                        </div>
-                        
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="${contextPath}/resource/img/eventhorizon.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>윤하</h6>
-                                    <p>사건의 지평선</p>
-                                </div>
-                            </div>
-                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);"> 
- 								<source src="${contextPath}/resource/audio/eventhorizon.mp3">
-							</audio>
-							<!--                             
-                            <audio preload="auto" controls>
-                                <source src="resource/audio/eventhorizon.mp3">
-                            </audio>
-                             -->
-                        </div>
-                        
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="150ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="${contextPath}/resource/img/good.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>윤종신</h6>
-                                    <p>좋니</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="${contextPath}/resource/audio/good.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="200ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="${contextPath}/resource/img/ssagsseuli.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>다시 여기 바닷가</h6>
-                                    <p>싹쓰리</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="${contextPath}/resource/audio/ssagsseuli.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="250ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="${contextPath}/resource/img/Butter.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>Butter</h6>
-                                    <p>방탄소년단</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="${contextPath}/resource/audio/Butter.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="300ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="${contextPath}/img/bg-img/wt11.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>Creative Lyrics</h6>
-                                    <p>Songs and stuff</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="${contextPath}/resource/audio/dummy-audio.mp3">
-                            </audio>
-                        </div>
-
-                        <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="350ms">
-                            <div class="first-part d-flex align-items-center">
-                                <div class="thumbnail">
-                                    <img src="${contextPath}/img/bg-img/wt12.jpg" alt="">
-                                </div>
-                                <div class="content-">
-                                    <h6>The Culture</h6>
-                                    <p>Pop Songs</p>
-                                </div>
-                            </div>
-                            <audio preload="auto" controls>
-                                <source src="${contextPath}/resource/audio/dummy-audio.mp3">
-                            </audio>
-                        </div>
+                         <c:if test="${not empty albumList}">
+	                        <c:forEach items="${albumList}" var="album" end="6">
+	                        	<div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
+		                            <div class="first-part d-flex align-items-center">
+		                                <div class="thumbnail">
+		                                    <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
+		                                </div>
+		                                <div class="content-">
+		                                    <h6>${album.album}</h6>
+		                                    <p>${album.singer}</p>
+		                                </div>
+		                            </div>
+		                            <audio preload="auto" controls> 
+		                                <source src="${contextPath}/resource/audio/${album.song}">
+		                            </audio>
+		                        </div>
+	                        </c:forEach>
+						</c:if>
                     </div>
                 </div>
 
