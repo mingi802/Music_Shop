@@ -90,9 +90,6 @@ public class AlbumController extends HttpServlet {
 			System.out.println("album_id : " + album_id);
 			List<AlbumVO> songList = albumDAO.selectAlbum(album_id);
 			request.setAttribute("songList", songList);
-			request.setAttribute("isALL", true);
-			request.setAttribute("isSearch", true);
-			
 		}
 		System.out.println(nextpage);
 		request.getRequestDispatcher(nextpage).forward(request, response);

@@ -30,15 +30,15 @@ String name = (String) session.getAttribute("name");
 %>
 <script>
 
-	function showOneAlbum (){
-		window.location.href="${contextPath}/Album/album/showOneAlbum.do";
+	function goBack() {
+		window.history.back();
 	}
 	
-	if(${empty songList} && !${empty isSearch ? false : isSearch}) {
-		alert("첫 입장, 앨범 리스트를 가져옵니다.");
-		showOneAlbum();
+	if(${empty songList}) {
+		alert("ERROR: 앨범이 없거나 불러오지 못했습니다.");
+		goBack();
 	} else{
-		console.log(${isSearch});
+		console.log("${songList[0].album}");
 	}
 
 	if(${not empty songList}){
@@ -46,6 +46,7 @@ String name = (String) session.getAttribute("name");
 		var songList = new Array();
 	<c:forEach items="${songList}" var="song">
 		songList.push({
+			album_name: "${song.album}",
 			title: "${song.title}",
 			singer: "${song.singer}",
 			price: "${song.price}",
@@ -279,7 +280,7 @@ function limitPlayTime(audio) {
                         <!-- Section Heading -->
                         <div class= "section-heading white text-left mb-30">
                             <h2>${songList[0].singer}</h2>
-                            <p>${songList[0].name}</p><!-- songList -->
+                            <p>${songList[0].album}</p><!-- songList -->
                             <div>
 			            		<input type="button" id="album-buy-btn" class="btn btn-outline-light btn-lg" type="button" value="앨범 구매">
 			    				&nbsp;&nbsp;&nbsp;&nbsp;
@@ -324,7 +325,7 @@ function limitPlayTime(audio) {
                     </div>
 	               	<div class="col-1 align-self-center mt-4">
 	                   	<span class="cart-item-price"><b>${song.price}</b></span>
-	                   	<span><b>원</b></span>
+	                   	<span><b>￦</b></span>
 					</div>
 					<div class="col-3 align-self-center mt-4">
 	                   	<input type="button" id="a-song-of-album-buy-btn" class="btn btn-outline-success btn-lg" type="button" value="음원 구매">
