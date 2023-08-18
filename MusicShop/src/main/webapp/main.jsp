@@ -480,7 +480,7 @@ function cart(){
                         </div>
                         <!-- Single Top Item -->
                         <c:if test="${not empty albumList}">
-	                        <c:forEach items="${albumList}" var="album" end="6">
+	                        <c:forEach items="${albumList}" var="album" end="5">
 	                        	<div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
 		                            <div class="thumbnail">
 		                                <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
@@ -505,7 +505,7 @@ function cart(){
 
                         <!-- Single Top Item -->
                          <c:if test="${not empty albumList}">
-	                        <c:forEach items="${albumList}" var="album" end="6">
+	                        <c:forEach items="${albumList}" var="album" end="5">
 	                        	<div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
 		                            <div class="first-part d-flex align-items-center">
 		                                <div class="thumbnail">
