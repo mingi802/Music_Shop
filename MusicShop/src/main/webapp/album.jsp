@@ -36,7 +36,7 @@ String name = (String) session.getAttribute("name");
 	}
 	  
 	if(${empty albumList} && !${empty isSearch ? false : isSearch}) {
-		  alert("첫 입장, 전체 앨범 리스트 가져오기");
+		  //alert("첫 입장, 전체 앨범 리스트 가져오기");
 		  showAllAlbum();
 	  }
 
@@ -380,6 +380,9 @@ String name = (String) session.getAttribute("name");
                         <a href="#" data-filter=".x">X</a>
                         <a href="#" data-filter=".y">Y</a>
                         <a href="#" data-filter=".z">Z</a>
+                    </div>
+                    <div class="browse-by-catagories d-flex flex-wrap align-items-center mb-30">
+                    	<a id="browse-all" href="#" data-filter="*" style="visibility: hidden">Browse All</a>
                         <a href="#" data-filter=".ㄱ">ㄱ</a>
                         <a href="#" data-filter=".ㄲ">ㄲ</a>
                         <a href="#" data-filter=".ㄴ">ㄴ</a>
@@ -462,21 +465,19 @@ String name = (String) session.getAttribute("name");
     </section>
     <!-- ##### Album Catagory Area End ##### -->
 
-    <!-- ##### Buy Now Area Start ##### -->
+    <!-- ##### Buy Now Area Start ##### 
     <div class="oneMusic-buy-now-area mb-100">
         <div class="container">
             <div class="row">
 
-                <!-- Single Album Area -->
+                
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
                             <img src="${contextPath}/img/bg-img/b1.jpg" alt="">
-                            <!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.90</p>
                             </div>
-                            <!-- Play Icon -->
                             <div class="play-icon">
                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
                             </div>
@@ -490,7 +491,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Album Area -->
+                
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
@@ -505,7 +506,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Album Area -->
+                
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
@@ -520,7 +521,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Album Area -->
+               
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
@@ -544,11 +545,12 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
-    <!-- ##### Buy Now Area End ##### -->
+    	 ##### Buy Now Area End ##### -->
 
-    <!-- ##### Add Area Start ##### -->
+    <!-- ##### Add Area Start ##### 
     <div class="add-area mb-100">
         <div class="container">
             <div class="row">
@@ -562,12 +564,12 @@ String name = (String) session.getAttribute("name");
     </div>
     <!-- ##### Add Area End ##### -->
 
-    <!-- ##### Song Area Start ##### -->
+    <!-- ##### Song Area Start ##### 
     <div class="one-music-songs-area mb-70">
         <div class="container">
             <div class="row">
 
-                <!-- Single Song Area -->
+                <!-- Single Song Area 
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -584,7 +586,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Song Area -->
+                <!-- Single Song Area 
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -601,7 +603,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Song Area -->
+                <!-- Single Song Area 
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -618,7 +620,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Song Area -->
+                <!-- Single Song Area 
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -640,7 +642,7 @@ String name = (String) session.getAttribute("name");
     </div>
     <!-- ##### Song Area End ##### -->
 
-    <!-- ##### Contact Area Start ##### -->
+    <!-- ##### Contact Area Start ##### 
     <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(${contextPath}/img/bg-img/bg-2.jpg);">
         <div class="container">
             <div class="row">
@@ -654,7 +656,7 @@ String name = (String) session.getAttribute("name");
 
             <div class="row">
                 <div class="col-12">
-                    <!-- Contact Form Area -->
+                    <!-- Contact Form Area 
                     <div class="contact-form-area">
                         <form action="#" method="post">
                             <div class="row">

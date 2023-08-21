@@ -282,9 +282,9 @@ function limitPlayTime(audio) {
                             <h2>${songList[0].singer}</h2>
                             <p>${songList[0].album}</p><!-- songList -->
                             <div>
-			            		<input type="button" id="album-buy-btn" class="btn btn-outline-light btn-lg" type="button" value="앨범 구매">
+			            		<input type="button" id="album-buy-btn" class="btn btn-outline-light btn-lg" value="앨범 구매">
 			    				&nbsp;&nbsp;&nbsp;&nbsp;
-			    				<input type="button" id="album-like-btn" class="btn btn-outline-danger btn-lg" type="button" value="좋아요">
+			    				<input type="button" id="album-like-btn" class="btn btn-outline-danger btn-lg" value="좋아요">
 			            	</div>
                         </div>
                         <div class="song-play-area">
@@ -294,12 +294,6 @@ function limitPlayTime(audio) {
                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
                             	<source src="${contextPath}/resource/audio/${songList[0].song}">
                             </audio>
-                            <!-- 1분 미리듣기 함수가 적용된 부분
-                           
-                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);"> 
- 								<source src="resource/audio/eventhorizon.mp3">
-							</audio>
-							-->
                         </div>
                     </div>
                 </div>
@@ -328,9 +322,9 @@ function limitPlayTime(audio) {
 	                   	<span><b>￦</b></span>
 					</div>
 					<div class="col-3 align-self-center mt-4">
-	                   	<input type="button" id="a-song-of-album-buy-btn" class="btn btn-outline-success btn-lg" type="button" value="음원 구매">
+	                   	<input type="button" id="a-song-of-album-buy-btn" class="btn btn-outline-success btn-lg" value="음원 구매">
 			   			&nbsp;&nbsp;&nbsp;&nbsp;
-			    		<input type="button" id="a-song-of-album-like-btn" class="btn btn-outline-danger btn-lg" type="button" value="좋아요">
+			    		<input type="button" id="a-song-of-album-like-btn" class="btn btn-outline-danger btn-lg" value="좋아요">
 					</div>    
 				</div>
 				</c:forEach>
