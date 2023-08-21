@@ -34,7 +34,7 @@ public class MusicDAO {
 //		dbPassword = "jinsang1027#";
 	}
 	
-	public List<MusicVO> listMusic(){
+	public List<MusicVO> listMusic(String name){
 		List<MusicVO> musicList = new ArrayList<>();
 		
 		try {
@@ -55,7 +55,7 @@ public class MusicDAO {
 								//song테이블의album_id컬럼 값이 album테이블의id컬럼 값과 같은 song테이블 행들의 price 합, 발매일, 이미지 파일 경로 가져와주고   
 						"		IFNULL((select song from song where song.album_id = album.id and song.name = album.title), 'no audio file') as song\n"+ 
 								//song테이블의album_id컬럼 값이 album테이블의id컬럼 값과 같으며 album테이블의 title컬럼과 song테이블의 name컬럼이 같은 song테이블의 song컬럼을 가져온다 
-						"FROM album\n"; 
+						"FROM album WHERE singer = '"+ name +"'\n"; 
 						//"WHERE singer = ?";
 			pstmt = conn.prepareStatement(sql);
 			//pstmt.setString(1, singer_name);
