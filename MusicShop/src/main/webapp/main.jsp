@@ -52,7 +52,7 @@ function showAllAlbum() {
 }
 
 if(${empty albumList} && !${empty isSearch ? false : isSearch}) {
-	  alert("첫 입장, 전체 앨범 리스트 가져오기");
+	 // alert("첫 입장, 전체 앨범 리스트 가져오기");
 	  showAllAlbum();
 }
 /*1분 미리듣기 함수*/
@@ -611,7 +611,7 @@ function cart(){
     </section>
     <!-- ##### Miscellaneous Area End ##### -->
 
-    <!-- ##### Contact Area Start ##### -->
+    <!-- ##### Contact Area Start ##### 
     <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(${contextPath}/img/bg-img/bg-2.jpg);">
         <div class="container">
             <div class="row">
@@ -625,7 +625,7 @@ function cart(){
 
             <div class="row">
                 <div class="col-12">
-                    <!-- Contact Form Area -->
+                
                     <div class="contact-form-area">
                         <form action="#" method="post">
                             <div class="row">
