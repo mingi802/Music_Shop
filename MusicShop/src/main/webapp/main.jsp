@@ -361,10 +361,10 @@ function cart(){
 		                        <div class="single-album">
 		                            <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
 		                            <div class="album-info">
-		                                <a href="${contextPath}/Album/album_songs/showOneAlbum.do?album_id=-1">
-		                                    <h5>${album.now}</h5>
+		                                <a href="${contextPath}/Album/album_songs/showOneAlbum.do?album_id=${album.id}">
+		                                    <h5>${album.album}</h5>
 		                                </a>
-		                                <p>${album.album}</p>
+		                                <p>${album.now}</p>
 		                            </div>
 		                        </div>
 	                        </c:forEach>
@@ -401,7 +401,7 @@ function cart(){
 		                                <p>${album.price}￦</p>
 		                            </div>
 		                        	<div class="album-info">
-		                            	<a href="${contextPath}/album.jsp?filter=g">
+		                            	<a href="${contextPath}/Album/album_songs/showOneAlbum.do?album_id=${album.id}">
 		                                	<h5>${album.singer}</h5>
 		                            	</a>
 		                          	  <p>${album.title}</p>
