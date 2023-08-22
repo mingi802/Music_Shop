@@ -1188,7 +1188,10 @@ img {
   padding: 45px 30px;
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
-  border: 1px solid transparent; }
+  border: 1px solid transparent; 
+  background-color: #f5f9fa;
+  border-color: #d8d8d8;
+  }
   .weeks-top-area .single-top-item {
     position: relative;
     z-index: 1;
@@ -1209,10 +1212,11 @@ img {
       text-transform: uppercase;
       font-size: 14px;
       margin-bottom: 0; }
-  .weeks-top-area:hover, .weeks-top-area:focus {
+  	/*
+  	.weeks-top-area:hover, .weeks-top-area:focus {
     background-color: #f5f9fa;
     border-color: #d8d8d8; }
-
+	*/
 .popular-artists-area {
   position: relative;
   z-index: 1;

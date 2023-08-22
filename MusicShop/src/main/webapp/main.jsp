@@ -314,15 +314,15 @@ function cart(){
             <!-- Single Hero Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(${contextPath}/img/bg-img/bg-2.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(${contextPath}/resource/img/newjeans.jpg);"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">New Jeans<span>New Jeans</span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="${contextPath}/Album/album_songs/showOneAlbum.do?album_id=53" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -345,8 +345,10 @@ function cart(){
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-9">
-                    <div class="ablums-text text-center mb-70">
-                        <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit non elit pulvinar pellentesque et non eros.</p>
+                    <div class="ablums-text text-center mb-70"><!-- 음악과 관련된 명언들 -->
+                        <p>A painter paints his pictures on canvas. But musicians paint their pictures on silence. We provide the music, and you provide the silence.</p>
+                        <p>one good thing about music, when it hits you, you feel no pain</p>
+                        <p>I hope that the sadness that has disappeared beyond the event horizon will not come out again in any form.</p>
                     </div>
                 </div>
             </div>
@@ -516,7 +518,7 @@ function cart(){
 		                                    <p>${album.singer}</p>
 		                                </div>
 		                            </div>
-		                            <audio preload="auto" controls> 
+		                            <audio preload="auto" controls ontimeupdate="limitPlayTime(this);"> 
 		                                <source src="${contextPath}/resource/audio/${album.song}">
 		                            </audio>
 		                        </div>
