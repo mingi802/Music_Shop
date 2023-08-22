@@ -103,7 +103,6 @@ String name = (String) session.getAttribute("name");
                                             <li><a href="${contextPath}/main.jsp">Home</a></li>
                                             <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                             <li><a href="${contextPath}/connection.jsp">Contact</a></li>
-                                            <li><a href="${contextPath}/login/login.jsp">Login</a></li>
                                             <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
                                                     <li><a href="../customer/mypage.jsp">내정보</a></li>
