@@ -385,6 +385,57 @@ function limitPlayTime(audio) {
         </div>
     </section>
     <!-- ##### Miscellaneous Area End ##### -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(${contextPath}/img/bg-img/bg-2.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-write-heading white">
+                        <p>See what’s new</p>
+                        <h2>Review</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <!-- Contact Form Area -->
+                    <div class="contact-form-area">
+                        <form class="mb-3" name="myform" id="myform" method="post" action="" enctype="UTF-8">
+                            <div class="row">					
+								<div class='writeReview'> 		
+                            		<div class="starReview">
+										<fieldset >
+											<input type="radio" name="reviewStar" value="5" id="rate1"><label
+												for="rate1">★</label>
+											<input type="radio" name="reviewStar" value="4" id="rate2"><label
+												for="rate2">★</label>
+											<input type="radio" name="reviewStar" value="3" id="rate3"><label
+												for="rate3">★</label>
+											<input type="radio" name="reviewStar" value="2" id="rate4"><label
+												for="rate4">★</label>
+											<input type="radio" name="reviewStar" value="1" id="rate5"><label
+												for="rate5">★</label>
+										</fieldset>
+                            		</div>
+									<tr>
+										<td align = "right" valign = "top"></td>
+										<td colspan = 2>
+											<textarea class="writearea" name = "content"" rows = "10" cols = "65" maxlength="4000"></textarea>
+										</td>
+										<td><br><br>
+										<input type="submit" class="btn-primary pull" value="댓글 작성"></td>
+									</tr>		
+								</div>	                        	 
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
     
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area navbar-fixed-bottom">

@@ -79,30 +79,13 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
-                                    <li><a href="${contextPath}/album.jsp">Albums</a></li>
+                                    <li><a href="../main.jsp">Home</a></li>
+                                    <li><a href="../album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
-                                            <li><a href="${contextPath}/album.jsp">Albums</a></li>
+                                            <li><a href="../main.jsp">Home</a></li>
+                                            <li><a href="../album.jsp">Albums</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
-                                            <li><a href="#">Dropdown</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="${contextPath}/login/regist.jsp">회원가입</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                </ul>
-                                            </li>
                                         </ul>
                                     </li>
                                     <li><a href="../connection.jsp">Contact</a></li>
