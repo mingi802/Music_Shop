@@ -678,10 +678,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         <ul>
                             <li><a href="${contextPath}/main.jsp">Home</a></li>
                             <li><a href="${contextPath}/album.jsp">Albums</a></li>
-                            <!--  
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            -->
                             <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                         </ul>
                     </div>
