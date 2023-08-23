@@ -5,6 +5,7 @@ import java.sql.Date;
 public class AlbumVO {
 	
 	private int id;
+	private int song_id;
 	private String album;
 	private String title;
 	private String singer;
@@ -16,6 +17,20 @@ public class AlbumVO {
 	
 	public AlbumVO() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * @return the song_id
+	 */
+	public int getSong_id() {
+		return song_id;
+	}
+
+	/**
+	 * @param song_id the song_id to set
+	 */
+	public void setSong_id(int song_id) {
+		this.song_id = song_id;
 	}
 
 	/**

@@ -180,7 +180,7 @@ public class AlbumDAO {
 			//String albumtitle = album;
 			/*song.id, song.album_id 생략*/
 			//String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND song.album_id='"+ albumtitle +"'";
-			String sql = "SELECT album.name as album_name, album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.id= ? order by FIELD(song.name, album.title) desc, song.name";
+			String sql = "SELECT album.name as album_name, album.title, album.singer, song.id as song_id, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.id= ? order by FIELD(song.name, album.title) desc, song.name";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);			
 			pstmt.setInt(1,album_id);
@@ -191,16 +191,17 @@ public class AlbumDAO {
 				String album_name = rs.getString("album_name"); 
 				String title = rs.getString("title"); //타이틀곡
 				String singer = rs.getString("singer"); // 가수
+				int song_id = rs.getInt("song_id");
 				String name = rs.getString("name"); //타이틀곡명, 수록곡명
 				int price = rs.getInt("price"); //가격
 				String song = rs.getString("song"); //음원 파일(.mp3)
 				String sign = rs.getString("sign"); //앨범 일러스트(.jpg)
 				
 				AlbumVO albumVO = new AlbumVO();
-				
 				albumVO.setAlbum(album_name);
 				albumVO.setTitle(title);
 				albumVO.setSinger(singer);
+				albumVO.setSong_id(song_id);
 				albumVO.setPrice(price);
 				albumVO.setName(name);
 				albumVO.setSong(song);
