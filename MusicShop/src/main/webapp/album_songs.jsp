@@ -95,16 +95,16 @@ String name = (String) session.getAttribute("name");
 	}
 
 	 function askGotoCart() {
-	        if (confirm("do you want 장바구니?")) {
+	        if (confirm("장바구니 페이지로 이동하시겠습니까?")) {
 	            cart();
 	        } else {
-	          	alert("Fuck you");
+	          	alert("OK");
 	        }
 	    }
 	
 	
 function cart() {
-	window.location.href="${contextPath}/cart/goToCart.do?member_id="+${id};
+	window.location.href="${contextPath}/Cart/cart/goToCart.do?member_id="+"${empty id ? 'not login' : id}";
 }
 	
 /*1분 미리듣기 함수*/
