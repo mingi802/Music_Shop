@@ -463,10 +463,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         <ul>
                             <li><a href="main.jsp">Home</a></li>
                             <li><a href="album.jsp">Albums</a></li>
-                            <!--  
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            -->
                             <li><a href="connection.jsp">Contact</a></li>
                         </ul>
                     </div>
