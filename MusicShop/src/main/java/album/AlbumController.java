@@ -60,7 +60,7 @@ public class AlbumController extends HttpServlet {
 		//String encoding = "UTF-8";
 		String path = request.getPathInfo();
 		String action = path.substring(path.lastIndexOf("/"));
-		System.out.println(action);
+		System.out.println("path: "+path+"\naction: "+action);
 		HttpSession session = request.getSession(false);
 		nextpage = path.substring(path.indexOf("/"), path.lastIndexOf("/"))+".jsp"; 
 		/*

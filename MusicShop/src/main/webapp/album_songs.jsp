@@ -29,7 +29,6 @@ String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
 %>
 <script>
-
 	function goBack() {
 		window.history.back();
 	}
@@ -50,6 +49,7 @@ String name = (String) session.getAttribute("name");
 			title: "${song.title}",
 			singer: "${song.singer}",
 			price: "${song.price}",
+			song_id: "${song.song_id}",
 			name: "${song.name}",
 			song: "${song.song}",
 			sign: "${song.sign}"		
@@ -59,6 +59,53 @@ String name = (String) session.getAttribute("name");
 	} else{
 		console.log("검색결과 없음");
 	}
+
+	window.onload = function() {
+		var addToCartRequest = new XMLHttpRequest();
+		addToCartRequest.onload = function () {
+		    var result = this.response;
+		    console.log(result);
+		    if(result.status == true) {
+		    	askGotoCart();
+		    } else {
+		    	if(result.msg == "Insert Query Failed(This Song is already exist in Storage Table or Unknown Error)") {
+		    		console.log("existed");
+		    		askGotoCart();
+		    		return;
+		    	}
+		    	alert(result.msg);
+		    }
+	    };
+	    addToCartRequest.onerror = function () {
+	    	console.log('Request Error!');
+	    }
+		
+		var songlist = document.querySelectorAll("div.songlist");
+		songlist.forEach(function(song) {
+			console.log(song);
+			var BuyBtn = song.getElementsByClassName("buy-btn")[0];
+			BuyBtn.addEventListener("click", function(){
+				var song_id = song.getElementsByClassName("song-id")[0].value;
+				console.log(song_id);
+				addToCartRequest.open('GET', '${contextPath}/Cart/addToCart.do?song_id='+song_id+'&member_id='+"${empty id ? 'not login' : id}");
+				addToCartRequest.responseType="json";
+				addToCartRequest.send();
+			});
+		});
+	}
+
+	 function askGotoCart() {
+	        if (confirm("do you want 장바구니?")) {
+	            cart();
+	        } else {
+	          	alert("Fuck you");
+	        }
+	    }
+	
+	
+function cart() {
+	window.location.href="${contextPath}/cart/goToCart.do?member_id="+${id};
+}
 	
 /*1분 미리듣기 함수*/
 function limitPlayTime(audio) {
@@ -68,6 +115,9 @@ function limitPlayTime(audio) {
         alert("1분 미리듣기가 종료되었습니다.");
     }
 }
+
+
+
 </script>
 </head>
 <body>
@@ -288,6 +338,7 @@ function limitPlayTime(audio) {
 			            	</div>
                         </div>
                         <div class="song-play-area">
+                        	<input type="hidden" class="song-id" value="${songList[0].song_id}">
                         	<div class="song-name">
                                 <p>${songList[0].name}</p>
                             </div>
@@ -313,9 +364,10 @@ function limitPlayTime(audio) {
             <div class="row">
             <c:if test="${not empty songList}">
             <c:forEach items="${songList}" var="song">
-				<div class="col-12 align-content-around row padding-bottom-20">
+				<div class="col-12 align-content-around row padding-bottom-20 songlist">
 					<hr style="background-color: #000000; height: 1px !important; display: block !important; width: 100% !important;">
                     <div class="col-8 song-play-area-white">
+                    	<input type="hidden" class="song-id" value="${song.song_id}">
 						<div class="song-name">                               
 							<p>${song.name}</p>
 						</div>
@@ -328,9 +380,9 @@ function limitPlayTime(audio) {
 	                   	<span><b>￦</b></span>
 					</div>
 					<div class="col-3 align-self-center mt-4">
-	                   	<input type="button" id="a-song-of-album-buy-btn" class="btn btn-outline-success btn-lg" type="button" value="음원 구매">
+	                   	<input type="button" id="a-song-of-album-buy-btn" class="btn btn-outline-success btn-lg buy-btn" type="button" value="장바구니">
 			   			&nbsp;&nbsp;&nbsp;&nbsp;
-			    		<input type="button" id="a-song-of-album-like-btn" class="btn btn-outline-danger btn-lg" type="button" value="좋아요">
+			    		<input type="button" id="a-song-of-album-like-btn" class="btn btn-outline-danger btn-lg" type="button" value="구매">
 					</div>    
 				</div>
 				</c:forEach>

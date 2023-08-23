@@ -130,22 +130,16 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="main.jsp">Home</a></li>
-                                    <li><a href="album.jsp">Album</a></li>
+                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                    <li><a href="${contextPath}/album.jsp">Album</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="main.jsp">Home</a></li>
-                                            <li><a href="album.jsp">Album</a></li>
-                                            <!--  
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            -->
-                                            <li><a href="connection.jsp">Contact</a></li>
-                                            <!--  
-                                            <li><a href="elements.html">Elements</a></li>
-                                            -->
+                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                            <li><a href="${contextPath}/album.jsp">Album</a></li>
+                                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                             <%
-                                            if(code.equals("100")){
+                                            if(code != null){
+                                           	 if(code.equals("100")){
                                             %>
                                             <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
@@ -191,7 +185,7 @@
                                             <li><a href="#">아티스트</a>
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="${contextPath}/artist/artist.jsp">음원 등록</a></li>
+                                                    <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
                                                     <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
@@ -206,28 +200,25 @@
                                                 </ul>
                                             </li>                                            
                                             <%
+                                            	}
                                             }
                                             %>                                            
                                         </ul>
                                     </li>
-                                    <!--  
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                    -->
-                                    <li><a href="connection.jsp">Contact</a></li>
+                                    <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                 </ul>
-                          <!--  </div>--> 
 <% 
 	//String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
 	//String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
 	if(user_id == null) {
 %>
-							<!-- Login/Register & Cart Button -->
+                                <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/login.jsp" id="loginBtn">Login / Register</a>
+                                        <a href="${contextPath}/login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
+								
 <% 
 	} else {
 		if(code.equals("100")){
@@ -235,51 +226,51 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="${contextPath}/customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>                                       
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
                                         <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
-                                    </div>                                                            
+                                    </div>
 <% 
 		} else if(code.equals("200")){
 %>
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="${contextPath}/admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>  
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
                                         <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
-                                    </div>                                                                      	
+                                    </div>                                                                        	
 <% 
 		} else if(code.equals("300")){
 %>
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="atist.jsp" id="loginBtn">아니트스 <%=name %> 님</a>
+                                        <a href="${contextPath}/artist/artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>   
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
+                                    </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
                                         <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
-                                    </div>                                                                     
+                                    </div>                                                                        
 <%			
 		}
 	}
@@ -317,7 +308,7 @@
 	                	</div>
                         <div class="album-thumb col-1">
                             <label for="cart-item-checked">
-                            <img src="resource/img/younha.jpg" alt="">
+                            <img src="resource/img/eventhorizon.jpg" alt="">
                             </label>
                         </div>
 	  					<div class="album-info align-self-end">
@@ -350,7 +341,7 @@
 	                	</div>
                         <div class="album-thumb col-1">
                             <label for="cart-item-checked">
-                            <img src="resource/img/younha.jpg" alt="">
+                            <img src="resource/img/eventhorizon.jpg" alt="">
                             </label>
                         </div>                        
 	  					<div class="album-info align-self-end">
@@ -383,7 +374,7 @@
 	                	</div>
                         <div class="album-thumb col-1">
                             <label>
-                            <img src="resource/img/younha.jpg" alt="">
+                            <img src="resource/img/eventhorizon.jpg" alt="">
                             </label>
                         </div>                        
 	  					<div class="album-info align-self-end">
@@ -416,7 +407,7 @@
 	                	</div>
                         <div class="album-thumb col-1">
                             <label for="cart-item-checked">
-                            <img src="resource/img/younha.jpg" alt="">
+                            <img src="resource/img/eventhorizon.jpg" alt="">
                             </label>
                         </div>                        
 	  					<div class="album-info align-self-end">
