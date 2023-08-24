@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <c:set var="contextPath" value="${pageContext.request.contextPath}"/> <!-- ${contextPath} -->
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/> <!--  -->
      <%@page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -130,21 +130,21 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
-                                    <li><a href="${contextPath}/album.jsp">Album</a></li>
+                                    <li><a href="main.jsp">Home</a></li>
+                                    <li><a href="album.jsp">Album</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
-                                            <li><a href="${contextPath}/album.jsp">Album</a></li>
-                                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
+                                            <li><a href="main.jsp">Home</a></li>
+                                            <li><a href="album.jsp">Album</a></li>
+                                            <li><a href="connection.jsp">Contact</a></li>
                                             <%
                                             if(code != null){
                                            	 if(code.equals("100")){
                                             %>
                                             <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="cart.jsp">장바구니</a></li>
                                                     <li><a href="#">구매내역</a></li>
                                                     <li><a href="#">소비자4</a>
                                                         <ul class="dropdown">
@@ -163,10 +163,10 @@
                                             %> 
                                             <li><a href="#">관리자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="${contextPath}/admin/admin.jsp">회원목록</a></li>
-                                                    <li><a href="${contextPath}/admin/artist.jsp">아티스트목록</a></li>
-                                                    <li><a href="${contextPath}/admin/host.jsp">관리자목록</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="admin/admin.jsp">회원목록</a></li>
+                                                    <li><a href="admin/artist.jsp">아티스트목록</a></li>
+                                                    <li><a href="admin/host.jsp">관리자목록</a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -184,8 +184,8 @@
                                             %>
                                             <li><a href="#">아티스트</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
+                                                    <li><a href="customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="artist/artist.jsp">음원등록</a></li>
                                                     <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
@@ -205,7 +205,7 @@
                                             %>                                            
                                         </ul>
                                     </li>
-                                    <li><a href="${contextPath}/connection.jsp">Contact</a></li>
+                                    <li><a href="connection.jsp">Contact</a></li>
                                 </ul>
 <% 
 	//String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
@@ -216,7 +216,7 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/login/login.jsp" id="loginBtn">Login / Register</a>
+                                        <a href="login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
 								
 <% 
@@ -226,12 +226,12 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>                                       
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -243,12 +243,12 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -260,12 +260,12 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/artist/artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
+                                        <a href="artist/artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -320,7 +320,7 @@
 	                    </div>
 	                    <div class="col-9 align-self-center">
 	                    	<audio preload="auto" controls>
-                            <source src="resource/audio/eventhorizon.mp3">
+                            <source src="resource/audio/사건의 지평선.mp3">
                             </audio>
 	                    </div>
 	                    <div class="align-self-end">
@@ -353,7 +353,7 @@
 	                    </div>
 	                    <div class="col-9 align-self-center">
 	                    	<audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-                            <source src="resource/audio/eventhorizon.mp3">
+                            <source src="resource/audio/사건의 지평선.mp3">
                             </audio>
 	                    </div>
 	                    <div class="align-self-end">
@@ -386,7 +386,7 @@
 	                    </div>
 	                    <div class="col-9 align-self-center">
 	                    	<audio preload="auto" controls>
-                            <source src="resource/audio/eventhorizon.mp3">
+                            <source src="resource/audio/사건의 지평선.mp3">
                             </audio>
 	                    </div>
 	                    <div class="align-self-end">
@@ -419,7 +419,7 @@
 	                    </div>
 	                    <div class="col-9 align-self-center">
 	                    	<audio preload="auto" controls>
-                            <source src="resource/audio/eventhorizon.mp3">
+                            <source src="resource/audio/사건의 지평선.mp3">
                             </audio>
 	                    </div>
 	                    <div class="align-self-end">
