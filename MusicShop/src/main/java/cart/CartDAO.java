@@ -57,15 +57,16 @@ public class CartDAO {
 					+ "        A.singer, \r\n"
 					+ "        S.id, \r\n"
 					+ "        S.name, \r\n"
-					+ "        S.price \r\n"
+					+ "        S.price, \r\n"
 					+ "        S.song \r\n"
 					+ "		from song S join album A on S.album_id = A.id \r\n"
 					+ "		where S.id = ? and not exists (select * from storage where member_id = ? and song_id = ?);"; //장바구니 테이블 중복 허용 X
-			PreparedStatement pstmt = conn.prepareStatement(sql);			
+			PreparedStatement pstmt = conn.prepareStatement(sql);	
 			pstmt.setString(1,member_id);
 			pstmt.setInt(2,song_id);
 			pstmt.setString(3,member_id);
 			pstmt.setInt(4,song_id);
+			System.out.println(pstmt);
 			int rows = pstmt.executeUpdate(); //executeUpdate메서드는 변경된 행의 개수를 리턴해준다.
 			if(rows > 0) { 					  //즉, rows가 0보다 크지 않다는 것은 모종의 이유로 위 SQL문이 정상적으로 작동하지 않았음을 뜻한다.
 				result.put("status", true);
