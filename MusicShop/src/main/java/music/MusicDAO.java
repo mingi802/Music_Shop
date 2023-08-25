@@ -89,6 +89,10 @@ public class MusicDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		if(musicList.size() == 0) {
+			System.out.println("No Result");
+			return null;
+		}
 		return musicList;
 		
 	}

@@ -45,6 +45,7 @@ public class MusicController extends HttpServlet {
     	if(action.equals("/listMusic.do")) {
     		List<MusicVO> MusicList = musicDAO.listMusic(name);
     		request.setAttribute("MusicList", MusicList);
+    		request.setAttribute("isFirstEntry", false);
     		System.out.println(response.isCommitted());
     		System.out.println(MusicList);
 

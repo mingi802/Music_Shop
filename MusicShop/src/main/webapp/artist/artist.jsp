@@ -32,9 +32,12 @@ String name = (String) session.getAttribute("name");
  
 	<script>
 		
-		if(${empty MusicList}) {
+		if(${empty MusicList} && ${not empty isFirstEntry ? isFirstEntry : true}) { //첫 입장 여부 isFirstEntry에 있음. 
+																					//not empty로 값이 있는 지 검사
+																					//있으면 그 값을 쓰고 없으면 true를 씀. -> 값이 없는 경우가 첫 입장이기 때문
 		window.location.href="${contextPath}/Music/listMusic.do";
 		}	
+		
 	</script>
 	<script>
 		window.onload=function () {
