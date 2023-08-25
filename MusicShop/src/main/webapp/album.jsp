@@ -177,6 +177,7 @@ String name = (String) session.getAttribute("name");
                                             <li><a href="${contextPath}/main.jsp">Home</a></li>
                                             <li><a href="${contextPath}/album.jsp">Album</a></li>
                                             <li><a href="${contextPath}/connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/review/review.jsp">Review</a></li>                                            
                                             <%
                                             if(code != null){
                                             	if(code.equals("100")){
