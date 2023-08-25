@@ -40,7 +40,9 @@ if(request.getAttribute("albumList") != null) {
 	alist = (List<AlbumVO>)request.getAttribute("albumList");
 	alist.sort(new AlbumDateComparator().reversed());
 }
-
+/*
+앨범리스트를 가져와서 발매일순으로 정렬시킨 앨범 리스트
+*/
 
 
 %>
@@ -139,6 +141,7 @@ function cart(){
                                             <li><a href="${contextPath}/main.jsp">Home</a></li>
                                             <li><a href="${contextPath}/album.jsp">Album</a></li>
                                             <li><a href="${contextPath}/connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/review/review.jsp">Review</a></li>
                                             <%
                                             if(code != null){
                                            	 if(code.equals("100")){
@@ -157,7 +160,6 @@ function cart(){
                                                             <li><a href="#">소비자</a></li>
                                                         </ul>
                                                     </li>
-                                                    <li><a href="#">소비자5</a></li>
                                                 </ul>
                                             </li> 
                                             <%

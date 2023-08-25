@@ -103,7 +103,7 @@ function cart(){
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="../main.jsp">Home</a></li>
+                                    <li><a href="../main.jsp">Homeasdasdsd</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
                                     <li><a href="#">Manage</a>
                                         <ul class="dropdown">
@@ -223,8 +223,12 @@ function cart(){
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
-    
-    <aside class="admin-category">
+    <!--  
+	<div class="write-review-btn">
+    	<a href="write.jsp">글쓰기</a>
+	</div>    
+	  
+    <aside class="review-category">
     	<ul style="padding-left:5px;padding-top:20px;">
 			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
 			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
@@ -233,42 +237,68 @@ function cart(){
 			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>			    	
     	</ul>
     </aside>
-    
+    -->
     <!-- ##### Member Control Area Start ##### -->
-    <section class="login-area section-padding-100">
-        <div class="admin-container">
+    <section class="login-area rev-section-padding-100-alter">
+        <div class="review-container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
-                    <div class="member-content">
-                        <h3>Membership Management</h3><br>
+                    <div class="review-content-detail">
+                        <h3>게시판 글보기</h3><br>
                         <!-- Membership manage Form -->
-                        <div class="member-manage-form">
-                        <table>
-                        	<tr><th>이름</th><th>아이디</th><th>비밀번호</th><th>성별</th><th>생년월일</th><th>전화번호</th><th>주소</th><th>이메일</th><th>고유번호</th></tr>
-                        	<%
-                        	String sql = "SELECT * FROM member WHERE member.code = 100 ";
-                        	PreparedStatement pstmt = conn.prepareStatement(sql);
-                        	ResultSet rs = pstmt.executeQuery();
-                        	
-                        	while(rs.next()){
-                        	%>
-                        		<tr style="text-align: center">
-                        		<td><%=rs.getString("name") %></td>
-                        		<td><%=rs.getString("id") %></td>
-                        		<td><%=rs.getString("pwd") %></td>
-                        		<td><%=rs.getString("gender") %></td>
-                        		<td><%=rs.getString("birth") %></td>
-                        		<td><%=rs.getString("phone") %></td>
-                        		<td><%=rs.getString("addr") %></td>
-                        		<td><%=rs.getString("email") %></td>
-                        		<td><%=rs.getString("code") %></td>
-                        		<td><button onclick="location.href='delete.jsp?id=<%=rs.getString("id")%>&code=<%=rs.getString("code")%>'">Delete</button></td>
-                        		</tr>
-                        	
-                        	<%	
-                        	}
-                        	%>
-                        </table>
+                        <div class="review-board-form">
+							<%
+							String user = request.getParameter("id"); //작성자
+							String title = request.getParameter("title"); //작성한 음원  
+							
+							String sql = "SELECT * FROM board WHERE user_id = '"+ user +"' AND album_name = '"+ title +"'";
+							PreparedStatement pstmt = conn.prepareStatement(sql);
+							ResultSet rs = pstmt.executeQuery();
+							
+							if(rs.next()){
+							String star = "";
+							switch(rs.getString("star")){
+								
+								case "5" : star = "★★★★★"; break;
+								case "4" : star = "★★★★"; break;
+								case "3" : star = "★★★"; break;
+								case "2" : star = "★★"; break;
+								case "1" : star = "★"; break;
+							
+								}
+							%>
+							<table class="notice-board">
+							<tr>
+								<th>앨범</th>
+								<td><%=rs.getString("album_name") %></td>
+							</tr>
+							<tr>
+								<th>작성자</th>
+								<td><%=rs.getString("user_id") %></td>
+							</tr>						
+							<tr>
+								<th>작성일</th>
+								<td><%=rs.getString("date") %></td>
+							</tr>
+							<tr>
+								<th>별점</th>
+								<td><%=star %></td>
+							</tr>					
+							<tr>
+								<th>내용</th>
+								<td name="writen-review"><%=rs.getString("review") %></td>
+							</tr>	
+							</table>													
+							<%
+							if(code != null){
+								if(code.equals("200")){
+							%>
+								<button onclick="location.href='delete.jsp?id=<%=rs.getString("user_id") %>&album=<%=rs.getString("album_name") %>'">삭제</button>
+							<%	
+									}
+								}
+							}
+							%>
                         </div>
                     </div>
                 </div>
@@ -276,7 +306,9 @@ function cart(){
         </div>
     </section>
     <!-- ##### Member Control Area End ##### -->        
-        
+    <div class="before">  
+		<button onclick="location.href='review.jsp'">이전</button>
+	</div>
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
