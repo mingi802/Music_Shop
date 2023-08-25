@@ -402,30 +402,33 @@ function limitPlayTime(audio) {
                 <div class="col-12">
                     <!-- Contact Form Area -->
                     <div class="contact-form-area">
-                        <form class="mb-3" name="myform" id="myform" method="post" action="" enctype="UTF-8">
+                        <form class="mb-3" name="myform" id="myform" method="post" action="${contextPath}/review/review_ok.jsp" enctype="UTF-8">
                             <div class="row">					
 								<div class='writeReview'> 		
                             		<div class="starReview">
+                            				<input type="hidden" id="user_id" value='<%=user_id %>' >
+                            				<input type="hidden" id="album" value="${songList[0].album}">
+                            				<input type="text" id="album_addr" value="">
 										<fieldset >
-											<input type="radio" name="reviewStar" value="5" id="rate1"><label
+											<input type="radio" name="reviewStar" id="reviewStar" value="5" id="rate1"><label
 												for="rate1">★</label>
-											<input type="radio" name="reviewStar" value="4" id="rate2"><label
+											<input type="radio" name="reviewStar" id="reviewStar" value="4" id="rate2"><label
 												for="rate2">★</label>
-											<input type="radio" name="reviewStar" value="3" id="rate3"><label
+											<input type="radio" name="reviewStar" id="reviewStar" value="3" id="rate3"><label
 												for="rate3">★</label>
-											<input type="radio" name="reviewStar" value="2" id="rate4"><label
+											<input type="radio" name="reviewStar" id="reviewStar" value="2" id="rate4"><label
 												for="rate4">★</label>
-											<input type="radio" name="reviewStar" value="1" id="rate5"><label
+											<input type="radio" name="reviewStar" id="reviewStar" value="1" id="rate5"><label
 												for="rate5">★</label>
 										</fieldset>
                             		</div>
 									<tr>
 										<td align = "right" valign = "top"></td>
 										<td colspan = 2>
-											<textarea class="writearea" name = "content"" rows = "10" cols = "65" maxlength="4000"></textarea>
+											<textarea class="writearea" id="album_review" name = "content"" rows = "10" cols = "65" maxlength="4000"></textarea>
 										</td>
 										<td><br><br>
-										<input type="submit" class="btn-primary pull" value="댓글 작성"></td>
+										<input type="submit" class="btn-primary pull" value="리뷰 작성"></td>
 									</tr>		
 								</div>	                        	 
                             </div>
