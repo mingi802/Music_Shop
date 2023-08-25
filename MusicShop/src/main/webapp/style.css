@@ -891,6 +891,7 @@ img {
     .no-album .no-info p {
       margin-bottom: 0; }
 
+
 .cart-item {
 	position: relative;
   	z-index: 1;
@@ -900,24 +901,40 @@ img {
 input[type="checkbox"].cart-item-checked{
         display: none;
       }
-input[type="checkbox"].cart-item-checked + label{
+input[type="checkbox"].cart-item-checked + label.check-emoticon{
         display: inline-block;
         width: 30px;
         height: 30px;
-        border:3px solid #707070;
+        outline:3px solid #707070;
         position: relative;
+        background-color:white;
       }
-input[type="checkbox"].cart-item-checked:checked + label::after{
-        content:'\2714 \fe0e';
+input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
+       	display: inline-block;
+        content:'\2714';
         font-size: 25px;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        position: absolute;
-        left: 0;
-        top:0;
+		text-align: center;
+        width: 30px;
+        height: 30px;
+        outline: 3px solid #000000;
+        position: absolute;      
+       	/*
+       	top: 40%; 
+       	margin: -15px 0 0 -15px;
+       	left: 50%;
+       	*/
       }
 
+.check-all-text {     
+	position: absolute;
+	top: 50%;
+	left: 40%;
+	transform: translate(-60%,-50%); /* translate(x축,y축) */
+}
+
+.check-all-text h5{
+	font-size: 18px;
+}
 .single-album-area {
   position: relative;
   z-index: 1;

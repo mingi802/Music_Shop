@@ -22,86 +22,124 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${contextPath}/style.css">
     <script>
-    if(${empty cartItemList}) {
-		  //alert("첫 입장, 장바구니에 담긴 음원 리스트 가져오기");
-		 window.location.href="${contextPath}/Cart/cart/goToCart.do?member_id="+"${empty id ? 'not login' : id}";;
-	  }
-    window.onload = function () {
-  	  var cmbbtn = document.getElementById('chosen-song-buy-btn');
-  	  var ambbtn = document.getElementById('all-song-buy-btn');
-  	  var cart_items = document.querySelectorAll("div.cart-item");
-  	  var total_payment = document.getElementById('total-payment'); 
-  	  console.log(cart_items);
-  	  cart_items.forEach(function(cart_item) {
-  		  var cart_item_checked = cart_item.getElementsByClassName("cart-item-checked")[0];
-  		  console.log(cart_item_checked);
-  		  var cart_item_price = cart_item.getElementsByClassName("cart-item-price")[0].innerText;
-  		  
-  		  cart_item_price = parseInt(cart_item_price);
-  		  
-  		  cart_item_checked.addEventListener('change', function (event){
-  			console.log(event.target.checked);
-  			if(event.target.checked) {
-  				total_payment.innerText = parseInt(total_payment.innerText) + cart_item_price;
-  			} 
-  			else {
-  				total_payment.innerText = parseInt(total_payment.innerText) - cart_item_price;
-  			}
-  		  });
-  	  });
-  	  
-  	  cmbbtn.addEventListener('click', function(){
-  		//requestPay();
-  	  });
-  	  ambbtn.addEventListener('click', function(){
-  		cart_items.forEach(function(cart_item) {
-    		  var cart_item_checked = cart_item.getElementsByClassName("cart-item-checked")[0];
-    		  if(!cart_item_checked.checked) {
-    			  cart_item_checked.click();  
-    		  }
-  		});
-  		//requestPay();
-	  });
-    }
-
+	    if(${empty cartItemList}) {
+			  //alert("첫 입장, 장바구니에 담긴 음원 리스트 가져오기");
+			 window.location.href="${contextPath}/Cart/cart/goToCart.do?member_id="+"${empty id ? 'not login' : id}";
+		}
+	    
+	    window.onload = function () {
+	    	var cmdbtn = document.getElementById('chosen-song-del-btn');
+	    	var cmbbtn = document.getElementById('chosen-song-buy-btn');
+	    	var ambbtn = document.getElementById('all-song-buy-btn');
+	      	var cart_items = document.querySelectorAll("div.cart-item");
+	    	var total_payment = document.getElementById('total-payment');
+	    	var cart_item_all_check = document.getElementById('check-all');
+			
+	    	cmdbtn.addEventListener('click', function(event) {
+	    		reload();	
+	    	});
+	    	
+	    	
+	    	cart_item_all_check.addEventListener('change', function(event) {	//전체 선택 체크박스 이벤트 할당
+	    		cart_items.forEach(function(cart_item) {
+	    			var cart_item_checked = cart_item.getElementsByClassName("cart-item-checked")[0];
+	    			if(cart_item_all_check.checked && !cart_item_checked.checked) {
+	    			  	cart_item_checked.click();  
+	    		  	} else if(!cart_item_all_check.checked) {
+	    		  	  	cart_item_checked.click();
+	    		  	}
+	    		});
+	    	});
+	  	  
+	  	  	console.log(cart_items);
+	  	  	
+	  	  	cart_items.forEach(function(cart_item) {
+	  		  	var cart_item_checked = cart_item.getElementsByClassName("cart-item-checked")[0];
+	  		 	console.log(cart_item_checked);
+	  		 	var cart_item_price = cart_item.getElementsByClassName("cart-item-price")[0].innerText;
+	  		  
+	  		  	cart_item_price = parseInt(cart_item_price);
+	  		  
+	  		  	cart_item_checked.addEventListener('change', function (event){	//각 체크박스마다 이벤트 할당
+	  				console.log(event.target.checked);
+	  				if(event.target.checked) {
+	  					if(isAllChecked(cart_items)) {
+	  						cart_item_all_check.checked = event.target.checked;
+	  					}
+	  					total_payment.innerText = parseInt(total_payment.innerText) + cart_item_price;
+	  				} 
+	  				else {
+	  					cart_item_all_check.checked = event.target.checked;
+	  					total_payment.innerText = parseInt(total_payment.innerText) - cart_item_price;
+	  				}
+	  		  	});
+	  	  	});
+	  	  
+	  	  	cmbbtn.addEventListener('click', function(){
+	  			//requestPay();
+	  	  	});
+	  	  	ambbtn.addEventListener('click', function(){
+	  			cart_item_all_check.click();
+	  			//requestPay();
+		  	});
+	  	}
+		function isAllChecked(cart_item_list) {
+			cart_item_list = Array.from(cart_item_list); //NodeList에는 some 함수가 없어서 Array로 바꿔야했음
+			var is_all_checked = true;
+			console.log(cart_item_list);
+			
+			cart_item_list.some(function (cart_item) {	//한 번이라도  true를 리턴하면 멈추는 함수 some
+														
+				var cart_item_checked = cart_item.getElementsByClassName("cart-item-checked")[0].checked;
+				if(!cart_item_checked) {
+					is_all_checked = false;
+					return true; //체크가 안되어있는 체크박스가 있는 경우 true 리턴 == 전체 선택이 되어있지 않은 상태
+				}
+			});
+			console.log("is all checked: "+ is_all_checked);
+			return is_all_checked;
+		}
   <%
 	String user_id = (String) session.getAttribute("id");
 	String code = (String) session.getAttribute("code");
 	String name = (String) session.getAttribute("name");
   %> 
-    function limitPlayTime(audio) {
-        if (audio.currentTime > 60) { // 1분(60초)로 제한
-            audio.pause();
-            audio.currentTime = 0; // 음악이 끝난 후 처음으로 돌아감
-            alert("1분 미리듣기가 종료되었습니다.");
-        }
-    }    
-
-    
-	function activateYFilter() {
-	    const iframe = document.getElementById("y-filter-iframe");
-	    iframe.style.display = "block";
-	    iframe.contentWindow.postMessage("activateYFilter", "*");
-	}
+	    function limitPlayTime(audio) {
+	        if (audio.currentTime > 60) { // 1분(60초)로 제한
+	            audio.pause();
+	            audio.currentTime = 0; // 음악이 끝난 후 처음으로 돌아감
+	            alert("1분 미리듣기가 종료되었습니다.");
+	        }
+	    }    
 	
-	window.addEventListener("message", function(event) {
-        if (event.data === "iframeLoaded") {
-          const urlParams = new URLSearchParams(window.location.search);
-          const filter = urlParams.get("filter");
-
-          if (filter !== null && filter === "y") {
-            activateYFilter();
-          }
-        }
-    });	    
-	      
-	function limitPlayTime(audio) {
-	    if (audio.currentTime > 60) { // 1분(60초)로 제한
-	        audio.pause();
-	        audio.currentTime = 0; // 음악이 끝난 후 처음으로 돌아감
-	        alert("1분 미리듣기가 종료되었습니다.");
+	    function reload() {
+	    	window.location.reload(true);
 	    }
-	}    
+	    
+		function activateYFilter() {
+		    const iframe = document.getElementById("y-filter-iframe");
+		    iframe.style.display = "block";
+		    iframe.contentWindow.postMessage("activateYFilter", "*");
+		}
+		
+		window.addEventListener("message", function(event) {
+	        if (event.data === "iframeLoaded") {
+	          const urlParams = new URLSearchParams(window.location.search);
+	          const filter = urlParams.get("filter");
+	
+	          if (filter !== null && filter === "y") {
+	            activateYFilter();
+	          }
+	        }
+	    });	    
+		      
+		function limitPlayTime(audio) {
+		    if (audio.currentTime > 60) { // 1분(60초)로 제한
+		        audio.pause();
+		        audio.currentTime = 0; // 음악이 끝난 후 처음으로 돌아감
+		        alert("1분 미리듣기가 종료되었습니다.");
+		    }
+		}    
       
     </script>
 </head>
@@ -311,9 +349,23 @@
     </section>
 <!-- ##### Buy Now Area Start ##### -->
     <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
-        <div class="container-fluid"> 
+        <div class="container-fluid">
+        	<div class="row d-flex align-content-around">
+	        	 
+	        		
+	        			<div class="col-2 align-self-center">
+			        		<input type="checkbox" class="cart-item-checked" id="check-all" name="cart-item-check-all">
+						   	<label for="check-all" class="check-emoticon"></label>
+						   	<label for="check-all" class="check-all-text"><h5>전체 선택</h5> </label>
+						</div>
+					   	<div class="col-2 align-self-center ml-auto">
+			        		<input type="button" id="chosen-song-del-btn" class="btn btn-outline-danger" type="button" value="선택 삭제">
+					   	</div>
+					
+				
+			</div>
         	<hr>       
-            <div class="row d-flex">
+            <div class="row d-flex cart-item-list">
                 <!-- Single Album Area -->
                 <c:if test="${not empty cartItemList}">
                 	<c:forEach items="${cartItemList}" var="cartItem">
@@ -321,7 +373,7 @@
 		                    <div class="d-flex flex-row cart-item">
 		                    	<div class="align-self-center">
 			                		<input type="checkbox" class="cart-item-checked" id="${cartItem.song_id}-checked" name="cart-item-checked">
-			                		<label for="${cartItem.song_id}-checked"></label>
+			                		<label for="${cartItem.song_id}-checked" class="check-emoticon"></label>
 			                	</div>
 		                        <div class="col-1 album-thumb">
 		                        <!--앨범 이미지를 클릭했을 때 해당 앨범 상세 페이지로 이동 -->
@@ -350,17 +402,19 @@
 		                </div>
                		</c:forEach>
                 </c:if>
-            </div>
-            <div class="mr-auto ">
-            	<span>총 결제 금액: </span>
-            	<span id="total-payment">0</span>
-            	<span>원</span>
-           	</div>
+                <div class="mr-auto">
+	            	<span>총 결제 금액: </span>
+	            	<span id="total-payment">0</span>
+	            	<span>￦</span>
+	           	</div>
+            </div>            
            	<hr>
-            <div class="d-flex flex-row justify-content-center align-items-center">
-            	<div>
-            		<input type="button" id="chosen-song-buy-btn" class="btn btn-outline-dark btn-lg" type="button" value="선택된 음원 구매">
-    				<input type="button" id="all-song-buy-btn" class="btn btn-outline-danger btn-lg" type="button" value="전체 음원 구매">
+            <div class="d-flex flex-row align-items-center justify-content-sm-around">
+            	<div class="">
+            		<input type="button" id="chosen-song-buy-btn" class="btn btn-outline-dark btn-lg" type="button" value="선택 구매">
+            	</div>
+            	<div class="">
+    				<input type="button" id="all-song-buy-btn" class="btn btn-outline-dark btn-lg" type="button" value="전체 구매">
             	</div>
     		</div>
     		<hr>
