@@ -4,6 +4,8 @@
 <%@ page import="album.AlbumVO" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
     <%@page session="true"%>
+    <%@page import="javax.servlet.http.HttpSession" %>
+    <% HttpSession al_session = request.getSession(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +29,7 @@
 String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
+String albumId = request.getParameter("album_id");
 %>
 <script>
 	function goBack() {
@@ -406,20 +409,16 @@ function limitPlayTime(audio) {
                             <div class="row">					
 								<div class='writeReview'> 		
                             		<div class="starReview">
-                            				<input type="hidden" id="user_id" value='<%=user_id %>' >
-                            				<input type="hidden" id="album" value="${songList[0].album}">
-                            				<input type="text" id="album_addr" value="">
+                            				<input type="hidden" name="user_id" id="user_id" value='<%=user_id %>'>
+                            				<input type="hidden" name="album" id="album" value="${songList[0].album}">
+                            				<input type="hidden" name="albumId" id="albumId" value='<%=albumId %>'>
+                            				
 										<fieldset >
-											<input type="radio" name="reviewStar" id="reviewStar" value="5" id="rate1"><label
-												for="rate1">★</label>
-											<input type="radio" name="reviewStar" id="reviewStar" value="4" id="rate2"><label
-												for="rate2">★</label>
-											<input type="radio" name="reviewStar" id="reviewStar" value="3" id="rate3"><label
-												for="rate3">★</label>
-											<input type="radio" name="reviewStar" id="reviewStar" value="2" id="rate4"><label
-												for="rate4">★</label>
-											<input type="radio" name="reviewStar" id="reviewStar" value="1" id="rate5"><label
-												for="rate5">★</label>
+											<input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
+											<input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★</label>
+											<input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
+											<input type="radio" name="reviewStar" value="2" id="rate4"><label for="rate4">★</label>
+											<input type="radio" name="reviewStar" value="1" id="rate5"><label for="rate5">★</label>
 										</fieldset>
                             		</div>
 									<tr>
@@ -428,7 +427,8 @@ function limitPlayTime(audio) {
 											<textarea class="writearea" id="album_review" name = "content"" rows = "10" cols = "65" maxlength="4000"></textarea>
 										</td>
 										<td><br><br>
-										<input type="submit" class="btn-primary pull" value="리뷰 작성"></td>
+											<input type="submit" class="btn-primary pull" value="리뷰 작성">
+										</td>
 									</tr>		
 								</div>	                        	 
                             </div>

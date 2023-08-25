@@ -22,19 +22,26 @@
 	String user_id = request.getParameter("user_id");
 	String album = request.getParameter("album");
 	
-	String star = request.getParameter("reviewStar");
-	String review = request.getParameter("album_review");
+	int albumId = Integer.parseInt(request.getParameter("albumId"));
 	
-	String sql = "INSERT INTO board VALUES(?,?,?,?,?,?)"; 
-	PreparedStatement pstmt = conn.prepareStatement(sql);
+	String star = request.getParameter("reviewStar");
+	String review = request.getParameter("content");
+	
+	out.println("<script>alert('"+albumId+"');</script>");
+	
+	String sql = "INSERT INTO board (user_id, album_name, date, star, review) VALUES (?, ?, ?, ?, ?)";
+	
+	PreparedStatement pstmt = null;
+	pstmt = conn.prepareStatement(sql);
 	
 	try{
-		pstmt.setInt(1, num);
-		pstmt.setString(2, user_id);
-		pstmt.setString(3, album);
-		pstmt.setString(4, formattedNow);
-		pstmt.setString(5, star);
-		pstmt.setString(6, review);
+		//pstmt.setInt(1, num);
+		pstmt.setString(1, user_id);
+		pstmt.setString(2, album);
+		pstmt.setString(3, formattedNow);
+		pstmt.setString(4, star);
+		pstmt.setString(5, review);
+		pstmt.executeUpdate();
 		
 	}catch(SQLException e){
 		e.printStackTrace();
@@ -51,7 +58,7 @@
 
 <script>
 	alert("리뷰가 작성되었습니다.");
-	window.location.href="";
+	window.location.href="../Album/album_songs/showOneAlbum.do?album_id=" + <%=albumId%>;
 </script>
 </body>
 </html>

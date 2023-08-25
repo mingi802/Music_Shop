@@ -227,7 +227,7 @@ function cart(){
 	<div class="write-review-btn">
     	<a href="write.jsp">글쓰기</a>
 	</div>    
-	 -->
+	  
     <aside class="review-category">
     	<ul style="padding-left:5px;padding-top:20px;">
 			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
@@ -237,28 +237,45 @@ function cart(){
 			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>			    	
     	</ul>
     </aside>
-     
+    -->
     <!-- ##### Member Control Area Start ##### -->
     <section class="login-area rev-section-padding-100">
         <div class="review-container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
                     <div class="review-content">
-                        <h3>Review</h3><br>
+                        <h3>게시판</h3><br>
                         <!-- Membership manage Form -->
                         <div class="review-board-form">
                         <table>
-                        	<thead>
-                        		<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th></tr>
-                        	</thead>
-                        	<tbody> <!-- 테스트용 -->
-                        		<tr>
-                        			<td>1</td>
-                        			<td>예시</td>
-                        			<td>조철봉</td>
-                        			<td>2023-08-23</td>
-                        		</tr>
-                        	</tbody>
+                        	<tr><th>번호</th><th>앨범</th><th>작성자</th><th>작성일</th><th>별점</th></tr>
+							<%
+							String sql = "SELECT * FROM board";
+							PreparedStatement pstmt = conn.prepareStatement(sql);
+							ResultSet rs = pstmt.executeQuery();
+							
+							while(rs.next()){
+							String star = "";
+							switch(rs.getString("star")){
+								
+								case "5" : star = "★★★★★"; break;
+								case "4" : star = "★★★★"; break;
+								case "3" : star = "★★★"; break;
+								case "2" : star = "★★"; break;
+								case "1" : star = "★"; break;
+							
+								}
+							%>
+							<tr>
+								<td><%=rs.getInt("id") %></td>
+								<td><a href="review_detail.jsp?id=<%=rs.getString("user_id")%>&title=<%=rs.getString("album_name")%>"><%=rs.getString("album_name")%></a></td>
+								<td><%=rs.getString("user_id") %></td>
+								<td><%=rs.getString("date") %></td>
+								<td><%=star%><td>
+							</tr>
+							<%
+							}
+							%>
                         </table>
                         </div>
                     </div>

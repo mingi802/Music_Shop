@@ -43,6 +43,15 @@ public class MusicDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
+			/*
+			 * 
+			 *  case ~ end : if{}문과 같다.
+			 *  when ~ then ~ else : 
+			 *  as ~ : 가져올 때 컬럼명을 ~로 한다.
+			 *  as title 없이 쿼리문을 실행하면 case ~ end까지가 컴럼명으로 출력
+			 *  ifnull(a,b) : a가 null이라면 b로 값을 대체 
+			 *  처음 ifnull : 얼범 아이디를 가져와서 쿼리문에 넣고 실행해서 같은 앨범 아이디의 음원 가격의 합을 구함
+			 * */
 			String sql ="SELECT name,\n" +	//앨범 이름 가져오고
 						"		CASE\n" +   //sql의 if문같은거 
 						"			WHEN title = '' or title is null THEN\n"+ //title컬럼 값이 비어있거나 null이라면 

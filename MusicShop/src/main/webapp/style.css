@@ -1554,7 +1554,6 @@ input[type="checkbox"].cart-item-checked:checked + label::after{
  	margin-top:10px;
  	margin-left: 1190px;
  	border-radius: 5px;
- 	
 	}     
   	.review-container{
   	width: 80%;
@@ -1569,10 +1568,22 @@ input[type="checkbox"].cart-item-checked:checked + label::after{
  	 z-index: 1;
  	 background-color: #f5f9fa;
  	 border: 1px solid #d8d8d8;
- 	 padding: 50px 30px;
+ 	 padding: 30px 30px;
  	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
  	 text-align: center;
  	 width: 140%; 
+  	}
+  	.review-content-detail {
+ 	-webkit-transition-duration: 500ms;
+ 	transition-duration: 500ms;
+  	position: relative;
+ 	z-index: 1;
+ 	background-color: #f5f9fa;
+ 	border: 1px solid #d8d8d8;
+ 	padding: 50px 30px;
+ 	box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
+ 	text-align: center;
+ 	width: 140%; 
   	}
 	.review-board-form {
 	overflow: auto;
@@ -1587,6 +1598,10 @@ input[type="checkbox"].cart-item-checked:checked + label::after{
   	padding-top: 100px;
   	padding-bottom: 100px; 
   	}
+  	.rev-section-padding-100-alter{
+  	padding-top: 100px;
+  	padding-bottom: 30px;  	
+  	}
 	.review-category{
 	text-align : center;
  	background-color : #f5f9fa;
@@ -1598,6 +1613,41 @@ input[type="checkbox"].cart-item-checked:checked + label::after{
 	min-height : 200px;
 	border-radius: 8px;
 	}  
+  	.review-board-form a{
+  	font-weight: initial;
+  	}
+  	.review-board-form button{
+  	text-decoration: none;
+	background-color: #f5f9fa;
+ 	border: 1px solid #d8d8d8;
+ 	width: 100px;
+ 	text-align: center;
+ 	margin-top: 30px;
+ 	margin-bottom: 5px;
+ 	margin-left: 950px;
+ 	border-radius: 8px; 
+ 	font-size: 16px; 
+ 	padding: 10px 20px; 
+  	}
+  	.notice-board th{
+  	width: 20%;
+  	}
+  	.notice-board #writen-review{
+  	height: 200px;
+  	}
+  	.before button{
+	text-decoration: none;
+	background-color: #f5f9fa;
+ 	border: 1px solid #d8d8d8;
+ 	width: 100px;
+ 	text-align: center;
+ 	padding-top: -100px;
+ 	margin-bottom: 30px;
+ 	margin-left: 1230px;
+ 	border-radius: 8px; 
+ 	font-size: 16px; 
+ 	padding: 10px 20px; 
+  	}
   	
 /* :: upload area CSS*/
   	.upload-container{
