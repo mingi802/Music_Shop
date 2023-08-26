@@ -119,6 +119,25 @@ function limitPlayTime(audio) {
     }
 }
 
+function confirmLogin(){
+	var id = document.getElementById('user_id').value;
+	if(id == 'null'){
+		
+		alert("로그인 후 이용해주세요.");
+		
+			if(confirm('로그인 페이지로 이동하시겠습니까?')){
+				window.location.href="${contextPath}/login/login.jsp";
+				return true;
+			} else{
+				return false;
+			}
+		return false;
+	} else{
+		return true;
+	}
+		
+}
+
 
 
 </script>
@@ -406,7 +425,7 @@ function limitPlayTime(audio) {
                 <div class="col-12">
                     <!-- Contact Form Area -->
                     <div class="contact-form-area">
-                        <form class="mb-3" name="myform" id="myform" method="post" action="${contextPath}/review/review_ok.jsp" enctype="UTF-8">
+                        <form class="mb-3" name="myform" id="myform" method="post" action="${contextPath}/review/review_ok.jsp" onSubmit="return confirmLogin()" enctype="UTF-8">
                             <div class="row">					
 								<div class='writeReview'> 		
                             		<div class="starReview">

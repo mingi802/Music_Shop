@@ -26,8 +26,8 @@
 		}
         
        function validateForm(){
-    	   var id = document.login_page.id_input.value;
-    	   var pwd = document.login_page.pwd_input.value;
+    	   var id = document.loginform.login_id.value;
+    	   var pwd = document.loginform.login_pwd.value;
     	   console.log(!id, !pwd);
     	   if( !id || !pwd){
 				alert('모든 항목을 입력해주세요!');
@@ -86,6 +86,7 @@
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Albums</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
+                                            <li><a href="../review/review.jsp">Review</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="../connection.jsp">Contact</a></li>

@@ -146,7 +146,7 @@ function cart(){
                                             if(code != null){
                                            	 if(code.equals("100")){
                                             %>
-                                            <li><a href="#">소비자</a>
+                                            <li><a href="#">User</a>
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
@@ -165,7 +165,7 @@ function cart(){
                                             <%
                                             } else if(code.equals("200")){
                                             %> 
-                                            <li><a href="#">관리자</a>
+                                            <li><a href="#">Manager</a>
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/admin/admin.jsp">회원목록</a></li>
@@ -186,7 +186,7 @@ function cart(){
                                             <%
                                             } else if(code.equals("300")) {
                                             %>
-                                            <li><a href="#">아티스트</a>
+                                            <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
@@ -211,8 +211,6 @@ function cart(){
                                     <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                 </ul>
 <% 
-	//String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
-	//String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
 	if(user_id == null) {
 %>
                                 <!-- Login/Register & Cart Button -->
@@ -615,53 +613,7 @@ function cart(){
     <!-- ##### Miscellaneous Area End ##### -->
 
     <!-- ##### Contact Area Start ##### 
-    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(${contextPath}/img/bg-img/bg-2.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading white wow fadeInUp" data-wow-delay="100ms">
-                        <p>See what’s new</p>
-                        <h2>Get In Touch</h2>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-12">
-                
-                    <div class="contact-form-area">
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="100ms">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="200ms">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="300ms">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="400ms">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12 text-center wow fadeInUp" data-wow-delay="500ms">
-                                    <button class="btn oneMusic-btn mt-30" type="submit">Send <i class="fa fa-angle-double-right"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- ##### Contact Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->

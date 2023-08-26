@@ -14,8 +14,8 @@
 	String id = request.getParameter("id");
 	String albumName = request.getParameter("album");
 	
-	out.println("<script>alert('"+id+"');</script>");
-	out.println("<script>alert('"+albumName+"');</script>");
+	//out.println("<script>alert('"+id+"');</script>");
+	//out.println("<script>alert('"+albumName+"');</script>");
 	
 	try{
 		

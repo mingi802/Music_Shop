@@ -121,6 +121,7 @@ function update(){
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
+                                            <li><a href="../review/review.jsp">Review</a></li>
                                             <%
                                             if(code.equals("100")){
                                             %>
