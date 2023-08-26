@@ -83,6 +83,53 @@ public class CartDAO {
 		return result;
 	}
 
+	public Map<String, Object> delCartItem(String member_id, List<Integer> song_id_list) {	//성공 여부 리턴
+		
+		Map<String,Object> result = new HashMap<>(){
+			{
+				put("status", false);
+				put("msg", "Unknown Error");
+			}
+		};
+		try {
+			try {
+				connDB();	
+			} catch (Exception e) {
+				result.put("msg", "DB Connect Failed");
+				e.printStackTrace();
+			}
+			String sql = "delete from storage WHERE song_id in (";
+			for(int i = 0; i < song_id_list.size(); i++) {
+				if (i < song_id_list.size()-1) {
+					sql += song_id_list.get(i)+",";
+				} else {
+					sql += song_id_list.get(i)+") and member_id = '"+member_id+"'";
+				}
+			}
+			System.out.println(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);	
+			
+			System.out.println(pstmt);
+			
+			int rows = pstmt.executeUpdate(); //executeUpdate메서드는 변경된 행의 개수를 리턴해준다.
+			if(rows > 0) { 					  //즉, rows가 0보다 크지 않다는 것은 모종의 이유로 위 SQL문이 정상적으로 작동하지 않았음을 뜻한다.
+				result.put("status", true);
+				result.put("msg", "Delete Query Successed");
+			} else {
+				result.put("msg", "Delete Query Failed(This Song is not exist in "+member_id+"'s Storage Table or Unknown Error)");
+			}
+			
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			result.put("msg", "Delete Query Failed(SQLError)");
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
+	
 	public List<CartVO> getCartItems(String req_member_id) { //request의 member_id
 		List<CartVO> cartItemList = new ArrayList<CartVO>();
 		try {

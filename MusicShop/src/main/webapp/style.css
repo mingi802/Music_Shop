@@ -679,6 +679,12 @@ img {
 	position: relative;
 	z-index: 1; 
 	}
+	.oneMusic-cart-area.has-fluid {
+	padding-left: 10%;
+	padding-right: 10%;
+	position: relative;
+	z-index: 1; 
+	}
 /* :: 7.0 Events Area CSS */
 .single-event-area {
   position: relative;

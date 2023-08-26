@@ -1,12 +1,19 @@
 package cart;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Arrays;
 import java.util.HashMap;
-import org.json.simple.JSONObject;
+import java.util.Iterator;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -55,6 +62,10 @@ public class CartController extends HttpServlet {
 		doHandle(request, response);
 	}
 	
+	private static boolean isNumeric(String str){
+        return str != null && str.matches("[0-9.]+");
+    }
+	
 	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
@@ -64,20 +75,21 @@ public class CartController extends HttpServlet {
 		System.out.println("path: "+path+"\naction: "+action);
 		
 		String nextpage = path.substring(path.indexOf("/"), path.lastIndexOf("/"))+".jsp"; 		
-		
+		String member_id = null;
 		if(action.equals("/addToCart.do")) {
 			addToCart(request, response); //장바구니에 물품 추가는 페이지 이동이 필요없음
 			return;
 		}
 		else if(action.equals("/goToCart.do")) {
-			String member_id = null;
 			if(request.getParameter("member_id") != null) {
 				member_id = request.getParameter("member_id");
 				List<CartVO> cartItemList = cartDAO.getCartItems(member_id);
 				request.setAttribute("cartItemList", cartItemList);
+				request.setAttribute("isFirstEntry", false);
 			}
-		} else if(action.equals("/showOneAlbum.do")) {
-			
+		} else if(action.equals("/delCartItem.do")) {
+			delCartItem(request, response);
+			return;
 		}
 		System.out.println(nextpage);
 		request.getRequestDispatcher(nextpage).forward(request, response);
@@ -113,7 +125,51 @@ public class CartController extends HttpServlet {
 			result = cartDAO.addToCart(member_id, song_id);
 		}
 		JSONObject json =  new JSONObject(result); 	//HashMap 형태의 값을 JSON 타입으로 돌려주기 위해 JSONObject 사용
-		System.out.printf( "ResultJSON: %s", json);	//디버깅용 값 찍어보기
+		System.out.printf("ResultJSON: %s\n", json);	//디버깅용 값 찍어보기
+		out.print(json);
+		out.flush();
+	}
+	
+	protected void delCartItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		Map<String,Object> result = new HashMap<>(){
+			{
+				put("status", false);
+				put("msg", "default");
+			}
+		};
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = request.getReader();
+		String line = null;
+		
+		while((line = br.readLine()) != null) {
+			sb.append(line);
+		}
+		System.out.println(sb.toString());
+		JSONParser parser = new JSONParser();
+		Object obj = null;
+		try {
+			obj = parser.parse(sb.toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		JSONObject jsonObj = (JSONObject) obj;
+		JSONArray jArray = new JSONArray();			
+		jArray = (JSONArray)jsonObj.get("checked_cart_item_list");
+		List<Integer> song_id_list = new ArrayList<Integer>();
+		
+		String member_id = jsonObj.get("member_id").toString();
+		System.out.println(member_id);
+		for(int i = 0; i < jArray.size(); i++) {
+			System.out.println(jArray.get(i).toString());
+			if(isNumeric(jArray.get(i).toString())) {
+				song_id_list.add(Integer.parseInt(jArray.get(i).toString()));
+			}
+		}
+		result = cartDAO.delCartItem(member_id, song_id_list);
+		JSONObject json =  new JSONObject(result); 	//HashMap 형태의 값을 JSON 타입으로 돌려주기 위해 JSONObject 사용
+		System.out.printf("ResultJSON: %s\n", json);	//디버깅용 값 찍어보기
 		out.print(json);
 		out.flush();
 	}

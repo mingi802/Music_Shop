@@ -72,8 +72,7 @@ String albumId = request.getParameter("album_id");
 		    	askGotoCart();
 		    } else {
 		    	if(result.msg == "Insert Query Failed(This Song is already exist in Storage Table or Unknown Error)") {
-		    		console.log("existed");
-		    		askGotoCart();
+		    		askGotoCart("이미 장바구니에 담긴 음원입니다.");
 		    		return;
 		    	}
 		    	alert(result.msg);
@@ -97,13 +96,17 @@ String albumId = request.getParameter("album_id");
 		});
 	}
 
-	 function askGotoCart() {
-	        if (confirm("장바구니 페이지로 이동하시겠습니까?")) {
-	            cart();
-	        } else {
-	          	alert("OK");
-	        }
-	    }
+	function askGotoCart(msg) {
+		var message = "장바구니 페이지로 이동하시겠습니까?";
+		if(msg != null) {
+			message = msg+"\n"+message;
+		}
+		if (confirm(message)) {
+            cart();
+        } else {
+          	alert("OK");
+        }		 
+	}
 	
 	
 function cart() {
