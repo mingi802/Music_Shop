@@ -116,7 +116,7 @@ function cart(){
                      <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -270,7 +270,7 @@ function cart(){
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
                                     </div>                                                                        
 <%			
 		}
@@ -455,11 +455,6 @@ function cart(){
 		                        <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
 		                        	<source src="${contextPath}/resource/audio/${albumListOrderByDate[0].song}">
 		                        </audio>
-		                            <!-- 1분 미리듣기 함수가 적용된 부분
-		                             <audio preload="auto" controls ontimeupdate="limitPlayTime(this);"> 
-		 								<source src="resource/audio/eventhorizon.mp3">
-									</audio>
-									-->
 		                    </div>
 	                    </div>
 	                </div>
@@ -621,7 +616,7 @@ function cart(){
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                    <a href="${contextPath}/main.jsp"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>

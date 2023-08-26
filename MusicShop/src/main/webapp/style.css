@@ -685,6 +685,10 @@ img {
 	position: relative;
 	z-index: 1; 
 	}
+	.align-self-center h5{
+	margin-left: 100px;
+	width: 100px;
+	}
 /* :: 7.0 Events Area CSS */
 .single-event-area {
   position: relative;
@@ -1851,6 +1855,12 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
     -webkit-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end; }
+    .footer-area img{
+    width: 50%;
+    height: 60%;
+    padding-left: 0px;
+    margin-left: -25px;
+    }
     @media only screen and (max-width: 767px) {
       .footer-area .footer-nav ul {
         -webkit-box-pack: center;

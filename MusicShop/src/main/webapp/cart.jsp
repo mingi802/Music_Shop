@@ -178,7 +178,9 @@
 		        alert("1분 미리듣기가 종료되었습니다.");
 		    }
 		}    
-      
+      	
+		/*장바구니로 이동하는 함수 추가하기*/
+		
     </script>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -202,7 +204,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -276,7 +278,6 @@
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
-                                                    <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -325,7 +326,7 @@
                                     </div>                                       
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
                                     </div>
 <% 
 		} else if(code.equals("200")){
@@ -342,7 +343,7 @@
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
                                     </div>                                                                        	
 <% 
 		} else if(code.equals("300")){
@@ -359,7 +360,7 @@
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
                                     </div>                                                                        
 <%			
 		}
@@ -464,7 +465,7 @@
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                    <a href="${contextPath}/main.jsp"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
