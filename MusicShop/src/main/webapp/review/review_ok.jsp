@@ -27,14 +27,18 @@
 	String star = request.getParameter("reviewStar");
 	String review = request.getParameter("content");
 	
-	out.println("<script>alert('"+albumId+"');</script>");
-	
-	String sql = "INSERT INTO board (user_id, album_name, date, star, review) VALUES (?, ?, ?, ?, ?)";
-	
-	PreparedStatement pstmt = null;
-	pstmt = conn.prepareStatement(sql);
+	//out.println("<script>alert('"+albumId+"');</script>");
+
 	
 	try{
+		String sql = "INSERT INTO board (user_id, album_name, date, star, review) VALUES (?, ?, ?, ?, ?)";
+		String sql_renew1 = "set @cnt = 0";
+		String sql_renew2 = "UPDATE board SET board.id = @cnt:=@cnt+1";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		PreparedStatement pstmt_renew1 = conn.prepareStatement(sql_renew1);
+		PreparedStatement pstmt_renew2 = conn.prepareStatement(sql_renew2);
+		
 		//pstmt.setInt(1, num);
 		pstmt.setString(1, user_id);
 		pstmt.setString(2, album);
@@ -42,18 +46,12 @@
 		pstmt.setString(4, star);
 		pstmt.setString(5, review);
 		pstmt.executeUpdate();
+		pstmt_renew1.executeUpdate();
+		pstmt_renew2.executeUpdate();
 		
 	}catch(SQLException e){
 		e.printStackTrace();
-	} finally{
-		try{
-			if(pstmt !=null && !pstmt.isClosed()){
-				pstmt.close();
-			}
-		} catch(SQLException e){
-			e.printStackTrace();
-		}
-	}
+	} 
 %>
 
 <script>

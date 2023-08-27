@@ -72,8 +72,7 @@ String albumId = request.getParameter("album_id");
 		    	askGotoCart();
 		    } else {
 		    	if(result.msg == "Insert Query Failed(This Song is already exist in Storage Table or Unknown Error)") {
-		    		console.log("existed");
-		    		askGotoCart();
+		    		askGotoCart("이미 장바구니에 담긴 음원입니다.");
 		    		return;
 		    	}
 		    	alert(result.msg);
@@ -97,13 +96,17 @@ String albumId = request.getParameter("album_id");
 		});
 	}
 
-	 function askGotoCart() {
-	        if (confirm("장바구니 페이지로 이동하시겠습니까?")) {
-	            cart();
-	        } else {
-	          	alert("OK");
-	        }
-	    }
+	function askGotoCart(msg) {
+		var message = "장바구니 페이지로 이동하시겠습니까?";
+		if(msg != null) {
+			message = msg+"\n"+message;
+		}
+		if (confirm(message)) {
+            cart();
+        } else {
+          	alert("OK");
+        }		 
+	}
 	
 	
 function cart() {
@@ -117,6 +120,25 @@ function limitPlayTime(audio) {
         audio.currentTime = 0; // 음악이 끝난 후 처음으로 돌아감
         alert("1분 미리듣기가 종료되었습니다.");
     }
+}
+
+function confirmLogin(){
+	var id = document.getElementById('user_id').value;
+	if(id == 'null'){
+		
+		alert("로그인 후 이용해주세요.");
+		
+			if(confirm('로그인 페이지로 이동하시겠습니까?')){
+				window.location.href="${contextPath}/login/login.jsp";
+				return true;
+			} else{
+				return false;
+			}
+		return false;
+	} else{
+		return true;
+	}
+		
 }
 
 
@@ -144,7 +166,7 @@ function limitPlayTime(audio) {
                      <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -168,6 +190,7 @@ function limitPlayTime(audio) {
                                             <li><a href="${contextPath}/main.jsp">Home</a></li>
                                             <li><a href="${contextPath}/album.jsp">Album</a></li>
                                             <li><a href="${contextPath}/connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/review/review.jsp">Review</a></li>                                            
                                             <%
                                             if(code != null){
                                             	if(code.equals("100")){
@@ -405,7 +428,7 @@ function limitPlayTime(audio) {
                 <div class="col-12">
                     <!-- Contact Form Area -->
                     <div class="contact-form-area">
-                        <form class="mb-3" name="myform" id="myform" method="post" action="${contextPath}/review/review_ok.jsp" enctype="UTF-8">
+                        <form class="mb-3" name="myform" id="myform" method="post" action="${contextPath}/review/review_ok.jsp" onSubmit="return confirmLogin()" enctype="UTF-8">
                             <div class="row">					
 								<div class='writeReview'> 		
                             		<div class="starReview">
@@ -445,7 +468,7 @@ function limitPlayTime(audio) {
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                    <a href="#"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>

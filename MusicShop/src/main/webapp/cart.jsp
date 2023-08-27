@@ -22,12 +22,37 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${contextPath}/style.css">
     <script>
-	    if(${empty cartItemList}) {
-			  //alert("첫 입장, 장바구니에 담긴 음원 리스트 가져오기");
+	    if(${empty cartItemList} && ${not empty isFirstEntry ? isFirstEntry : true}) {
+			 alert("첫 입장, 장바구니에 담긴 음원 리스트 가져오기");
 			 window.location.href="${contextPath}/Cart/cart/goToCart.do?member_id="+"${empty id ? 'not login' : id}";
 		}
 	    
+		function delCartItem(delCartItemRequest, checked_cart_item_list) {
+			const data = JSON.stringify({
+				  member_id: '${id}',
+				  checked_cart_item_list: checked_cart_item_list
+				});
+			console.log(data, typeof(data));
+			delCartItemRequest.open("POST", "${contextPath}/Cart/delCartItem.do");
+			delCartItemRequest.setRequestHeader("Content-Type", "application/json");
+		    delCartItemRequest.responseType="json";
+		    delCartItemRequest.send(data);
+	    }
+
 	    window.onload = function () {
+	    	var delCartItemRequest = new XMLHttpRequest();
+	    	delCartItemRequest.onreadystatechange = function () {
+			    var result = this.response;
+			    console.log(result);
+			    if(this.readyState == this.DONE) {
+			    	console.log(this.getAllResponseHeaders());
+			    	alert("제거되었습니다.");
+			    	window.location.reload("true");
+			    } else {
+			    	console.log("error");
+			    }
+		    };
+		    
 	    	var cmdbtn = document.getElementById('chosen-song-del-btn');
 	    	var cmbbtn = document.getElementById('chosen-song-buy-btn');
 	    	var ambbtn = document.getElementById('all-song-buy-btn');
@@ -35,18 +60,27 @@
 	    	var total_payment = document.getElementById('total-payment');
 	    	var cart_item_all_check = document.getElementById('check-all');
 			
+	    	var checked_cart_item_list = new Array();
+	    	
 	    	cmdbtn.addEventListener('click', function(event) {
-	    		reload();	
+	    		if(checked_cart_item_list.length > 0) {
+	    			var message = "선택된 "+checked_cart_item_list.length+"개의 음원을 장바구니에서 제거하시겠습니까?";
+		    		if(confirm(message)) {
+		    			delCartItem(delCartItemRequest, checked_cart_item_list);	
+		    		}	
+	    		} else {
+	    			alert("선택된 음원이 없습니다.");
+	    		}
 	    	});
 	    	
 	    	
 	    	cart_item_all_check.addEventListener('change', function(event) {	//전체 선택 체크박스 이벤트 할당
 	    		cart_items.forEach(function(cart_item) {
-	    			var cart_item_checked = cart_item.getElementsByClassName("cart-item-checked")[0];
-	    			if(cart_item_all_check.checked && !cart_item_checked.checked) {
-	    			  	cart_item_checked.click();  
+	    			var cart_item_checkbox = cart_item.getElementsByClassName("cart-item-checked")[0];
+	    			if(cart_item_all_check.checked && !cart_item_checkbox.checked) {
+	    			  	cart_item_checkbox.click();  
 	    		  	} else if(!cart_item_all_check.checked) {
-	    		  	  	cart_item_checked.click();
+	    		  	  	cart_item_checkbox.click();
 	    		  	}
 	    		});
 	    	});
@@ -54,21 +88,29 @@
 	  	  	console.log(cart_items);
 	  	  	
 	  	  	cart_items.forEach(function(cart_item) {
-	  		  	var cart_item_checked = cart_item.getElementsByClassName("cart-item-checked")[0];
-	  		 	console.log(cart_item_checked);
+	  		  	var cart_item_checkbox = cart_item.getElementsByClassName("cart-item-checked")[0];
+	  		 	console.log(cart_item_checkbox);
 	  		 	var cart_item_price = cart_item.getElementsByClassName("cart-item-price")[0].innerText;
 	  		  
 	  		  	cart_item_price = parseInt(cart_item_price);
 	  		  
-	  		  	cart_item_checked.addEventListener('change', function (event){	//각 체크박스마다 이벤트 할당
+	  		  	cart_item_checkbox.addEventListener('change', function (event){	//각 체크박스마다 이벤트 할당
 	  				console.log(event.target.checked);
 	  				if(event.target.checked) {
+	  					checked_cart_item_list.push(cart_item_checkbox.id);
+	  					console.log(checked_cart_item_list);
+	  					
 	  					if(isAllChecked(cart_items)) {
 	  						cart_item_all_check.checked = event.target.checked;
 	  					}
 	  					total_payment.innerText = parseInt(total_payment.innerText) + cart_item_price;
 	  				} 
 	  				else {
+	  					console.log(checked_cart_item_list.indexOf(cart_item_checkbox.id));
+	  					if(checked_cart_item_list.indexOf(cart_item_checkbox.id) > -1) {
+	  						checked_cart_item_list.splice(checked_cart_item_list.indexOf(cart_item_checkbox.id), 1);
+	  						console.log(checked_cart_item_list);
+	  					}
 	  					cart_item_all_check.checked = event.target.checked;
 	  					total_payment.innerText = parseInt(total_payment.innerText) - cart_item_price;
 	  				}
@@ -111,10 +153,6 @@
 	            alert("1분 미리듣기가 종료되었습니다.");
 	        }
 	    }    
-	
-	    function reload() {
-	    	window.location.reload(true);
-	    }
 	    
 		function activateYFilter() {
 		    const iframe = document.getElementById("y-filter-iframe");
@@ -140,7 +178,9 @@
 		        alert("1분 미리듣기가 종료되었습니다.");
 		    }
 		}    
-      
+      	
+		/*장바구니로 이동하는 함수 추가하기*/
+		
     </script>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -164,7 +204,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -238,7 +278,6 @@
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
-                                                    <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -287,7 +326,7 @@
                                     </div>                                       
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
                                     </div>
 <% 
 		} else if(code.equals("200")){
@@ -304,7 +343,7 @@
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
                                     </div>                                                                        	
 <% 
 		} else if(code.equals("300")){
@@ -321,7 +360,7 @@
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
+                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
                                     </div>                                                                        
 <%			
 		}
@@ -348,7 +387,7 @@
         </div>
     </section>
 <!-- ##### Buy Now Area Start ##### -->
-    <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
+    <section class="oneMusic-cart-area has-fluid bg-gray section-padding-100">
         <div class="container-fluid">
         	<div class="row d-flex align-content-around">
 	        	 
@@ -365,15 +404,15 @@
 				
 			</div>
         	<hr>       
-            <div class="row d-flex cart-item-list">
+            <div class="row d-flex cart-item-list" id="cart-item-list">
                 <!-- Single Album Area -->
                 <c:if test="${not empty cartItemList}">
                 	<c:forEach items="${cartItemList}" var="cartItem">
 		                <div class="col-12 align-content-around">
 		                    <div class="d-flex flex-row cart-item">
 		                    	<div class="align-self-center">
-			                		<input type="checkbox" class="cart-item-checked" id="${cartItem.song_id}-checked" name="cart-item-checked">
-			                		<label for="${cartItem.song_id}-checked" class="check-emoticon"></label>
+			                		<input type="checkbox" class="cart-item-checked" id="${cartItem.song_id}" name="cart-item-checked">
+			                		<label for="${cartItem.song_id}" class="check-emoticon"></label>
 			                	</div>
 		                        <div class="col-1 album-thumb">
 		                        <!--앨범 이미지를 클릭했을 때 해당 앨범 상세 페이지로 이동 -->
@@ -402,7 +441,7 @@
 		                </div>
                		</c:forEach>
                 </c:if>
-                <div class="mr-auto">
+                <div class="col-2 mr-auto">
 	            	<span>총 결제 금액: </span>
 	            	<span id="total-payment">0</span>
 	            	<span>￦</span>
@@ -426,7 +465,7 @@
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                    <a href="${contextPath}/main.jsp"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
