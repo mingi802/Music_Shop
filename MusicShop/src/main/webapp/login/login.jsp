@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
+    
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>       
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,13 +22,13 @@
 
     <script>
         function RegistrationPage() {
-			window.location.href = "regist.jsp";
+			window.location.href="regist.jsp";
 		}
         
        function validateForm(){
-    	   var id = document.login_page.id_input.value;
-    	   var pwd = document.login_page.pwd_input.value;
-    	   console.log(!id !pwd);
+    	   var id = document.loginform.login_id.value;
+    	   var pwd = document.loginform.login_pwd.value;
+    	   console.log(!id, !pwd);
     	   if( !id || !pwd){
 				alert('모든 항목을 입력해주세요!');
 				return false;
@@ -59,7 +61,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -83,37 +85,10 @@
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Albums</a></li>
-                                            <!--  
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            -->
                                             <li><a href="../connection.jsp">Contact</a></li>
-                                            <!--  
-                                            <li><a href="elements.html">Elements</a></li>
-                                            -->
-                                            <li><a href="#">Dropdown</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="../review/review.jsp">Review</a></li>
                                         </ul>
                                     </li>
-                                    <!-- 
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                     -->
                                     <li><a href="../connection.jsp">Contact</a></li>
                                 </ul>
 
@@ -166,7 +141,7 @@
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">로그인</button>
                             </form>
-                            	<button class="btn oneMusic-btn mt-30" onclick="RegistrationPage()">회원가입</button><br>
+                            	<button class="btn oneMusic-btn mt-30" onclick="RegistrationPage()">회원가입</button>
                         </div>
                     </div>
                 </div>
@@ -180,7 +155,7 @@
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="../main.jsp"><img src="img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>

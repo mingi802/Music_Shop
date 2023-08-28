@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page session="true"%>
-<%@ include file="../mydbcon.jsp" %>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>      
 <!DOCTYPE html>
 <html>
@@ -29,12 +29,33 @@ String user_id = (String) session.getAttribute("id");
 String code = (String) session.getAttribute("code");
 String name = (String) session.getAttribute("name");
 %>
+ 
 	<script>
-		if(${empty MusicList}) {
+		
+		if(${empty MusicList} && ${not empty isFirstEntry ? isFirstEntry : true}) { //첫 입장 여부 isFirstEntry에 있음. 
+																					//not empty로 값이 있는 지 검사
+																					//있으면 그 값을 쓰고 없으면 true를 씀. -> 값이 없는 경우가 첫 입장이기 때문
 		window.location.href="${contextPath}/Music/listMusic.do";
-		}
-	</script>
+		}	
+		
+		window.onload=function () {
+			var isTitle = document.getElementsByName('isTitle')[0];
+			var hidden_iT = document.getElementsByName('isTitle')[1]; 
+			isTitle.addEventListener('change', function(e) {
+				hidden_iT.value = e.target.checked;	
+				console.log(hidden_iT.value);
+			});
+		};
 
+	function cart(){
+		if(confirm('장바구니로 이동하시겠습니까?')){
+			window.location.href="${contextPath}/cart.jsp";
+			return true;
+		} else{
+			return false;
+		}
+	}
+	</script>
 </head>
 
 <body>
@@ -58,7 +79,7 @@ String name = (String) session.getAttribute("name");
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="../img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -76,19 +97,19 @@ String name = (String) session.getAttribute("name");
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="../main.jsp">Home</a></li>
-                                    <li><a href="../album.jsp">Albums</a></li>
+                                    <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                    <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="../main.jsp">Home</a></li>
-                                            <li><a href="../album.jsp">Albums</a></li>
-                                            <li><a href="../connection.jsp">Contact</a></li>
-                                            <li><a href="../login/login.jsp">Login</a></li>
+                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                            <li><a href="${contextPath}/album.jsp">Albums</a></li>
+                                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/review/review.jsp">Review</a></li>
                                             <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="artist.jsp">음원등록</a></li>
-                                                    <li><a href="#">음원목록</a></li>
                                                     <li><a href="../customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
+                                                    <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -125,7 +146,7 @@ if(user_id == null){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
+                                        <a href="${contextPath}/artist/artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -133,18 +154,13 @@ if(user_id == null){
                                         <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
-                                    </div>  	
+									<div class="cart-btn">
+										<p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
+                                    </div>
 <%
 		}
 	}
 %>
-                                    <!-- Cart Button 
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div>
-                                    -->
                                 </div>
                             </div>
                             <!-- Nav End -->
@@ -173,12 +189,12 @@ if(user_id == null){
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
                     <div class="member-content">
-                        <h3>음원 목록</h3><br>
+                        <h3>앨범 목록</h3><br>
                         <!-- Membership manage Form -->
                         <div class="music-list-form">
                         <table>
                         	<tr>
-                        		<th>앨범</th><th>제목</th><th>가수</th><th>발매일</th><th>가격</th><th>이미지 파일</th><th>음원 파일</th>
+                        		<th>앨범명</th><th>타이틀 곡</th><th>가수</th><th>발매일</th><th>가격</th><th>이미지 파일</th><th>타이틀 음원 파일</th>
                        		</tr>
 		 <tbody>
 		 <c:choose> <%-- JSTL을 이용해 비었는지 체크 --%>
@@ -230,7 +246,10 @@ if(user_id == null){
                                     <input type="text" class="form-control" id="InputAlbum" aria-describedby="emailHelp" name="album" placeholder="Enter Album" minlength='1' required>
                                 </div>                            
                                 <div class="form-group">
-                                    <label for="exampleTitle">노래제목</label>
+                                    노래제목 (is title? 
+                                    	<input type="checkbox" name="isTitle" value="isTitle">
+                                    	<input type="hidden" id="not-checked" name="isTitle" value="false">
+                                    )
                                     <input type="text" class="form-control" id="InputTitle" aria-describedby="emailHelp" name="title" placeholder="Enter Title" minlength='1' required>
                                 </div>
                                 <div class="form-group">
@@ -263,13 +282,13 @@ if(user_id == null){
         </div>
     </section>
     <!-- ##### Login Area End ##### -->
-
+	
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="${contextPath}/main.jsp"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
@@ -278,11 +297,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="../main.jsp">Home</a></li>
-                            <li><a href="../album.jsp">Albums</a></li>
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="../connection.jsp">Contact</a></li>
+                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                            <li><a href="${contextPath}/album.jsp">Albums</a></li>
+                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>

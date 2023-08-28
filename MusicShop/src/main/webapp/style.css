@@ -679,6 +679,16 @@ img {
 	position: relative;
 	z-index: 1; 
 	}
+	.oneMusic-cart-area.has-fluid {
+	padding-left: 10%;
+	padding-right: 10%;
+	position: relative;
+	z-index: 1; 
+	}
+	.align-self-center h5{
+	margin-left: 100px;
+	width: 100px;
+	}
 /* :: 7.0 Events Area CSS */
 .single-event-area {
   position: relative;
@@ -795,7 +805,7 @@ img {
 .featured-artist-area {
   position: relative;
   z-index: 1; }
-
+  
 .featured-artist-content {
   position: relative;
   z-index: 1; }
@@ -807,7 +817,8 @@ img {
 
 .browse-by-catagories {
   position: relative;
-  z-index: 1; }
+  z-index: 1;
+  }
   .browse-by-catagories a {
     display: inline-block;
     background-color: #f4f4f4;
@@ -861,6 +872,79 @@ img {
   .single-album:hover, .single-album:focus {
     box-shadow: 0 5px 70px 0 rgba(0, 0, 0, 0.15); }
 
+
+
+.no-album {
+  position: relative;
+  z-index: 1;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  margin-bottom: 30px; }
+  .no-album img {
+  	display: block;
+	margin-left: auto;
+  	margin-right: auto;
+    width:128px;
+    height:128px;
+     }
+  .no-album .no-info {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px; }
+    .no-album .no-info h5 {
+      font-size: 18px;
+      margin-bottom: 0;
+      text-align: center;
+      text-transform: uppercase; }
+    .no-album .no-info p {
+      margin-bottom: 0; }
+
+
+.cart-item {
+	position: relative;
+  	z-index: 1;
+  	margin-bottom: 30px;
+}
+
+input[type="checkbox"].cart-item-checked{
+        display: none;
+      }
+input[type="checkbox"].cart-item-checked + label.check-emoticon{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        outline:3px solid #707070;
+        position: relative;
+        background-color:white;
+      }
+input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
+       	display: inline-block;
+        content:'\2714';
+        font-size: 25px;
+		text-align: center;
+        width: 30px;
+        height: 30px;
+        outline: 3px solid #000000;
+        position: absolute;      
+       	/*
+       	top: 40%; 
+       	margin: -15px 0 0 -15px;
+       	left: 50%;
+       	*/
+      }
+
+.check-all-text {     
+	position: absolute;
+	top: 50%;
+	left: 40%;
+	transform: translate(-60%,-50%); /* translate(x축,y축) */
+}
+
+.check-all-text h5{
+	font-size: 18px;
+}
 .single-album-area {
   position: relative;
   z-index: 1;
@@ -903,20 +987,90 @@ img {
       text-transform: uppercase; }
     .single-album-area .album-info p {
       margin-bottom: 0; }
-      
-  .single-album-area .album-info2 {
-    display: inlineblock;
-    position: relative;
-    z-index: 1;
-    padding-top: 15px;
-    padding-bottom: 15px; }
-    .single-album-area .album-info h5 {
-      font-size: 18px;
-      margin-bottom: 0;
-      text-transform: uppercase; }
-    .single-album-area .album-info p {
-      margin-bottom: 0; }
+ /*�떎�뿕2 START*/
+ 	.single-album-area .audioplayer{
+ 	background: transparent;
+ 	border: none;
+ 	width: auto;
+ 	margin: 0;
+ 	padding: 0; 
+ 	}
+	.single-album-area .audioplayer-playing .audioplayer-playpause,
+	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
+	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
+	background: #d6d6d6;
+	position: absolute;
+	top: 65px;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	}
+	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause a {
+	border-left: 12px solid #fff}
+	.single-album-area .audioplayer-time,
+	.single-album-area .audioplayer-volume,
+	.single-album-area .audioplayer-bar {
+	display: none;
+	}
+	.single-album-area .audioplayer{
+	height: 1px;
+	}
+	.single-album-area .audioplayer-playing{
+	background: rgb(111,167,235);
+	}
+	
+ /*�떎�뿕2 END*/	
+ /*�떎�뿕3 START*/
+	.single-album .audioplayer{
+ 	background: transparent;
+ 	border: none;
+ 	width: auto;
+ 	margin: 0;
+ 	padding: 0;
+ 	height: 1px; 	
+	}
 
+	.single-album .audioplayer-playing .audioplayer-playpause,
+	.single-album .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
+	.single-album .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
+	background: #d6d6d6;
+	position: absolute;
+	left: 61px;
+	opacity: 0.8; 
+	top: 50px;	
+	/*
+	top: 65px;
+	*/
+	}
+
+	.single-album .audioplayer:not(.audioplayer-playing) .audioplayer-playpause a {
+	border-left: 12px solid #fff
+	}
+	.single-album .audioplayer-time,
+	.single-album .audioplayer-volume,
+	.single-album .audioplayer-bar {
+	display: none;
+	}
+	.single-album .audioplayer-playing{
+	background-color: rgb(111,167,235);
+	padding-bottom: -100%;
+	margin: 0;
+	height: 1px;
+	}
+	
+	.single-album .album-info p{
+	line-height: 1;
+	}
+	.single-album .album-info .singer{
+	margin-bottom: 0;
+	}
+	.single-album .album-info .album{
+	margin-top: 0;
+	}
+	.single-album-item{
+	height: 250px;
+	}
+	
+ /*�떎�뿕3 END*/	
 .albums-slideshow {
   position: relative;
   z-index: 1; }
@@ -1087,7 +1241,10 @@ img {
   padding: 45px 30px;
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
-  border: 1px solid transparent; }
+  border: 1px solid transparent; 
+  background-color: #f5f9fa;
+  border-color: #d8d8d8;
+  }
   .weeks-top-area .single-top-item {
     position: relative;
     z-index: 1;
@@ -1105,12 +1262,14 @@ img {
       text-transform: uppercase;
       margin-bottom: 0; }
     .weeks-top-area .single-top-item .content- p {
+      text-transform: uppercase;
       font-size: 14px;
       margin-bottom: 0; }
-  .weeks-top-area:hover, .weeks-top-area:focus {
+  	/*
+  	.weeks-top-area:hover, .weeks-top-area:focus {
     background-color: #f5f9fa;
     border-color: #d8d8d8; }
-
+	*/
 .popular-artists-area {
   position: relative;
   z-index: 1;
@@ -1178,6 +1337,7 @@ img {
       border: none;
       border-radius: 0;
       background: transparent; }
+      /*�떎�뿕*/
     .new-hits-area .single-new-item .audioplayer-playing .audioplayer-playpause,
     .new-hits-area .single-new-item .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
     .new-hits-area .single-new-item .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
@@ -1188,29 +1348,56 @@ img {
 	.new-hits-area .single-new-item .audioplayer-volume,
 	.new-hits-area .single-new-item .audioplayer-bar {
       display: none; }
-      
-	.member-content {
+      /*1踰�*/
+	.music-content {
  	 -webkit-transition-duration: 500ms;
  	 transition-duration: 500ms;
   	position: relative;
  	 z-index: 1;
  	 background-color: #f5f9fa;
  	 border: 1px solid #d8d8d8;
- 	 padding: 50px 20px;
+ 	 padding: 50px 10px;
  	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
- 	 text-align: center; 
+ 	 text-align: center;
+ 	 width: 1200px; 
+ 	 margin-left: 40px;
   	}
   	.admin-container{
-  	width: 100%;
+  	width: 80%;
 	text-align: center;
-	margin-right : 900px;
+	margin-right : 50px;
   	}
 	.member-manage-form table {
 	text-align : center;
  	margin: 0 auto; 
- 	 border-collapse : collapse;
- 	 width: 100%; 
+ 	border-collapse : collapse;
+ 	width: 100%; 
 	}
+	/*愿�由ъ옄�쓽 �쓬�썝 愿�由� �럹�씠吏� CSS start*/
+	.music-manage-form {
+	overflow: auto;
+	padding-left: 100px;
+	}
+	.music-manage-form table {
+	text-align : center;
+ 	margin-left: -70px; 
+ 	border-collapse : collapse;
+ 	width: 1100px; 
+ 	border-spacing: 10px;
+ 	padding-left: 100px;
+	}
+		
+  	.music-container{
+  	width: 1950px;
+	text-align: center;
+	margin-left: -1550px;
+	padding-left: 1500px;
+  	}	
+	.music-manage-form button {
+  	padding: 10px 20px; 
+  	font-size: 16px; 
+  	border-radius: 8px; 
+	}  	
 	.member-manage-form th td{
 	padding: 15px; 
 	}  	
@@ -1224,11 +1411,11 @@ img {
  	background-color : #f5f9fa;
 	border: 1px solid #d8d8d8;
 	margin-top : 100px;
-	margin-left : 10%;
+	margin-left : 80px;
 	width : 10%;
 	float : left;
 	min-height : 200px;
-	border-radius: 8px; 
+	border-radius: 8px;
 	}      
 /* :: 12.0 Login Area CSS */
 .login-content {
@@ -1285,6 +1472,210 @@ img {
     .login-content .form-control:focus {
       box-shadow: none; 
       }
+	/*리뷰 페이지 area*/
+	#myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+	}
+	#myform fieldset legend{
+    text-align: right;
+	}
+	#myform input[type=radio]{
+    display: none;
+	}
+	#myform label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+	}
+	#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	#reviewContents {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 1.5px #D3D3D3;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+	}
+	.btn-primary {
+  	background-color: #fff;
+  	-webkit-transition-duration: 500ms;
+  	transition-duration: 500ms;
+  	position: relative;
+  	z-index: 1;
+ 	 display: inline-block;
+  	min-width: 212px;
+  	height: 49px;
+ 	 color: #000;
+  	border: 1px solid #000;
+  	border-radius: 0;
+  	padding: 0 30px;
+  	font-size: 16px;
+  	line-height: 47px;
+  	font-weight: 700;
+  	text-transform: capitalize;
+  	margin-left: 220px; 
+  	}
+  	.writeReview{
+  	margin-left: 250px;
+  	}
+  	.starReview{
+  	width: 250px;
+  	height: 80px;
+  	margin-left: 210px;
+  	}
+  	/*
+  	.writeReview .writearea{
+  	position: relative;
+  	z-index: 1;
+  	margin-left: 115px;	 
+  	}
+  	*/
+  	.writeReview textarea{
+  	height: 200px;
+  	width: 500px;
+  	border-color: white;
+  	border-radius: 5px;
+  	vertical-align: middle;
+  	resize:none;
+  	margin-left: 70px;
+  	background-color: transparent;
+  	color: gray;
+  	}
+  	.section-write-heading {
+  	position: relative;
+ 	z-index: 1;
+ 	text-align: center;
+ 	margin-top: 10px;  
+ 	}
+  	.section-write-heading p {
+   	color: #5f5f5f;
+   	font-size: 14px;
+   	margin-bottom: 5px; }
+  	.section-write-heading h2 {
+   	font-size: 18px;
+   	text-transform: uppercase;
+    letter-spacing: 10px;
+   	margin-bottom: 0; 
+   	color: white;
+   	margin-left: 10px;
+   	}  
+	/*게시판*/
+	.write-review-btn{
+	text-decoration: none;
+	background-color: #f5f9fa;
+ 	border: 1px solid #d8d8d8;
+ 	width: 100px;
+ 	text-align: center;
+ 	margin-top:10px;
+ 	margin-left: 1190px;
+ 	border-radius: 5px;
+	}     
+  	.review-container{
+  	width: 80%;
+	text-align: center;
+	margin-right : 50px;
+  	}
+
+	.review-content {
+ 	 -webkit-transition-duration: 500ms;
+ 	 transition-duration: 500ms;
+  	position: relative;
+ 	 z-index: 1;
+ 	 background-color: #f5f9fa;
+ 	 border: 1px solid #d8d8d8;
+ 	 padding: 30px 30px;
+ 	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
+ 	 text-align: center;
+ 	 width: 140%; 
+  	}
+  	.review-content-detail {
+ 	-webkit-transition-duration: 500ms;
+ 	transition-duration: 500ms;
+  	position: relative;
+ 	z-index: 1;
+ 	background-color: #f5f9fa;
+ 	border: 1px solid #d8d8d8;
+ 	padding: 50px 30px;
+ 	box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
+ 	text-align: center;
+ 	width: 140%; 
+  	}
+	.review-board-form {
+	overflow: auto;
+	}
+	.review-board-form table {
+	text-align : center;
+ 	margin: 0 auto; 
+ 	border-collapse : collapse;
+ 	width: 100%; 
+	}	
+	.rev-section-padding-100 {
+  	padding-top: 100px;
+  	padding-bottom: 100px; 
+  	}
+  	.rev-section-padding-100-alter{
+  	padding-top: 100px;
+  	padding-bottom: 30px;  	
+  	}
+	.review-category{
+	text-align : center;
+ 	background-color : #f5f9fa;
+	border: 1px solid #d8d8d8;
+	margin-top: 100px;
+	margin-left : 80px;
+	width : 10%;
+	float : left;
+	min-height : 200px;
+	border-radius: 8px;
+	}  
+  	.review-board-form a{
+  	font-weight: initial;
+  	}
+  	.review-board-form button{
+  	text-decoration: none;
+	background-color: #f5f9fa;
+ 	border: 1px solid #d8d8d8;
+ 	width: 100px;
+ 	text-align: center;
+ 	margin-top: 30px;
+ 	margin-bottom: 5px;
+ 	margin-left: 950px;
+ 	border-radius: 8px; 
+ 	font-size: 16px; 
+ 	padding: 10px 20px; 
+  	}
+  	.notice-board th{
+  	width: 20%;
+  	}
+  	.notice-board #writen-review{
+  	height: 200px;
+  	}
+  	.before button{
+	text-decoration: none;
+	background-color: #f5f9fa;
+ 	border: 1px solid #d8d8d8;
+ 	width: 100px;
+ 	text-align: center;
+ 	padding-top: -100px;
+ 	margin-bottom: 30px;
+ 	margin-left: 1230px;
+ 	border-radius: 8px; 
+ 	font-size: 16px; 
+ 	padding: 10px 20px; 
+  	}
+  	
 /* :: upload area CSS*/
   	.upload-container{
   	width: 50%;
@@ -1361,15 +1752,16 @@ img {
  	/*background-color: #f5f9fa;
  	border: 1px solid #d8d8d8;*/
 	margin-top : 50px;
-	width : 58%;
+	width : 700px;
 	float : left;
 	min-height : 200px;
 	border-radius: 8px;
 	box-sizing: border-box;
 	padding-right: 100px;
-	margin-left: -205px;
+	margin-left: -150px;
 	} 
 	
+	/*2踰�*/
 	.member-content {
  	 -webkit-transition-duration: 500ms;
  	 transition-duration: 500ms;
@@ -1380,8 +1772,12 @@ img {
  	 padding: 50px 30px;
  	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
  	 text-align: center;
- 	 margin-right: 100%;
- 	 width: 110%; 
+ 	 width: 140%; 
+  	}
+  	.music-list-form{
+  	overflow: auto;
+  	width: 100%;
+  	height: 100%;
   	}
   	.music-list-container{
   	width: 180%;
@@ -1391,11 +1787,12 @@ img {
 	.music-list-form table {
 	text-align : center;
  	margin: 0 auto; 
- 	 border-collapse : collapse;
- 	 width: 100%; 
+ 	border-collapse : collapse;
+ 	width: 890px; 
+ 	border-spacing: 10px;
 	}
 	.music-list-form th td{
-	padding: 15px; 
+	padding: 20px; 
 	}  	
 	.music-list-form button {
   	padding: 10px 20px; 
@@ -1458,6 +1855,12 @@ img {
     -webkit-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end; }
+    .footer-area img{
+    width: 50%;
+    height: 60%;
+    padding-left: 0px;
+    margin-left: -25px;
+    }
     @media only screen and (max-width: 767px) {
       .footer-area .footer-nav ul {
         -webkit-box-pack: center;
@@ -1930,7 +2333,14 @@ img {
 .gray-background {
 	background-color: #dde2e6;
 } 
-
+.img-btn {
+	border: 0;
+    display: block;
+	background: url("resource/img/searchIcon.png") no-repeat;
+	color: transparent;
+	width: 24px;
+	height: 24px;
+}
 /* ====== The End ====== */
 
 /*# sourceMappingURL=style.css.map */

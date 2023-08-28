@@ -5,16 +5,32 @@ import java.sql.Date;
 public class AlbumVO {
 	
 	private int id;
+	private int song_id;
 	private String album;
 	private String title;
 	private String singer;
 	private Date now;
-	private String price;
+	private int price;
 	private String sign;
 	private String song;
+	private String name;
 	
 	public AlbumVO() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * @return the song_id
+	 */
+	public int getSong_id() {
+		return song_id;
+	}
+
+	/**
+	 * @param song_id the song_id to set
+	 */
+	public void setSong_id(int song_id) {
+		this.song_id = song_id;
 	}
 
 	/**
@@ -90,14 +106,14 @@ public class AlbumVO {
 	/**
 	 * @return the price
 	 */
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
 	/**
 	 * @param price the price to set
 	 */
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -129,4 +145,12 @@ public class AlbumVO {
 		this.song = song;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }

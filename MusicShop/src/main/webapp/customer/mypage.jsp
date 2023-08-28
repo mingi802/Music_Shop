@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     
 	<%@page session="true"%>
-
 	<%@ include file="../mydbcon.jsp" %> <!-- 본인 아이디와 비밀번호로 변경하세요. -->    
 <!DOCTYPE html>
 <html>
@@ -40,7 +39,7 @@ function limitPlayTime(audio) {
 */
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){
-		window.location.href="cart.jsp";
+		window.location.href="../cart.jsp";
 		return true;
 	} else{
 		return false;
@@ -97,7 +96,7 @@ function update(){
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -122,35 +121,36 @@ function update(){
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
+                                            <li><a href="../review/review.jsp">Review</a></li>
                                             <%
                                             if(code.equals("100")){
                                             %>
                                                 <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="#">소비자</a></li>
-                                                    <li><a href="#">소비자</a></li>
-                                                    <li><a href="#">소비자</a></li>
-                                                    <li><a href="#">소비자</a>
+                                                    <li><a href="mypage.jsp">내정보</a></li>
+                                                    <li><a href="../cart.jsp">장바구니</a></li>
+                                                    <li><a href="#">구매내역</a></li>
+                                                    <li><a href="#">미정</a>
                                                         <ul class="dropdown">
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">미정</a></li>
+                                                            <li><a href="#">미정</a></li>
+                                                            <li><a href="#">미정</a></li>
+                                                            <li><a href="#">미정</a></li>
+                                                            <li><a href="#">미정</a></li>
                                                         </ul>
                                                     </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">미정</a></li>
                                                 </ul>
                                             </li>
                                             <%                                              	
                                             } else if (code.equals("200")){
                                             %>
-                                            <li><a href="#">Manage</a>
+                                            <li><a href="#">관리자</a>
                                                 <ul class="dropdown">
+                                                    <li><a href="../customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="../admin/admin.jsp">회원목록</a></li>
                                                     <li><a href="../admin/artist.jsp">아티스트목록</a></li>
                                                     <li><a href="../admin/host.jsp">관리자목록</a></li>
-                                                    <li><a href="../mypage.jsp">내정보</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -166,11 +166,10 @@ function update(){
                                             <%
                                             } else if(code.equals("300")){
                                             %>
-                                            <li><a href="#">Artist</a>
+                                            <li><a href="#">아티스트</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="../artist/artist.jsp">Music Upload</a></li>
-                                                    <li><a href="#">Music List</a></li>
-                                                    <li><a href="../mypage.jsp">My Page</a></li>
+                                                    <li><a href="mypage.jsp">내 정보</a></li>
+                                                    <li><a href="../artist/artist.jsp">음원등록 및 목록</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -211,7 +210,7 @@ function update(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="../customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -228,7 +227,7 @@ function update(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="../admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -288,12 +287,12 @@ function update(){
 <%
 if(code.equals("200")){
 %>
+	<li><a href="../admin/admin.jsp">회원 관리</a></li><br>
 	<li><a href="#">음원 관리</a></li>
 <%	
 } else if(code.equals("300")){
 %>
-	<li><a href="../artist/artist.jsp">음원 등록</a></li><br>
-	<li><a href="#">음원 목록</a></li>			
+	<li><a href="../artist/artist.jsp">음원 등록 및 목록</a></li><br>		
 <%
 }
 %>
@@ -460,7 +459,7 @@ if(code.equals("200")){
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="../img/core-img/logo.png" alt=""></a>
+                    <a href="../main.jsp"><img src="../img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>

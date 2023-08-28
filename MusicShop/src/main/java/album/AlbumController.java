@@ -55,21 +55,43 @@ public class AlbumController extends HttpServlet {
 		String nextpage = null;
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String albumName = request.getParameter("search-by-albumName");
+		String albumName = request.getParameter("searchBar");
 		//PrintWriter writer = response.getWriter();
 		//String encoding = "UTF-8";
-		String action = request.getPathInfo();
-		HttpSession session = request.getSession();
+		String path = request.getPathInfo();
+		String action = path.substring(path.lastIndexOf("/"));
+		System.out.println("path: "+path+"\naction: "+action);
+		HttpSession session = request.getSession(false);
+		nextpage = path.substring(path.indexOf("/"), path.lastIndexOf("/"))+".jsp"; 
+		/*
+		 * path.indexOf("/")에서 /main/showAllAlbum.do까지 인거에요?
+		 * Album /main/showAllAlbum.do
+		 * 01234 5
+		 * path.lastIndexOf("/")에서는 /main/까지
+		 * 사실은 '/main/' 까지인데 substring 때문에 '/main' 까지다.
+		 * */		
 		if(action.equals("/albumSearch.do")) {
-			nextpage = "/album.jsp";
 			List<AlbumVO> albumList = albumDAO.searchAlbum(albumName);
+			boolean isAll = (albumList.size() == albumDAO.searchAlbumRows());
+			System.out.println(isAll);
 			request.setAttribute("albumList", albumList);
+			request.setAttribute("isAll", isAll);
+			request.setAttribute("isSearch", true);
 		}
 		else if(action.equals("/showAllAlbum.do")) {
-			nextpage = "/album.jsp";
-			List<AlbumVO> albumList = albumDAO.showAllAlbum();
+			List<AlbumVO> albumList = albumDAO.searchAllAlbum();
 			request.setAttribute("albumList", albumList);
+			request.setAttribute("isAll", true);
+		} else if(action.equals("/showOneAlbum.do")) {
+			int album_id = -1;
+			if(request.getParameter("album_id") != null) {
+				album_id = Integer.parseInt(request.getParameter("album_id"));
+			}
+			System.out.println("album_id : " + album_id);
+			List<AlbumVO> songList = albumDAO.selectAlbum(album_id);
+			request.setAttribute("songList", songList);
 		}
+		System.out.println(nextpage);
 		request.getRequestDispatcher(nextpage).forward(request, response);
 	}
 

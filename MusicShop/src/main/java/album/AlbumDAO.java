@@ -7,38 +7,66 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import java.util.ArrayList;
 
 public class AlbumDAO {
 
 	private Connection conn;
 	private PreparedStatement pstmt;
-	
-	private static String dbURL = "";
-	private static String dbID = "";
-	private static String dbPassword = "";
-	private static String driver = "";
+	private DataSource dataFactory;	
+	//private static String dbURL = "";
+	//private static String dbID = "";
+	//private static String dbPassword = "";
+	//private static String driver = "";
 	
 	public AlbumDAO() {
-		driver = "com.mysql.jdbc.Driver";
-		dbURL = "jdbc:mysql://localhost:3306/musicshop?serverTimezone=UTC&useSSL=false";
-		dbID = "root";
-		dbPassword = "jinsang1027#";
+		//driver = "com.mysql.jdbc.Driver";
+		//dbURL = "jdbc:mysql://localhost:3306/musicshop?serverTimezone=UTC&useSSL=false";
+		//dbID = "root";
+		//dbPassword = "jinsang1027#";
 	}
 	
 	private void connDB() {
 
 		try {
-			Class.forName(driver);
-			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-			
-			System.out.println("Connection ÀÌ ¼º°øÀûÀ¸·Î µÇ¾ú½À´Ï´Ù.");
+			Context ctx = new InitialContext();
+			Context envContext = (Context) ctx.lookup("java:/comp/env");
+			dataFactory = (DataSource) envContext.lookup("jdbc/mysql");
+			conn = dataFactory.getConnection();
+			System.out.println("DB Á¢¼Ó ¼º°ø");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
-	public List<AlbumVO> showAllAlbum(){
+	
+	public int searchAlbumRows() {
+		int rows = 0;
+		try {
+			try {
+				connDB();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			String sql = "SELECT count(*) FROM album";
+			System.out.println(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				rows = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rows;
+	}
+	
+	public List<AlbumVO> searchAllAlbum(){
 		List<AlbumVO> albumList = new ArrayList<AlbumVO>();
 		try {
 			
@@ -49,28 +77,23 @@ public class AlbumDAO {
 				e.printStackTrace();
 			}
 			
-			String sql = "SELECT * FROM song";
+			//String sql = "SELECT * FROM album";
+			String sql = "SELECT album.id, album.name, album.title, album.singer, album.now, album.sign, song.song, song.price FROM album, song WHERE album.title = song.name";
 			System.out.println(sql);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				int id = rs.getInt("id");
-				String album = rs.getString("album");
-				String title = rs.getString("title");
-				String singer = rs.getString("singer");
-				Date now = rs.getDate("now");
-				String price = rs.getString("price");
-				String sign = rs.getString("sign");
-				String song = rs.getString("song");
+				int id = rs.getInt("id"); //album¿¡¼­ÀÇ id
+				String album = rs.getString("name"); //album¿¡¼­ ¾Ù¹ü ÀÌ¸§
+				String title = rs.getString("title"); //Å¸ÀÌÆ²°î
+				String singer = rs.getString("singer"); //°¡¼ö
+				Date now = rs.getDate("now"); //¹ß¸ÅÀÏ
+				int price = rs.getInt("price"); //°¡°Ý
+				String sign = rs.getString("sign"); //»çÁø 
+				String song = rs.getString("song"); //À½¿ø
 				
 				AlbumVO albumVO = new AlbumVO();
-				
-				if(String.valueOf(album.charAt(0)).matches(".*[¤¡-¤¾¤¿-¤Ó°¡-ÆR]+.*")) {	//¾Ù¹ü ÀÌ¸§ Ã¹ ±ÛÀÚ°¡ ÇÑ±ÛÀÎ °æ¿ì
-					char uniVal = album.charAt(0);
-					char cho = (char)((uniVal-0xAC00)/28/21);
-					System.out.println(String.valueOf(cho));
-				}
 				
 				albumVO.setId(id);
 				albumVO.setAlbum(album);
@@ -106,20 +129,20 @@ public class AlbumDAO {
 				e.printStackTrace();
 			}
 			
-			String sql = "SELECT * FROM song WHERE album Like '%"+albumName+"%'";
+			String sql = "SELECT * FROM album WHERE singer Like '%"+albumName+"%' or name Like '%"+ albumName +"%'";
 			System.out.println(sql);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				int id = rs.getInt("id");
-				String album = rs.getString("album");
+				String album = rs.getString("name");
 				String title = rs.getString("title");
 				String singer = rs.getString("singer");
 				Date now = rs.getDate("now");
-				String price = rs.getString("price");
+				//String price = rs.getString("price");
 				String sign = rs.getString("sign");
-				String song = rs.getString("song");
+				//String song = rs.getString("song");
 				
 				AlbumVO albumVO = new AlbumVO();
 				
@@ -128,9 +151,9 @@ public class AlbumDAO {
 				albumVO.setTitle(title);
 				albumVO.setSinger(singer);
 				albumVO.setNow(now);
-				albumVO.setPrice(price);
+				//albumVO.setPrice(price);
 				albumVO.setSign(sign);
-				albumVO.setSong(song);
+				//albumVO.setSong(song);
 				
 				albumList.add(albumVO);
 			}
@@ -143,4 +166,56 @@ public class AlbumDAO {
 		}
 		return albumList;
 	}
+	
+	public List<AlbumVO> selectAlbum(int album_id){ //String album ´ë½Å int album_id·Î º¯°æ
+		
+		List<AlbumVO> songList = new ArrayList<AlbumVO>();
+		try {
+			
+			try {
+				connDB();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			//String albumtitle = album;
+			/*song.id, song.album_id »ý·«*/
+			//String sql = "SELECT album.title, album.singer, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND song.album_id='"+ albumtitle +"'";
+			String sql = "SELECT album.name as album_name, album.title, album.singer, song.id as song_id, song.name, song.price, song.song, album.sign FROM song, album WHERE album.id = song.album_id AND album.id= ? order by FIELD(song.name, album.title) desc, song.name";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);			
+			pstmt.setInt(1,album_id);
+			System.out.println(pstmt);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String album_name = rs.getString("album_name"); 
+				String title = rs.getString("title"); //Å¸ÀÌÆ²°î
+				String singer = rs.getString("singer"); // °¡¼ö
+				int song_id = rs.getInt("song_id");
+				String name = rs.getString("name"); //Å¸ÀÌÆ²°î¸í, ¼ö·Ï°î¸í
+				int price = rs.getInt("price"); //°¡°Ý
+				String song = rs.getString("song"); //À½¿ø ÆÄÀÏ(.mp3)
+				String sign = rs.getString("sign"); //¾Ù¹ü ÀÏ·¯½ºÆ®(.jpg)
+				
+				AlbumVO albumVO = new AlbumVO();
+				albumVO.setAlbum(album_name);
+				albumVO.setTitle(title);
+				albumVO.setSinger(singer);
+				albumVO.setSong_id(song_id);
+				albumVO.setPrice(price);
+				albumVO.setName(name);
+				albumVO.setSong(song);
+				albumVO.setSign(sign);
+				
+				songList.add(albumVO);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return songList;
+	}
+	
 }

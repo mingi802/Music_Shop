@@ -2,7 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="album.AlbumVO" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>  
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<jsp:useBean id="ALBUM" class="album.AlbumName"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,17 +31,16 @@ String name = (String) session.getAttribute("name");
 //String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
 %>
 <script>
-  $(document).ready(function() {
+	function showAllAlbum() {
+		  window.location.href="${contextPath}/Album/album/showAllAlbum.do";
+	}
 	  
-	  function showAllAlbum() {
-		  window.location.href="${contextPath}/Album/showAllAlbum.do";
-	  }
-	  
-	  if(${empty albumList}) {
-		  console.log("첫 입장, 전체 앨범 리스트 가져오기");
+	if(${empty albumList} && !${empty isSearch ? false : isSearch}) {
+		  //alert("첫 입장, 전체 앨범 리스트 가져오기");
 		  showAllAlbum();
 	  }
-	  
+
+	$(document).ready(function() {  
 	  var $grid = $('.oneMusic-albums').isotope({
           itemSelector: '.single-album-item',
           percentPosition: true,
@@ -48,11 +48,10 @@ String name = (String) session.getAttribute("name");
               columnWidth: '.single-album-item'
           }
       });
-
-  //검색 바 기능 구현 중
+  
+  	//검색 바 기능 구현
     if(${not empty albumList}) {
     	console.log("검색 결과 있음");
-    	$(".browse-by-catagories a.active").removeClass("active");
     	var albumList = new Array();
     	<c:forEach items="${albumList}" var="album">
     		albumList.push({
@@ -61,7 +60,7 @@ String name = (String) session.getAttribute("name");
     			title: "${album.title}",
     			singer: "${album.singer}",
     			now: "${album.now}",
-    			price: "${album.price}",
+    			//price: "${album.price}",
     			sign: "${album.sign}",
     			song: "${album.song}"
     		});
@@ -70,14 +69,15 @@ String name = (String) session.getAttribute("name");
     	$grid.isotope({ 
     		//검색한 앨범명에 맞는 앨범만 보여주기 위해 filter에 함수를 집어넣었음.
     		filter: function() {
-    			var albumName = $(this).find('.album-info p').text();
-    			var filterValue = false;
-    			albumList.forEach(function (album) {
+    			var albumName = $(this).find('.album-info p').text(); //앨범 명 추출
+    			var filterValue = false;	
+    			albumList.some(function (album) {	
+    				//some은 foreach와 비슷하나 foreach는 반복을 멈추기 힘드나 some은 콜백함수가 1번이라도 true를 리턴하면 멈춘다.
+    				console.log(filterValue, albumName);
     				if(album.album == albumName) {
+    					//albumList를 돌면서 추출한 앨범명과 일치한 앨범명이 있으면 페이지에 보여지도록 filterValue를 true로 변경 후 반복 종료
     					filterValue = true;
-    					return true;	
-    				} else {
-    					return false;	
+    					return true;
     				}
     			});
     			console.log(filterValue);
@@ -86,23 +86,26 @@ String name = (String) session.getAttribute("name");
     		
 		});
     } else {
-    	console.log("검색 결과 없음")
-    	$(".browse-by-catagories a.active").removeClass("active");
-    	
+    	console.log("검색 결과 없음");
     }
     
     $(".browse-by-catagories").on("click", "a", function(e) {
-      //e.preventDefault();
-      $(".browse-by-catagories a.active").removeClass("active");
-      $(this).addClass("active");
-      var filterValue = $(this).attr("data-filter");
-      console.log(typeof($(this).attr("data-filter")));
-      $grid.isotope({ filter: filterValue });
+      e.preventDefault();
+      if($(this).prop("id")=="browse-all" && !${empty isAll ? false : isAll}) //첫 입장 시 isAll은 비어있는데 그러면 ${isAll}로 할 경우 스크립트가 작성되다가 에러가 잡혀 페이지가 정상 작동하지않아 비어있다면 false를 넣어주어 막았다.
+    	//isAll은 가져온 앨범이 db에 저장된 앨범 전체인지 알려주는 변수임. 만약 isAll이 false라면 browse all은 모든 앨범 목록을 보여줘야하기 때문에
+    	//showAllAlbum()함수를 호출하는 것
+      	showAllAlbum();
+      else {
+    	//반대로 isAll이 true이면 isotope의 filter로 모든 앨범을 보여줄 수 있기 때문에 굳이 showAllAlbum()함수를 호출할 필요가 없음.
+    	//showAllAlbum()함수는 서블릿에게 요청하고 다시 받아와 페이지가 전체 갱신되기에 필요한 때만 사용하기 위함.
+    	  $(".browse-by-catagories a.active").removeClass("active");
+          $(this).addClass("active");
+          var filterValue = $(this).attr("data-filter");
+          console.log(typeof($(this).attr("data-filter")));
+          $grid.isotope({ filter: filterValue });  
+      }
     });
 	
-    //var a_browse_all = document.getElementById("browse-all");
-    //a_browse_all.addEventListener('click', showAllAlbum);
-    
     // URL 쿼리 기준 필터 활성화
     const urlParams = new URLSearchParams(window.location.search);
     const filterValue = urlParams.get("filter");
@@ -115,9 +118,10 @@ String name = (String) session.getAttribute("name");
     }
     
   });
+	
   function cart(){
 		if(confirm('장바구니로 이동하시겠습니까?')){
-			window.location.href="cart.jsp";
+			window.location.href="${contextPath}/cart.jsp";
 			return true;
 		} else{
 			return false;
@@ -148,7 +152,7 @@ String name = (String) session.getAttribute("name");
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -170,25 +174,19 @@ String name = (String) session.getAttribute("name");
                                     <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="main.jsp">Home</a></li>
-                                            <li><a href="album.jsp">Album</a></li>
-                                            <!--  
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            -->
-                                            <li><a href="connection.jsp">Contact</a></li>
-                                            <!--  
-                                            <li><a href="elements.html">Elements</a></li>
-                                            -->
-                                            <li><a href="login/login.jsp">Login</a></li>
+                                            <li><a href="${contextPath}/main.jsp">Home</a></li>
+                                            <li><a href="${contextPath}/album.jsp">Album</a></li>
+                                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/review/review.jsp">Review</a></li>                                            
                                             <%
-                                            if(code == null || code.equals("100")){
+                                            if(code != null){
+                                            	if(code.equals("100")){
                                             %>
-                                            <li><a href="#">Dropdown</a>
+                                            <li><a href="#">소비자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="${contextPath}/customer/mypage.jsp">내 정보</a></li>
+                                                    <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
+                                                    <li><a href="#">구매내역</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -204,11 +202,12 @@ String name = (String) session.getAttribute("name");
                                             <%
                                             } else if(code.equals("200")){
                                             %> 
-                                            <li><a href="#">Manage</a>
+                                            <li><a href="#">관리자</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin/admin.jsp">Membership</a></li>
-                                                    <li><a href="#">NoName</a></li>
-                                                    <li><a href="#">NoName</a></li>
+                                                	<li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/admin/admin.jsp">회원목록</a></li>
+                                                    <li><a href="${contextPath}/admin/host.jsp">관리자목록</a></li>
+                                                    <li><a href="${contextPath}/admin/artist.jsp">아티스트목록</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -222,15 +221,36 @@ String name = (String) session.getAttribute("name");
                                                 </ul>
                                             </li>
                                             <%
+                                            } else if(code.equals("300")) {
+                                            %>
+                                            <li><a href="#">아티스트</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/artist/artist.jsp">음원 등록</a></li>
+                                                    <li><a href="#"></a></li>
+                                                    <li><a href="#">몰?루</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">몰?루</a></li>
+                                                </ul>
+                                            </li>                                            
+                                            <%
+                                            	}
                                             }
-                                            %> 
+                                            %>                                            
                                         </ul>
                                     </li>
                                     <!--  
                                     <li><a href="event.html">Events</a></li>
                                     <li><a href="blog.html">News</a></li>
                                     -->
-                                    <li><a href="connection.jsp">Contact</a></li>
+                                    <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                 </ul>
 <% 
 	if(user_id == null) {
@@ -239,7 +259,7 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/login.jsp" id="loginBtn">Login / Register</a>
+                                        <a href="${contextPath}/login/login.jsp" id="loginBtn">Login / Register</a>
                                     </div>
 								
 <% 
@@ -249,12 +269,12 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
+                                        <a href="${contextPath}/customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -266,12 +286,12 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="${contextPath}/admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>   
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -283,12 +303,12 @@ String name = (String) session.getAttribute("name");
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="artist/atist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
+                                        <a href="${contextPath}/artist/artist.jsp" id="loginBtn">아티스트 <%=name %> 님</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login/logout.jsp" id="loginBtn">Logout</a>
+                                        <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div> 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -327,7 +347,7 @@ String name = (String) session.getAttribute("name");
                 <div class="col-12">
                     <div class="browse-by-catagories d-flex flex-wrap align-items-center mb-30">
                         <a id="browse-all" href="#" data-filter="*">Browse All</a>
-                        <a href="#" data-filter=".a" class="active">A</a>
+                        <a href="#" data-filter=".a">A</a>
                         <a href="#" data-filter=".b">B</a>
                         <a href="#" data-filter=".c">C</a>
                         <a href="#" data-filter=".d">D</a>
@@ -353,286 +373,104 @@ String name = (String) session.getAttribute("name");
                         <a href="#" data-filter=".x">X</a>
                         <a href="#" data-filter=".y">Y</a>
                         <a href="#" data-filter=".z">Z</a>
+                    </div>
+                    <div class="browse-by-catagories d-flex flex-wrap align-items-center mb-30">
+                    	<a id="browse-all" href="#" data-filter="*" style="visibility: hidden">Browse All</a>
+                        <a href="#" data-filter=".ㄱ">ㄱ</a>
+                        <a href="#" data-filter=".ㄲ">ㄲ</a>
+                        <a href="#" data-filter=".ㄴ">ㄴ</a>
+                        <a href="#" data-filter=".ㄷ">ㄷ</a>
+                        <a href="#" data-filter=".ㄸ">ㄸ</a>
+                        <a href="#" data-filter=".ㄹ">ㄹ</a>
+                        <a href="#" data-filter=".ㅁ">ㅁ</a>
+                        <a href="#" data-filter=".ㅂ">ㅂ</a>
+                        <a href="#" data-filter=".ㅃ">ㅃ</a>
+                        <a href="#" data-filter=".ㅅ">ㅅ</a>
+                        <a href="#" data-filter=".ㅆ">ㅆ</a>
+                        <a href="#" data-filter=".ㅇ">ㅇ</a>
+                        <a href="#" data-filter=".ㅈ">ㅈ</a>
+                        <a href="#" data-filter=".ㅉ">ㅉ</a>
+                        <a href="#" data-filter=".ㅊ">ㅊ</a>
+                        <a href="#" data-filter=".ㅋ">ㅋ</a>
+                        <a href="#" data-filter=".ㅌ">ㅌ</a>
+                        <a href="#" data-filter=".ㅍ">ㅍ</a>
+                        <a href="#" data-filter=".ㅎ">ㅎ</a>
                         <a href="#" data-filter=".number">0-9</a>
                     </div>
                 </div>
             </div>
             
 			<div class="row">
-                <div class="col-11">
-                	<div class="d-flex align-items-center mb-30">
-				        <form class="w-100 me-3" method="post" action="${contextPath}/Album/albumSearch.do" >
-				        	<input type="search" class="form-control" name="search-by-albumName" placeholder="Search..." aria-label="Search">
-				        </form>
-				    </div>
-                </div>
+			    <form id="search-form" class="w-100 me-3" method="post" action="${contextPath}/Album/album/albumSearch.do">
+			    <!--
+			     
+			    ${contextPath}/Album/album/albumSearch.do 이 부분이 
+			    String action = path.substring(path.lastIndexOf("/")); 때문에 /albumSearch.do로 되는 건가요?
+			    
+			     -->
+					<div class="d-flex flex-row align-items-center mb-30">
+				        <div class="col-11 pe-0">
+				        <input type="search" class="form-control" id="searchBar" name="searchBar" placeholder="Search..." required aria-label="Search">
+						</div>
+						<div>				        
+				        <input type="submit" class="form-submit img-btn" id="searchBtn" name="searchBtn">
+				        </div>
+					</div>                	
+				</form>
             </div>
 			
 			
             <div class="row oneMusic-albums">
                 <!-- Single Album -->
-				<c:if test="${not empty albumList}">
-					<c:forEach items="${albumList}" var="album">
-						<c:set var="firstLetterIsKor" value="${String.valueOf(album.album.charAt(0)).matches(\".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*\")}"/>
-						<c:if test="${firstLetterIsKor}">
-							<script>
-								console.log(${0x2F});
-							</script>
-						</c:if>
-						<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ${firstLetterIsKor}">
-		                    <div class="single-album">
-		                        <img src="${contextPath}/img/bg-img/a1.jpg" alt="">
-		                        <div class="album-info">
-		                            <a href="#">
-		                                <h5>${album.singer}</h5>
-		                            </a>
-		                            <p>${album.album}</p>
-		                        </div>
-		                    </div>
-		                </div>
-					</c:forEach>
-				</c:if>
-    	
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item c">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a1.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>The Cure</h5>
-                            </a>
-                            <p>Second Song</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item s">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a2.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Sam Smith</h5>
-                            </a>
-                            <p>Underground</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item w">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a3.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Will I am</h5>
-                            </a>
-                            <p>First</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a4.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>The Cure</h5>
-                            </a>
-                            <p>Second Song</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item d">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a5.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>DJ SMITH</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item d">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a6.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>The Ustopable</h5>
-                            </a>
-                            <p>Unplugged</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a7.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Beyonce</h5>
-                            </a>
-                            <p>Songs</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- 실험 -->
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
-                    <div class="single-album">
-                        <a href="./album_songs.jsp"><img src="${contextPath}/resource/img/eventhorizon.jpg" alt=""></a> 
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>윤하</h5>
-                            </a>
-                            <p>사건의 지평선</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item y">
-                    <div class="single-album">
-                        <img src="${contextPath}/resource/img/Oort cloud.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>윤하</h5>
-                            </a>
-                            <p>오르트구름</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
-                    <div class="single-album">
-
-                        <img src="${contextPath}/resource/img/good.jpg" alt="">
-
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>윤종신</h5>
-                            </a>
-                            <p>좋니</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
-                    <div class="single-album">
-                        <img src="${contextPath}/resource/img/Butter.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>BTS</h5>
-                            </a>
-                            <p>BUTTER</p>
-                        </div>
-                    </div>
-                </div>                                   
-                <!-- 실험 -->       
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item a">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a8.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Aam Smith</h5>
-                            </a>
-                            <p>Underground</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item w number">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a9.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Will I am</h5>
-                            </a>
-                            <p>First</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item d">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a10.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>DJ SMITH</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a11.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>The Ustopable</h5>
-                            </a>
-                            <p>Unplugged</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album -->
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b">
-                    <div class="single-album">
-                        <img src="${contextPath}/img/bg-img/a12.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Beyonce</h5>
-                            </a>
-                            <p>Songs</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item s">
-                    <div class="single-album">
-                        <img src="${contextPath}/resource/img/Suzume.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>RADWIMPS</h5>
-                            </a>
-                            <p>Suzume</p>
-                        </div>
-                    </div>
-                </div>
-
+				<c:choose>
+					<c:when test="${not empty albumList}">
+						<c:forEach items="${albumList}" var="album">
+							<c:set var="classForFiltering" value="${ALBUM.getClassNameByAlbumName(album.album)}"/>
+							<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ${classForFiltering}">
+			                    <div class="single-album">
+			                        <img src="${contextPath}/resource/img/${album.sign}" alt="${album.title}"> <!-- 앨범 이미지 -->
+			                    <audio>
+			                    	<source src="${contextPath}/resource/audio/${album.song}">
+			                    </audio>
+			                        <div class="album-info">
+			                            <a href="${contextPath}/Album/album_songs/showOneAlbum.do?album_id=${album.id}"> <!-- 경로(수정) -->
+			                                <h6 class="singer">${album.singer}</h6> <!-- 가수 -->
+			                            </a>
+			                            <p class="album">${album.album}</p><!-- 앨범 이름 -->
+			                        </div>
+			                    </div>
+			                </div>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<div class="col-12 d-flex justify-content-center single-album-item">
+							<div class="no-album">
+								<img src="${contextPath}/resource/img/not found.png" alt="">
+								<div class="no-info">
+			                    	<h5>검색 결과가 없습니다.</h5>
+			                    </div>
+							</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
             </div>
         </div>
     </section>
     <!-- ##### Album Catagory Area End ##### -->
 
-    <!-- ##### Buy Now Area Start ##### -->
+    <!-- ##### Buy Now Area Start ##### 
     <div class="oneMusic-buy-now-area mb-100">
         <div class="container">
             <div class="row">
 
-                <!-- Single Album Area -->
+                
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
                             <img src="${contextPath}/img/bg-img/b1.jpg" alt="">
-                            <!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.90</p>
                             </div>
-                            <!-- Play Icon -->
                             <div class="play-icon">
                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
                             </div>
@@ -646,7 +484,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Album Area -->
+                
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
@@ -661,7 +499,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Album Area -->
+                
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
@@ -676,7 +514,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Album Area -->
+               
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="single-album-area">
                         <div class="album-thumb">
@@ -700,11 +538,12 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
-    <!-- ##### Buy Now Area End ##### -->
+    	 ##### Buy Now Area End ##### -->
 
-    <!-- ##### Add Area Start ##### -->
+    <!-- ##### Add Area Start ##### 
     <div class="add-area mb-100">
         <div class="container">
             <div class="row">
@@ -718,12 +557,12 @@ String name = (String) session.getAttribute("name");
     </div>
     <!-- ##### Add Area End ##### -->
 
-    <!-- ##### Song Area Start ##### -->
+    <!-- ##### Song Area Start ##### 
     <div class="one-music-songs-area mb-70">
         <div class="container">
             <div class="row">
 
-                <!-- Single Song Area -->
+                <!-- Single Song Area 
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -740,7 +579,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Song Area -->
+                <!-- Single Song Area 
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -757,7 +596,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Song Area -->
+                <!-- Single Song Area 
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -774,7 +613,7 @@ String name = (String) session.getAttribute("name");
                     </div>
                 </div>
 
-                <!-- Single Song Area -->
+                <!-- Single Song Area 
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -796,7 +635,7 @@ String name = (String) session.getAttribute("name");
     </div>
     <!-- ##### Song Area End ##### -->
 
-    <!-- ##### Contact Area Start ##### -->
+    <!-- ##### Contact Area Start ##### 
     <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(${contextPath}/img/bg-img/bg-2.jpg);">
         <div class="container">
             <div class="row">
@@ -810,7 +649,7 @@ String name = (String) session.getAttribute("name");
 
             <div class="row">
                 <div class="col-12">
-                    <!-- Contact Form Area -->
+                    <!-- Contact Form Area 
                     <div class="contact-form-area">
                         <form action="#" method="post">
                             <div class="row">
@@ -851,7 +690,7 @@ String name = (String) session.getAttribute("name");
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                    <a href="${contextPath}/main.jsp"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
@@ -860,13 +699,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="main.jsp">Home</a></li>
+                            <li><a href="${contextPath}/main.jsp">Home</a></li>
                             <li><a href="${contextPath}/album.jsp">Albums</a></li>
-                            <!--  
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            -->
-                            <li><a href="connection.jsp">Contact</a></li>
+                            <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                         </ul>
                     </div>
                 </div>
