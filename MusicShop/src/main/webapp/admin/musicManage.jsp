@@ -105,7 +105,7 @@ function cart(){
                                 <ul>
                                     <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
-                                    <li><a href="#">Manage</a>
+                                    <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>

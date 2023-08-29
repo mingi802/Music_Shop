@@ -182,7 +182,7 @@ String name = (String) session.getAttribute("name");
                                             if(code != null){
                                             	if(code.equals("100")){
                                             %>
-                                            <li><a href="#">소비자</a>
+                                            <li><a href="#">User</a>
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내 정보</a></li>
                                                     <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
@@ -202,7 +202,7 @@ String name = (String) session.getAttribute("name");
                                             <%
                                             } else if(code.equals("200")){
                                             %> 
-                                            <li><a href="#">관리자</a>
+                                            <li><a href="#">Manager</a>
                                                 <ul class="dropdown">
                                                 	<li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/admin/admin.jsp">회원목록</a></li>
@@ -225,7 +225,7 @@ String name = (String) session.getAttribute("name");
                                             <%
                                             } else if(code.equals("300")) {
                                             %>
-                                            <li><a href="#">아티스트</a>
+                                            <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/artist/artist.jsp">음원 등록</a></li>

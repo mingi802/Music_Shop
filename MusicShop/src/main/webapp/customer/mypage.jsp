@@ -125,7 +125,7 @@ function update(){
                                             <%
                                             if(code.equals("100")){
                                             %>
-                                                <li><a href="#">소비자</a>
+                                                <li><a href="#">User</a>
                                                 <ul class="dropdown">
                                                     <li><a href="mypage.jsp">내정보</a></li>
                                                     <li><a href="../cart.jsp">장바구니</a></li>
@@ -145,7 +145,7 @@ function update(){
                                             <%                                              	
                                             } else if (code.equals("200")){
                                             %>
-                                            <li><a href="#">관리자</a>
+                                            <li><a href="#">Manager</a>
                                                 <ul class="dropdown">
                                                     <li><a href="../customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="../admin/admin.jsp">회원목록</a></li>
@@ -168,7 +168,7 @@ function update(){
                                             <%
                                             } else if(code.equals("300")){
                                             %>
-                                            <li><a href="#">아티스트</a>
+                                            <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
                                                     <li><a href="mypage.jsp">내정보</a></li>
                                                     <li><a href="../artist/artist.jsp">음원등록</a></li>

@@ -118,9 +118,11 @@ function cart(){
                                     <li><a href="#">Manage</a>
                                         <ul class="dropdown">
                                             <li><a href="../customer/mypage.jsp">내정보</a></li>
-                                            <li><a href="admin.jsp">회원목록</a></li>
-                                            <li><a href="artist.jsp">아티스트목록</a></li>
-                                            <li><a href="host.jsp">관리자목록</a></li>
+                                            <li><a href="../admins/admin.jsp">회원목록</a></li>
+                                            <li><a href="../admin/artist.jsp">아티스트목록</a></li>
+                                            <li><a href="../admin/host.jsp">관리자목록</a></li>
+                                            <li><a href="review.jsp">게시판관리</a></li>
+                                            <li><a href="../admin/musicManage.jsp">앨범관리</a></li>
                                             <li><a href="#">Even Dropdown</a></li>
                                         </ul>
                                     </li>
