@@ -1675,7 +1675,18 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
  	font-size: 16px; 
  	padding: 10px 20px; 
   	}
-  	
+  	/*
+  	.review-board-form table{
+  	border: 1px solid #444444;
+  	}
+  	*/
+  	.review-board-form tr{
+  	border: 1px solid #d8d8d8;
+  	} 
+  	.review-board-form td{
+  	border: 1px solid #d8d8d8;
+  	}
+  	  	
 /* :: upload area CSS*/
   	.upload-container{
   	width: 50%;

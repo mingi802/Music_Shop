@@ -103,8 +103,18 @@ function cart(){
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="../main.jsp">Homeasdasdsd</a></li>
+                                    <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="../main.jsp">Home</a></li>
+                                            <li><a href="../album.jsp">Album</a></li>
+                                            <li><a href="../connection.jsp">Contact</a></li>
+                                            <li><a href="../review/review.jsp">Review</a></li>
+                                    
+                                    <%if(code != null){
+                                    	if(code.equals("200")){
+                                    %>
                                     <li><a href="#">Manage</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
@@ -116,8 +126,7 @@ function cart(){
                                                     <li><a href="admin.jsp">회원목록</a></li>
                                                     <li><a href="artist.jsp">아티스트목록</a></li>
                                                     <li><a href="host.jsp">관리자목록</a></li>
-                                                    
-                                                    <li><a href="#">Even Dropdown</a>
+                                            <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -126,15 +135,17 @@ function cart(){
                                                             <li><a href="#">Deeply Dropdown</a></li>
                                                         </ul>
                                                     </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">Even Dropdown</a></li>        
+                
+                                                    
                                                 </ul>
                                             </li>
+                                   <%
+                                    	}
+                                    }
+                                   %>                                             
                                         </ul>
                                     </li>
-                                    <!--  
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                    -->
                                     <li><a href="../connection.jsp">Contact</a></li>
                                 </ul>
 <% 

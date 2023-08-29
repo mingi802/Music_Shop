@@ -105,6 +105,15 @@ function cart(){
                                 <ul>
                                     <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="../main.jsp">Home</a></li>
+                                            <li><a href="../album.jsp">Album</a></li>
+                                            <li><a href="../connection.jsp">Contact</a></li>
+                                            <li><a href="review.jsp">Review</a></li>
+                                    <%if(code != null){
+                                    	if(code.equals("200")){	
+                                    %>
                                     <li><a href="#">Manage</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
@@ -129,12 +138,12 @@ function cart(){
                                                     <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
                                             </li>
+                                            <%
+                                    			}   
+                                    		}
+                                            %>
                                         </ul>
                                     </li>
-                                    <!--  
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                    -->
                                     <li><a href="../connection.jsp">Contact</a></li>
                                 </ul>
 <% 
@@ -248,7 +257,9 @@ function cart(){
                         <!-- Membership manage Form -->
                         <div class="review-board-form">
                         <table>
-                        	<tr><th>번호</th><th>앨범</th><th>작성자</th><th>작성일</th><th>별점</th></tr>
+                        	<tr>
+                        		<th>번호</th><th>앨범</th><th>작성자</th><th>작성일</th><th>별점</th>
+                        	</tr>
 							<%
 							String sql = "SELECT * FROM board";
 							PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -267,11 +278,11 @@ function cart(){
 								}
 							%>
 							<tr>
-								<td><%=rs.getInt("id") %></td>
-								<td><a href="review_detail.jsp?id=<%=rs.getString("user_id")%>&title=<%=rs.getString("album_name")%>"><%=rs.getString("album_name")%></a></td>
-								<td><%=rs.getString("user_id") %></td>
-								<td><%=rs.getString("date") %></td>
-								<td><%=star%><td>
+								<td><%=rs.getInt("id") %></td> <!-- 글 번호 -->
+								<td><a href="review_detail.jsp?id=<%=rs.getString("user_id")%>&title=<%=rs.getString("album_name")%>"><%=rs.getString("album_name")%></a></td> <!-- 앨번 이름 -->
+								<td><%=rs.getString("user_id") %></td> <!-- 작성자 -->
+								<td><%=rs.getString("date") %></td> <!-- 작성일 -->
+								<td><%=star%><td> <!-- 별점 -->
 							</tr>
 							<%
 							}
