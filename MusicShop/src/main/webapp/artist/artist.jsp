@@ -109,6 +109,7 @@ String name = (String) session.getAttribute("name");
                                                 <ul class="dropdown">
                                                     <li><a href="../customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
+                                                    <li><a href="${contextPath}/artist/music_delete.jsp">음원관리</a></li>
                                                     <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">

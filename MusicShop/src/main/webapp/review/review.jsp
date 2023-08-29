@@ -111,40 +111,65 @@ function cart(){
                                             <li><a href="../album.jsp">Album</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
                                             <li><a href="review.jsp">Review</a></li>
-                                    <%if(code != null){
+                                    <%
+                                    if(code != null){
                                     	if(code.equals("200")){	
                                     %>
                                     <li><a href="#">Manage</a>
                                         <ul class="dropdown">
-                                            <li><a href="../main.jsp">Home</a></li>
-                                            <li><a href="../album.jsp">Album</a></li>
-                                            <li><a href="../connection.jsp">Contact</a></li>
-                                            <li><a href="#">매니저</a>
-                                                <ul class="dropdown">
-                                                	<li><a href="../customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="admin.jsp">회원목록</a></li>
-                                                    <li><a href="artist.jsp">아티스트목록</a></li>
-                                                    <li><a href="host.jsp">관리자목록</a></li>
-                                                    
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                </ul>
-                                            </li>
-                                            <%
-                                    			}   
-                                    		}
-                                            %>
+                                            <li><a href="../customer/mypage.jsp">내정보</a></li>
+                                            <li><a href="admin.jsp">회원목록</a></li>
+                                            <li><a href="artist.jsp">아티스트목록</a></li>
+                                            <li><a href="host.jsp">관리자목록</a></li>
+                                            <li><a href="#">Even Dropdown</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="../connection.jsp">Contact</a></li>
+                                    <%
+                                    } else if(code.equals("100")){   
+                                    %>
+                                    <li><a href="#">User</a>
+                                    	<ul class="dropdown">
+                                        	<li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                        	<li><a href="${contextPath}/cart.jsp">장바구니</a></li>
+                                        	<li><a href="#">구매내역</a></li>
+                                        	<li><a href="#">소비자4</a>
+                                            	<ul class="dropdown">
+                                                	<li><a href="#">소비자</a></li>
+                                                	<li><a href="#">소비자</a></li>
+                                                	<li><a href="#">소비자</a></li>
+                                                	<li><a href="#">소비자</a></li>
+                                                	<li><a href="#">소비자</a></li>
+                                            	</ul>
+                                        	</li>
+                                     	</ul>
+                                	</li>
+                                    <%
+                                    } else if(code.equals("300")){
+                                    %>
+                            		<li><a href="#">Artist</a>
+                                    	<ul class="dropdown">
+                                        	<li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                       		<li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
+                                        	<li><a href="${contextPath}/artist/music_delete.jsp">음원관리</a></li>
+                                        	<li><a href="#">몰?루</a>
+                                            	<ul class="dropdown">
+                                                	<li><a href="#">몰?루<</a></li>
+                                                	<li><a href="#">몰?루<</a></li>
+                                               		<li><a href="#">몰?루<</a></li>
+                                                	<li><a href="#">몰?루<</a></li>
+                                                	<li><a href="#">몰?루<</a></li>
+                                             	</ul>
+                                       		</li>
+                                     		<li><a href="#">몰?루</a></li>
+                                    	</ul>
+                                   	</li>                           
+                                    <%
+                                    	}
+                                    }
+                                    %>        
+                                </ul>
+                                	</li>
+                                <li><a href="../connection.jsp">Contact</a></li>
                                 </ul>
 <% 
 	if(user_id == null) {
@@ -197,7 +222,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../artist/atist.jsp" id="loginBtn"><%=name %> 아티스트</a>
+                                        <a href="../artist/artist.jsp" id="loginBtn"><%=name %> 아티스트</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -232,21 +257,7 @@ function cart(){
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
-    <!--  
-	<div class="write-review-btn">
-    	<a href="write.jsp">글쓰기</a>
-	</div>    
-	  
-    <aside class="review-category">
-    	<ul style="padding-left:5px;padding-top:20px;">
-			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
-			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
-			<li><a href="artist.jsp"><b>아티스트목록</b></a></li><br>
-			<li><a href="musicManage.jsp"><b>음원목록</b></a></li><br>
-			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>			    	
-    	</ul>
-    </aside>
-    -->
+    
     <!-- ##### Member Control Area Start ##### -->
     <section class="login-area rev-section-padding-100">
         <div class="review-container">

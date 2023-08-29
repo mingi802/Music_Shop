@@ -83,7 +83,7 @@ function cart(){
                                             <li><a href="main.jsp">Home</a></li>
                                             <li><a href="album.jsp">Album</a></li>
                                             <li><a href="connection.jsp">Contact</a></li>
-                                            <li><a href="../review/review.jsp">Review</a></li>                                            
+                                            <li><a href="review/review.jsp">Review</a></li>                                            
                                             <%
                                             if(code != null){
                                             	if(code.equals("100")){
@@ -115,6 +115,7 @@ function cart(){
                                                     <li><a href="admin/artist.jsp">아티스트목록</a></li>
                                                     <li><a href="admin/host.jsp">관리자목록</a></li>
                                                     <li><a href="review/review.jsp">게시판관리</a></li>
+                                                    <li><a href="admin/musicManage.jsp">앨범관리</a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">몰?루<</a></li>
@@ -134,6 +135,7 @@ function cart(){
                                                 <ul class="dropdown">
                                                     <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="artist/artist.jsp">음원 등록</a></li>
+                                                    <li><a href="artist/music_delete.jsp">음원 관리</a></li>
                                                     <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">

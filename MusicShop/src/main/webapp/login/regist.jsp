@@ -240,7 +240,7 @@
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
-                                    <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="남자">남자
+                                    <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="남자" checked>남자
                                      <span class="spacing"></span>
                                     <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="여자">여자
                                 </div>
@@ -261,7 +261,7 @@
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
-                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="100">소비자
+                                    <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="100" checked>소비자
                                      <span class="spacing"></span>
                                     <input type="radio" class="form-controlasd" id="InputPosition" name="user_pos" value="200">관리자
                                      <span class="spacing"></span>

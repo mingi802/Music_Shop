@@ -117,6 +117,8 @@ function cart(){
                                                     <li><a href="admin.jsp">회원목록</a></li>
                                                     <li><a href="artist.jsp">아티스트목록</a></li>
                                                     <li><a href="host.jsp">관리자목록</a></li>
+                                                    <li><a href="../review/review.jsp">게시판관리</a></li>
+                                                    <li><a href="musicManage.jsp">앨범관리</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -241,23 +243,24 @@ function cart(){
                         <!-- Membership manage Form -->
                         <div class="music-manage-form">
                         <table>
-                        	<tr><th>고유번호</th><th>앨범번호</th><th>앨범</th><th>타이틀곡</th><th>가수</th><th>음원</th><th>가격</th></tr>
+                        	<!--  <tr><th>고유번호</th><th>앨범번호</th><th>앨범</th><th>타이틀곡</th><th>가수</th><th>음원</th><th>가격</th></tr> -->
+                        	<tr><th>고유번호</th><th>앨범</th><th>타이틀곡</th><th>음원</th><th>가수</th><th>가격</th></tr>
                         	<%
-                        	String sql = "SELECT song.id, song.album_id, album.name, album.title, album.singer, song.name, song.price FROM song, album WHERE album.id = song.album_id";
+                        	//String sql = "SELECT song.id, song.album_id, album.name, album.title, album.singer, song.name, song.price FROM song, album WHERE album.id = song.album_id";
+                        	String sql = "SELECT album.id, album.name, album.title, song.song, album.singer, SUM(song.price) AS Album_price FROM song, album WHERE album.id = song.album_id GROUP BY album.id"; 
                         	PreparedStatement pstmt = conn.prepareStatement(sql);
                         	ResultSet rs = pstmt.executeQuery();
                         	
                         	while(rs.next()){
                         	%>
                         		<tr style="test-align: center">
-                        		<td><%=rs.getString("song.id") %></td>
-                        		<td><%=rs.getString("song.album_id") %></td>
-                        		<td><%=rs.getString("album.name") %></td>
-                        		<td><%=rs.getString("album.title") %></td>
-                        		<td><%=rs.getString("album.singer") %></td>
-                        		<td><%=rs.getString("song.name") %></td>
-                        		<td><%=rs.getString("song.price") %></td>
-                        		<td><button onclick="location.href='songdelete.jsp?id=<%= rs.getString("song.id") %>'">Delete</button></td>
+                        		<td><%=rs.getString("album.id") %></td> <!-- 고유번호 -->
+                        		<td><%=rs.getString("album.name") %></td> <!-- 앨범 번호 -->
+                        		<td><%=rs.getString("album.title") %></td> <!-- 앨범명 -->
+                        		<td><%=rs.getString("song.song") %></td> <!-- 타이틀곡 -->
+                        		<td><%=rs.getString("album.singer") %></td> <!-- 가수 -->
+                        		<td><%=rs.getString("Album_price") %>원</td> <!-- 가격 -->
+                        		<td><button onclick="location.href='songdelete.jsp?id=<%= rs.getString("album.id") %>'">Delete</button></td>
                         		</tr>
                         	<%	
                         	}

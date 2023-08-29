@@ -108,42 +108,81 @@ function cart(){
                                 <ul>
                                     <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
-                                    <li><a href="#">Manage</a>
+                                    <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>
-                                            <!--  
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            -->
                                             <li><a href="../connection.jsp">Contact</a></li>
-                                            <!--  
-                                            <li><a href="elements.html">Elements</a></li>
-                                            -->
-                                            <li><a href="../login/login.jsp">Login</a></li>
-                                            <li><a href="#">Manage</a>
+                                            <li><a href="../review/review.jsp">Review</a></li>
+                                            <%
+                                            if(code != null){
+                                           	 if(code.equals("100")){
+                                            %>
+                                            <li><a href="#">User</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="admin.jsp">Membership</a></li>
-                                                    <li><a href="#">NoName</a></li>
-                                                    <li><a href="#">NoName</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
+                                                    <li><a href="mypage.jsp">내정보</a></li>
+                                                    <li><a href="../cart.jsp">장바구니</a></li>
+                                                    <li><a href="#">구매내역</a></li>
+                                                    <li><a href="#">소비자4</a>
                                                         <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
+                                                            <li><a href="#">소비자</a></li>
                                                         </ul>
                                                     </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
+                                                </ul>
+                                            </li> 
+                                            <%
+                                            } else if(code.equals("200")){
+                                            %> 
+                                            <li><a href="#">Manager</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="mypage.jsp">내정보</a></li>
+                                                    <li><a href="../admin/admin.jsp">회원목록</a></li>
+                                                    <li><a href="../admin/artist.jsp">아티스트목록</a></li>
+                                                    <li><a href="../admin/host.jsp">관리자목록</a></li>
+                                                    <li><a href="../review/review.jsp">게시판관리</a></li>
+                                                    <li><a href="../admin/musicManage.jsp">앨범관리</a></li>
+                                                    <li><a href="#">몰?루</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">몰?루</a></li>
                                                 </ul>
                                             </li>
+                                            <%
+                                            } else if(code.equals("300")) {
+                                            %>
+                                            <li><a href="#">Artist</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="mypage.jsp">내정보</a></li>
+                                                    <li><a href="../artist/artist.jsp">음원등록</a></li>
+                                                    <li><a href="../artist/music_delete.jsp">음원관리</a></li>
+                                                    <li><a href="#">몰?루</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                            <li><a href="#">몰?루<</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">몰?루</a></li>
+                                                </ul>
+                                            </li>                                            
+                                            <%
+                                            	}
+                                            }
+                                            %>                                            
                                         </ul>
                                     </li>
-                                    <!--  
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                    -->
                                     <li><a href="../connection.jsp">Contact</a></li>
                                 </ul>
 <% 
@@ -197,7 +236,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../artist/atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
+                                        <a href="../artist/artist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->

@@ -151,6 +151,8 @@ function update(){
                                                     <li><a href="../admin/admin.jsp">회원목록</a></li>
                                                     <li><a href="../admin/artist.jsp">아티스트목록</a></li>
                                                     <li><a href="../admin/host.jsp">관리자목록</a></li>
+                                                    <li><a href="../review/review.jsp">게시판관리</a></li>
+                                                    <li><a href="../admin/musicManage.jsp">앨범관리</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -168,8 +170,9 @@ function update(){
                                             %>
                                             <li><a href="#">아티스트</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="mypage.jsp">내 정보</a></li>
-                                                    <li><a href="../artist/artist.jsp">음원등록 및 목록</a></li>
+                                                    <li><a href="mypage.jsp">내정보</a></li>
+                                                    <li><a href="../artist/artist.jsp">음원등록</a></li>
+                                                    <li><a href="../artist/music_delete.jsp">음원관리</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -244,7 +247,7 @@ function update(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../artist/atist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
+                                        <a href="../artist/artist.jsp" id="loginBtn"><%=user_id %> 아티스트</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->

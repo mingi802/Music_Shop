@@ -1385,19 +1385,40 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
  	width: 1100px; 
  	border-spacing: 10px;
  	padding-left: 100px;
+	}	
+	.music-manage-form button {
+  	padding: 10px 20px; 
+  	font-size: 16px; 
+  	border-radius: 8px; 
 	}
-		
+	.artist-music-manage {
+	overflow: auto;
+	}
+	.artist-music-manage table {
+	text-align : center;
+ 	margin-left: 50px;
+ 	border-collapse : collapse;
+ 	width: 1100px; 
+ 	border-spacing: 10px;
+ 	/*padding-left: 100px;*/
+	}	
+	.artist-music-manage button {
+  	padding: 10px 20px; 
+  	font-size: 16px; 
+  	border-radius: 8px; 
+	}
+	.artist-music-container{
+  	width: 1950px;
+	text-align: center;
+	margin-left: -1480px;
+	padding-left: 1500px;
+  	}	
   	.music-container{
   	width: 1950px;
 	text-align: center;
 	margin-left: -1550px;
 	padding-left: 1500px;
-  	}	
-	.music-manage-form button {
-  	padding: 10px 20px; 
-  	font-size: 16px; 
-  	border-radius: 8px; 
-	}  	
+  	} 	
 	.member-manage-form th td{
 	padding: 15px; 
 	}  	
