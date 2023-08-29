@@ -205,7 +205,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="../admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -257,21 +257,7 @@ function cart(){
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
-    <!--  
-	<div class="write-review-btn">
-    	<a href="write.jsp">글쓰기</a>
-	</div>    
-	  
-    <aside class="review-category">
-    	<ul style="padding-left:5px;padding-top:20px;">
-			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
-			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
-			<li><a href="artist.jsp"><b>아티스트목록</b></a></li><br>
-			<li><a href="musicManage.jsp"><b>음원목록</b></a></li><br>
-			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>			    	
-    	</ul>
-    </aside>
-    -->
+    
     <!-- ##### Member Control Area Start ##### -->
     <section class="login-area rev-section-padding-100-alter">
         <div class="review-container">
@@ -303,8 +289,12 @@ function cart(){
 							%>
 							<table class="notice-board">
 							<tr>
-								<th>앨범</th>
+								<th>음원</th>
 								<td><%=rs.getString("album_name") %></td>
+							</tr>
+							<tr>
+								<th>가수</th>
+								<td><%=rs.getString("singer") %></td>
 							</tr>
 							<tr>
 								<th>작성자</th>

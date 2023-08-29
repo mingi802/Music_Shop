@@ -125,15 +125,8 @@ function limitPlayTime(audio) {
 function confirmLogin(){
 	var id = document.getElementById('user_id').value;
 	if(id == 'null'){
-		
 		alert("로그인 후 이용해주세요.");
-		
-			if(confirm('로그인 페이지로 이동하시겠습니까?')){
-				window.location.href="${contextPath}/login/login.jsp";
-				return true;
-			} else{
-				return false;
-			}
+		window.location.href="${contextPath}/login/login.jsp";
 		return false;
 	} else{
 		return true;
@@ -438,7 +431,14 @@ function confirmLogin(){
                             				<input type="hidden" name="user_id" id="user_id" value='<%=user_id %>'>
                             				<input type="hidden" name="album" id="album" value="${songList[0].album}">
                             				<input type="hidden" name="albumId" id="albumId" value='<%=albumId %>'>
+                            				<input type="hidden" name="singer" id="singer" value="${songList[0].singer}">
                             				
+                            				<select class="song_name" id="song_name" name="song_name">
+                            					<option value="">선택</option>
+                            				<c:forEach items="${songList}" var="song">
+                            						<option value="${song.name}">${song.name}</option>
+                            				</c:forEach>
+                            				</select>
 										<fieldset >
 											<input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
 											<input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★</label>

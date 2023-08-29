@@ -207,7 +207,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="../admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -271,7 +271,7 @@ function cart(){
                         <div class="review-board-form">
                         <table>
                         	<tr>
-                        		<th>번호</th><th>앨범</th><th>작성자</th><th>작성일</th><th>별점</th>
+                        		<th>번호</th><th>음원</th><th>가수</th><th>작성자</th><th>작성일</th><th>별점</th>
                         	</tr>
 							<%
 							String sql = "SELECT * FROM board";
@@ -292,7 +292,8 @@ function cart(){
 							%>
 							<tr>
 								<td><%=rs.getInt("id") %></td> <!-- 글 번호 -->
-								<td><a href="review_detail.jsp?id=<%=rs.getString("user_id")%>&title=<%=rs.getString("album_name")%>"><%=rs.getString("album_name")%></a></td> <!-- 앨번 이름 -->
+								<td><a href="review_detail.jsp?id=<%=rs.getString("user_id")%>&title=<%=rs.getString("album_name")%>"><%=rs.getString("album_name")%></a></td> <!-- 음원 이름 -->
+								<td><%=rs.getString("singer") %></td>
 								<td><%=rs.getString("user_id") %></td> <!-- 작성자 -->
 								<td><%=rs.getString("date") %></td> <!-- 작성일 -->
 								<td><%=star%><td> <!-- 별점 -->

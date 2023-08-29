@@ -180,7 +180,14 @@
 		}    
       	
 		/*장바구니로 이동하는 함수 추가하기*/
-		
+		function cart(){
+			if(confirm('장바구니로 이동하시겠습니까?')){
+				window.location.href="${contextPath}/cart.jsp";
+				return true;
+			}else{
+				return false;
+			}
+		}
     </script>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -229,6 +236,7 @@
                                             <li><a href="${contextPath}/main.jsp">Home</a></li>
                                             <li><a href="${contextPath}/album.jsp">Album</a></li>
                                             <li><a href="${contextPath}/connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/review/review.jsp">Review</a></li>
                                             <%
                                             if(code != null){
                                            	 if(code.equals("100")){

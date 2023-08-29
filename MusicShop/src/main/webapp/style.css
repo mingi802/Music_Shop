@@ -1391,6 +1391,12 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	font-size: 16px; 
   	border-radius: 8px; 
 	}
+	.member-manage-form tr{
+	border: 1px solid #d8d8d8;
+	}
+	.member-manage-form td{
+	border: 1px solid #d8d8d8;
+	}
 	.artist-music-manage {
 	overflow: auto;
 	}
@@ -1555,6 +1561,14 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	width: 250px;
   	height: 80px;
   	margin-left: 210px;
+  	}
+  	.starReview .song_name {
+  	margin-left:36px;
+  	text-align: center;
+  	width: 150px;
+  	border-radius: 5px;
+  	margin-top: 5px;
+  	padding-bottom: -5px;
   	}
   	/*
   	.writeReview .writearea{
@@ -1804,7 +1818,7 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
  	 padding: 50px 30px;
  	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
  	 text-align: center;
- 	 width: 140%; 
+ 	 width: 160%; 
   	}
   	.music-list-form{
   	overflow: auto;
