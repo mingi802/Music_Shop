@@ -85,7 +85,7 @@ function cart(){
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -103,38 +103,72 @@ function cart(){
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="../main.jsp">Homeasdasdsd</a></li>
+                                    <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
-                                    <li><a href="#">Manage</a>
+                                    <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
-                                            <li><a href="#">매니저</a>
-                                                <ul class="dropdown">
-                                                	<li><a href="../customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="admin.jsp">회원목록</a></li>
-                                                    <li><a href="artist.jsp">아티스트목록</a></li>
-                                                    <li><a href="host.jsp">관리자목록</a></li>
-                                                    
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="../review/review.jsp">Review</a></li>
+                                    <%
+                                    if(code != null){
+                                    	if(code.equals("200")){	
+                                    %>
+                                    <li><a href="#">Manage</a>
+                                        <ul class="dropdown">
+                                            <li><a href="../customer/mypage.jsp">내정보</a></li>
+                                            <li><a href="admin.jsp">회원목록</a></li>
+                                            <li><a href="artist.jsp">아티스트목록</a></li>
+                                            <li><a href="host.jsp">관리자목록</a></li>
+                                            <li><a href="#">Even Dropdown</a></li>
                                         </ul>
                                     </li>
-                                    <!--  
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                    -->
+                                    <%
+                                    } else if(code.equals("100")){   
+                                    %>
+                                    <li><a href="#">User</a>
+                                    	<ul class="dropdown">
+                                        	<li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                        	<li><a href="${contextPath}/cart.jsp">장바구니</a></li>
+                                        	<li><a href="#">구매내역</a></li>
+                                        	<li><a href="#">소비자4</a>
+                                            	<ul class="dropdown">
+                                                	<li><a href="#">소비자</a></li>
+                                                	<li><a href="#">소비자</a></li>
+                                                	<li><a href="#">소비자</a></li>
+                                                	<li><a href="#">소비자</a></li>
+                                                	<li><a href="#">소비자</a></li>
+                                            	</ul>
+                                        	</li>
+                                     	</ul>
+                                	</li>
+                                    <%
+                                    } else if(code.equals("300")){
+                                    %>
+                            		<li><a href="#">Artist</a>
+                                    	<ul class="dropdown">
+                                        	<li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
+                                       		<li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
+                                        	<li><a href="${contextPath}/artist/music_delete.jsp">음원관리</a></li>
+                                        	<li><a href="#">몰?루</a>
+                                            	<ul class="dropdown">
+                                                	<li><a href="#">몰?루<</a></li>
+                                                	<li><a href="#">몰?루<</a></li>
+                                               		<li><a href="#">몰?루<</a></li>
+                                                	<li><a href="#">몰?루<</a></li>
+                                                	<li><a href="#">몰?루<</a></li>
+                                             	</ul>
+                                       		</li>
+                                     		<li><a href="#">몰?루</a></li>
+                                    	</ul>
+                                   	</li>                           
+                                    <%
+                                    	}
+                                    }
+                                    %>                                            
+                                        </ul>
+                                    </li>
                                     <li><a href="../connection.jsp">Contact</a></li>
                                 </ul>
 <% 
@@ -171,7 +205,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
+                                        <a href="../admin/admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
                                     </div>
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -188,7 +222,7 @@ function cart(){
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="../artist/atist.jsp" id="loginBtn"><%=name %> 아티스트</a>
+                                        <a href="../artist/artist.jsp" id="loginBtn"><%=name %> 아티스트</a>
                                     </div>	
                                 <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
                                     <!-- Login/Register -->
@@ -223,21 +257,7 @@ function cart(){
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
-    <!--  
-	<div class="write-review-btn">
-    	<a href="write.jsp">글쓰기</a>
-	</div>    
-	  
-    <aside class="review-category">
-    	<ul style="padding-left:5px;padding-top:20px;">
-			<li><a href="admin.jsp"><b>회원목록</b></a></li><br>
-			<li><a href="host.jsp"><b>관리자목록</b></a></li><br>
-			<li><a href="artist.jsp"><b>아티스트목록</b></a></li><br>
-			<li><a href="musicManage.jsp"><b>음원목록</b></a></li><br>
-			<li><a href="../customer/mypage.jsp"><b>내정보</b></a></li>			    	
-    	</ul>
-    </aside>
-    -->
+    
     <!-- ##### Member Control Area Start ##### -->
     <section class="login-area rev-section-padding-100-alter">
         <div class="review-container">
@@ -269,8 +289,12 @@ function cart(){
 							%>
 							<table class="notice-board">
 							<tr>
-								<th>앨범</th>
+								<th>음원</th>
 								<td><%=rs.getString("album_name") %></td>
+							</tr>
+							<tr>
+								<th>가수</th>
+								<td><%=rs.getString("singer") %></td>
 							</tr>
 							<tr>
 								<th>작성자</th>
@@ -314,7 +338,7 @@ function cart(){
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="../img/core-img/logo.png" alt=""></a>
+                    <a href="../main.jsp"><img src="../img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>

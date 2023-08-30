@@ -152,7 +152,7 @@ String name = (String) session.getAttribute("name");
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -182,7 +182,7 @@ String name = (String) session.getAttribute("name");
                                             if(code != null){
                                             	if(code.equals("100")){
                                             %>
-                                            <li><a href="#">소비자</a>
+                                            <li><a href="#">User</a>
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내 정보</a></li>
                                                     <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
@@ -202,12 +202,14 @@ String name = (String) session.getAttribute("name");
                                             <%
                                             } else if(code.equals("200")){
                                             %> 
-                                            <li><a href="#">관리자</a>
+                                            <li><a href="#">Manager</a>
                                                 <ul class="dropdown">
                                                 	<li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/admin/admin.jsp">회원목록</a></li>
                                                     <li><a href="${contextPath}/admin/host.jsp">관리자목록</a></li>
                                                     <li><a href="${contextPath}/admin/artist.jsp">아티스트목록</a></li>
+                                                    <li><a href="${contextPath}/review/review.jsp">게시판관리</a></li>
+                                                    <li><a href="${contextPath}/admin/musicManage.jsp">앨범관리</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -223,10 +225,11 @@ String name = (String) session.getAttribute("name");
                                             <%
                                             } else if(code.equals("300")) {
                                             %>
-                                            <li><a href="#">아티스트</a>
+                                            <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/artist/artist.jsp">음원 등록</a></li>
+                                                    <li><a href="${contextPath}/artist/music_delete.jsp">음원관리</a></li>
                                                     <li><a href="#"></a></li>
                                                     <li><a href="#">몰?루</a>
                                                         <ul class="dropdown">
@@ -690,7 +693,7 @@ String name = (String) session.getAttribute("name");
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="${contextPath}/img/core-img/logo.png" alt=""></a>
+                    <a href="${contextPath}/main.jsp"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>

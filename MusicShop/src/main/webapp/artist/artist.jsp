@@ -38,8 +38,6 @@ String name = (String) session.getAttribute("name");
 		window.location.href="${contextPath}/Music/listMusic.do";
 		}	
 		
-	</script>
-	<script>
 		window.onload=function () {
 			var isTitle = document.getElementsByName('isTitle')[0];
 			var hidden_iT = document.getElementsByName('isTitle')[1]; 
@@ -48,15 +46,15 @@ String name = (String) session.getAttribute("name");
 				console.log(hidden_iT.value);
 			});
 		};
-	</script>
-	<script>
+
 	function cart(){
 		if(confirm('장바구니로 이동하시겠습니까?')){
-			window.location.href="../cart.jsp";
+			window.location.href="${contextPath}/cart.jsp";
 			return true;
 		} else{
 			return false;
-		}		
+		}
+	}
 	</script>
 </head>
 
@@ -81,7 +79,7 @@ String name = (String) session.getAttribute("name");
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="${contextPath}/main.jsp" class="nav-brand"><img src="../img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -106,10 +104,13 @@ String name = (String) session.getAttribute("name");
                                             <li><a href="${contextPath}/main.jsp">Home</a></li>
                                             <li><a href="${contextPath}/album.jsp">Albums</a></li>
                                             <li><a href="${contextPath}/connection.jsp">Contact</a></li>
+                                            <li><a href="${contextPath}/review/review.jsp">Review</a></li>
                                             <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
                                                     <li><a href="../customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
+                                                    <li><a href="${contextPath}/artist/music_delete.jsp">음원관리</a></li>
+                                                    <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -154,18 +155,13 @@ if(user_id == null){
                                         <a href="${contextPath}/login/logout.jsp" id="loginBtn">Logout</a>
                                     </div>
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
-                                    </div>  	
+									<div class="cart-btn">
+										<p><span class="icon-shopping-cart" onclick="return cart()"></span></p>
+                                    </div>
 <%
 		}
 	}
 %>
-                                    <!-- Cart Button 
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div>
-                                    -->
                                 </div>
                             </div>
                             <!-- Nav End -->
@@ -293,7 +289,7 @@ if(user_id == null){
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                    <a href="${contextPath}/main.jsp"><img src="${contextPath}/img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>

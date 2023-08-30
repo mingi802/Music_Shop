@@ -85,7 +85,7 @@ function cart(){
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/logo.png" alt=""></a>
+                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/lologo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -105,18 +105,20 @@ function cart(){
                                 <ul>
                                     <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
-                                    <li><a href="#">Manage</a>
+                                    <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="../main.jsp">Home</a></li>
                                             <li><a href="../album.jsp">Album</a></li>
                                             <li><a href="../connection.jsp">Contact</a></li>
+                                            <li><a href="../review/review.jsp">Review</a></li>
                                             <li><a href="#">Manager</a>
                                                 <ul class="dropdown">
                                                 	<li><a href="../customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="admin.jsp">회원목록</a></li>
                                                     <li><a href="artist.jsp">아티스트목록</a></li>
                                                     <li><a href="host.jsp">관리자목록</a></li>
-                                                    <li><a href="../review/review.jsp">게시판</a></li>
+                                                    <li><a href="../review/review.jsp">게시판관리</a></li>
+                                                    <li><a href="musicManage.jsp">앨범관리</a></li>
                                                     <li><a href="#">Even Dropdown</a>
                                                         <ul class="dropdown">
                                                             <li><a href="#">Deeply Dropdown</a></li>
@@ -241,23 +243,24 @@ function cart(){
                         <!-- Membership manage Form -->
                         <div class="music-manage-form">
                         <table>
-                        	<tr><th>고유번호</th><th>앨범번호</th><th>앨범</th><th>타이틀곡</th><th>가수</th><th>음원</th><th>가격</th></tr>
+                        	<!--  <tr><th>고유번호</th><th>앨범번호</th><th>앨범</th><th>타이틀곡</th><th>가수</th><th>음원</th><th>가격</th></tr> -->
+                        	<tr><th>고유번호</th><th>앨범</th><th>타이틀곡</th><th>음원</th><th>가수</th><th>가격</th></tr>
                         	<%
-                        	String sql = "SELECT song.id, song.album_id, album.name, album.title, album.singer, song.name, song.price FROM song, album WHERE album.id = song.album_id";
+                        	//String sql = "SELECT song.id, song.album_id, album.name, album.title, album.singer, song.name, song.price FROM song, album WHERE album.id = song.album_id";
+                        	String sql = "SELECT album.id, album.name, album.title, song.song, album.singer, SUM(song.price) AS Album_price FROM song, album WHERE album.id = song.album_id GROUP BY album.id"; 
                         	PreparedStatement pstmt = conn.prepareStatement(sql);
                         	ResultSet rs = pstmt.executeQuery();
                         	
                         	while(rs.next()){
                         	%>
                         		<tr style="test-align: center">
-                        		<td><%=rs.getString("song.id") %></td>
-                        		<td><%=rs.getString("song.album_id") %></td>
-                        		<td><%=rs.getString("album.name") %></td>
-                        		<td><%=rs.getString("album.title") %></td>
-                        		<td><%=rs.getString("album.singer") %></td>
-                        		<td><%=rs.getString("song.name") %></td>
-                        		<td><%=rs.getString("song.price") %></td>
-                        		<td><button onclick="location.href='songdelete.jsp?id=<%= rs.getString("song.id") %>'">Delete</button></td>
+                        		<td><%=rs.getString("album.id") %></td> <!-- 고유번호 -->
+                        		<td><%=rs.getString("album.name") %></td> <!-- 앨범 번호 -->
+                        		<td><%=rs.getString("album.title") %></td> <!-- 앨범명 -->
+                        		<td><%=rs.getString("song.song") %></td> <!-- 타이틀곡 -->
+                        		<td><%=rs.getString("album.singer") %></td> <!-- 가수 -->
+                        		<td><%=rs.getString("Album_price") %>원</td> <!-- 가격 -->
+                        		<td><button onclick="location.href='songdelete.jsp?id=<%= rs.getString("album.id") %>'">Delete</button></td>
                         		</tr>
                         	<%	
                         	}
@@ -276,7 +279,7 @@ function cart(){
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="#"><img src="../img/core-img/logo.png" alt=""></a>
+                    <a href="../main.jsp"><img src="../img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>

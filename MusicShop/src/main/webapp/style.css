@@ -685,6 +685,10 @@ img {
 	position: relative;
 	z-index: 1; 
 	}
+	.align-self-center h5{
+	margin-left: 100px;
+	width: 100px;
+	}
 /* :: 7.0 Events Area CSS */
 .single-event-area {
   position: relative;
@@ -1381,19 +1385,46 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
  	width: 1100px; 
  	border-spacing: 10px;
  	padding-left: 100px;
+	}	
+	.music-manage-form button {
+  	padding: 10px 20px; 
+  	font-size: 16px; 
+  	border-radius: 8px; 
 	}
-		
+	.member-manage-form tr{
+	border: 1px solid #d8d8d8;
+	}
+	.member-manage-form td{
+	border: 1px solid #d8d8d8;
+	}
+	.artist-music-manage {
+	overflow: auto;
+	}
+	.artist-music-manage table {
+	text-align : center;
+ 	margin-left: 50px;
+ 	border-collapse : collapse;
+ 	width: 1100px; 
+ 	border-spacing: 10px;
+ 	/*padding-left: 100px;*/
+	}	
+	.artist-music-manage button {
+  	padding: 10px 20px; 
+  	font-size: 16px; 
+  	border-radius: 8px; 
+	}
+	.artist-music-container{
+  	width: 1950px;
+	text-align: center;
+	margin-left: -1480px;
+	padding-left: 1500px;
+  	}	
   	.music-container{
   	width: 1950px;
 	text-align: center;
 	margin-left: -1550px;
 	padding-left: 1500px;
-  	}	
-	.music-manage-form button {
-  	padding: 10px 20px; 
-  	font-size: 16px; 
-  	border-radius: 8px; 
-	}  	
+  	} 	
 	.member-manage-form th td{
 	padding: 15px; 
 	}  	
@@ -1530,6 +1561,14 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	width: 250px;
   	height: 80px;
   	margin-left: 210px;
+  	}
+  	.starReview .song_name {
+  	margin-left:36px;
+  	text-align: center;
+  	width: 150px;
+  	border-radius: 5px;
+  	margin-top: 5px;
+  	padding-bottom: -5px;
   	}
   	/*
   	.writeReview .writearea{
@@ -1671,7 +1710,18 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
  	font-size: 16px; 
  	padding: 10px 20px; 
   	}
-  	
+  	/*
+  	.review-board-form table{
+  	border: 1px solid #444444;
+  	}
+  	*/
+  	.review-board-form tr{
+  	border: 1px solid #d8d8d8;
+  	} 
+  	.review-board-form td{
+  	border: 1px solid #d8d8d8;
+  	}
+  	  	
 /* :: upload area CSS*/
   	.upload-container{
   	width: 50%;
@@ -1768,7 +1818,7 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
  	 padding: 50px 30px;
  	 box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
  	 text-align: center;
- 	 width: 140%; 
+ 	 width: 160%; 
   	}
   	.music-list-form{
   	overflow: auto;
@@ -1851,6 +1901,12 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
     -webkit-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end; }
+    .footer-area img{
+    width: 50%;
+    height: 60%;
+    padding-left: 0px;
+    margin-left: -25px;
+    }
     @media only screen and (max-width: 767px) {
       .footer-area .footer-nav ul {
         -webkit-box-pack: center;
