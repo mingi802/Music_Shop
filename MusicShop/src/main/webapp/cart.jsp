@@ -21,7 +21,13 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${contextPath}/style.css">
+    <script src="https://js.tosspayments.com/v1/payment-widget"></script>
     <script>
+
+	    const clientKey = "test_ck_jExPeJWYVQlOdp6pRbQ349R5gvNL";
+	    const customerKey = self.crypto.randomUUID(); // 내 상점에서 고객을 구분하기 위해 발급한 고객의 고유 ID
+	    const paymentWidget = PaymentWidget(clientKey, customerKey); // 회원 결제
+    
 	    if(${empty cartItemList} && ${not empty isFirstEntry ? isFirstEntry : true}) {
 			 alert("첫 입장, 장바구니에 담긴 음원 리스트 가져오기");
 			 window.location.href="${contextPath}/Cart/cart/goToCart.do?member_id="+"${empty id ? 'not login' : id}";
@@ -53,6 +59,9 @@
 			    }
 		    };
 		    
+		    var paymentMethodWidget = null;
+		    var paydiv = document.getElementById('payment-div');
+		    var paybtn = document.getElementById('payment-btn');
 	    	var cmdbtn = document.getElementById('chosen-song-del-btn');
 	    	var cmbbtn = document.getElementById('chosen-song-buy-btn');
 	    	var ambbtn = document.getElementById('all-song-buy-btn');
@@ -60,7 +69,35 @@
 	    	var total_payment = document.getElementById('total-payment');
 	    	var cart_item_all_check = document.getElementById('check-all');
 			
-	    	var checked_cart_item_list = new Array();
+	    	var checked_cart_item_list = new Array();	//song id만 들어가는 배열
+	    	
+	    	paydiv.style.visibility = 'hidden';
+	    	
+	    	paybtn.addEventListener('click', function(event) {
+	    		let orderId = self.crypto.randomUUID();
+	    		paymentWidget
+			   		.requestPayment({
+				        orderId: orderId,            // 주문 ID(직접 만들어주세요)
+				        orderName: "토스 티셔츠 외 2건",                 // 주문명
+				        successUrl: "http://localhost:8060/${contextPath}/impTest/success.jsp",  // 결제에 성공하면 이동하는 페이지(직접 만들어주세요)
+				        failUrl: "http://localhost:8060/${contextPath}/impTest/fail.jsp",        // 결제에 실패하면 이동하는 페이지(직접 만들어주세요)
+				        customerEmail: "customer123@gmail.com",
+				        customerName: "김토스"
+			      	})
+			      	.catch(function (error) {
+					    if (error.code === 'INVALID_ORDER_NAME') {
+					      	// 유효하지 않은 'orderName' 처리하기
+					      	alert(error.code);
+					    } else if (error.code === 'INVALID_ORDER_ID') {
+					      	// 유효하지 않은 'orderId' 처리하기
+					      	alert(error.code);
+					    } else {
+					    	alert(error.code);
+					    }
+			  	  	})
+	      		const selectedPaymentMethod = paymentMethodWidget.getSelectedPaymentMethod();
+	      		console.log(selectedPaymentMethod);
+	    	});
 	    	
 	    	cmdbtn.addEventListener('click', function(event) {
 	    		if(checked_cart_item_list.length > 0) {
@@ -118,8 +155,13 @@
 	  	  	});
 	  	  
 	  	  	cmbbtn.addEventListener('click', function(){
-	  			//requestPay();
+		  	  	paymentMethodWidget = paymentWidget.renderPaymentMethods("#payment-method", { value: 15000 });
+		  	  	paymentWidget.renderAgreement('#agreement');		  	  	
+			  	if(paydiv.style.visibility == 'hidden') {
+			  		paydiv.style.visibility = 'visible';
+			  	}
 	  	  	});
+	  	  	
 	  	  	ambbtn.addEventListener('click', function(){
 	  			cart_item_all_check.click();
 	  			//requestPay();
@@ -398,7 +440,7 @@
         </div>
     </section>
 <!-- ##### Buy Now Area Start ##### -->
-    <section class="oneMusic-cart-area has-fluid bg-gray section-padding-100">
+    <section class="oneMusic-cart-area has-fluid bg-gray section-padding-100">    	
         <div class="container-fluid">
         	<div class="row d-flex align-content-around">
 	        	 
@@ -468,6 +510,13 @@
             	</div>
     		</div>
     		<hr>
+    		<div id="payment-method"></div>
+			<div id="agreement"></div>
+			<div class="d-flex justify-content-center bg-white align-self-center" id="payment-div" style="position: relative; display: block; border: 0px; width: 100%; height: 90px;">
+				<div>
+					<input type="button" id="payment-btn" class="btn btn-outline-dark btn-lg" type="button" value="결제하기">
+				</div>
+			</div>
         </div>
     </section>
     <!-- ##### Buy Now Area End ##### -->
