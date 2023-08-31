@@ -155,7 +155,7 @@
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
-                    <a href="../main.jsp"><img src="img/core-img/lologo.png" alt=""></a>
+                    <a href="../main.jsp"><img src="../img/core-img/lologo.png" alt=""></a>
                     <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
@@ -166,8 +166,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         <ul>
                             <li><a href="../main.jsp">Home</a></li>
                             <li><a href="../album.jsp">Albums</a></li>
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
                             <li><a href="../connection.jsp">Contact</a></li>
                         </ul>
                     </div>
