@@ -36,6 +36,18 @@ function limitPlayTime(audio) {
     }
 }
 
+function confirmLogin(){
+	var id = document.getElementById('user').value;
+	if(id == 'null'){
+		alert("로그인 후 이용해주세요.");
+		window.location.href="../login/login.jsp";
+		return false;
+	} else{
+		return true;
+	}
+		
+}
+
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){
 		window.location.href="../cart.jsp";
@@ -311,8 +323,61 @@ function cart(){
 							<tr>
 								<th>내용</th>
 								<td name="writen-review"><%=rs.getString("review") %></td>
-							</tr>	
-							</table>													
+							</tr>
+							</table>
+							<!-- 경계선 -->
+							<table class="reply-board">
+    						<tr>
+        						<th>번호</th><th>작성자</th><th>작성일</th><th>댓글</th>
+    						</tr>
+    						<%
+    						String sqlR = "SELECT id, user_id, date, reply FROM replyboard WHERE song_name = ?";
+    						PreparedStatement pstmtR = conn.prepareStatement(sqlR);
+    						pstmtR.setString(1, title);
+    						ResultSet rsR = pstmtR.executeQuery();
+    
+    						while (rsR.next()) {
+    							if(rsR.getString("reply") == "" ){
+    						%>
+    							<tr>
+    								<td colspan="4">작성한 댓글이 없습니다.</td>
+    							</tr>
+    						<%
+    							} else {
+    						%>	
+    							<tr>
+        							<td><%=rsR.getInt("id") %></td> <!-- 댓글 번호 -->
+        							<td><%=rsR.getString("user_id") %></td> <!-- 댓글 작성자 -->
+        							<td><%=rsR.getString("date") %></td> <!-- 댓글 등록 날짜 -->
+        							<td><%=rsR.getString("reply") %></td> <!-- 댓글 내용 -->
+        							
+    							<%
+    								if(code != null){
+    									if(code.equals("200")){
+    							%>
+    							<td><button onclick="location.href='Redelete.jsp?id=<%=rsR.getString("user_id") %>&reply=<%=rsR.getString("reply")%>&title=<%=rs.getString("album_name")%>&writer=<%=rs.getString("user_id")%>'">댓글삭제</button></td>
+    							<%
+    									} //code == 200의 끝
+    								} //code != null끝  
+    							%>      							
+    							</tr>
+								<% 
+    							}
+    						}
+    						rsR.close();
+    						pstmtR.close();
+						    %>
+							</table>
+							
+							<form class="reply" name="reply" method="post" action="reply.jsp" onSubmit="return confirmLogin()" ecntype="UTF-8">
+								<input type="hidden" name="songName" id="songName" value='<%=rs.getString("album_name")%>'> <!-- 노래제목 -->
+								<input type="hidden" name="user" id="user" value='<%=user_id%>'> <!-- 댓글 작성자 -->
+								<input type="hidden" name="writer" id="writer" value='<%=rs.getString("user_id")%>'>
+								<textarea class="write-reply" id="songRelpy" name="songReply" rows="3" cols="65" maxlength="4000"></textarea> <!-- 댓글 내용 -->
+								<input type="submit" class="reply-btn" value="리뷰 작성">
+								<div class="emptySpace"></div>	
+							</form>	
+																		
 							<%
 							if(code != null){
 								if(code.equals("200")){
