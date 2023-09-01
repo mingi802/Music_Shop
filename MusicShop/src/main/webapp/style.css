@@ -680,11 +680,29 @@ img {
 	z-index: 1; 
 	}
 	.oneMusic-cart-area.has-fluid {
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-top: 100px;
 	position: relative;
-	z-index: 1; 
+	margin-left: 95px;
+	width: 90%;
+	z-index: 1;
+	box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15); 
+	background-color: #f5f9fa;	
+ 	border: 1px solid #d8d8d8;
+ 	margin-bottom: 100px;
 	}
+	.oneMusic-buy-now-area .container-fluid{
+	padding-right: 150px;
+	}  
+	@media only screen and (min-width: 1537px){
+		.oneMusic-buy-now-area .container-fluid{
+		padding-right: 250px;
+		} 	
+		
+  	}
+  
+	
 	.align-self-center h5{
 	margin-left: 100px;
 	width: 100px;
@@ -901,13 +919,75 @@ img {
     .no-album .no-info p {
       margin-bottom: 0; }
 
-
-.cart-item {
-	position: relative;
-  	z-index: 1;
-  	margin-bottom: 30px;
-}
-
+	@media only screen and (min-width: 1537px){
+	
+		.cart-item {
+			position: relative;
+  			z-index: 1;
+  			margin-bottom: 30px;
+  			padding-bottom: 1px;
+  			height: 100px;
+  			width: 3000px;
+		}
+	 	.cart-item .song-play-area{
+			background-color: #000000;
+			width: 1000px;
+		}
+		.cart-item .album-info{
+			margin-right: 100px;
+		}
+		.cart-item .album-thumb{
+			margin-right: 100px;
+		}
+		.align-content-around .cart-item{
+		margin-left: 250px;
+		}
+		.oneMusic-cart-area .container-fluid .align-content-around .align-self-center .btn-outline-danger{
+		margin-left: 215px;
+		}
+		
+	}
+	.cart-item {
+		position: relative;
+  		z-index: 1;
+  		margin-bottom: 30px;
+  		padding-bottom: 1px;
+  		height: 100px;
+  		width: 1300px;
+	}
+	.cart-item .align-self-end{
+		text-align: center;
+		margin-top: 30px;
+		width: 130%;
+		padding-top: 50px;
+		margin-left: -10px;
+	}
+	.cart-item .align-self-price-end{
+		margin-top: 10px;
+		width: 100%;
+		margin-left: 10px;
+	}
+		
+	.cart-item .align-self-end p{
+	width: 130px;
+	margin-left: -20px;
+	text-align: center;
+	
+	}
+	.cart-item .align-self-end h5{
+	width: 100px;
+	margin-left: -15px;
+	}	
+	.cart-item-list{
+	margin-top: 100px;
+	}
+	.cart-item .cart-item-price{
+	margin-top: -50px;
+	}
+	.cart-item .song-play-area{
+	margin-left: 40px;
+	margin-top: -50px;
+	}
 input[type="checkbox"].cart-item-checked{
         display: none;
       }
@@ -987,7 +1067,7 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
       text-transform: uppercase; }
     .single-album-area .album-info p {
       margin-bottom: 0; }
- /*�떎�뿕2 START*/
+ /*main-autiplayer START*/
  	.single-album-area .audioplayer{
  	background: transparent;
  	border: none;
@@ -995,14 +1075,26 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
  	margin: 0;
  	padding: 0; 
  	}
+ 	/*when monitor size is over 1536px*/
+	.single-album-area .audioplayer-playing .audioplayer-playpause,
+	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
+	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
+	background: #d6d6d6;
+	position: absolute;
+	top: 130px;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	}
+	/*when monitor size is under 1536px */
+	@media only screen and (max-width: 1536px){
 	.single-album-area .audioplayer-playing .audioplayer-playpause,
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
 	background: #d6d6d6;
 	position: absolute;
 	top: 65px;
-	left: 50%;
-	transform: translate(-50%, 0%);
+	left: 50%;	
+	}
 	}
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause a {
 	border-left: 12px solid #fff}
@@ -1018,7 +1110,7 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
 	background: rgb(111,167,235);
 	}
 	
- /*�떎�뿕2 END*/	
+ /*main-autoplayer END*/	
  /*�떎�뿕3 START*/
 	.single-album .audioplayer{
  	background: transparent;
@@ -1414,17 +1506,34 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	border-radius: 8px; 
 	}
 	.artist-music-container{
-  	width: 1950px;
+  	width: 10px;
 	text-align: center;
-	margin-left: -1480px;
+	margin-left: -850px;
 	padding-left: 1500px;
+  	}
+  	@media only screen and (max-width: 1536px){
+		.artist-music-container{
+  		width: 1950px;
+		text-align: center;
+		margin-left: -1430px;
+		padding-left: 1500px;
+  		}  	
   	}	
   	.music-container{
   	width: 1950px;
 	text-align: center;
 	margin-left: -1550px;
 	padding-left: 1500px;
-  	} 	
+  	}
+  	@media only screen and (min-width: 1537px){
+  		.music-container{
+  			width: 1950px;
+			text-align: center;
+			margin-left: 100px;
+			padding-left: 100px;
+  		}
+  	}
+  	 	
 	.member-manage-form th td{
 	padding: 15px; 
 	}  	
@@ -1443,6 +1552,23 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
 	float : left;
 	min-height : 200px;
 	border-radius: 8px;
+	}
+	.admin-category .side-menu{
+	padding: 20px 20px;
+	}
+	@media only screen and (min-width: 1537px){
+		.admin-category{
+			text-align : center;
+		 	background-color: #f5f9fa;
+			border: 1px solid #d8d8d8;
+			margin-top : 100px;
+			margin-left : 250px;
+			width : 10%;
+			float : left;
+			min-height : 200px;
+			border-radius: 8px;
+		}	
+	
 	}      
 /* :: 12.0 Login Area CSS */
 .login-content {
@@ -1723,10 +1849,19 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	}
   	  	
 /* :: upload area CSS*/
+	/*monitor size is over 1536px*/
   	.upload-container{
   	width: 50%;
 	text-align: center;
-	margin-left : 850px;
+	margin-left : 1300px;
+  	}
+  	/*monitor size is under 1536px*/
+  	@media only screen and (max-width: 1536px){
+  		.upload-container{
+  		width: 50%;
+		text-align: center;
+		margin-left : 850px;
+  		}  	
   	}
 	.upload-content {
   -webkit-transition-duration: 500ms;
@@ -1747,7 +1882,6 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
     text-align: left;
     }
   .upload-content .form-control {
-  	
     width: 100%;
     height: 50px;
     border: 1px solid #000000;
@@ -1756,32 +1890,7 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
     padding: 0 20px;
     border-radius: 0; 
     }
-   /* 
-  .upload-content .form-controlasd {
-   margin-right: 10px;
-   }
-   
-  .upload-content .form-year {
-   height: 50px;
-   width: 13%;
-   font-size: 15px;
-   }
-  .upload-content .form-birth {
-   height: 50px;
-   width: 10%;
-   font-size: 15px;
-   }
-  .upload-content .form-day {
-   height: 50px;
-   width: 10%;
-   font-size: 15px;
-   } 
-           
-  .upload-content .spacing{
-    display: inline-block;
-    margin-right: 40px;  
-  } 
-  */
+
     .upload-content .form-control:focus {
       box-shadow: none; 
       }
@@ -1825,10 +1934,19 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	width: 100%;
   	height: 100%;
   	}
+  	/*when monitor size is under 1536px or using in big monitor*/
   	.music-list-container{
-  	width: 180%;
+  	width: 200%;
 	text-align: center;
-	margin-right : 1000px;
+	margin-left : 150px;
+  	}
+  	/*when monitor size is under 1536px or using in notebook*/
+  	@media only screen and (max-width: 1536px){
+  		.music-list-container{
+  		width: 165%;
+		text-align: center;
+		margin-left : 10px;
+  		}  	
   	}
 	.music-list-form table {
 	text-align : center;
@@ -1878,6 +1996,16 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   z-index: 1;
   background-color: #000000;
   padding: 30px 0; }
+  @media only screen and (min-width: 1537px){
+	.footer-area {
+  	position: relative;
+  	z-index: 1;
+  	background-color: #000000;
+  	margin-top: 350px;
+  	padding: 50px 0; 
+  	height: 250px;
+  	}
+  }
   @media only screen and (max-width: 767px) {
     .footer-area {
       text-align: center; } }
@@ -1929,7 +2057,6 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
       color: #fff; }
   .footer-area .footer-nav li:last-child a {
     padding-right: 0; }
-
 /* :: 15.0 Breadcumb Area CSS */
 .breadcumb-area {
   position: relative;
@@ -1963,7 +2090,9 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
       letter-spacing: 10px;
       text-transform: uppercase;
       line-height: 1;
-      margin-bottom: 0; }
+      margin-bottom: 0; 
+      margin-left: 10px;
+      }
       @media only screen and (max-width: 767px) {
         .breadcumb-area .bradcumbContent h2 {
           font-size: 18px;

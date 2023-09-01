@@ -223,7 +223,7 @@ function cart(){
     <!-- ##### Breadcumb Area End ##### -->
     
     <aside class="admin-category">
-    	<ul style="padding-left:5px;padding-top:20px;">
+    	<ul class="side-menu">
 			<li><a href="../admin/admin.jsp"><b>회원목록</b></a></li><br>
 			<li><a href="../admin/host.jsp"><b>관리자목록</b></a></li><br>
 			<li><a href="../admin/artist.jsp"><b>아티스트목록</b></a></li><br>

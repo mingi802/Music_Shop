@@ -494,7 +494,7 @@
 			                		<input type="checkbox" class="cart-item-checked" id="${cartItem.song_id}" name="cart-item-checked">
 			                		<label for="${cartItem.song_id}" class="check-emoticon"></label>
 			                	</div>
-		                        <div class="col-1 album-thumb">
+		                        <div class="col-1 album-thumb album-img-place">
 		                        <!--앨범 이미지를 클릭했을 때 해당 앨범 상세 페이지로 이동 -->
 		                            <a href="${contextPath}/Album/album_songs/showOneAlbum.do?album_id=${cartItem.album_id}">
 		                            	<img src="${contextPath}/resource/img/${cartItem.album_sign}" alt="">
@@ -512,7 +512,7 @@
 			                           <source src="${contextPath}/resource/audio/${cartItem.song_audio}">
 			                        </audio>
 			                    </div>
-			                    <div class="col-1 align-self-end">
+			                    <div class="col-1 align-self-price-end">
 			                    	<span class="cart-item-price"><b>${cartItem.price}</b></span>
 			                    	<span><b>￦</b></span>
 			                    	<p></p> <!-- 이 태그가 없으면 모양이 조금 깨지네요.. -->
