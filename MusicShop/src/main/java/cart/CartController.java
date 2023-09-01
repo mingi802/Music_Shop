@@ -3,12 +3,23 @@ package cart;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.OutputStream;
+import java.io.InputStream; 
+import java.io.InputStreamReader; 
+import java.io.Reader;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Base64;
+import java.util.Base64.Encoder;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,6 +28,7 @@ import org.json.simple.parser.ParseException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +36,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import album.AlbumDAO;
-import album.AlbumVO;
+import album.AlbumVO; 
+
 
 
 /**
@@ -68,6 +81,7 @@ public class CartController extends HttpServlet {
 	
 	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(false);
 		request.setCharacterEncoding("UTF-8");
 		
 		String path = request.getPathInfo();
@@ -87,9 +101,72 @@ public class CartController extends HttpServlet {
 				request.setAttribute("cartItemList", cartItemList);
 				request.setAttribute("isFirstEntry", false);
 			}
-		} else if(action.equals("/delCartItem.do")) {
+		} 
+		else if(action.equals("/delCartItem.do")) {
 			delCartItem(request, response);
 			return;
+		} 
+		else if(action.equals("/cartItemPayment.do")) {
+			String orderId = request.getParameter("orderId");
+			String paymentKey = request.getParameter("paymentKey");
+			String amount = request.getParameter("amount");
+			String cartItemIds = request.getParameter("cartItemIds");
+			String se_member_id = "";
+			Encoder encoder = Base64.getEncoder(); 
+			
+			if(session != null) {
+				se_member_id = (String) session.getAttribute("id");
+			}
+		
+		    System.out.println(cartItemIds);
+		    int db_amount = cartDAO.getTotalAmount(se_member_id,cartItemIds);
+		    if(Integer.parseInt(amount) != db_amount) {
+		    	String contextPath = request.getContextPath();
+		    	String message = "수정된 가격으로 결제 시도";
+		    	
+		    	message = URLEncoder.encode(message, StandardCharsets.UTF_8);
+		    	System.out.println("수정된 가격으로 결제 시도");
+		    	response.sendRedirect(contextPath+"/impTest/fail.jsp?code=REJECT_CARD_COMPANY&message="+message+"&orderId="+orderId);
+		    	return;
+		    } else {
+		    	String secretKey = "test_sk_GePWvyJnrKbmGXKg2w7VgLzN97Eo:";
+				byte[] encodedBytes = encoder.encode(secretKey.getBytes("UTF-8"));
+				String authorizations = "Basic "+ new String(encodedBytes, 0, encodedBytes.length);				
+				paymentKey = URLEncoder.encode(paymentKey, StandardCharsets.UTF_8);
+				
+				URI uri = URI.create("https://api.tosspayments.com/v1/payments/confirm");
+				//URL url = new URL("https://api.tosspayments.com/v1/payments/confirm");
+				URL url = uri.toURL();
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+				connection.setRequestProperty("Authorization", authorizations);
+				connection.setRequestProperty("Content-Type", "application/json");
+				connection.setRequestMethod("POST");
+				connection.setDoOutput(true);
+				JSONObject obj = new JSONObject();
+				obj.put("paymentKey", paymentKey);
+				obj.put("orderId", orderId);
+				obj.put("amount", amount);
+				
+				OutputStream outputStream = connection.getOutputStream();
+				outputStream.write(obj.toString().getBytes("UTF-8"));
+				
+				int code = connection.getResponseCode();
+				boolean isSuccess = code == 200 ? true : false;
+				
+				InputStream responseStream = isSuccess? connection.getInputStream(): connection.getErrorStream();
+				
+				Reader reader = new InputStreamReader(responseStream, StandardCharsets.UTF_8);
+				JSONParser parser = new JSONParser();
+				JSONObject jsonObject = null;
+				try {
+					jsonObject = (JSONObject) parser.parse(reader);
+				} catch (IOException | ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				responseStream.close();
+				System.out.println(jsonObject);
+		    }
 		}
 		System.out.println(nextpage);
 		request.getRequestDispatcher(nextpage).forward(request, response);

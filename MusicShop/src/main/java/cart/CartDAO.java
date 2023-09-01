@@ -2,6 +2,7 @@ package cart;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
@@ -176,5 +177,29 @@ public class CartDAO {
 		}
 		
 		return cartItemList;
+	}
+	
+	public int getTotalAmount(String se_member_id, String CartItemIds) { //request¿« member_id
+		int price = 0;
+		try {
+			try {
+				connDB();	
+			} catch (Exception e) {
+				//result.put("msg", "DB Connect Failed");
+				e.printStackTrace();
+			}
+			String sql = "SELECT ifnull(sum(price), 0) as price FROM storage WHERE member_id = '"+se_member_id+"' and song_id in ("+CartItemIds+")";
+			Statement stmt = conn.createStatement();			
+			ResultSet cart_items = stmt.executeQuery(sql);
+			if(cart_items.next()) {
+				price = cart_items.getInt("price");
+			}
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return price;
 	}
 }
