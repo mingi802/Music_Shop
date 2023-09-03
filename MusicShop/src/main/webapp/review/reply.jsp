@@ -8,33 +8,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 작성</title>
+<title>댓글 작성</title>
 </head>
 <body>
 <%
 	request.setCharacterEncoding("UTF-8");
-	
+
 	LocalDateTime now = LocalDateTime.now();
 	String formattedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
 	int num = 1;
-	
-	String user_id = request.getParameter("user_id");
-	String album = request.getParameter("album");
-	
-	int albumId = Integer.parseInt(request.getParameter("albumId"));
-	
-	String songName = request.getParameter("song_name");
-	String singer = request.getParameter("singer");
-	
-	String star = request.getParameter("reviewStar");
-	String review = request.getParameter("content");
-	
-	//out.println("<script>alert('"+songName+"');</script>");
 
-	
+	String songName = request.getParameter("songName"); //노래제목
+	String user_id = request.getParameter("user"); //댓글 작성자
+	String reply = request.getParameter("songReply"); //댓글 내용
+	String writer = request.getParameter("writer"); // 게시판에 글 작성자
+	/*
+	out.println("<script>alert('"+songName+"');</script>");
+	out.println("<script>alert('"+user_id+"');</script>");
+	out.println("<script>alert('"+reply+"');</script>");
+	out.println("<script>alert('"+writer+"');</script>");
+	*/
 	try{
-		String sql = "INSERT INTO board (user_id, album_name,singer, date, star, review) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO replyboard (user_id, date, song_name, reply) VALUES(?, ?, ?, ?)";
 		String sql_renew1 = "set @cnt = 0";
 		String sql_renew2 = "UPDATE board SET board.id = @cnt:=@cnt+1";
 		
@@ -42,25 +38,21 @@
 		PreparedStatement pstmt_renew1 = conn.prepareStatement(sql_renew1);
 		PreparedStatement pstmt_renew2 = conn.prepareStatement(sql_renew2);
 		
-		//pstmt.setInt(1, num);
 		pstmt.setString(1, user_id);
-		pstmt.setString(2, songName);
-		pstmt.setString(3, singer);
-		pstmt.setString(4, formattedNow);
-		pstmt.setString(5, star);
-		pstmt.setString(6, review);
+		pstmt.setString(2, formattedNow);
+		pstmt.setString(3, songName);
+		pstmt.setString(4, reply);
 		pstmt.executeUpdate();
 		pstmt_renew1.executeUpdate();
 		pstmt_renew2.executeUpdate();
 		
 	}catch(SQLException e){
 		e.printStackTrace();
-	} 
+	}
 %>
-
 <script>
 	alert("리뷰가 작성되었습니다.");
-	window.location.href="../Album/album_songs/showOneAlbum.do?album_id=" + <%=albumId%>;
+	window.location.href="review_detail.jsp?id=<%=writer%>&title=<%=songName%>";
 </script>
 </body>
 </html>
