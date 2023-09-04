@@ -944,9 +944,16 @@ img {
 		}
 		.oneMusic-cart-area .container-fluid .align-content-around .align-self-center .btn-outline-danger{
 		margin-left: 215px;
-		}
-		
+		}	
 	}
+	.oneMusic-cart-area .container-fluid .align-content-around .align-self-center .btn-outline-danger{
+		margin-left: 100px;
+	}
+	.oneMusic-cart-area .container-fluid .cart-choose-delete{
+		margin-left: 91%;
+		/*margin-bottom: 50px;*/
+	}	
+	
 	.cart-item {
 		position: relative;
   		z-index: 1;
@@ -1018,7 +1025,7 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
 .check-all-text {     
 	position: absolute;
 	top: 50%;
-	left: 40%;
+	left: 50%;
 	transform: translate(-60%,-50%); /* translate(x축,y축) */
 }
 
@@ -1081,18 +1088,18 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
 	background: #d6d6d6;
 	position: absolute;
-	top: 130px;
+	top: 65px;
 	left: 50%;
 	transform: translate(-50%, 0%);
 	}
 	/*when monitor size is under 1536px */
-	@media only screen and (max-width: 1536px){
+	@media only screen and (min-width: 1537px){
 	.single-album-area .audioplayer-playing .audioplayer-playpause,
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause:hover,
 	.single-album-area .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
 	background: #d6d6d6;
 	position: absolute;
-	top: 65px;
+	top: 70px;
 	left: 50%;	
 	}
 	}
@@ -1508,15 +1515,14 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
 	.artist-music-container{
   	width: 10px;
 	text-align: center;
-	margin-left: -850px;
-	padding-left: 1500px;
+	margin-left: 130px;
   	}
-  	@media only screen and (max-width: 1536px){
+  	@media only screen and (min-width: 1537px){
 		.artist-music-container{
   		width: 1950px;
 		text-align: center;
-		margin-left: -1430px;
-		padding-left: 1500px;
+		margin-left: 10px;
+		padding-left: 10px;
   		}  	
   	}	
   	.music-container{
@@ -1529,8 +1535,8 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   		.music-container{
   			width: 1950px;
 			text-align: center;
-			margin-left: 100px;
-			padding-left: 100px;
+			margin-left: 10px;
+			padding-left: 50px;
   		}
   	}
   	 	
@@ -1836,6 +1842,21 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
  	font-size: 16px; 
  	padding: 10px 20px; 
   	}
+  	@media only screen and (min-width: 1537px){
+  	  	.before button{
+		text-decoration: none;
+		background-color: #f5f9fa;;
+ 		border: 1px solid #d8d8d8;
+ 		width: 100px;
+ 		text-align: center;
+ 		padding-top: -100px;
+ 		margin-bottom: 30px;
+ 		margin-left: 1675px;
+ 		border-radius: 8px; 
+ 		font-size: 16px; 
+ 		padding: 10px 20px; 
+  		}  	
+  	}  	
   	.review-board-form tr{
   	border: 1px solid #d8d8d8;
   	} 
@@ -1887,14 +1908,14 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	.upload-container{
   	width: 50%;
 	text-align: center;
-	margin-left : 1300px;
+	margin-left : 850px;
   	}
   	/*monitor size is under 1536px*/
-  	@media only screen and (max-width: 1536px){
+  	@media only screen and (min-width: 1537px){
   		.upload-container{
   		width: 50%;
 		text-align: center;
-		margin-left : 850px;
+		margin-left : 1150px;
   		}  	
   	}
 	.upload-content {
@@ -1968,18 +1989,18 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	width: 100%;
   	height: 100%;
   	}
-  	/*when monitor size is under 1536px or using in big monitor*/
+  	/*when monitor size is under 1536px or using in small size*/
   	.music-list-container{
-  	width: 200%;
+  	width: 165%;
 	text-align: center;
-	margin-left : 150px;
+	margin-left : 10px;
   	}
-  	/*when monitor size is under 1536px or using in notebook*/
-  	@media only screen and (max-width: 1536px){
+  	/*when monitor size is over 1536px or using in big size*/
+  	@media only screen and (min-width: 1537px){
   		.music-list-container{
   		width: 165%;
 		text-align: center;
-		margin-left : 10px;
+		margin-left : 200px;
   		}  	
   	}
 	.music-list-form table {
@@ -2034,8 +2055,9 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
 	.footer-area {
   	position: relative;
   	z-index: 1;
-  	background-color: #000000;
-  	margin-top: 350px;
+  	/*background-color: #000000;*/
+  	background-color: rgb(111,167,235);
+  	/*화면 검사용*/
   	padding: 50px 0; 
   	height: 250px;
   	}

@@ -130,10 +130,9 @@ function cart(){
                                     <li><a href="#">Manage</a>
                                         <ul class="dropdown">
                                             <li><a href="../customer/mypage.jsp">내정보</a></li>
-                                            <li><a href="admin.jsp">회원목록</a></li>
-                                            <li><a href="artist.jsp">아티스트목록</a></li>
-                                            <li><a href="host.jsp">관리자목록</a></li>
-                                            <li><a href="#">Even Dropdown</a></li>
+                                            <li><a href="../admin.jsp">회원목록</a></li>
+                                            <li><a href="../artist.jsp">아티스트목록</a></li>
+                                            <li><a href="../host.jsp">관리자목록</a></li>
                                         </ul>
                                     </li>
                                     <%
@@ -141,18 +140,9 @@ function cart(){
                                     %>
                                     <li><a href="#">User</a>
                                     	<ul class="dropdown">
-                                        	<li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
-                                        	<li><a href="${contextPath}/cart.jsp">장바구니</a></li>
+                                        	<li><a href="../customer/mypage.jsp">내정보</a></li>
+                                        	<li><a href="../cart.jsp">장바구니</a></li>
                                         	<li><a href="#">구매내역</a></li>
-                                        	<li><a href="#">소비자4</a>
-                                            	<ul class="dropdown">
-                                                	<li><a href="#">소비자</a></li>
-                                                	<li><a href="#">소비자</a></li>
-                                                	<li><a href="#">소비자</a></li>
-                                                	<li><a href="#">소비자</a></li>
-                                                	<li><a href="#">소비자</a></li>
-                                            	</ul>
-                                        	</li>
                                      	</ul>
                                 	</li>
                                     <%
@@ -160,19 +150,9 @@ function cart(){
                                     %>
                             		<li><a href="#">Artist</a>
                                     	<ul class="dropdown">
-                                        	<li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
-                                       		<li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
-                                        	<li><a href="${contextPath}/artist/music_delete.jsp">음원관리</a></li>
-                                        	<li><a href="#">몰?루</a>
-                                            	<ul class="dropdown">
-                                                	<li><a href="#">몰?루<</a></li>
-                                                	<li><a href="#">몰?루<</a></li>
-                                               		<li><a href="#">몰?루<</a></li>
-                                                	<li><a href="#">몰?루<</a></li>
-                                                	<li><a href="#">몰?루<</a></li>
-                                             	</ul>
-                                       		</li>
-                                     		<li><a href="#">몰?루</a></li>
+                                        	<li><a href="../customer/mypage.jsp">내정보</a></li>
+                                       		<li><a href="../artist/artist.jsp">음원등록</a></li>
+                                        	<li><a href="../artist/music_delete.jsp">음원관리</a></li>
                                     	</ul>
                                    	</li>                           
                                     <%
@@ -328,10 +308,10 @@ function cart(){
 							<!-- 경계선 -->
 							<table class="reply-board">
     						<tr>
-        						<th>번호</th><th>작성자</th><th>작성일</th><th>댓글</th>
+        						<th>작성자</th><th>작성일</th><th>댓글</th>
     						</tr>
     						<%
-    						String sqlR = "SELECT id, user_id, date, reply FROM replyboard WHERE song_name = ?";
+    						String sqlR = "SELECT user_id, date, reply FROM replyboard WHERE song_name = ?";
     						PreparedStatement pstmtR = conn.prepareStatement(sqlR);
     						pstmtR.setString(1, title);
     						ResultSet rsR = pstmtR.executeQuery();
@@ -346,7 +326,6 @@ function cart(){
     							} else {
     						%>	
     							<tr>
-        							<td><%=rsR.getInt("id") %></td> <!-- 댓글 번호 -->
         							<td><%=rsR.getString("user_id") %></td> <!-- 댓글 작성자 -->
         							<td><%=rsR.getString("date") %></td> <!-- 댓글 등록 날짜 -->
         							<td><%=rsR.getString("reply") %></td> <!-- 댓글 내용 -->

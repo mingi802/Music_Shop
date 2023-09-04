@@ -477,7 +477,7 @@
 						   	<label for="check-all" class="check-emoticon"></label>
 						   	<label for="check-all" class="check-all-text"><h5>전체 선택</h5> </label>
 						</div>
-					   	<div class="col-2 ml-auto">
+					   	<div class="cart-choose-delete">
 			        		<input type="button" id="chosen-song-del-btn" class="btn btn-outline-danger" type="button" value="선택 삭제">
 					   	</div>
 					

@@ -118,16 +118,6 @@ function cart(){
                                                     <li><a href="host.jsp">관리자목록</a></li>
                                                     <li><a href="../review/review.jsp">게시판관리</a></li>
                                                     <li><a href="musicManage.jsp">앨밤관리</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
                                             </li>
                                         </ul>

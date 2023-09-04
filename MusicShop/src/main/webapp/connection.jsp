@@ -93,16 +93,6 @@ function cart(){
                                                     <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="cart.jsp">장바구니</a></li>
                                                     <li><a href="#">구매내역</a></li>
-                                                    <li><a href="#">소비자4</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
-                                                            <li><a href="#">소비자</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">소비자5</a></li>
                                                 </ul>
                                             </li> 
                                             <%
@@ -116,16 +106,6 @@ function cart(){
                                                     <li><a href="admin/host.jsp">관리자목록</a></li>
                                                     <li><a href="review/review.jsp">게시판관리</a></li>
                                                     <li><a href="admin/musicManage.jsp">앨범관리</a></li>
-                                                    <li><a href="#">몰?루</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">몰?루</a></li>
                                                 </ul>
                                             </li>
                                             <%
@@ -136,17 +116,6 @@ function cart(){
                                                     <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="artist/artist.jsp">음원 등록</a></li>
                                                     <li><a href="artist/music_delete.jsp">음원 관리</a></li>
-                                                    <li><a href="#"></a></li>
-                                                    <li><a href="#">몰?루</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">몰?루</a></li>
                                                 </ul>
                                             </li>                                            
                                             <%

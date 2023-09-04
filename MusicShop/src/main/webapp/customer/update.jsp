@@ -329,7 +329,7 @@ function cart(){
                             <form name="Registform_Upate" action="update_ok.jsp" method="post" onSubmit="return confirmform()" encType="UTF-8">
                                 <div class="form-group">
                                     <label for="exampleId">아이디(Id)</label>
-                                    <input type="text" class="form-control" id="InputId" aria-describedby="emailHelp" name="user_id" value='<%=editId %>' placeholder="Enter ID">
+                                    <input type="text" class="form-control" id="InputId" aria-describedby="emailHelp" name="user_id" value='<%=editId %>' placeholder="Enter ID" readonly>
                                     </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">비밀번호(Password)</label>
@@ -394,10 +394,10 @@ function cart(){
                                      <span class="spacing"></span>
                                      <span class="spacing"></span>
                                     <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="남자" 
-                                    	<%if(editGen.equals("남자")) out.print("checked");%> >남자
+                                    	<%if(editGen.equals("남자")) out.print("checked");%> disabled>남자
                                      <span class="spacing"></span>
                                     <input type="radio" class="form-controlasd" id="InputGender" name="user_gen" value="여자"
-                                    	<%if(editGen.equals("여자")) out.print("checked");%> >여자
+                                    	<%if(editGen.equals("여자")) out.print("checked");%> disabled>여자
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputName1">전화번호(Number)</label>
