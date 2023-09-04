@@ -129,7 +129,7 @@ public class AlbumDAO {
 				e.printStackTrace();
 			}
 			
-			String sql = "SELECT * FROM album WHERE singer Like '%"+albumName+"%' or name Like '%"+ albumName +"%'";
+			String sql = "SELECT id, name, title, singer, now, sign, (SELECT song from song where name = title) as song FROM album WHERE singer Like '%"+albumName+"%' or name Like '%"+ albumName +"%'";
 			System.out.println(sql);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -142,7 +142,7 @@ public class AlbumDAO {
 				Date now = rs.getDate("now");
 				//String price = rs.getString("price");
 				String sign = rs.getString("sign");
-				//String song = rs.getString("song");
+				String song = rs.getString("song");
 				
 				AlbumVO albumVO = new AlbumVO();
 				
@@ -153,7 +153,7 @@ public class AlbumDAO {
 				albumVO.setNow(now);
 				//albumVO.setPrice(price);
 				albumVO.setSign(sign);
-				//albumVO.setSong(song);
+				albumVO.setSong(song);
 				
 				albumList.add(albumVO);
 			}

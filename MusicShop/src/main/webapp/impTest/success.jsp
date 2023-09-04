@@ -114,20 +114,27 @@
     <%
     if (isSuccess) { 
     %>
-        alert("결제 성공\n"
-        	 +"주문명:<%=jsonObject.get("orderName")%>\n"
-        	 +"결제수단:<%=jsonObject.get("method")%>\n"
-        	 +"<%=detail%>");
+        if(confirm("결제 성공\n"
+        	 	  +"주문명:<%=jsonObject.get("orderName")%>\n"
+        	 	  +"결제수단:<%=jsonObject.get("method")%>\n"
+        	 	  +"<%=detail%>\n"
+        	 	  +"내 음악 페이지로 이동하시겠습니까?\n"
+        	 	  +"('취소' 선택 시 장바구니 페이지로 이동됩니다.)")) {
+        	window.location.href="${contextPath}/my_song.jsp";
+        } else {
+        	window.location.href="${contextPath}/cart.jsp";
+        }
     <%
     } else { 
     %>
         alert("결제 실패\n"
         	+"에러코드:<%=jsonObject.get("code")%>\n"
         	+"<%=jsonObject.get("message")%>");
+        window.location.href="${contextPath}/cart.jsp";
     <%
     }
     %>
-    window.location.href="${contextPath}/cart.jsp";
+    
     </script>
 </head>
 <body>

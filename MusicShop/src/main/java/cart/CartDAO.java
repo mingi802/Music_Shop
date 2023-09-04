@@ -63,19 +63,73 @@ public class CartDAO {
 					+ "        S.price, \r\n"
 					+ "        S.song \r\n"
 					+ "		from song S join album A on S.album_id = A.id \r\n"
-					+ "		where S.id = ? and not exists (select * from storage where member_id = ? and song_id = ?);"; //장바구니 테이블 중복 허용 X
+					+ "		where S.id = ? and not exists (select * from storage where member_id = ? and song_id = ?) \r\n" //장바구니 테이블 중복 허용 X
+					+ "                    and not exists (select * from payment where member_id = ? and song_id = ? and status = 'DONE');"; //구매 기록 있을 시 안담겨야함
 			pstmt = conn.prepareStatement(sql);	
 			pstmt.setString(1,member_id);
 			pstmt.setInt(2,song_id);
 			pstmt.setString(3,member_id);
 			pstmt.setInt(4,song_id);
+			pstmt.setString(5,member_id);
+			pstmt.setInt(6,song_id);
 			System.out.println(pstmt);
 			int rows = pstmt.executeUpdate(); //executeUpdate메서드는 변경된 행의 개수를 리턴해준다.
 			if(rows > 0) { 					  //즉, rows가 0보다 크지 않다는 것은 모종의 이유로 위 SQL문이 정상적으로 작동하지 않았음을 뜻한다.
 				result.put("status", true);
 				result.put("msg", "Insert Query Successed");
 			} else {
-				result.put("msg", "Insert Query Failed(This Song is already exist in Storage Table or Unknown Error)");
+				result.put("msg", "Insert Query Failed(This Song is already exist in Storage Table or Payment Table)");
+			}
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			result.put("msg", "Insert Query Failed(SQLError)");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+public Map<String,Object> addAllSongInAlbumToCart(String member_id, String song_ids) {	//성공 여부 리턴
+		
+		Map<String,Object> result = new HashMap<>(){
+			{
+				put("status", false);
+				put("msg", "Unknown Error");
+			}
+		};
+		try {
+			try {
+				connDB();	
+			} catch (Exception e) {
+				result.put("msg", "DB Connect Failed");
+				e.printStackTrace();
+			}
+			String sql = 
+					  "insert into storage(member_id, album_id, album_sign, singer, song_id, song_name, price, song_audio) \r\n"
+					+ "		select\r\n"
+					+ "		   (select id from member where id = ?), \r\n"	//member id
+					+ "        A.id, \r\n"
+					+ "        A.sign, \r\n"
+					+ "        A.singer, \r\n"
+					+ "        S.id, \r\n"
+					+ "        S.name, \r\n"
+					+ "        S.price, \r\n"
+					+ "        S.song \r\n"
+					+ "		from song S join album A on S.album_id = A.id \r\n"
+					+ "		where S.id in ("+song_ids+") "
+					+ "			and S.id not in (select song_id from storage where member_id = ? and song_id in ("+song_ids+"))" //장바구니 테이블 중복 허용 X
+					+ "     	and S.id not in (select song_id from payment where member_id = ? and song_id in ("+song_ids+") and status = 'DONE');"; //구매 기록 있을 시 안담겨야댐
+			pstmt = conn.prepareStatement(sql);	
+			pstmt.setString(1,member_id);
+			pstmt.setString(2,member_id);
+			pstmt.setString(3,member_id);
+			System.out.println(pstmt);
+			int rows = pstmt.executeUpdate(); //executeUpdate메서드는 변경된 행의 개수를 리턴해준다.
+			if(rows > 0) { 					  //즉, rows가 0보다 크지 않다는 것은 모종의 이유로 위 SQL문이 정상적으로 작동하지 않았음을 뜻한다.
+				result.put("status", true);
+				result.put("msg", "Insert Multiple Rows Successed");
+			} else {
+				result.put("msg", "Insert Multiple Rows Failed(This Song is already exist in Storage Table or Payment Table)");
 			}
 			pstmt.close();
 			conn.close();
@@ -112,6 +166,44 @@ public class CartDAO {
 			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);	
 			
+			System.out.println(pstmt);
+			
+			int rows = pstmt.executeUpdate(); //executeUpdate메서드는 변경된 행의 개수를 리턴해준다.
+			if(rows > 0) { 					  //즉, rows가 0보다 크지 않다는 것은 모종의 이유로 위 SQL문이 정상적으로 작동하지 않았음을 뜻한다.
+				result.put("status", true);
+				result.put("msg", "Delete Query Successed");
+			} else {
+				result.put("msg", "Delete Query Failed(This Song is not exist in "+member_id+"'s Storage Table or Unknown Error)");
+			}
+			
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			result.put("msg", "Delete Query Failed(SQLError)");
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
+public Map<String, Object> delCartItem(String member_id, String song_ids) {	//성공 여부 리턴
+		
+		Map<String,Object> result = new HashMap<>(){
+			{
+				put("status", false);
+				put("msg", "Unknown Error");
+			}
+		};
+		try {
+			try {
+				connDB();	
+			} catch (Exception e) {
+				result.put("msg", "DB Connect Failed");
+				e.printStackTrace();
+			}
+			String sql = "delete from storage WHERE song_id in ("+song_ids+") and member_id = ?;";
+			pstmt = conn.prepareStatement(sql);	
+			pstmt.setString(1, member_id);
 			System.out.println(pstmt);
 			
 			int rows = pstmt.executeUpdate(); //executeUpdate메서드는 변경된 행의 개수를 리턴해준다.

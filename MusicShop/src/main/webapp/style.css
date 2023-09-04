@@ -947,6 +947,7 @@ img {
 		}
 		
 	}
+	
 	.cart-item {
 		position: relative;
   		z-index: 1;
@@ -2518,6 +2519,18 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   .oneMusic-tabs-content .tab-content h6 {
     font-size: 18px; }
 
+
+	.down-btn p span {
+          -webkit-transition-duration: 500ms;
+          transition-duration: 500ms;
+          margin-bottom: 0;
+          color: #000000;
+          font-size: 30px;
+          cursor: pointer;
+          line-height: 1; }
+          .down-btn p span:hover {
+            color: rgba(0, 0, 255, 1.0); 
+            }
 .single-web-icon {
   position: relative;
   z-index: 1;

@@ -191,6 +191,18 @@ public class MusicController extends HttpServlet {
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
     		
     		dispatch.forward(request, response);
+		} else if (action.equals("/showMySongList.do")) {
+			String se_member_id = "";
+			if(session != null) {
+				se_member_id = (String) session.getAttribute("id");
+			}
+			List<MySongVO> mySongList = musicDAO.getMySongList(se_member_id);
+    		request.setAttribute("mySongList", mySongList);
+    		request.setAttribute("isFirstEntry", false);
+			nextPage = "/my_song.jsp";
+			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+			dispatch.forward(request, response);
+			return;
 		}
 		
 	}

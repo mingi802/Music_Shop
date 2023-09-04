@@ -219,15 +219,10 @@ public class CartController extends HttpServlet {
 			}
 		};
 		
-		int song_id = -1;
+		String song_id = "";
 		String member_id = null;
 		if(request.getParameter("song_id") != null && request.getParameter("member_id") != null) {
-			try {
-				song_id = Integer.parseInt(request.getParameter("song_id")); 
-			} catch (NumberFormatException e) {
-				result.put("status", false);
-			    result.put("msg", "song_id is not a number");
-			}
+			song_id = request.getParameter("song_id"); 
 			member_id = request.getParameter("member_id");
 		}
 		System.out.println("음원 고유 번호: "+song_id);
@@ -236,7 +231,18 @@ public class CartController extends HttpServlet {
 			result.put("status", false);
 			result.put("msg", "user is not logged in");
 		} else {
-			result = cartDAO.addToCart(member_id, song_id);
+			if(song_id.split(",").length == 1) {
+				try {
+					result = cartDAO.addToCart(member_id, Integer.parseInt(song_id)); //song_id가 하나면 매개변수를 int로 받는 addToCart 함수
+				} catch (NumberFormatException e) {	//String을 int로 바꾸는게 안되면 캐치
+					e.printStackTrace();
+					result.put("status", false);
+					result.put("msg", "song_id must be a Integer");
+				}
+			}
+			else {
+				result = cartDAO.addAllSongInAlbumToCart(member_id, song_id); //현재는 song_id가 여러 개로 들어오는 장바구니 담기 요청은 앨범 수록곡 전체 밖에 없기에 이런 식으로 놔뒀으나 추후 수정 예정 
+			}
 		}
 		JSONObject json =  new JSONObject(result); 	//HashMap 형태의 값을 JSON 타입으로 돌려주기 위해 JSONObject 사용
 		System.out.printf("ResultJSON: %s\n", json);	//디버깅용 값 찍어보기

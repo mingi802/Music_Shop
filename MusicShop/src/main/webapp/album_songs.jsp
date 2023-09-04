@@ -42,10 +42,10 @@ String albumId = request.getParameter("album_id");
 	} else{
 		console.log("${songList[0].album}");
 	}
-
+	
+	var songList = new Array();	//앨범 구매 버튼 이벤트에서 참조하려고 전역 변수로 빼놓았다.
 	if(${not empty songList}){
 		console.log("검색 결과 있음");
-		var songList = new Array();
 	<c:forEach items="${songList}" var="song">
 		songList.push({
 			album_name: "${song.album}",
@@ -69,10 +69,18 @@ String albumId = request.getParameter("album_id");
 		    var result = this.response;
 		    console.log(result);
 		    if(result.status == true) {
-		    	askGotoCart();
+		    	if(result.msg == "Insert Multiple Rows Successed") {
+		    		askGotoCart("해당 앨범의 수록곡이 전부 장바구니에 담겼습니다. (구매했던 음원 또는 이미 장바구니에 담겨있던 음원 제외)");	
+		    	}
+		    	else {
+		    		askGotoCart("장바구니에 음원이 담겼습니다.");	
+		    	}
 		    } else {
-		    	if(result.msg == "Insert Query Failed(This Song is already exist in Storage Table or Unknown Error)") {
-		    		askGotoCart("이미 장바구니에 담긴 음원입니다.");
+		    	if(result.msg == "Insert Query Failed(This Song is already exist in Storage Table or Payment Table)") {
+		    		askGotoCart("이미 구매한 음원이거나 장바구니에 담긴 음원입니다.");
+		    		return;
+		    	} else if(result.msg == "Insert Multiple Rows Failed(This Song is already exist in Storage Table or Payment Table)") {
+		    		askGotoCart("해당 앨범의 수록곡이 전부 이미 구매한 음원이거나 장바구니에 담긴 음원입니다.");
 		    		return;
 		    	}
 		    	alert(result.msg);
@@ -94,6 +102,18 @@ String albumId = request.getParameter("album_id");
 				addToCartRequest.send();
 			});
 		});
+		var album_buy_btn = document.getElementById("album-buy-btn");
+		album_buy_btn.addEventListener("click", function(event) {
+			var queryString = "";
+			songList.forEach(function(song) {
+				queryString += (song.song_id+","); //n1,n2,n3,n3,ㆍㆍㆍ,
+			})
+			queryString = queryString.slice(0, -1); //마지막에 오는 , 지워주기
+			console.log(queryString);
+			addToCartRequest.open('GET', '${contextPath}/Cart/addToCart.do?song_id='+queryString+'&member_id='+"${empty id ? 'not login' : id}");
+			addToCartRequest.responseType="json";
+			addToCartRequest.send();
+		});
 	}
 
 	function askGotoCart(msg) {
@@ -104,7 +124,6 @@ String albumId = request.getParameter("album_id");
 		if (confirm(message)) {
             cart();
         } else {
-          	alert("OK");
         }		 
 	}
 	
@@ -355,8 +374,6 @@ function confirmLogin(){
                             <p>${songList[0].album}</p><!-- songList -->
                             <div>
 			            		<input type="button" id="album-buy-btn" class="btn btn-outline-light btn-lg" value="앨범 구매">
-			    				&nbsp;&nbsp;&nbsp;&nbsp;
-			    				<input type="button" id="album-like-btn" class="btn btn-outline-danger btn-lg" value="좋아요">
 			            	</div>
                         </div>
                         <div class="song-play-area">
