@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*"
     pageEncoding="UTF-8"%>
-    
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>    
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/> <!-- ${contextPath} --> 
     <%@page session="true"%>    
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@ String name = (String) session.getAttribute("name");
 <script>
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){
-		window.location.href="cart.jsp";
+		window.location.href="{contextPath}/cart.jsp";
 		return true;
 	} else{
 		return false;
