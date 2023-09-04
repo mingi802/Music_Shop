@@ -24,7 +24,7 @@
     <script>
     	
 	    if(${empty mySongList} && ${not empty isFirstEntry ? isFirstEntry : true}) {
-			 alert("첫 입장, 구매 내역에 담긴 음원 리스트 가져오기");
+			 console.log("첫 입장, 구매 내역에 담긴 음원 리스트 가져오기");
 			 window.location.href="${contextPath}/Music/showMySongList.do";
 		}
 	    
@@ -113,7 +113,13 @@
                             
                             <!-- Nav Start -->
                             <div class="classynav">
-                                <ul>
+                                <ul> 
+                                	<%
+                                    if(code != null){
+                                    %>
+                                		<li><a href="${contextPath}/my_song.jsp">MySong</a></li>
+                                	<%} 
+                                	%>
                                     <li><a href="${contextPath}/main.jsp">Home</a></li>
                                     <li><a href="${contextPath}/album.jsp">Album</a></li>
                                     <li><a href="#">Pages</a>

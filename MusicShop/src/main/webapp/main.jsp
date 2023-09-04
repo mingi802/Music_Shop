@@ -133,7 +133,13 @@ function cart(){
 
                             <!-- Nav Start -->
                             <div class="classynav">
-                                <ul>
+                                <ul> 
+                                	<%
+                                    if(code != null){
+                                    %>
+                                		<li><a href="${contextPath}/my_song.jsp">MySong</a></li>
+                                	<%} 
+                                	%>
                                     <li><a href="${contextPath}/main.jsp">Home</a></li>
                                     <li><a href="${contextPath}/album.jsp">Album</a></li>
                                     <li><a href="#">Pages</a>
