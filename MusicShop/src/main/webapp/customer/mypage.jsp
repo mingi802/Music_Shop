@@ -283,7 +283,7 @@ function update(){
     </section>
     <!-- ##### Breadcumb Area End ##### -->
     <aside class="admin-category">
-    	<ul style="padding-left:5px;padding-top:20px;">
+    	<ul class="side-menu">
 			<li><a href="mypage.jsp"><b>내정보</b></a></li><br>  
 			<li><a href="../cart.jsp"><b>장바구니</b></a></li><br>
 			<li><a href="#"><b>구매내역</b></a></li><br>
@@ -291,7 +291,8 @@ function update(){
 if(code.equals("200")){
 %>
 	<li><a href="../admin/admin.jsp">회원 관리</a></li><br>
-	<li><a href="#">음원 관리</a></li>
+	<li><a href="../admin/musicManage.jsp">음원 관리</a></li>
+	<li><a href="../review/review.jsp">게시판 관리</a></li>
 <%	
 } else if(code.equals("300")){
 %>

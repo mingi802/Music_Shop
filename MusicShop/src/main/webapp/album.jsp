@@ -193,16 +193,6 @@ String name = (String) session.getAttribute("name");
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내 정보</a></li>
                                                     <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
                                                     <li><a href="#">구매내역</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
                                             </li> 
                                             <%
@@ -216,16 +206,6 @@ String name = (String) session.getAttribute("name");
                                                     <li><a href="${contextPath}/admin/artist.jsp">아티스트목록</a></li>
                                                     <li><a href="${contextPath}/review/review.jsp">게시판관리</a></li>
                                                     <li><a href="${contextPath}/admin/musicManage.jsp">앨범관리</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
                                             </li>
                                             <%
@@ -236,17 +216,6 @@ String name = (String) session.getAttribute("name");
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/artist/artist.jsp">음원 등록</a></li>
                                                     <li><a href="${contextPath}/artist/music_delete.jsp">음원관리</a></li>
-                                                    <li><a href="#"></a></li>
-                                                    <li><a href="#">몰?루</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                            <li><a href="#">몰?루<</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">몰?루</a></li>
                                                 </ul>
                                             </li>                                            
                                             <%
