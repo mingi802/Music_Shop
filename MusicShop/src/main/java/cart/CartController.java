@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,6 +18,7 @@ import java.util.Base64;
 import java.util.Base64.Encoder;
 import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -83,7 +85,7 @@ public class CartController extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
 		request.setCharacterEncoding("UTF-8");
-		
+		String contextPath = request.getContextPath();
 		String path = request.getPathInfo();
 		String action = path.substring(path.lastIndexOf("/"));
 		System.out.println("path: "+path+"\naction: "+action);
@@ -112,6 +114,7 @@ public class CartController extends HttpServlet {
 			String amount = request.getParameter("amount");
 			String cartItemIds = request.getParameter("cartItemIds");
 			String se_member_id = "";
+			String message = "";
 			Encoder encoder = Base64.getEncoder(); 
 			
 			if(session != null) {
@@ -121,22 +124,27 @@ public class CartController extends HttpServlet {
 		    System.out.println(cartItemIds);
 		    int db_amount = cartDAO.getTotalAmount(se_member_id,cartItemIds);
 		    if(Integer.parseInt(amount) != db_amount) {
-		    	String contextPath = request.getContextPath();
-		    	String message = "수정된 가격으로 결제 시도";
-		    	
+		    	message = "수정된 가격으로 결제 시도";
 		    	message = URLEncoder.encode(message, StandardCharsets.UTF_8);
-		    	System.out.println("수정된 가격으로 결제 시도");
+		    	System.out.println(message);
 		    	response.sendRedirect(contextPath+"/impTest/fail.jsp?code=REJECT_CARD_COMPANY&message="+message+"&orderId="+orderId);
 		    	return;
 		    } else {
-		    	String secretKey = "test_sk_GePWvyJnrKbmGXKg2w7VgLzN97Eo:";
+		    	String secretKey = "test_sk_GePWvyJnrKbmGXKg2w7VgLzN97Eo:";	//클라이언트 측에서 절대 알아선 안될 정보
 				byte[] encodedBytes = encoder.encode(secretKey.getBytes("UTF-8"));
 				String authorizations = "Basic "+ new String(encodedBytes, 0, encodedBytes.length);				
 				paymentKey = URLEncoder.encode(paymentKey, StandardCharsets.UTF_8);
 				
-				URI uri = URI.create("https://api.tosspayments.com/v1/payments/confirm");
+				URI uri = null;
+				URL url = null;
+				try {
+					uri = new URI("https://api.tosspayments.com/v1/payments/confirm");
+					url = uri.toURL();
+				} catch (URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				//URL url = new URL("https://api.tosspayments.com/v1/payments/confirm");
-				URL url = uri.toURL();
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 				connection.setRequestProperty("Authorization", authorizations);
 				connection.setRequestProperty("Content-Type", "application/json");
@@ -166,6 +174,35 @@ public class CartController extends HttpServlet {
 				}
 				responseStream.close();
 				System.out.println(jsonObject);
+				if(isSuccess) {
+					Map<String, Object> result = new HashMap<>();
+					String[] song_id_arr_str = cartItemIds.split(",");
+					int[] song_id_arr_int = new int[song_id_arr_str.length];
+					int idx = 0;
+					for(String song_id : song_id_arr_str) {
+						song_id_arr_int[idx] = Integer.parseInt(song_id);
+						idx++;
+					}
+					for(int song_id : song_id_arr_int) {
+						result.putAll(cartDAO.insertPaymentData(jsonObject, se_member_id, song_id));
+					}
+					JSONObject json =  new JSONObject(result); 
+					System.out.printf("insertPaymentDataResultJSON: %s\n", json);	//디버깅용 값 찍어보기
+					request.setAttribute("isSuccess", isSuccess);
+					request.setAttribute("jsonObject", jsonObject);
+					List<Integer> song_id_list = Arrays.stream(song_id_arr_int)
+                            						   .boxed()
+                            						   .collect(Collectors.toList());
+					result = cartDAO.delCartItem(se_member_id, song_id_list);
+					json =  new JSONObject(result); 
+					System.out.printf("delCartItemResultJSON: %s\n", json);	//디버깅용 값 찍어보기
+				} else {
+					System.out.println("code: "+jsonObject.get("code")+"\n"
+									+  "message: "+jsonObject.get("message")+"\n"
+									+  "orderId: "+orderId);
+					response.sendRedirect(contextPath+"/impTest/fail.jsp?code="+jsonObject.get("code")+"&message="+URLEncoder.encode(jsonObject.get("message").toString(), StandardCharsets.UTF_8)+"&orderId="+orderId);
+			    	return;
+				}
 		    }
 		}
 		System.out.println(nextpage);

@@ -101,7 +101,7 @@
 			   		.requestPayment({
 				        orderId: orderId,            // 주문 ID(직접 만들어주세요)
 				        orderName: orderName,                 // 주문명
-				        successUrl: "http://localhost:8060/${contextPath}/Cart/cartItemPayment.do?cartItemIds="+cartItemIds,  // 결제에 성공하면 이동하는 페이지(직접 만들어주세요)
+				        successUrl: "http://localhost:8060/${contextPath}/Cart/impTest/success/cartItemPayment.do?cartItemIds="+cartItemIds,  // 결제에 성공하면 이동하는 페이지(직접 만들어주세요)
 				        failUrl: "http://localhost:8060/${contextPath}/impTest/fail.jsp",        // 결제에 실패하면 이동하는 페이지(직접 만들어주세요)
 				        customerName: "${name}",
 				        escrowProducts: escrowProducts
@@ -180,9 +180,9 @@
 	  	  	});
 	  	  
 	  	  	cmbbtn.addEventListener('click', function(){
-		  	  	paymentMethodWidget = paymentWidget.renderPaymentMethods("#payment-method", { value: 0 }); //가격은 결제 버튼을 누른 순간 정해진다. 78줄 참조
-		  	  	paymentWidget.renderAgreement('#agreement');		  	  	
-			  	if(paydiv.style.visibility == 'hidden') {
+	  	  		paymentMethodWidget = paymentWidget.renderPaymentMethods("#payment-method", { value: 0 }); //가격은 결제 버튼을 누른 순간 정해진다. 78줄 참조
+	  	  		const paymentAgreement = paymentWidget.renderAgreement('#agreement');
+			  	if(paymentAgreement.getAgreementStatus().agreedRequiredTerms && paydiv.style.visibility == 'hidden') {
 			  		paydiv.style.visibility = 'visible';
 			  	}
 	  	  	});
