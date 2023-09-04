@@ -21,9 +21,23 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${contextPath}/style.css">
-    <script src="https://js.tosspayments.com/v1/payment-widget"></script>
     <script>
-
+		var jstlContextPath = "${contextPath}";
+		var jstlMemberId = "${id}";
+		var jstlMemberName = "${name}";
+	</script>
+    <c:choose>
+		<c:when test="${not empty cartItemList}">
+			<script src="https://js.tosspayments.com/v1/payment-widget"></script>
+			<script src="${contextPath}/js/cartItemListNotEmptyCase.js"></script>
+		</c:when>
+		<c:otherwise>
+			<script src="${contextPath}/js/cartItemListEmptyCase.js" defer></script>
+		</c:otherwise>
+	</c:choose>
+	
+    <script>
+		/*
 	    const clientKey = "test_ck_jExPeJWYVQlOdp6pRbQ349R5gvNL";
 	    const customerKey = self.crypto.randomUUID(); // 내 상점에서 고객을 구분하기 위해 발급한 고객의 고유 ID
 	    const paymentWidget = PaymentWidget(clientKey, customerKey); // 회원 결제
@@ -71,7 +85,23 @@
 	    	var cart_item_all_check = document.getElementById('check-all');
 			
 	    	var CartItemMap = new Map();
-	    	paydiv.style.visibility = 'hidden';
+	    	
+	    	<c:choose>
+	    		<c:when test="${not empty cartItemList}">
+	    			paydiv.style.visibility = 'hidden';
+	    		</c:when>
+	    		<c:otherwise>
+	    			var more_song_btn = document.getElementById('more-song-btn');
+	    			var my_song_btn = document.getElementById('my-song-btn');
+	    			more_song_btn.addEventListener('click', function() {
+	    				window.location.href="${contextPath}/album.jsp";
+	    			});
+	    			my_song_btn.addEventListener('click', function() {
+	    				window.location.href="${contextPath}/my_song.jsp";
+	    			});
+	    		</c:otherwise>
+	    	</c:choose>
+	    	
 	    	
 	    	paybtn.addEventListener('click', function(event) {
 	    		paymentMethodWidget.updateAmount(parseInt(total_payment.innerText));
@@ -215,20 +245,22 @@
 			});
 			console.log("is all checked: "+ is_all_checked);
 			return is_all_checked;
-		}
+		} */
   <%
 	String user_id = (String) session.getAttribute("id");
 	String code = (String) session.getAttribute("code");
 	String name = (String) session.getAttribute("name");
-  %> 
+  %> 	/*
 	    function limitPlayTime(audio) {
 	        if (audio.currentTime > 60) { // 1분(60초)로 제한
 	            audio.pause();
 	            audio.currentTime = 0; // 음악이 끝난 후 처음으로 돌아감
 	            alert("1분 미리듣기가 종료되었습니다.");
 	        }
-	    }    
+	    } */
+	    </script>
 	    
+	    <script>
 		function activateYFilter() {
 		    const iframe = document.getElementById("y-filter-iframe");
 		    iframe.style.display = "block";
@@ -264,6 +296,7 @@
 			}
 		}
     </script>
+    
 </head>
 <body class="d-flex flex-column min-vh-100">
     <!-- Preloader -->
@@ -481,81 +514,100 @@
 <!-- ##### Buy Now Area Start ##### -->
     <section class="oneMusic-cart-area has-fluid bg-gray section-padding-100">    	
         <div class="container-fluid">
-        	<div class="row d-flex">
-	        	 
-	        		
-	        			<div class="col-2">
-			        		<input type="checkbox" class="cart-item-checked" id="check-all" name="cart-item-check-all">
-						   	<label for="check-all" class="check-emoticon"></label>
-						   	<label for="check-all" class="check-all-text"><h5>전체 선택</h5> </label>
-						</div>
-					   	<div class="cart-choose-delete">
-			        		<input type="button" id="chosen-song-del-btn" class="btn btn-outline-danger" type="button" value="선택 삭제">
-					   	</div>
-					
-				
-			</div>
-        	<hr>       
-            <div class="row d-flex cart-item-list" id="cart-item-list">
-                <!-- Single Album Area -->
-                <c:if test="${not empty cartItemList}">
-                	<c:forEach items="${cartItemList}" var="cartItem">
-		                <div class="col-12">
-		                    <div class="d-flex flex-row cart-item">
-		                    	<div class="align-self-center">
-			                		<input type="checkbox" class="cart-item-checked" id="${cartItem.song_id}" name="cart-item-checked">
-			                		<label for="${cartItem.song_id}" class="check-emoticon"></label>
-			                	</div>
-		                        <div class="col-1 album-thumb album-img-place">
-		                        <!--앨범 이미지를 클릭했을 때 해당 앨범 상세 페이지로 이동 -->
-		                            <a href="${contextPath}/Album/album_songs/showOneAlbum.do?album_id=${cartItem.album_id}">
-		                            	<img src="${contextPath}/resource/img/${cartItem.album_sign}" alt="">
-		                            </a>
-		                        </div>
-			  					<div class="col-1 album-info align-self-end">
-								<!--가수 이름을 클릭했을 때 그 이름으로 검색된 album.jsp 페이지로 이동 -->
-									<a href="${contextPath}/Album/album/albumSearch.do?searchBar=${cartItem.singer}">
-			 							 <h5>${cartItem.singer}</h5>
-									</a>	
-			                        	<p class="cart-item-song-name">${cartItem.song_name}</p>
-			                    </div>
-			                    <div class="col-9 song-play-area align-self-center">
-			                        <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
-			                           <source src="${contextPath}/resource/audio/${cartItem.song_audio}">
-			                        </audio>
-			                    </div>
-			                    <div class="col-1 align-self-price-end">
-			                    	<span class="cart-item-price"><b>${cartItem.price}</b></span>
-			                    	<span><b>￦</b></span>
-			                    	<p></p> <!-- 이 태그가 없으면 모양이 조금 깨지네요.. -->
-			                    </div>
-		  					</div>
-		                </div>
-               		</c:forEach>
-                </c:if>
-                <div class="col-2 mr-auto">
-	            	<span>총 결제 금액: </span>
-	            	<span id="total-payment">0</span>
-	            	<span>￦</span>
-	           	</div>
-            </div>            
-           	<hr>
-            <div class="d-flex flex-row align-items-center justify-content-sm-around">
-            	<div class="">
-            		<input type="button" id="chosen-song-buy-btn" class="btn btn-outline-dark btn-lg" type="button" value="선택 구매">
-            	</div>
-            	<div class="">
-    				<input type="button" id="all-song-buy-btn" class="btn btn-outline-dark btn-lg" type="button" value="전체 구매">
-            	</div>
-    		</div>
-    		<hr>
-    		<div id="payment-method"></div>
-			<div id="agreement"></div>
-			<div class="d-flex justify-content-center bg-white align-self-center" id="payment-div" style="position: relative; display: block; border: 0px; width: 100%; height: 90px;">
-				<div>
-					<input type="button" id="payment-btn" class="btn btn-outline-dark btn-lg" type="button" value="결제하기">
+        	<c:choose>
+	        	<c:when test="${not empty cartItemList}">
+	        		<div class="row d-flex">
+		        			<div class="col-2">
+				        		<input type="checkbox" class="cart-item-checked" id="check-all" name="cart-item-check-all">
+							   	<label for="check-all" class="check-emoticon"></label>
+							   	<label for="check-all" class="check-all-text"><h5>전체 선택</h5> </label>
+							</div>
+						   	<div class="cart-choose-delete">
+				        		<input type="button" id="chosen-song-del-btn" class="btn btn-outline-danger" type="button" value="선택 삭제">
+						   	</div>
+					</div>
+	        		<hr>       
+	            	<div class="row d-flex cart-item-list" id="cart-item-list">
+	                <!-- Single Album Area -->
+	                	<c:forEach items="${cartItemList}" var="cartItem">
+			                <div class="col-12">
+			                    <div class="d-flex flex-row cart-item">
+			                    	<div class="align-self-center">
+				                		<input type="checkbox" class="cart-item-checked" id="${cartItem.song_id}" name="cart-item-checked">
+				                		<label for="${cartItem.song_id}" class="check-emoticon"></label>
+				                	</div>
+			                        <div class="col-1 album-thumb album-img-place">
+			                        <!--앨범 이미지를 클릭했을 때 해당 앨범 상세 페이지로 이동 -->
+			                            <a href="${contextPath}/Album/album_songs/showOneAlbum.do?album_id=${cartItem.album_id}">
+			                            	<img src="${contextPath}/resource/img/${cartItem.album_sign}" alt="">
+			                            </a>
+			                        </div>
+				  					<div class="col-1 album-info align-self-end">
+									<!--가수 이름을 클릭했을 때 그 이름으로 검색된 album.jsp 페이지로 이동 -->
+										<a href="${contextPath}/Album/album/albumSearch.do?searchBar=${cartItem.singer}">
+				 							 <h5>${cartItem.singer}</h5>
+										</a>	
+				                        	<p class="cart-item-song-name">${cartItem.song_name}</p>
+				                    </div>
+				                    <div class="col-9 song-play-area align-self-center">
+				                        <audio preload="auto" controls ontimeupdate="limitPlayTime(this);">
+				                           <source src="${contextPath}/resource/audio/${cartItem.song_audio}">
+				                        </audio>
+				                    </div>
+				                    <div class="col-1 align-self-price-end">
+				                    	<span class="cart-item-price"><b>${cartItem.price}</b></span>
+				                    	<span><b>￦</b></span>
+				                    	<p></p> <!-- 이 태그가 없으면 모양이 조금 깨지네요.. -->
+				                    </div>
+			  					</div>
+			                </div>
+	               		</c:forEach>  
+		                <div class="col-2 mr-auto">
+			            	<span>총 결제 금액: </span>
+			            	<span id="total-payment">0</span>
+			            	<span>￦</span>
+			           	</div>
+	            	</div>            
+	           		<hr>
+	            	<div class="d-flex flex-row align-items-center justify-content-sm-around">
+	            		<div class="">
+	            			<input type="button" id="chosen-song-buy-btn" class="btn btn-outline-dark btn-lg" type="button" value="선택 구매">
+	            		</div>
+	            		<div class="">
+	    					<input type="button" id="all-song-buy-btn" class="btn btn-outline-dark btn-lg" type="button" value="전체 구매">
+	            		</div>
+	    			</div>
+	    			<hr>
+		    		<div id="payment-method"></div>
+					<div id="agreement"></div>
+					<div class="d-flex justify-content-center bg-white align-self-center" id="payment-div" style="position: relative; display: block; border: 0px; width: 100%; height: 90px;">
+					<div>
+						<input type="button" id="payment-btn" class="btn btn-outline-dark btn-lg" type="button" value="결제하기">
+					</div>
 				</div>
-			</div>
+				</c:when>
+			<c:otherwise>
+				<div class="col-12 justify-content-center single-album-item">
+					<div class="no-album">
+						<img src="${contextPath}/resource/img/not found.png" alt="">
+						<div class="no-info">
+				        	<h5>
+				        	장바구니에 담긴 음원이 없습니다.
+				        	</h5>
+				        </div>
+					</div>
+					<hr>
+					<div class="d-flex flex-row align-items-center justify-content-sm-around">
+	            		<div class="">
+	            			<input type="button" id="more-song-btn" class="btn btn-outline-dark btn-lg" type="button" value="음원 더 둘러보기">
+	            		</div>
+	            		<div class="">
+	    					<input type="button" id="my-song-btn" class="btn btn-outline-dark btn-lg" type="button" value="구매 음원 확인">
+	            		</div>
+	    			</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
         </div>
     </section>
     <!-- ##### Buy Now Area End ##### -->
@@ -597,3 +649,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="${contextPath}/js/active.js"></script>
 </body>
 </html>
+			 

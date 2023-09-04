@@ -80,7 +80,7 @@ String albumId = request.getParameter("album_id");
 		    		askGotoCart("이미 구매한 음원이거나 장바구니에 담긴 음원입니다.");
 		    		return;
 		    	} else if(result.msg == "Insert Multiple Rows Failed(This Song is already exist in Storage Table or Payment Table)") {
-		    		askGotoCart("해당 앨범의 수록곡이 전부 이미 구매한 음원이거나 장바구니에 담긴 음원입니다.");
+		    		askGotoCart("해당 앨범의 수록곡 전부, 혹은 일부가 구매했던 음원이거나 장바구니에 담긴 음원입니다.");
 		    		return;
 		    	}
 		    	alert(result.msg);
