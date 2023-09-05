@@ -950,7 +950,7 @@ img {
 		margin-left: 100px;
 	}
 	.oneMusic-cart-area .container-fluid .cart-choose-delete{
-		margin-left: 91%;
+		margin-right: 15px;
 		/*margin-bottom: 50px;*/
 	}	
 	
@@ -995,7 +995,7 @@ img {
 	margin-left: 40px;
 	margin-top: -50px;
 	width: 10%;
-	background-color:rgb(111,167,235); 
+	/*장바구니 오디오*/ 
 	}
 input[type="checkbox"].cart-item-checked{
         display: none;
