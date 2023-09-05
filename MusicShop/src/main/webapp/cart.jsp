@@ -22,6 +22,10 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${contextPath}/style.css">
     <script>
+	    if(${empty cartItemList} && ${not empty isFirstEntry ? isFirstEntry : true}) {
+			 alert("첫 입장, 장바구니에 담긴 음원 리스트 가져오기");
+			 window.location.href="${contextPath}/Cart/cart/goToCart.do?member_id="+"${empty id ? 'not login' : id}";
+		}
 		var jstlContextPath = "${contextPath}";
 		var jstlMemberId = "${id}";
 		var jstlMemberName = "${name}";
