@@ -933,6 +933,7 @@ img {
 			background-color: #000000;
 			width: 1000px;
 		}
+		/*장바구니 오디오*/
 		.cart-item .album-info{
 			margin-right: 100px;
 		}
@@ -991,10 +992,10 @@ img {
 	.cart-item .cart-item-price{
 	margin-top: -50px;
 	}
-	.cart-item .song-play-area{
+	.cart-item-list .cart-item .song-play-area{
 	margin-left: 40px;
 	margin-top: -50px;
-	width: 10%;
+	width: 100px;
 	/*장바구니 오디오*/ 
 	}
 input[type="checkbox"].cart-item-checked{
