@@ -994,6 +994,8 @@ img {
 	.cart-item .song-play-area{
 	margin-left: 40px;
 	margin-top: -50px;
+	width: 10%;
+	background-color:rgb(111,167,235); 
 	}
 input[type="checkbox"].cart-item-checked{
         display: none;
