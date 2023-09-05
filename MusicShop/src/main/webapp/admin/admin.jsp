@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/> <!-- ${contextPath} -->
 <%@ include file="../mydbcon.jsp" %> <!-- 본인 아이디와 비밀번호로 변경하세요. -->    
 <!DOCTYPE html>
 <html>
@@ -38,7 +39,7 @@ function limitPlayTime(audio) {
 
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){
-		window.location.href="../cart.jsp";
+		window.location.href="{contextPath}/cart.jsp";
 		return true;
 	} else{
 		return false;
@@ -102,7 +103,13 @@ function cart(){
 
                             <!-- Nav Start -->
                             <div class="classynav">
-                                <ul>
+                                <ul> 
+                                	<%
+                                    if(code != null){
+                                    %>
+                                		<li><a href="${contextPath}/my_song.jsp">MySong</a></li>
+                                	<%} 
+                                	%>
                                     <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
                                     <li><a href="#">Pages</a>
