@@ -456,8 +456,8 @@ function cart(){
                             <h2>This week’s top</h2>
                         </div>
                         <!-- Single Top Item -->
-                        <c:if test="${not empty albumList}">
-	                        <c:forEach items="${albumList}" var="album" end="5">
+                        <c:if test="${not empty thisWeeksTopAlbumList}">
+	                        <c:forEach items="${thisWeeksTopAlbumList}" var="album" end="5">
 	                        	<div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
 		                            <div class="thumbnail">
 		                                <img src="${contextPath}/resource/img/${album.sign}" alt="${album.album}">
@@ -481,8 +481,8 @@ function cart(){
                         </div>
 
                         <!-- Single Top Item -->
-                         <c:if test="${not empty albumList}">
-	                        <c:forEach items="${albumList}" var="album" end="5">
+                         <c:if test="${not empty newHitAlbumList}">
+	                        <c:forEach items="${newHitAlbumList}" var="album" end="5">
 	                        	<div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
 		                            <div class="first-part d-flex align-items-center">
 		                                <div class="thumbnail">
@@ -502,7 +502,7 @@ function cart(){
                     </div>
                 </div>
 
-                <!-- ***** Popular Artists ***** -->
+                <!-- ***** Popular Artists ***** popularArtistList -->
                 <div class="col-12 col-lg-4">
                     <div class="popular-artists-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
@@ -511,75 +511,18 @@ function cart(){
                         </div>
 
                         <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/pa1.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>Sam Smith</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="150ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/pa2.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>William Parker</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="200ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/pa3.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>Jessica Walsh</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="250ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/pa4.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>Tha Stoves</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="300ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/pa5.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>DJ Ajay</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="350ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/pa6.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>Radio Vibez</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Artist -->
-                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="400ms">
-                            <div class="thumbnail">
-                                <img src="${contextPath}/img/bg-img/pa7.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <p>Music 4u</p>
-                            </div>
-                        </div>
-
+                        <c:if test="${not empty popularArtistList}">
+	                        <c:forEach items="${popularArtistList}" var="artist">
+		                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
+		                            <div class="thumbnail">
+		                                <img src="${contextPath}/resource/img/${artist.img}" alt="">
+		                            </div>
+		                            <div class="content-">
+		                                <p>${artist.name}</p>
+		                            </div>
+		                        </div>
+                        	</c:forEach>
+						</c:if>
                     </div>
                 </div>
             </div>
