@@ -77,137 +77,7 @@ function cart(){
     </div>
 
     <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-        <!-- Navbar Area -->
-        <div class="oneMusic-main-menu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
-
-                        <!-- Nav brand -->
-                        <a href="../main.jsp" class="nav-brand"><img src="../img/core-img/lologo.png" alt=""></a>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-
-                            <!-- Close Button -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-
-                            <!-- Nav Start -->
-                            <div class="classynav">
-                                <ul> 
-                                	<%
-                                    if(code != null){
-                                    %>
-                                		<li><a href="../my_song.jsp">MySong</a></li>
-                                	<%} 
-                                	%>
-                                    <li><a href="../main.jsp">Home</a></li>
-                                    <li><a href="../album.jsp">Album</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="../main.jsp">Home</a></li>
-                                            <li><a href="../album.jsp">Album</a></li>
-                                            <li><a href="../connection.jsp">Contact</a></li>
-                                            <li><a href="../review/review.jsp">Review</a></li>
-                                            <li><a href="#">Manager</a>
-                                                <ul class="dropdown">
-                                                	<li><a href="../customer/mypage.jsp">내정보</a></li>
-                                                    <li><a href="admin.jsp">회원목록</a></li>
-                                                    <li><a href="artist.jsp">아티스트목록</a></li>
-                                                    <li><a href="host.jsp">관리자목록</a></li>
-                                                    <li><a href="../review/review.jsp">게시판관리</a></li>
-                                                    <li><a href="musicManage.jsp">앨범목록</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="../connection.jsp">Contact</a></li>
-                                </ul>
-<% 
-	if(user_id == null) {
-%>
-                                <!-- Login/Register & Cart Button -->
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="../login/login.jsp" id="loginBtn">Login / Register</a>
-                                    </div>
-								
-<% 
-	} else {
-		if(code.equals("100")){
-%>
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="../customer/mypage.jsp" id="loginBtn"><%=user_id %> 님</a>
-                                    </div>
-                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="../login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
-                                    </div>                                                                  
-<% 
-		} else if(code.equals("200")){
-%>
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="admin.jsp" id="loginBtn"><%=user_id %> 관리자님</a>
-                                    </div>
-                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="../login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
-                                    </div>                                                                        	
-<% 
-		} else if(code.equals("300")){
-%>
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="../artist/atist.jsp" id="loginBtn"><%=name %> 아티스트</a>
-                                    </div>	
-                                <!-- <div class="login-register-cart-button d-flex align-items-center">  -->
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="../login/logout.jsp" id="loginBtn">Logout</a>
-                                    </div>
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart" onclick="return cart()"></span> </p>
-                                    </div>                                                                        
-<%			
-		}
-	}
-%>                                   								                                                                     
-                                </div>
-                            </div>
-                            <!-- Nav End -->
-
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
+	<jsp:include page="../header.jsp"></jsp:include>
     <!-- ##### Header Area End ##### -->
     
     <!-- ##### Breadcumb Area Start ##### -->
@@ -231,7 +101,39 @@ function cart(){
                         <!-- Membership manage Form -->
                         <div class="member-manage-form">
                         
-                        <p>asdjkhfkajshdkfj</p>
+                        <table>
+                        <tr>
+                        	<th>앨범명</th>
+                        	<td>The 1st Mini Album '광화문에서 (At Gwanghwamun)'</td>
+                        </tr>
+                        <tr>
+                        	<th>아티스트</th>
+                        	<td>규현 (KYUHYUN)</td>
+                        </tr>
+                        <tr>
+                        	<th>기획사</th>
+                        	<td>SM ENTERTAINMENT</td>
+                        </tr>
+                        <tr>
+                        	<th>앨범소개</th>
+                        	<td>
+                        	규현, 첫 솔로 앨범 ‘광화문에서’ 발표<br>
+							감성 발라드 선사! 차세대 발라드 황태자 예고! <br>
+							슈퍼주니어 규현이 첫 솔로 앨범을 발표하고 감성 발라더로 변신한다.<br> 
+							규현은 첫 미니앨범 ‘광화문에서’를 발매, 본격적인 활동에 나서, 규현 특유의 감미로운 보이스와 뛰어난 곡 소화력, 감성적인 음악 색깔이 어우러진 앨범으로 차세대 발라드 황태자로 주목받을 것으로 기대된다.<br>
+							특히, 이번 앨범에는 다수의 히트곡을 만든 작곡가 Kenzie, 피아니스트 이루마, Honeydew’O (브라운아이드소울 정엽 & 에코브릿지),
+							‘두사람’ ‘좋을텐데’의 작곡가 윤영준, 인기 작사가 양재선, 동방신기 최강창민 등 유명 작곡, 작사진이 참여, 규현과 환상적인 호흡을 맞춘 총 7곡이 수록되어 있어 완성도 높은 발라드 음악을 만나기에 충분하다.
+                       		감성적인 색깔의 최고의 가을송! 타이틀 곡 ‘광화문에서’
+                        	타이틀 곡 ‘광화문에서(At Gwanghwamun)’는 서정적인 멜로디와 규현의 감미로운 보이스가 완벽한 조화를 이룬 발라드 곡으로, 연인과의 이별을 계절이 주는 아름다움과 변화에 빗대어 담담하게 표현한 독백체의 가사가 폭넓은 세대의 감성과 공감을 자아내, 올 가을 최고의 발라드로 사랑받기 충분하다.
+                       		또한 피아니스트 이루마와 2FACE가 작곡한 ‘Eternal Sunshine’은 영화 장면을 떠오르게 하는 매력적인 가사와 이루마의 감성 짙은 피아노 선율이 곡 특유의 쓸쓸함과 애잔함을 더하며, Honeydew’O (브라운아이드소울 정엽 & 에코브릿지)가 공동 작업한 ‘뒷모습이 참 예뻤구나(At close)’는 아픈 이별을 담은 발라드 곡으로 규현의 애절한 감성과 서정성을 만날 수 있다. 
+							더불어 ‘이별을 말할 때(Moment of farewell)’는 이별의 말을 들은 순간을 현실적으로 표현한 가사가 인상적인 발라드 곡이며, ‘사랑이 숨긴 말들(One confession)’은 사랑하는 마음을 숨기고 바라만 보고 있는 남자의 가슴 시린 고백을 감성적으로 풀어낸 곡으로 규현 특유의 감성 보컬이 곡의 매력을 한층 배가시킨다.
+							게다가 이문세의 히트곡을 새롭게 편곡한 리메이크 곡 ‘깊은 밤을 날아서’, 슈퍼주니어 월드 투어 ‘슈퍼쇼6’에서 선공개한 규현의 자작곡으로 동방신기 최강창민이 작사에 참여한 ‘나의 생각, 너의 기억(My thoughts, Your memories)’ 역시 보컬리스트 규현의 뛰어난 역량과 음악 색깔을 확실히 보여준다.
+                        	</td>
+                        </tr>
+                                                                                                
+                        </table>
+                        
+                        
                         </div>
                     </div>
                 </div>
