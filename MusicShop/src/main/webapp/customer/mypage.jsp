@@ -114,6 +114,13 @@ function update(){
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
+                                	<%
+                                	if(code != null){
+                                	%>
+                                		<li><a href="../my_song.jsp">MySong</a></li>
+                                	<%
+                                	}
+                                	%>
                                     <li><a href="../main.jsp">Home</a></li>
                                     <li><a href="../album.jsp">Album</a></li>
                                     <li><a href="#">Page</a>
@@ -129,17 +136,7 @@ function update(){
                                                 <ul class="dropdown">
                                                     <li><a href="mypage.jsp">내정보</a></li>
                                                     <li><a href="../cart.jsp">장바구니</a></li>
-                                                    <li><a href="#">구매내역</a></li>
-                                                    <li><a href="#">미정</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">미정</a></li>
-                                                            <li><a href="#">미정</a></li>
-                                                            <li><a href="#">미정</a></li>
-                                                            <li><a href="#">미정</a></li>
-                                                            <li><a href="#">미정</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">미정</a></li>
+                                                    <li><a href="../my_song.jsp">구매내역</a></li>
                                                 </ul>
                                             </li>
                                             <%                                              	
@@ -153,16 +150,6 @@ function update(){
                                                     <li><a href="../admin/host.jsp">관리자목록</a></li>
                                                     <li><a href="../review/review.jsp">게시판관리</a></li>
                                                     <li><a href="../admin/musicManage.jsp">앨범관리</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
                                             </li>
                                             <%
@@ -173,16 +160,6 @@ function update(){
                                                     <li><a href="mypage.jsp">내정보</a></li>
                                                     <li><a href="../artist/artist.jsp">음원등록</a></li>
                                                     <li><a href="../artist/music_delete.jsp">음원관리</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
                                             </li>                                            
                                             <%
@@ -286,17 +263,18 @@ function update(){
     	<ul class="side-menu">
 			<li><a href="mypage.jsp"><b>내정보</b></a></li><br>  
 			<li><a href="../cart.jsp"><b>장바구니</b></a></li><br>
-			<li><a href="#"><b>구매내역</b></a></li><br>
+			<li><a href="../my_song.jsp"><b>구매내역</b></a></li><br>
 <%
 if(code.equals("200")){
 %>
 	<li><a href="../admin/admin.jsp">회원 관리</a></li><br>
-	<li><a href="../admin/musicManage.jsp">음원 관리</a></li>
-	<li><a href="../review/review.jsp">게시판 관리</a></li>
+	<li><a href="../admin/musicManage.jsp">음원 관리</a></li><br>
+	<li><a href="../review/review.jsp">게시판 관리</a></li><br>
 <%	
 } else if(code.equals("300")){
 %>
-	<li><a href="../artist/artist.jsp">음원 등록 및 목록</a></li><br>		
+	<li><a href="../artist/artist.jsp">음원 등록 및 목록</a></li><br>
+	<li><a href="../artist/music_delete.jsp">음원 관리</a></li><br>		
 <%
 }
 %>

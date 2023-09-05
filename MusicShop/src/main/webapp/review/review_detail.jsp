@@ -118,7 +118,7 @@ function cart(){
                                 	<%
                                     if(code != null){
                                     %>
-                                		<li><a href="${contextPath}/my_song.jsp">MySong</a></li>
+                                		<li><a href="../my_song.jsp">MySong</a></li>
                                 	<%} 
                                 	%>
                                     <li><a href="../main.jsp">Home</a></li>
@@ -139,6 +139,8 @@ function cart(){
                                             <li><a href="../admin.jsp">회원목록</a></li>
                                             <li><a href="../artist.jsp">아티스트목록</a></li>
                                             <li><a href="../host.jsp">관리자목록</a></li>
+                                            <li><a href="review.jsp">게시판관리</a></li>
+                                            <li><a href="../admin/musicManage.jsp">앨범관리</a></li>
                                         </ul>
                                     </li>
                                     <%
@@ -148,7 +150,7 @@ function cart(){
                                     	<ul class="dropdown">
                                         	<li><a href="../customer/mypage.jsp">내정보</a></li>
                                         	<li><a href="../cart.jsp">장바구니</a></li>
-                                        	<li><a href="#">구매내역</a></li>
+                                        	<li><a href="../my_song.jsp">구매내역</a></li>
                                      	</ul>
                                 	</li>
                                     <%

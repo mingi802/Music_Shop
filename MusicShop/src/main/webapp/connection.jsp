@@ -98,7 +98,7 @@ function cart(){
                                                 <ul class="dropdown">
                                                     <li><a href="customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="cart.jsp">장바구니</a></li>
-                                                    <li><a href="#">구매내역</a></li>
+                                                    <li><a href="my_song.jsp">구매내역</a></li>
                                                 </ul>
                                             </li> 
                                             <%

@@ -156,7 +156,7 @@ function cart(){
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
-                                                    <li><a href="#">구매내역</a></li>
+                                                    <li><a href="${contextPath}/my_song.jsp">구매내역</a></li>
                                                 </ul>
                                             </li> 
                                             <%

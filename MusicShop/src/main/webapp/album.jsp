@@ -177,7 +177,7 @@ String name = (String) session.getAttribute("name");
                                 	<%} 
                                 	%>
                                     <li><a href="${contextPath}/main.jsp">Home</a></li>
-                                    <li><a href="${contextPath}/album.jsp">Albums</a></li>
+                                    <li><a href="${contextPath}/album.jsp">Album</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="${contextPath}/main.jsp">Home</a></li>
@@ -192,7 +192,7 @@ String name = (String) session.getAttribute("name");
                                                 <ul class="dropdown">
                                                     <li><a href="${contextPath}/customer/mypage.jsp">내 정보</a></li>
                                                     <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
-                                                    <li><a href="#">구매내역</a></li>
+                                                    <li><a href="${contextPath}/my_song.jsp">구매내역</a></li>
                                                 </ul>
                                             </li> 
                                             <%

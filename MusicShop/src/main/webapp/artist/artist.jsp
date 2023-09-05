@@ -100,7 +100,7 @@ String name = (String) session.getAttribute("name");
                                 	<%
                                     if(code != null){
                                     %>
-                                		<li><a href="${contextPath}/my_song.jsp">MySong</a></li>
+                                		<li><a href="../my_song.jsp">MySong</a></li>
                                 	<%} 
                                 	%>
                                     <li><a href="${contextPath}/main.jsp">Home</a></li>
@@ -113,7 +113,7 @@ String name = (String) session.getAttribute("name");
                                             <li><a href="${contextPath}/review/review.jsp">Review</a></li>
                                             <li><a href="#">Artist</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="../customer/mypage.jsp">내정보</a></li>
+                                                    <li><a href="${contextPath}/customer/mypage.jsp">내정보</a></li>
                                                     <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
                                                     <li><a href="${contextPath}/artist/music_delete.jsp">음원관리</a></li>
                                                     <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
