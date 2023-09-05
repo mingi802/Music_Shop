@@ -1,9 +1,13 @@
-
-  <%
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/> <!-- ${contextPath} -->
+<%
 	String user_id = (String) session.getAttribute("id");
 	String code = (String) session.getAttribute("code");
 	String name = (String) session.getAttribute("name");
-  %> 
+  %>
 
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
