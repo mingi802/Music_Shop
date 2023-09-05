@@ -59,6 +59,8 @@ String albumId = request.getParameter("album_id");
 		});
 		console.log(songList.slice(-1)); //앨범리스트의 마지막 요소 출력
 	</c:forEach>
+	<c:set var="detail_addr" value ="${songList[0].singer}-${songList[0].album}"/>
+	console.log("detail: ${detail_addr}");
 	} else{
 		console.log("검색결과 없음");
 	}
@@ -335,6 +337,7 @@ function confirmLogin(){
 	<section class="featured-artist-area section-padding-100-50 bg-img bg-overlay bg-fixed" style="background-image: url(${contextPath}/img/bg-img/piano.jpg);">
 	<!-- 타이틀 곡 -->
         <div class="container">
+       
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
@@ -346,7 +349,7 @@ function confirmLogin(){
                         <!-- Section Heading -->
                         <div class= "section-heading white text-left mb-30">
                             <h2>${songList[0].singer}</h2>
-                            <p>${songList[0].album}</p><!-- songList -->
+                            <a href="${contextPath}/detail/${detail_addr}.jsp"><p>${songList[0].album}</p></a><!-- songList -->
                             <div>
 			            		<input type="button" id="album-buy-btn" class="btn btn-outline-light btn-lg" value="앨범 구매">
 			            	</div>
