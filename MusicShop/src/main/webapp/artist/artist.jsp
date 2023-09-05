@@ -111,16 +111,6 @@ String name = (String) session.getAttribute("name");
                                                     <li><a href="${contextPath}/artist/artist.jsp">음원등록</a></li>
                                                     <li><a href="${contextPath}/artist/music_delete.jsp">음원관리</a></li>
                                                     <li><a href="${contextPath}/cart.jsp">장바구니</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
