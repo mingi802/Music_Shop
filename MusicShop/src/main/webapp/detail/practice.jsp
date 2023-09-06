@@ -231,7 +231,7 @@ function cart(){
                         <!-- Membership manage Form -->
                         <div class="member-manage-form">
                         
-                        <p>asdjkhfkajshdkfj</p>
+                        <p></p>
                         </div>
                     </div>
                 </div>
