@@ -40,6 +40,7 @@
                     </td>
 				</tr>
 			</table>
+			
 			<table>
 				<tr>
 					<th>01. Super Shy</th>
