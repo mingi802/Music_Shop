@@ -158,7 +158,7 @@
 			  					</div>
 			                </div>
 	               		</c:forEach>  
-		                <div class="col-2 mr-auto">
+		                <div class="col-3 mr-auto">
 			            	<span>총 결제 금액: </span>
 			            	<span id="total-payment">0</span>
 			            	<span>￦</span>

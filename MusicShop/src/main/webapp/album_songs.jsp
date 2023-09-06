@@ -158,6 +158,12 @@ function confirmLogin(){
 
 
 </script>
+<script type="text/javascript">
+	function albumInfo(){
+		window.open("${contextPath}/detail/${detail_addr}.jsp","테스트","width=500,height=900,top=500, left=500")
+	}
+</script>
+
 </head>
 <body>
 <!-- Preloader -->
@@ -189,7 +195,8 @@ function confirmLogin(){
                         <!-- Section Heading -->
                         <div class= "section-heading white text-left mb-30">
                             <h2>${songList[0].singer}</h2>
-                            <a href="${contextPath}/detail/${detail_addr}.jsp"><p>${songList[0].album}</p></a><!-- songList -->
+                            <!-- <a href="${contextPath}/detail/${detail_addr}.jsp"><p>${songList[0].album}</p></a> songList -->
+                            <a href="javascript:albumInfo()"><p>${songList[0].album}</p></a><!-- songList -->
                             <div>
 			            		<input type="button" id="album-buy-btn" class="btn btn-outline-light btn-lg" value="앨범 구매">
 			            	</div>

@@ -115,7 +115,152 @@ public class AlbumDAO {
 		}
 		return albumList;
 	}
-
+	
+	public List<AlbumVO> getThisWeeksTopAlbum(){
+		List<AlbumVO> albumList = new ArrayList<AlbumVO>();
+		try {
+			
+			try {
+				connDB();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			//String sql = "SELECT * FROM album";
+			String sql =  "SELECT name, singer, sign\r\n"
+						+ "FROM album\r\n"
+						+ "ORDER BY (\r\n"
+						+ "		SELECT count(*)\r\n"
+						+ "		FROM payment \r\n"
+						+ "		WHERE album_id = album.id AND\r\n"
+						+ "	  		YEARWEEK(purchase_timestamp) = YEARWEEK(NOW())\r\n"
+						+ "		GROUP BY album_id\r\n"
+						+ "		) DESC\r\n"
+						+ "LIMIT 6;"; 
+			System.out.println(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String album = rs.getString("name"); //album에서 앨범 이름
+				String singer = rs.getString("singer"); //가수
+				String sign = rs.getString("sign"); //사진 
+				
+				AlbumVO albumVO = new AlbumVO();
+				
+				albumVO.setAlbum(album);
+				albumVO.setSinger(singer);
+				albumVO.setSign(sign);
+				
+				albumList.add(albumVO);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return albumList;
+	}
+	
+	public List<AlbumVO> getNewHitAlbum(){
+		List<AlbumVO> albumList = new ArrayList<AlbumVO>();
+		try {
+			
+			try {
+				connDB();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			//String sql = "SELECT * FROM album";
+			String sql = 
+					  "SELECT name, singer, sign, (select song from song where album_id = album.id and name = album.title) as song_audio\r\n"
+					+ "FROM album\r\n"
+					+ "order by (\r\n"
+					+ "select count(*)\r\n"
+					+ "from payment \r\n"
+					+ "where album_id = album.id and\r\n"
+					+ "	  purchase_timestamp between DATE_SUB(NOW(), INTERVAL 1 MONTH) and now()\r\n"
+					+ "group by album_id\r\n"
+					+ ") desc\r\n"
+					+ "limit 6;";
+			System.out.println(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String album = rs.getString("name"); //album에서 앨범 이름
+				String singer = rs.getString("singer"); //가수
+				String sign = rs.getString("sign"); //사진 
+				String song = rs.getString("song_audio"); //사진
+				
+				AlbumVO albumVO = new AlbumVO();
+				
+				albumVO.setAlbum(album);
+				albumVO.setSinger(singer);
+				albumVO.setSign(sign);
+				albumVO.setSong(song);
+				albumList.add(albumVO);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return albumList;
+	}
+	
+	public List<ArtistVO> getPopularArtist(){
+		List<ArtistVO> artistList = new ArrayList<ArtistVO>();
+		try {
+			
+			try {
+				connDB();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			String sql = 
+					  	"SELECT singer, (select img from singer where id = singer_id) as singer_img\r\n"
+					  + "FROM album\r\n"
+					  + "order by (\r\n"
+					  + "select count(*)\r\n"
+					  + "from payment \r\n"
+					  + "where album_id = album.id\r\n"
+					  + "group by album_id\r\n"
+					  + ") desc\r\n"
+					  + "limit 7;";
+			System.out.println(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String singer = rs.getString("singer"); //가수
+				String singer_img = rs.getString("singer_img"); //사진 
+				
+				ArtistVO artistVO = new ArtistVO();
+				
+				artistVO.setName(singer);
+				artistVO.setImg(singer_img);
+	
+				artistList.add(artistVO);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return artistList;
+	}
 	
 	public List<AlbumVO> searchAlbum(String albumName){
 		List<AlbumVO> albumList = new ArrayList<AlbumVO>();
