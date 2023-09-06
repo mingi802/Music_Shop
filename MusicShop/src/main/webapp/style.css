@@ -1906,6 +1906,27 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
  	width: 100px;  	
  	height: 20px;
   	}
+  	/*::Album Information Area Start::*/
+  	
+  	.info .album-info table{
+  	text-align : center;
+ 	margin: 0 auto; 
+ 	border-collapse : collapse;
+ 	width: 100%; 
+  	}
+  	.info .album-info tr{
+  	border: 1px solid #d8d8d8;
+  	}
+  	.info .album-info td{
+  	border: 1px solid #d8d8d8;
+  	}
+  	.info .album-info th{
+  	width: 150px;
+  	}
+  	.info{
+  	background-color: #f5f9fa;
+  	}
+  	/*::Album Information Area End::*/
 /* :: upload area CSS*/
 	/*monitor size is over 1536px*/
   	.upload-container{

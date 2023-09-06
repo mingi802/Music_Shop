@@ -160,7 +160,7 @@ function confirmLogin(){
 </script>
 <script type="text/javascript">
 	function albumInfo(){
-		window.open("${contextPath}/detail/${detail_addr}.jsp","테스트","width=500,height=900,top=500, left=500")
+		window.open("${contextPath}/detail/${detail_addr}.jsp","테스트","width=900,height=300")
 	}
 </script>
 
