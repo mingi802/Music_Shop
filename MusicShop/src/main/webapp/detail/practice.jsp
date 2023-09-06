@@ -101,6 +101,9 @@ function cart(){
                         <!-- Membership manage Form -->
                         <div class="member-manage-form">
                         
+<<<<<<< HEAD
+                        <p></p>
+=======
                         <table>
                         <tr>
                         	<th>앨범명</th>
@@ -134,6 +137,7 @@ function cart(){
                         </table>
                         
                         
+>>>>>>> 2a0154833c77c9e1c86cc752324a6d5fb15c851e
                         </div>
                     </div>
                 </div>
