@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Light & Shade chapter.2</title>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

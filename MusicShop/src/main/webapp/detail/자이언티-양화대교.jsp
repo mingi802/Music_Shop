@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>자이언티</title>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

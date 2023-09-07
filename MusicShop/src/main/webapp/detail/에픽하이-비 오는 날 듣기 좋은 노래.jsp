@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>비 오는 날 듣기 좋은 노래</title>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

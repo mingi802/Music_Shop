@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>YOUNHA 6th Album Repackage 'END THEORY : Final Edition'</title>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

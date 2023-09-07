@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>내 생에 꼭 한 번 들어야 할 클래식</title>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

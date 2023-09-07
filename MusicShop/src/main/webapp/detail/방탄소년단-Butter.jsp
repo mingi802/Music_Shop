@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Butter</title>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

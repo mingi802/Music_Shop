@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>첫사랑</title>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

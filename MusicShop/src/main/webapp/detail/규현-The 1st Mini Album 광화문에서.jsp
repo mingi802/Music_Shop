@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>The 1st Mini Album 광화문에서</title>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

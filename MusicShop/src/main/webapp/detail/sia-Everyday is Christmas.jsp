@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Everyday Is Christmas (Snowman Deluxe Edition)</title>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

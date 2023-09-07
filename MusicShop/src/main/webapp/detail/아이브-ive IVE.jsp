@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>아이브</title>
 </head>
-<body>
+<body class="album-body">
 앨범명
 I've IVE<br/><br/>
 아티스트
