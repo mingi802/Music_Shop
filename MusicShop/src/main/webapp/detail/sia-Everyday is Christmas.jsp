@@ -8,7 +8,7 @@
 <title>Everyday Is Christmas (Snowman Deluxe Edition)</title>
 <script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

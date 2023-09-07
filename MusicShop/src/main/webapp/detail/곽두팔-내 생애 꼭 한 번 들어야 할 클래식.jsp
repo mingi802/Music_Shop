@@ -8,7 +8,7 @@
 <title>내 생에 꼭 한 번 들어야 할 클래식</title>
 <script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

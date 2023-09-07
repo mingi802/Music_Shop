@@ -8,7 +8,7 @@
 <title>비 오는 날 듣기 좋은 노래</title>
 <script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

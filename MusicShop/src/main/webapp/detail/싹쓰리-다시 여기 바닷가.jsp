@@ -8,7 +8,7 @@
 <title>다시 여기 바닷가</title>
 <script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

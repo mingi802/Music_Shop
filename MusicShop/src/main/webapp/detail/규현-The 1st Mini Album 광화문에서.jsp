@@ -8,7 +8,7 @@
 <title>The 1st Mini Album 광화문에서</title>
 <script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
-<body>
+<body class="album-body">
 	<div class="info">
 		<div class="album-info">
 			<table>

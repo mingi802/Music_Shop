@@ -7,7 +7,7 @@
 <title>아이브</title>
 <script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
-<body>
+<body class="album-body">
 앨범명
 I've IVE<br/><br/>
 아티스트
