@@ -1928,7 +1928,6 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	}
   	.album-body{
   	background-color: #f5f9fa;
-  	padding-bottom: 100px;
   	}
   	/*::Album Information Area End::*/
 /* :: upload area CSS*/
