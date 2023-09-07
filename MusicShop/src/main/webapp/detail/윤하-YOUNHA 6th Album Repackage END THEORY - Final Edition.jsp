@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
 <meta charset="UTF-8">
 <title>YOUNHA 6th Album Repackage 'END THEORY : Final Edition'</title>
+<script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
 <body>
 	<div class="info">

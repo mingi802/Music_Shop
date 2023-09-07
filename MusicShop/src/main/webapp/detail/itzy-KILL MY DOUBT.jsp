@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
 <meta charset="UTF-8">
 <title>KILL MY DOUBT</title>
+<script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
 <body>
 	<div class="info">

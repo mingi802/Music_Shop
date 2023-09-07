@@ -6,6 +6,7 @@
    <link rel="stylesheet" href="../style.css">
 <meta charset="UTF-8">
 <title>다시 여기 바닷가</title>
+<script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
 <body>
 	<div class="info">

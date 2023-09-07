@@ -6,6 +6,7 @@
    <link rel="stylesheet" href="../style.css">
 <meta charset="UTF-8">
 <title>비 오는 날 듣기 좋은 노래</title>
+<script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
 <body>
 	<div class="info">

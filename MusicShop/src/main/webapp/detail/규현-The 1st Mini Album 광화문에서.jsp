@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
 <meta charset="UTF-8">
 <title>The 1st Mini Album 광화문에서</title>
+<script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
 <body>
 	<div class="info">

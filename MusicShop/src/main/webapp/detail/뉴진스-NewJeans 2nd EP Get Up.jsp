@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
 <meta charset="UTF-8">
 <title>NewJeans 2nd EP 'Get Up'</title>
+<script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
 <body>
 	<div class="info">
@@ -235,4 +236,6 @@
 							Need you boy on my arm (need you boy on my arm)<br><br>
 						</p>
 					</details>
+		</div>
+	</div>
 </html>

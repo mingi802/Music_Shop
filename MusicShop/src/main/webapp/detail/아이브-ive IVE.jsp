@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이브</title>
+<script src="../js/dynamicWindowResizer.js" defer></script>
 </head>
 <body>
 앨범명

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
 <meta charset="UTF-8">
 <title>밴드 고맙삼다</title>
+<script src="../js/dynamicWindowResizer.js" defer></script>
 <body>
 	<div class="info">
 		<div class="album-info">

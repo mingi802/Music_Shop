@@ -160,7 +160,10 @@ function confirmLogin(){
 </script>
 <script type="text/javascript">
 	function albumInfo(){
-		window.open("${contextPath}/detail/${detail_addr}.jsp","테스트","width=900,height=300")
+		 	var xPos = (document.body.offsetWidth) - 900;
+		    xPos += window.screenLeft; // 듀얼 모니터일 때
+		    var yPos = (document.body.offsetHeight/2) - (300/2);
+		window.open("${contextPath}/detail/${detail_addr}.jsp","테스트","width=900,height=300,left="+xPos+",top="+yPos)
 	}
 </script>
 
