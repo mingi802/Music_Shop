@@ -78,7 +78,13 @@ public class AlbumDAO {
 			}
 			
 			//String sql = "SELECT * FROM album";
-			String sql = "SELECT album.id, album.name, album.title, album.singer, album.now, album.sign, song.song, song.price FROM album, song WHERE album.title = song.name";
+			String sql = "SELECT album.id, album.name, album.title, album.singer, album.now, album.sign, song.song, \r\n"
+					+ "			(SELECT SUM(price) \r\n"
+					+ "			 FROM song \r\n"
+					+ "			 WHERE album_id = album.id) \r\n"
+					+ "			 AS price \r\n"
+					+ "   FROM album JOIN song ON album.id = song.album_id \r\n"
+					+ "   WHERE album.title = song.name;";
 			System.out.println(sql);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
