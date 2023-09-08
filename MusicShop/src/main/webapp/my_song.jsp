@@ -33,7 +33,7 @@
 	String code = (String) session.getAttribute("code");
 	String name = (String) session.getAttribute("name");
   %> 
-	    
+	    /*
 		function activateYFilter() {
 		    const iframe = document.getElementById("y-filter-iframe");
 		    iframe.style.display = "block";
@@ -50,6 +50,7 @@
 	          }
 	        }
 	    });	    		      
+      	*/
       	
 		/*장바구니로 이동하는 함수 추가하기*/
 		function cart(){
@@ -60,18 +61,6 @@
 				return false;
 		
 			}
-		}
-		
-		window.onload = function() {
-			var mySongList = document.querySelectorAll("div.my-song");
-			mySongList.forEach(function(mySong) {
-				var songSrc = mySong.querySelector("div.song-play-area audio source").src;
-				var downBtn = mySong.querySelector("div.down-btn p span");
-				downBtn.addEventListener('click', (event) => songDownload(event, songSrc));
-			});
-		}
-		function songDownload(event, songSrc) {
-			console.log();
 		}
     </script>
 </head>

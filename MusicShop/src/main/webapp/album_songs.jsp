@@ -186,7 +186,6 @@ function confirmLogin(){
 	<section class="featured-artist-area section-padding-100-50 bg-img bg-overlay bg-fixed" style="background-image: url(${contextPath}/img/bg-img/piano.jpg);">
 	<!-- 타이틀 곡 -->
         <div class="container">
-       
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
@@ -242,8 +241,6 @@ function confirmLogin(){
 					</div>
 					<div class="col-3 align-self-center mt-4">
 	                   	<input type="button" id="a-song-of-album-buy-btn" class="btn btn-outline-success btn-lg buy-btn" type="button" value="장바구니">
-			   			&nbsp;&nbsp;&nbsp;&nbsp;
-			    		<input type="button" id="a-song-of-album-like-btn" class="btn btn-outline-danger btn-lg" type="button" value="구매">
 					</div>    
 				</div>
 				</c:forEach>
