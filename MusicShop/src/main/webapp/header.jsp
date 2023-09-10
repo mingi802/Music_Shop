@@ -93,9 +93,7 @@
                                     </li>
                                     <li><a href="${contextPath}/connection.jsp">Contact</a></li>
                                 </ul>
-<% 
-	//String user_id = "곽두팔"; // 로그그인 된 경우, 예시 아이디
-	//String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
+<%
 	if(user_id == null) {
 %>
                                 <!-- Login/Register & Cart Button -->

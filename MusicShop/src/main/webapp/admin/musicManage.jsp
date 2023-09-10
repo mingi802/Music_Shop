@@ -28,14 +28,6 @@ String name = (String) session.getAttribute("name");
 //String code = "100";	// 로그인이 된 경우, 예시 구분 코드 / 100 : 소비자, 200 : 관리자 , 300 : 아티스트
 %>
 <script>
-/*1분 미리듣기 함수*/
-function limitPlayTime(audio) {
-    if (audio.currentTime > 60) { // 1분(60초)로 제한
-        audio.pause();
-        audio.currentTime = 0; // 음악이 끝난 후 처음으로 돌아감
-        alert("1분 미리듣기가 종료되었습니다.");
-    }
-}
 
 function cart(){
 	if(confirm('장바구니로 이동하시겠습니까?')){
@@ -46,22 +38,6 @@ function cart(){
 	}
 }
 
-  function activateYFilter() {
-    const iframe = document.getElementById("y-filter-iframe");
-    iframe.style.display = "block";
-    iframe.contentWindow.postMessage("activateYFilter", "*");
-  }
-
-  window.addEventListener("message", function(event) {
-    if (event.data === "iframeLoaded") {
-      const urlParams = new URLSearchParams(window.location.search);
-      const filter = urlParams.get("filter");
-
-      if (filter !== null && filter === "y") {
-        activateYFilter();
-      }
-    }
-  });
 </script>
 
 </head>

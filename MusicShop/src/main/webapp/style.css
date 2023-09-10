@@ -1524,7 +1524,7 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
 		.artist-music-container{
   		width: 1950px;
 		text-align: center;
-		margin-left: 10px;
+		margin-left: 300px;
 		padding-left: 10px;
   		}  	
   	}	
@@ -2085,6 +2085,7 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	/*background-color: #000000;*/
   	background-color: rgb(111,167,235);
   	/*화면 검사용*/
+  	margin-top: 100px;
   	padding: 50px 0; 
   	height: 250px;
   	}

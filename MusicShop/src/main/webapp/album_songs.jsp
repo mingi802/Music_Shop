@@ -271,7 +271,7 @@ function confirmLogin(){
 								<div class='writeReview'> 		
                             		<div class="starReview">
                             				<input type="hidden" name="user_id" id="user_id" value='<%=user_id %>'>
-                            				<input type="hidden" name="album" id="album" value="${songList[0].album}">
+                            				<!-- <input type="text" name="album" id="album" value="${songList[0].album}"> -->
                             				<input type="hidden" name="albumId" id="albumId" value='<%=albumId %>'>
                             				<input type="hidden" name="singer" id="singer" value="${songList[0].singer}">
                             				
