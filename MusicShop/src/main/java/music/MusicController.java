@@ -43,7 +43,11 @@ public class MusicController extends HttpServlet {
     	System.out.println(action);
     	
     	if(action.equals("/listMusic.do")) {
-    		List<MusicVO> MusicList = musicDAO.listMusic(name);
+    		String singer_id = "";
+			if(session != null) {
+				singer_id = (String) session.getAttribute("id");
+			}
+    		List<MusicVO> MusicList = musicDAO.listMusic(singer_id);
     		request.setAttribute("MusicList", MusicList);
     		request.setAttribute("isFirstEntry", false);
     		System.out.println(response.isCommitted());
@@ -144,6 +148,12 @@ public class MusicController extends HttpServlet {
 				int price;
 				String sign;
 				String song;
+				String singer_id = "";
+				
+				if(session != null) {
+					singer_id = (String) session.getAttribute("id");
+				} 
+				
 				
 				if(param[1].equals("isTitle")) {
 					isTitle = Boolean.parseBoolean(param[2]);
@@ -179,6 +189,7 @@ public class MusicController extends HttpServlet {
 						isTitle,
 						title, 
 						singer, 
+						singer_id,
 						now, 
 						sign, 
 						price, 
@@ -188,9 +199,7 @@ public class MusicController extends HttpServlet {
 				e.printStackTrace();
 			}
     		nextPage = "/Music/listMusic.do";
-			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
-    		
-    		dispatch.forward(request, response);
+			response.sendRedirect(request.getContextPath()+nextPage);
 		} else if (action.equals("/showMySongList.do")) {
 			String se_member_id = "";
 			if(session != null) {

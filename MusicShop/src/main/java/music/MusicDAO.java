@@ -34,7 +34,7 @@ public class MusicDAO {
 //		dbPassword = "jinsang1027#";
 	}
 	
-	public List<MusicVO> listMusic(String name){
+	public List<MusicVO> listMusic(String singer_id){
 		List<MusicVO> musicList = new ArrayList<>();
 		
 		try {
@@ -64,7 +64,7 @@ public class MusicDAO {
 								//song테이블의album_id컬럼 값이 album테이블의id컬럼 값과 같은 song테이블 행들의 price 합, 발매일, 이미지 파일 경로 가져와주고   
 						"		IFNULL((select song from song where song.album_id = album.id and song.name = album.title), 'no audio file') as song\n"+ 
 								//song테이블의album_id컬럼 값이 album테이블의id컬럼 값과 같으며 album테이블의 title컬럼과 song테이블의 name컬럼이 같은 song테이블의 song컬럼을 가져온다 
-						"FROM album WHERE singer = '"+ name +"'\n"; 
+						"FROM album WHERE singer_id = '"+ singer_id +"'\n"; 
 						//"WHERE singer = ?";
 			pstmt = conn.prepareStatement(sql);
 			//pstmt.setString(1, singer_name);
@@ -178,12 +178,13 @@ public class MusicDAO {
 			boolean isTitle = m.getisTitle(); //타이틀곡 여부
 			String song_name = m.getTitle(); //타이틀곡명
 			String singer_name = m.getSinger(); //가수
+			String singer_id = m.getSinger_id();
 			Date now = m.getNow(); // 발매일
 			int price = m.getPrice(); //음원 가격
 			String sign = m.getSign(); //앨범 이미지 경로
 			String song = m.getSong(); //음원 경로
 			
-			String sql = "call insert_song(?, ?, ?, ?, ?, ?, ?, ?);";	
+			String sql = "call insert_song(?, ?, ?, ?, ?, ?, ?, ?, ?);";	
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			/*
 			in album_name varchar(60), 
@@ -197,12 +198,13 @@ public class MusicDAO {
 			*/
 			pstmt.setString(1, album_name);
 			pstmt.setString(2, singer_name);
-			pstmt.setDate(3, now);
-			pstmt.setString(4, sign);
-			pstmt.setString(5, song_name);
-			pstmt.setInt(6, price);
-			pstmt.setString(7, song);
-			pstmt.setBoolean(8, isTitle);
+			pstmt.setString(3, singer_id);
+			pstmt.setDate(4, now);
+			pstmt.setString(5, sign);
+			pstmt.setString(6, song_name);
+			pstmt.setInt(7, price);
+			pstmt.setString(8, song);
+			pstmt.setBoolean(9, isTitle);
 			pstmt.executeUpdate();
 			
 			pstmt.close();

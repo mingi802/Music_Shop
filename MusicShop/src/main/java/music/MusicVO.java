@@ -8,21 +8,24 @@ public class MusicVO {	//이제 이 클래스는 db의 스토어드 프로시저에 넣을 매개 변�
 	private boolean isTitle;
 	private String title;
 	private String singer;
+	private String singer_id;
 	private Date now;
 	private int price;
 	private String sign;
 	private String song;
 	
+	
 	public MusicVO() {
 		
 	}
 	
-	public MusicVO(String album, Boolean isTitle, String title, String singer, Date now, String sign, int price, String song) {
+	public MusicVO(String album, Boolean isTitle, String title, String singer, String singer_id, Date now, String sign, int price, String song) {
 		super();
 		this.album = album;
 		this.isTitle = isTitle;
 		this.title = title;
 		this.singer = singer;
+		this.singer_id = singer_id;
 		this.now = now;
 		this.price = price;
 		this.sign = sign;
@@ -66,6 +69,14 @@ public class MusicVO {	//이제 이 클래스는 db의 스토어드 프로시저에 넣을 매개 변�
 
 	public void setAlbum(String album) {
 		this.album = album;
+	}
+	public void setSinger_id(String singer_id) {
+		// TODO Auto-generated method stub
+		this.singer_id = singer_id;
+	}
+	public String getSinger_id() {
+		// TODO Auto-generated method stub
+		return singer_id;
 	}
 	
 }
