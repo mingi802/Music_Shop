@@ -1935,7 +1935,7 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	.upload-container{
   	width: 50%;
 	text-align: center;
-	margin-left : 850px;
+	margin-left : 730px;
   	}
   	/*monitor size is under 1536px*/
   	@media only screen and (min-width: 1537px){
@@ -1954,7 +1954,8 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   border: 1px solid #d8d8d8;
   padding: 50px 100px;
   box-shadow: 0 2px 70px 0 rgba(0, 0, 0, 0.15);
-  text-align: center; }
+  text-align: center; 
+  }
   @media only screen and (max-width: 767px) {
     .upload-content {
       padding: 50px 30px; } }
@@ -2018,7 +2019,7 @@ input[type="checkbox"].cart-item-checked:checked + label.check-emoticon::after{
   	}
   	/*when monitor size is under 1536px or using in small size*/
   	.music-list-container{
-  	width: 165%;
+  	width: 900px;
 	text-align: center;
 	margin-left : 10px;
   	}

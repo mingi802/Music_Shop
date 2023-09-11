@@ -161,7 +161,7 @@ function cart(){
         						<th>작성자</th><th>작성일</th><th>댓글</th>
     						</tr>
     						<%
-    						String sqlR = "SELECT user_id, date, reply FROM replyboard WHERE song_name = ?";
+    						String sqlR = "SELECT user_id, date, reply FROM replyboard WHERE song_name = ? AND writer = '"+ rs.getString("user_id") +"'";
     						PreparedStatement pstmtR = conn.prepareStatement(sqlR);
     						pstmtR.setString(1, title);
     						ResultSet rsR = pstmtR.executeQuery();
@@ -201,7 +201,7 @@ function cart(){
 							<form class="reply" name="reply" method="post" action="reply.jsp" onSubmit="return confirmLogin()" ecntype="UTF-8">
 								<input type="hidden" name="songName" id="songName" value='<%=rs.getString("album_name")%>'> <!-- 노래제목 -->
 								<input type="hidden" name="user" id="user" value='<%=user_id%>'> <!-- 댓글 작성자 -->
-								<input type="hidden" name="writer" id="writer" value='<%=rs.getString("user_id")%>'>
+								<input type="hidden" name="writer" id="writer" value='<%=rs.getString("user_id")%>'><!-- 게시판 글 작성자 -->
 								<textarea class="write-reply" id="songRelpy" name="songReply" rows="3" cols="65" maxlength="4000"></textarea> <!-- 댓글 내용 -->
 								<input type="submit" class="reply-btn" value="리뷰 작성">
 								<div class="emptySpace"></div>	
