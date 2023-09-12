@@ -22,15 +22,21 @@
 		String sql = "DELETE FROM board WHERE user_id = ? AND album_name = ?";
 		String sql2 = "UPDATE board set board.id = @cnt:=@cnt+1";
 		String sql3 = "set @cnt = 0";
+		String sql4 = "DELETE FROM replyboard WHERE writer = ? AND song_name = ?";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		PreparedStatement pstmt3 = conn.prepareStatement(sql3);
 		PreparedStatement pstmt2 = conn.prepareStatement(sql2);	
+		PreparedStatement pstmt4 = conn.prepareStatement(sql4);
 
 		pstmt.setString(1, id);
 		pstmt.setString(2, albumName);
 		
+		pstmt4.setString(1, id);
+		pstmt4.setString(2, albumName);
+		
 		pstmt.executeUpdate();
+		pstmt4.executeUpdate();
 		pstmt3.executeUpdate();
 		pstmt2.executeUpdate();
 		

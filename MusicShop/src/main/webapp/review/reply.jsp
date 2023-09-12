@@ -30,7 +30,7 @@
 	out.println("<script>alert('"+writer+"');</script>");
 	*/
 	try{
-		String sql = "INSERT INTO replyboard (user_id, date, song_name, reply) VALUES(?, ?, ?, ?)";
+		String sql = "INSERT INTO replyboard (user_id, date, song_name, reply, writer) VALUES(?, ?, ?, ?, ?)";
 		String sql_renew1 = "set @cnt = 0";
 		String sql_renew2 = "UPDATE board SET board.id = @cnt:=@cnt+1";
 		
@@ -42,6 +42,7 @@
 		pstmt.setString(2, formattedNow);
 		pstmt.setString(3, songName);
 		pstmt.setString(4, reply);
+		pstmt.setString(5, writer);
 		pstmt.executeUpdate();
 		pstmt_renew1.executeUpdate();
 		pstmt_renew2.executeUpdate();

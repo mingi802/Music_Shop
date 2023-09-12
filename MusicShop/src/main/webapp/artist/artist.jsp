@@ -134,7 +134,7 @@ String name = (String) session.getAttribute("name");
     <!-- ##### Login Area Start ##### -->
     <section class="login-area section-padding-100">
         <div class="upload-container">
-            <div class="row justify-content-center">
+            <div class="row justify-content-end">
                 <div class="col-12 col-lg-8">
                     <div class="upload-content">
                         <h3>음원 등록</h3>
