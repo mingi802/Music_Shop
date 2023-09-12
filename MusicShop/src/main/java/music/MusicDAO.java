@@ -189,6 +189,7 @@ public class MusicDAO {
 			/*
 			in album_name varchar(60), 
 			in singer_name varchar(60), 
+			in singer_id varchar(60),
 			in now date, 
 			in sign varchar(60), 
 			in song_name varchar(60), 
