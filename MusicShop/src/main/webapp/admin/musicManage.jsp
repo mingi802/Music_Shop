@@ -90,6 +90,7 @@ function cart(){
                         	<tr><th>고유번호</th><th>앨범</th><th>타이틀곡</th><th>음원</th><th>가수</th><th>가격</th></tr>
                         	<%
                         	//String sql = "SELECT song.id, song.album_id, album.name, album.title, album.singer, song.name, song.price FROM song, album WHERE album.id = song.album_id";
+                        	//서브쿼리 없이 같은 결과가 나오는 sql문(음원 파일의 확장자가 .mp3가 아닌 경우는 생각하지 않았음): SELECT A.id, A.name, A.title, A.singer, REGEXP_SUBSTR(GROUP_CONCAT(S.song), concat("\\b", A.title, "\\.mp3\\b")) as song, sum(S.price) AS Album_price FROM album A join song S on A.id = S.album_id GROUP BY A.id, A.name, A.title, A.singer;
                         	String sql = "SELECT \r\n"
                         			+ "    A.id,\r\n"
                         			+ "    A.name,\r\n"
