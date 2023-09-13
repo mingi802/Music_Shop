@@ -90,20 +90,36 @@ function cart(){
                         	<tr><th>고유번호</th><th>앨범</th><th>타이틀곡</th><th>음원</th><th>가수</th><th>가격</th></tr>
                         	<%
                         	//String sql = "SELECT song.id, song.album_id, album.name, album.title, album.singer, song.name, song.price FROM song, album WHERE album.id = song.album_id";
-                        	String sql = "SELECT album.id, album.name, album.title, song.song, album.singer, SUM(song.price) AS Album_price FROM song, album WHERE album.id = song.album_id GROUP BY album.id"; 
+                        	String sql = "SELECT \r\n"
+                        			+ "    A.id,\r\n"
+                        			+ "    A.name,\r\n"
+                        			+ "    A.title,\r\n"
+                        			+ "    A.singer,\r\n"
+                        			+ "    (SELECT \r\n"
+                        			+ "            song\r\n"
+                        			+ "        FROM\r\n"
+                        			+ "            song\r\n"
+                        			+ "        WHERE\r\n"
+                        			+ "            album_id = A.id AND name = A.title) AS song,\r\n"
+                        			+ "    SUM(S.price) AS Album_price\r\n"
+                        			+ "FROM\r\n"
+                        			+ "    album A\r\n"
+                        			+ "        JOIN\r\n"
+                        			+ "    song S ON A.id = S.album_id\r\n"
+                        			+ "GROUP BY A.id, A.name, A.title , A.singer;"; 
                         	PreparedStatement pstmt = conn.prepareStatement(sql);
                         	ResultSet rs = pstmt.executeQuery();
                         	
                         	while(rs.next()){
                         	%>
                         		<tr style="test-align: center">
-                        		<td><%=rs.getString("album.id") %></td> <!-- 고유번호 -->
-                        		<td><%=rs.getString("album.name") %></td> <!-- 앨범 번호 -->
-                        		<td><%=rs.getString("album.title") %></td> <!-- 앨범명 -->
-                        		<td><%=rs.getString("song.song") %></td> <!-- 타이틀곡 -->
-                        		<td><%=rs.getString("album.singer") %></td> <!-- 가수 -->
+                        		<td><%=rs.getString("id") %></td> <!-- 고유번호 -->
+                        		<td><%=rs.getString("name") %></td> <!-- 앨범 번호 -->
+                        		<td><%=rs.getString("title") %></td> <!-- 앨범명 -->
+                        		<td><%=rs.getString("song") %></td> <!-- 타이틀곡 -->
+                        		<td><%=rs.getString("singer") %></td> <!-- 가수 -->
                         		<td><%=rs.getString("Album_price") %>원</td> <!-- 가격 -->
-                        		<td><button onclick="location.href='songdelete.jsp?id=<%= rs.getString("album.id") %>'">Delete</button></td>
+                        		<td><button onclick="location.href='songdelete.jsp?id=<%= rs.getString("id") %>'">Delete</button></td>
                         		</tr>
                         	<%	
                         	}
